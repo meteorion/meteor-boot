@@ -1,10 +1,9 @@
 package com.ruoyi.file.service;
 
-import com.meteor.common.core.client.FileClient;
+import com.meteor.common.file.core.client.FileClient;
 import com.ruoyi.common.core.domain.PageResult;
 import com.ruoyi.file.controller.vo.config.FileConfigCreateReqVO;
 import com.ruoyi.file.controller.vo.config.FileConfigPageReqVO;
-import com.ruoyi.file.controller.vo.config.FileConfigRespVO;
 import com.ruoyi.file.controller.vo.config.FileConfigUpdateReqVO;
 import com.ruoyi.file.domain.FileStrogeClient;
 

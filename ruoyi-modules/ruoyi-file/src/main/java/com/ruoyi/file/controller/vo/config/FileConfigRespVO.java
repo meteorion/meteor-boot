@@ -1,6 +1,6 @@
 package com.ruoyi.file.controller.vo.config;
 
-import com.meteor.common.core.client.FileClientConfig;
+import com.meteor.common.file.core.client.FileClientConfig;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

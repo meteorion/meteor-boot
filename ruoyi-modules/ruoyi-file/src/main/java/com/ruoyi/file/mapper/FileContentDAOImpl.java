@@ -2,7 +2,7 @@ package com.ruoyi.file.mapper;
 
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.meteor.common.core.client.db.DBFileContentFrameworkDAO;
+import com.meteor.common.file.core.client.db.DBFileContentFrameworkDAO;
 import com.ruoyi.file.domain.FileContent;
 import org.springframework.stereotype.Repository;
 

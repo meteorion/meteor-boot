@@ -1,1 +1,1 @@
-com.meteor.common.config.FileClientAutoConfiguration
+com.meteor.common.file.config.FileClientAutoConfiguration

@@ -3,7 +3,7 @@ package com.ruoyi.file.domain;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.meteor.common.core.client.db.DBFileClient;
+import com.meteor.common.file.core.client.db.DBFileClient;
 import lombok.*;
 
 /**

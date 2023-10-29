@@ -31,7 +31,6 @@ import javax.validation.Valid;
 
 @Tag(name =  "管理后台 - 文件存储")
 @RestController
-@RequestMapping("/file")
 @Validated
 @Slf4j
 public class FileController {

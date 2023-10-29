@@ -20,7 +20,7 @@ import javax.validation.Valid;
 
 @Tag(name =  "管理后台 - 文件配置")
 @RestController
-@RequestMapping("/file/config")
+@RequestMapping("/config")
 @Validated
 public class FileConfigController {
 

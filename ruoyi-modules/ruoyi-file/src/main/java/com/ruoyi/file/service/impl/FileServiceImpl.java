@@ -4,7 +4,7 @@ import cn.hutool.core.io.FileTypeUtil;
 import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.crypto.digest.DigestUtil;
-import com.meteor.common.core.client.FileClient;
+import com.meteor.common.file.core.client.FileClient;
 import com.ruoyi.common.core.domain.PageResult;
 import com.ruoyi.common.core.exception.ServiceException;
 import com.ruoyi.common.core.utils.StringUtils;

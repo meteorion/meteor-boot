@@ -3,8 +3,8 @@ package com.ruoyi.file.domain;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
-import com.meteor.common.core.client.FileClientConfig;
-import com.meteor.common.core.enums.FileStorageEnum;
+import com.meteor.common.file.core.client.FileClientConfig;
+import com.meteor.common.file.core.enums.FileStorageEnum;
 import com.ruoyi.common.core.web.domain.BaseEntity;
 import lombok.*;
 

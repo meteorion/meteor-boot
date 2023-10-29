@@ -4,6 +4,8 @@ package com.meteor.common.core.enums;
 import cn.hutool.core.util.ArrayUtil;
 import com.meteor.common.core.client.FileClient;
 import com.meteor.common.core.client.FileClientConfig;
+import com.meteor.common.core.client.db.DBFileClient;
+import com.meteor.common.core.client.db.DBFileClientConfig;
 import com.meteor.common.core.client.ftp.FtpFileClient;
 import com.meteor.common.core.client.ftp.FtpFileClientConfig;
 import com.meteor.common.core.client.local.LocalFileClient;
@@ -24,7 +26,7 @@ import lombok.Getter;
 @Getter
 public enum FileStorageEnum {
 
-//    DB(1, DBFileClientConfig.class, DBFileClient.class),
+    DB(1, DBFileClientConfig.class, DBFileClient.class),
     LOCAL(10, LocalFileClientConfig.class, LocalFileClient.class),
     FTP(11, FtpFileClientConfig.class, FtpFileClient.class),
     SFTP(12, SftpFileClientConfig.class, SftpFileClient.class),

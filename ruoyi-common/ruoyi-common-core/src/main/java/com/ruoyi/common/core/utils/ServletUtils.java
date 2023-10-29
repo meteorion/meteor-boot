@@ -12,6 +12,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import cn.hutool.core.io.IoUtil;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,7 +31,7 @@ import reactor.core.publisher.Mono;
 
 /**
  * 客户端工具类
- * 
+ *
  * @author ruoyi
  */
 public class ServletUtils
@@ -189,7 +191,7 @@ public class ServletUtils
 
     /**
      * 将字符串渲染到客户端
-     * 
+     *
      * @param response 渲染对象
      * @param string 待渲染的字符串
      */
@@ -210,7 +212,7 @@ public class ServletUtils
 
     /**
      * 是否是Ajax异步请求
-     * 
+     *
      * @param request
      */
     public static boolean isAjaxRequest(HttpServletRequest request)
@@ -239,7 +241,7 @@ public class ServletUtils
 
     /**
      * 内容编码
-     * 
+     *
      * @param str 内容
      * @return 编码后的内容
      */
@@ -257,7 +259,7 @@ public class ServletUtils
 
     /**
      * 内容解码
-     * 
+     *
      * @param str 内容
      * @return 解码后的内容
      */
@@ -329,5 +331,21 @@ public class ServletUtils
         R<?> result = R.fail(code, value.toString());
         DataBuffer dataBuffer = response.bufferFactory().wrap(JSON.toJSONString(result).getBytes());
         return response.writeWith(Mono.just(dataBuffer));
+    }
+
+    /**
+     * 返回附件
+     *
+     * @param response 响应
+     * @param filename 文件名
+     * @param content 附件内容
+     * @throws IOException
+     */
+    public static void writeAttachment(HttpServletResponse response, String filename, byte[] content) throws IOException {
+        // 设置 header 和 contentType
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(filename, "UTF-8"));
+        response.setContentType(MediaType.APPLICATION_OCTET_STREAM_VALUE);
+        // 输出附件
+        IoUtil.write(response.getOutputStream(), false, content);
     }
 }

@@ -28,6 +28,7 @@
         <pagehelper.boot.version>1.4.7</pagehelper.boot.version>
         <druid.version>1.2.16</druid.version>
         <dynamic-ds.version>3.5.2</dynamic-ds.version>
+        <mybatis.plus.version>3.5.3.2</mybatis.plus.version>
         <commons.io.version>2.13.0</commons.io.version>
         <velocity.version>2.3</velocity.version>
         <fastjson.version>2.0.41</fastjson.version>
@@ -35,6 +36,7 @@
         <minio.version>8.2.2</minio.version>
         <hutool.version>5.8.22</hutool.version>
         <poi.version>4.1.2</poi.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
         <transmittable-thread-local.version>2.14.3</transmittable-thread-local.version>
     </properties>
 
@@ -158,6 +160,18 @@
                 <version>${hutool.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis.plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
             <!-- 核心模块 -->
             <dependency>
                 <groupId>com.ruoyi</groupId>
@@ -211,6 +225,12 @@
             <dependency>
                 <groupId>com.ruoyi</groupId>
                 <artifactId>ruoyi-common-redis</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.meteor</groupId>
+                <artifactId>meteor-common-file</artifactId>
                 <version>${ruoyi.version}</version>
             </dependency>
 

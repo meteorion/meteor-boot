@@ -1,6 +1,6 @@
 @echo off
 echo.
-echo nacosæœ¬æœºå¯åŠ¨ã€‚
+echo nacos±¾»úÆô¶¯¡£
 echo.
 
 cd E:\Utils\nacos\nacos-server-2.0.4\bin

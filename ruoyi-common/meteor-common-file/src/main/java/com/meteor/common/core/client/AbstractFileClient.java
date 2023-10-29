@@ -57,6 +57,6 @@ public abstract class AbstractFileClient<T extends FileClientConfig> implements 
      * @return URL 访问地址
      */
     protected String formatFileUrl(String domain, String path) {
-        return CharSequenceUtil.format("{}/admin-api/infra/file/{}/get/{}", domain, getId(), path);
+        return CharSequenceUtil.format("{}/file/{}/get/{}", domain, getId(), path);
     }
 }

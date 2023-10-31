@@ -3,6 +3,7 @@ package com.ruoyi.file.controller;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.StrUtil;
+import com.meteor.common.signature.core.annotation.Decrypt;
 import com.ruoyi.common.core.domain.PageResult;
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.utils.ServletUtils;
@@ -38,6 +39,7 @@ public class FileController {
     @Resource
     private FileService fileService;
 
+    @Decrypt
     @PostMapping("/upload")
     @Operation(summary = "上传文件")
     public R<String> uploadFile(FileUploadReqVO uploadReqVO) throws Exception {

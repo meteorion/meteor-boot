@@ -20,8 +20,8 @@ import java.util.*;
 /**
  * @author meteor
  */
-public class DecryptionRequestWrapper extends HttpServletRequestWrapper {
-    private static final Logger log = LoggerFactory.getLogger(DecryptionRequestWrapper.class);
+public class RequestWrapper extends HttpServletRequestWrapper {
+    private static final Logger log = LoggerFactory.getLogger(RequestWrapper.class);
     /**
      * 保存原始Request对象
      */
@@ -38,7 +38,7 @@ public class DecryptionRequestWrapper extends HttpServletRequestWrapper {
     @Getter
     private String body;
 
-    public DecryptionRequestWrapper(HttpServletRequest request) {
+    public RequestWrapper(HttpServletRequest request) {
         super(request);
         this.request = request;
         // 如果是文件上传类请求
@@ -102,7 +102,6 @@ public class DecryptionRequestWrapper extends HttpServletRequestWrapper {
 
     @Override
     public BufferedReader getReader() {
-
         return new BufferedReader(new InputStreamReader(this.getInputStream()));
     }
 

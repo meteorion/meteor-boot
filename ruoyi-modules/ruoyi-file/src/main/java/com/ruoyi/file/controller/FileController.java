@@ -29,6 +29,7 @@ import javax.annotation.security.PermitAll;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Map;
 
 @Tag(name =  "管理后台 - 文件存储")
 @RestController
@@ -40,12 +41,18 @@ public class FileController {
     private FileService fileService;
 
     @Decrypt
-    @PostMapping("/upload")
+//    @PostMapping("/upload")
     @Operation(summary = "上传文件")
     public R<String> uploadFile(FileUploadReqVO uploadReqVO) throws Exception {
         MultipartFile file = uploadReqVO.getFile();
         String path = uploadReqVO.getPath();
         return R.ok(fileService.createFile(file.getOriginalFilename(), path, IoUtil.readBytes(file.getInputStream())));
+    }
+
+    @Decrypt
+    @PostMapping("/upload")
+    public R<Void> test(@RequestBody Map<String, Object> parameters) {
+        return R.ok();
     }
 
     @DeleteMapping("/delete")

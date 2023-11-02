@@ -4,6 +4,7 @@ import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.extra.servlet.ServletUtil;
 import cn.hutool.json.JSONUtil;
 import lombok.Getter;
 import org.slf4j.Logger;
@@ -42,7 +43,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         super(request);
         this.request = request;
         // 如果是文件上传类请求
-        if (request instanceof MultipartRequest) {
+        if (ServletUtil.isMultipart(request)) {
             this.parseBody(request);
         } else {
             // 普通请求将请求体设置到body中去；这样可以多次使用流方式访问请求体
@@ -114,7 +115,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
     public void setBody(String body) {
         this.body = body;
         try {
-            if (this.request instanceof MultipartRequest) {
+            if (ServletUtil.isMultipart(request)) {
                 this.setParameterMap(JSONUtil.parseObj(body));
             }
         } catch (Exception e) {

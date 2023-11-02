@@ -1,11 +1,13 @@
 package com.meteor.common.signature.config;
 
 import com.meteor.common.signature.core.filter.DecryptionRequestFilter;
-import com.meteor.common.signature.core.properties.CryptoProperties;
+import com.meteor.common.signature.core.properties.DecryptProperties;
+import com.meteor.common.signature.core.properties.EncryptProperties;
 import com.meteor.common.signature.core.service.DecryptionService;
 import com.meteor.common.signature.core.service.DefaultDecryptServiceImpl;
 import com.meteor.common.signature.core.service.DefaultEncryptServiceImpl;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -17,6 +19,7 @@ import javax.servlet.Filter;
  * @author meteor
  */
 @AutoConfiguration
+@EnableConfigurationProperties({DecryptProperties.class, EncryptProperties.class})
 public class SecureAutoConfiguration implements WebMvcConfigurer {
 
     @Bean
@@ -28,17 +31,12 @@ public class SecureAutoConfiguration implements WebMvcConfigurer {
     }
 
     @Bean
-    public CryptoProperties cryptoProperties() {
-        return new CryptoProperties();
+    public DefaultDecryptServiceImpl defaultDecryptService(DecryptProperties decryptProperties) {
+        return new DefaultDecryptServiceImpl(decryptProperties);
     }
 
-    @Bean
-    public DefaultDecryptServiceImpl defaultDecryptService() {
-        return new DefaultDecryptServiceImpl(cryptoProperties());
-    }
-
-    @Bean
-    public DefaultEncryptServiceImpl defaultEncryptService() {
-        return new DefaultEncryptServiceImpl(cryptoProperties());
+//    @Bean
+    public DefaultEncryptServiceImpl defaultEncryptService(EncryptProperties encryptProperties) {
+        return new DefaultEncryptServiceImpl(encryptProperties);
     }
 }

@@ -31,6 +31,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Map;
 
+/**
+ * 文件系统/文件管理
+ *
+ * @author metoer
+ */
 @Tag(name =  "管理后台 - 文件存储")
 @RestController
 @Validated
@@ -49,10 +54,16 @@ public class FileController {
         return R.ok(fileService.createFile(file.getOriginalFilename(), path, IoUtil.readBytes(file.getInputStream())));
     }
 
+    /**
+     * 上传文件
+     *
+     * @param parameters /
+     * @return /
+     */
     @Decrypt
     @PostMapping("/upload")
-    public R<Void> test(@RequestBody Map<String, Object> parameters) {
-        return R.ok();
+    public R<Object> test(String name) {
+        return R.ok(name);
     }
 
     @DeleteMapping("/delete")

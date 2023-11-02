@@ -1,20 +1,27 @@
 package com.meteor.common.signature.core.properties;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author meteor
  */
 @Data
-public class Crypto {
+@ConfigurationProperties(prefix = "cypto.decrypt")
+public class DecryptProperties {
     /**
      * 是否开启
      */
+    @Value("${cypto.decrypt.enable:true}")
     private boolean enable;
+
     /**
      * 加密算法
      */
+    @Value("${cypto.decrypt.algorithm:RSA/ECB/PKCS1Padding}")
     private String algorithm;
+
     /**
      * 加密秘钥
      */
@@ -26,5 +33,6 @@ public class Crypto {
     /**
      * 加密字段
      */
+    @Value("${cypto.decrypt.field:data}")
     private String filed;
 }

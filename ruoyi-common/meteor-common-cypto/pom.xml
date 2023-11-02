@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.meteor</groupId>
-    <artifactId>meteor-common-signature</artifactId>
+    <artifactId>meteor-common-cypto</artifactId>
 
     <dependencies>
         <dependency>

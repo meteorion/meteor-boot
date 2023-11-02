@@ -89,7 +89,7 @@
 
         <dependency>
             <groupId>com.meteor</groupId>
-            <artifactId>meteor-common-signature</artifactId>
+            <artifactId>meteor-common-cypto</artifactId>
         </dependency>
 
         <!-- Mysql Connector -->

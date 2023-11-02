@@ -1,10 +1,8 @@
 package com.meteor.common.signature.core.service;
 
-import cn.hutool.core.codec.Base64;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
-import com.meteor.common.signature.core.properties.CryptoProperties;
 import com.meteor.common.signature.core.properties.DecryptProperties;
 import lombok.Data;
 
@@ -19,10 +17,10 @@ public class DefaultDecryptServiceImpl implements DecryptionService {
     private final DecryptProperties decryptProperties;
     private final RSA rsa;
 
-    public DefaultDecryptServiceImpl(CryptoProperties cryptoProperties) {
-        decryptProperties = cryptoProperties.getDecrypt();
-        byte[] keyBytes = SecureUtil.decode(decryptProperties.getSecretKey());
-        PrivateKey privateKey = SecureUtil.generatePrivateKey(decryptProperties.getAlgorithm(), keyBytes);
+    public DefaultDecryptServiceImpl(DecryptProperties decryptProperties) {
+        this.decryptProperties = decryptProperties;
+        byte[] keyBytes = SecureUtil.decode(this.decryptProperties.getSecretKey());
+        PrivateKey privateKey = SecureUtil.generatePrivateKey(this.decryptProperties.getAlgorithm(), keyBytes);
         rsa = new RSA();
         rsa.setPrivateKey(privateKey);
     }

@@ -1,4 +1,4 @@
-package com.meteor.common.signature.core.filter;
+package com.meteor.common.cypto.core.filter;
 
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.map.MapUtil;
@@ -9,7 +9,6 @@ import cn.hutool.json.JSONUtil;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.multipart.MultipartRequest;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;

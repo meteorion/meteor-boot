@@ -1,9 +1,9 @@
-package com.meteor.common.signature.core.service;
+package com.meteor.common.cypto.core.service;
 
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
-import com.meteor.common.signature.core.properties.DecryptProperties;
+import com.meteor.common.cypto.core.properties.DecryptProperties;
 import lombok.Data;
 
 import javax.servlet.http.HttpServletRequest;

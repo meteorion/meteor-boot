@@ -1,4 +1,4 @@
-package com.meteor.common.signature.core.annotation;
+package com.meteor.common.cypto.core.annotation;
 
 import java.lang.annotation.*;
 

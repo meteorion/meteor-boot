@@ -1,4 +1,4 @@
-package com.meteor.common.signature.core.interceptor;
+package com.meteor.common.cypto.core.interceptor;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;

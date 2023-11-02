@@ -1,6 +1,6 @@
-package com.meteor.common.signature.core.service;
+package com.meteor.common.cypto.core.service;
 
-import com.meteor.common.signature.core.properties.DecryptProperties;
+import com.meteor.common.cypto.core.properties.DecryptProperties;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

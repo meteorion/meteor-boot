@@ -1,18 +1,17 @@
-package com.meteor.common.signature.config;
+package com.meteor.common.cypto.config;
 
-import com.meteor.common.signature.core.filter.DecryptionRequestFilter;
-import com.meteor.common.signature.core.properties.DecryptProperties;
-import com.meteor.common.signature.core.properties.EncryptProperties;
-import com.meteor.common.signature.core.service.DecryptionService;
-import com.meteor.common.signature.core.service.DefaultDecryptServiceImpl;
-import com.meteor.common.signature.core.service.DefaultEncryptServiceImpl;
+import com.meteor.common.cypto.core.filter.DecryptionRequestFilter;
+import com.meteor.common.cypto.core.properties.DecryptProperties;
+import com.meteor.common.cypto.core.properties.EncryptProperties;
+import com.meteor.common.cypto.core.service.DecryptionService;
+import com.meteor.common.cypto.core.service.DefaultDecryptServiceImpl;
+import com.meteor.common.cypto.core.service.DefaultEncryptServiceImpl;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import javax.annotation.Resource;
 import javax.servlet.Filter;
 
 /**

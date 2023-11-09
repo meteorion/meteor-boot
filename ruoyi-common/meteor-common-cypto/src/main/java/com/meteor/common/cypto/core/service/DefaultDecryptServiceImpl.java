@@ -6,6 +6,7 @@ import cn.hutool.crypto.asymmetric.RSA;
 import com.meteor.common.cypto.core.properties.DecryptProperties;
 import lombok.Data;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.PrivateKey;
 
@@ -23,6 +24,18 @@ public class DefaultDecryptServiceImpl implements DecryptionService {
         PrivateKey privateKey = SecureUtil.generatePrivateKey(this.decryptProperties.getAlgorithm(), keyBytes);
         rsa = new RSA();
         rsa.setPrivateKey(privateKey);
+    }
+
+    @Override
+    public boolean support(HttpServletRequest request) {
+        String requestURI = request.getRequestURI();
+        String[] excludeUri = decryptProperties.getExcludeUri();
+        for (String uri : excludeUri) {
+            if (requestURI.startsWith(uri)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

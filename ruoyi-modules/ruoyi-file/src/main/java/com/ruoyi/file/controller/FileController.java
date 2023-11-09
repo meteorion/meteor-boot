@@ -43,24 +43,12 @@ public class FileController {
     private FileService fileService;
 
     @Decrypt
-//    @PostMapping("/upload")
+    @PostMapping("/upload")
     @Operation(summary = "上传文件")
     public R<String> uploadFile(FileUploadReqVO uploadReqVO) throws Exception {
         MultipartFile file = uploadReqVO.getFile();
         String path = uploadReqVO.getPath();
         return R.ok(fileService.createFile(file.getOriginalFilename(), path, IoUtil.readBytes(file.getInputStream())));
-    }
-
-    /**
-     * 上传文件
-     *
-     * @param parameters /
-     * @return /
-     */
-    @Decrypt
-    @PostMapping("/upload")
-    public R<Object> test(String name) {
-        return R.ok(name);
     }
 
     @DeleteMapping("/delete")

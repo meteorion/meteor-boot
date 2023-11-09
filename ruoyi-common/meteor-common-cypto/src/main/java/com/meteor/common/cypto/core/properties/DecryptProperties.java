@@ -35,4 +35,6 @@ public class DecryptProperties {
      */
     @Value("${cypto.decrypt.field:data}")
     private String filed;
+
+    private String[] excludeUri;
 }

@@ -19,6 +19,7 @@
         <module>ruoyi-common-datasource</module>
         <module>meteor-common-file</module>
         <module>meteor-common-cypto</module>
+        <module>meteor-common-rule</module>
     </modules>
 
     <artifactId>ruoyi-common</artifactId>

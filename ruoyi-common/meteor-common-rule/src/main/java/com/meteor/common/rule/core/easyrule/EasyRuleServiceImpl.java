@@ -2,14 +2,15 @@ package com.meteor.common.rule.core.easyrule;
 
 import com.meteor.common.rule.api.RuleLoader;
 import com.meteor.common.rule.core.AbstractRuleService;
-import org.jeasy.rules.api.*;
+import org.jeasy.rules.api.Facts;
+import org.jeasy.rules.api.Rules;
+import org.jeasy.rules.api.RulesEngine;
 import org.jeasy.rules.core.DefaultRulesEngine;
 import org.jeasy.rules.mvel.MVELRule;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -30,7 +31,7 @@ public class EasyRuleServiceImpl extends AbstractRuleService<EasyRule> {
 
     @Override
     public Map<String, Object> run(List<EasyRule> rules, HashMap<String, Object> facts) {
-        Set<MVELRule> mvelRules = rules.stream().map(EasyRule::getMvelRule).collect(Collectors.toSet());
+        List<MVELRule> mvelRules = rules.stream().map(EasyRule::getMvelRule).collect(Collectors.toList());
         Rules easyRules = new Rules();
         for (MVELRule mvelRule : mvelRules) {
             easyRules.register(mvelRule);

@@ -70,7 +70,7 @@ public class RuleGroup<T extends BasicRule> {
     public List<T> getChainModeRules(HashMap<String, Object> facts) {
         List<T> chainRules = new ArrayList<>();
         for (T rule : this.rules) {
-            if (!rule.isEnable()) {
+            if (!rule.isEnabled()) {
                 continue;
             }
             if (!rule.evaluate(facts)) {
@@ -84,7 +84,7 @@ public class RuleGroup<T extends BasicRule> {
     public List<T> getSingleModeRules(HashMap<String, Object> facts) {
         List<T> singleRules = new ArrayList<>();
         for (T rule : this.rules) {
-            if (rule.isEnable() && rule.evaluate(facts)) {
+            if (rule.isEnabled() && rule.evaluate(facts)) {
                 singleRules.add(rule);
                 break;
             }

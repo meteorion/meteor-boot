@@ -14,13 +14,13 @@ import java.util.List;
 public class BasicRule implements Rule {
     protected String name;
     protected int priority;
-    protected boolean enable;
+    protected boolean enabled = true;
     protected String description;
     protected String condition;
     protected List<String> actions;
 
     @Override
     public boolean evaluate(HashMap<String, Object> facts) {
-        return false;
+        return true;
     }
 }

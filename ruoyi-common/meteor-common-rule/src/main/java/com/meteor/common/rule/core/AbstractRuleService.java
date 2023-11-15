@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Slf4j
 @Data
 public abstract class AbstractRuleService<T extends BasicRule> implements RuleService {
-    private static AtomicBoolean shouldRefreshConfig = new AtomicBoolean(false);
+    private static AtomicBoolean shouldRefreshConfig = new AtomicBoolean(true);
     protected final ConcurrentHashMap<String, RuleGroup<T>> ruleContainer = new ConcurrentHashMap<>();
     /**
      * 配置id
@@ -41,8 +41,13 @@ public abstract class AbstractRuleService<T extends BasicRule> implements RuleSe
     }
 
     protected final void refreshRule() {
+        if (Double.valueOf(this.version).compareTo(Double.valueOf(this.ruleLoader.getVersion())) > 0) {
+            log.error("新版本低于当前版本, 不进行加载: {} | {}", this.version, this.ruleLoader.getVersion());
+            return;
+        }
         this.clear();
         this.addRuleGroups(this.ruleLoader.load());
+        this.version = this.ruleLoader.getVersion();
         shouldRefreshConfig.set(true);
         log.info("规则配配置刷新完成");
     }
@@ -78,7 +83,7 @@ public abstract class AbstractRuleService<T extends BasicRule> implements RuleSe
             log.info("规则版本已变更，重新加载配置");
             this.refreshRule();
         }
-        log.info("开始执行规则：{}", ruleFact.getGroupName());
+        log.info("开始执行规则：{} | {}", ruleFact.getGroupName(), this.version);
         RuleGroup<T> ruleGroup = this.ruleContainer.get(ruleFact.getGroupName());
         if (ruleGroup == null) {
             throw new RuleException("规则组未配置：" + ruleFact.getGroupName());
@@ -103,6 +108,6 @@ public abstract class AbstractRuleService<T extends BasicRule> implements RuleSe
     protected abstract Map<String, Object> run(List<T> rules, HashMap<String, Object> facts);
     
     private boolean versionIsChanged() {
-        return this.version.equals(this.ruleLoader.getVersion());
+        return !this.version.equals(this.ruleLoader.getVersion());
     }
 }

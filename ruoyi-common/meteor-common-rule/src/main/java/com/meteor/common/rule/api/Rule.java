@@ -12,7 +12,7 @@ public interface Rule {
 
     int getPriority();
 
-    boolean isEnable();
+    boolean isEnabled();
 
     String getDescription();
 

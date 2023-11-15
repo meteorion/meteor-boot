@@ -13,27 +13,27 @@ import java.util.HashMap;
  * @since 1.0.0
  */
 @Data
-@EqualsAndHashCode(callSuper = false, exclude = "mvelRule")
+@EqualsAndHashCode(callSuper = false)
 public class EasyRule extends BasicRule {
-    private final MVELRule mvelRule;
 
-    public EasyRule() {
-        this.mvelRule = new MVELRule()
+    public MVELRule getMvelRule() {
+        MVELRule mvelRule = new MVELRule()
                 .name(name)
                 .description(description)
                 .priority(priority)
                 .when(condition);
         if (actions == null || actions.isEmpty()) {
-            this.mvelRule.then("");
+            mvelRule.then("");
         } else {
-            actions.forEach(this.mvelRule::then);
+            actions.forEach(mvelRule::then);
         }
+        return mvelRule;
     }
 
     @Override
     public boolean evaluate(HashMap<String, Object> facts) {
         Facts ruleFacts = new Facts();
         facts.forEach(ruleFacts::put);
-        return mvelRule.evaluate(ruleFacts);
+        return getMvelRule().evaluate(ruleFacts);
     }
 }

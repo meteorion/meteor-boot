@@ -1,6 +1,6 @@
 @echo off
 
-cd E:\Utils\nacos\nacos-server-2.0.4\bin
+cd G:\util\nacos\bin
 call startup.cmd -m standalone
 
 pause

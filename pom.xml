@@ -37,6 +37,7 @@
         <hutool.version>5.8.22</hutool.version>
         <poi.version>4.1.2</poi.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <easy-rules.version>4.1.0</easy-rules.version>
         <transmittable-thread-local.version>2.14.3</transmittable-thread-local.version>
     </properties>
 
@@ -170,6 +171,18 @@
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jeasy</groupId>
+                <artifactId>easy-rules-core</artifactId>
+                <version>${easy-rules.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jeasy</groupId>
+                <artifactId>easy-rules-mvel</artifactId>
+                <version>${easy-rules.version}</version>
             </dependency>
 
             <!-- 核心模块 -->

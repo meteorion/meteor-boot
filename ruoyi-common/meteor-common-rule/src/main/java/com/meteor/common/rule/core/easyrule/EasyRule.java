@@ -30,20 +30,6 @@ public class EasyRule extends BasicRule {
         }
     }
 
-    public MVELRule getMvelRule() {
-        MVELRule mvelRule = new MVELRule()
-                .name(name)
-                .description(description)
-                .priority(priority)
-                .when(condition);
-        if (actions == null || actions.isEmpty()) {
-            mvelRule.then("");
-        } else {
-            actions.forEach(mvelRule::then);
-        }
-        return mvelRule;
-    }
-
     @Override
     public boolean evaluate(HashMap<String, Object> facts) {
         Facts ruleFacts = new Facts();

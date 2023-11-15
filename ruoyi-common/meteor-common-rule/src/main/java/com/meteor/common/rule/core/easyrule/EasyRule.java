@@ -3,7 +3,6 @@ package com.meteor.common.rule.core.easyrule;
 import com.meteor.common.rule.core.BasicRule;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.mvel.MVELRule;
 

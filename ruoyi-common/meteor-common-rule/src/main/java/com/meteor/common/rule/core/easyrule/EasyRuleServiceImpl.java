@@ -2,7 +2,6 @@ package com.meteor.common.rule.core.easyrule;
 
 import com.meteor.common.rule.api.RuleLoader;
 import com.meteor.common.rule.core.AbstractRuleService;
-import com.meteor.common.rule.core.EasyRuleNacosRuleLoader;
 import org.jeasy.rules.api.*;
 import org.jeasy.rules.core.DefaultRulesEngine;
 import org.jeasy.rules.mvel.MVELRule;

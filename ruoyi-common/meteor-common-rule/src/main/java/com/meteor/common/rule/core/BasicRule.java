@@ -1,7 +1,6 @@
 package com.meteor.common.rule.core;
 
 import com.meteor.common.rule.api.Rule;
-import com.meteor.common.rule.api.RuleFact;
 import lombok.Data;
 
 import java.util.HashMap;

@@ -1,7 +1,6 @@
 package com.meteor.common.rule.api;
 
 import com.meteor.common.rule.core.AbstractRuleService;
-import com.meteor.common.rule.core.BasicRule;
 import com.meteor.common.rule.core.easyrule.EasyRuleServiceImpl;
 import lombok.Getter;
 

@@ -1,11 +1,6 @@
 package com.meteor.common.rule.api;
 
-import com.meteor.common.rule.core.BasicRule;
-
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @author 钟宗兵

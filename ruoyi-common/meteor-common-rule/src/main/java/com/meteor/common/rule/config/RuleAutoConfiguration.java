@@ -3,12 +3,9 @@ package com.meteor.common.rule.config;
 import com.meteor.common.rule.core.EasyRuleNacosRuleLoader;
 import com.meteor.common.rule.core.RuleServiceFactory;
 import com.meteor.common.rule.core.RuleServiceFactoryImpl;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
-
-import java.util.Set;
 
 /**
  * @author 钟宗兵

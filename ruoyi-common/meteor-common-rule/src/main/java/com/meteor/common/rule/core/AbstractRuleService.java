@@ -92,10 +92,21 @@ public abstract class AbstractRuleService<T extends BasicRule> implements RuleSe
             throw new RuleException("规则组已关闭");
         }
 
-        List<T> triggerRules = ruleGroup.getTriggerRules(ruleFact.getFacts());
+        HashMap<String, Object> facts = ruleFact.getFacts();
+        for (T rule : ruleGroup.getRules()) {
+            TriggerMode mode = ruleGroup.getMode();
+            if (rule.evaluate(facts)) {
+                this.run(rule, ruleFact.getFacts());
+                if (TriggerMode.CHAIN.equals(mode) ) {
+                    break;
+                }
+            } else if (TriggerMode.SINGLE.equals(mode)) {
+                break;
+            }
+        }
 
         // 执行规则
-        return this.run(triggerRules, ruleFact.getFacts());
+        return facts;
     }
 
     /**
@@ -106,6 +117,8 @@ public abstract class AbstractRuleService<T extends BasicRule> implements RuleSe
      * @return /
      */
     protected abstract Map<String, Object> run(List<T> rules, HashMap<String, Object> facts);
+
+    protected abstract Map<String, Object> run(T rule, HashMap<String, Object> facts);
     
     private boolean versionIsChanged() {
         return !this.version.equals(this.ruleLoader.getVersion());

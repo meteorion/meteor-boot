@@ -45,4 +45,19 @@ public class EasyRuleServiceImpl extends AbstractRuleService<EasyRule> {
 
         return ruleFacts.asMap();
     }
+
+    @Override
+    protected Map<String, Object> run(EasyRule rule, HashMap<String, Object> facts) {
+        MVELRule mvelRule = rule.getMvelRule();
+        Rules easyRules = new Rules();
+        easyRules.register(mvelRule);
+
+        Facts ruleFacts = new Facts();
+        facts.forEach(ruleFacts::put);
+
+        RulesEngine rulesEngine = new DefaultRulesEngine();
+        rulesEngine.fire(easyRules, ruleFacts);
+
+        return ruleFacts.asMap();
+    }
 }

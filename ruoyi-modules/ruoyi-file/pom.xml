@@ -87,11 +87,6 @@
             <artifactId>meteor-common-file</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.meteor</groupId>
-            <artifactId>meteor-common-cypto</artifactId>
-        </dependency>
-
         <!-- Mysql Connector -->
         <dependency>
             <groupId>com.mysql</groupId>

@@ -249,12 +249,6 @@
 
             <dependency>
                 <groupId>com.meteor</groupId>
-                <artifactId>meteor-common-cypto</artifactId>
-                <version>${ruoyi.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.meteor</groupId>
                 <artifactId>meteor-common-rule</artifactId>
                 <version>${ruoyi.version}</version>
             </dependency>

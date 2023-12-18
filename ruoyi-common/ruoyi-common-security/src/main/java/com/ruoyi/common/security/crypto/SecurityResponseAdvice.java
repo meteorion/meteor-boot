@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
 
 
 @Slf4j
-@ControllerAdvice(basePackages = "com.icardpay.bussiness.front.controller")
+@ControllerAdvice
 public class SecurityResponseAdvice implements ResponseBodyAdvice<Object> {
     @Resource
     private CryptoService cryptoService;

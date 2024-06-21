@@ -6,21 +6,22 @@
 
     <groupId>com.ruoyi</groupId>
     <artifactId>ruoyi</artifactId>
-    <version>3.6.3</version>
+    <version>3.6.4</version>
 
     <name>ruoyi</name>
     <url>http://www.ruoyi.vip</url>
     <description>若依微服务系统</description>
 
     <properties>
-        <ruoyi.version>3.6.3</ruoyi.version>
+        <ruoyi.version>3.6.4</ruoyi.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <spring-boot.version>2.7.13</spring-boot.version>
+        <spring-boot.version>2.7.18</spring-boot.version>
         <spring-cloud.version>2021.0.8</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
-        <spring-boot-admin.version>2.7.10</spring-boot-admin.version>
+        <spring-framework.version>5.3.33</spring-framework.version>
+        <spring-boot-admin.version>2.7.15</spring-boot-admin.version>
         <swagger.fox.version>3.0.0</swagger.fox.version>
         <swagger.core.version>1.6.2</swagger.core.version>
         <tobato.version>1.27.2</tobato.version>
@@ -29,13 +30,17 @@
         <druid.version>1.2.16</druid.version>
         <dynamic-ds.version>3.5.2</dynamic-ds.version>
         <mybatis.plus.version>3.5.3.2</mybatis.plus.version>
+        <pagehelper.boot.version>2.0.0</pagehelper.boot.version>
+        <druid.version>1.2.20</druid.version>
+        <dynamic-ds.version>4.2.0</dynamic-ds.version>
         <commons.io.version>2.13.0</commons.io.version>
         <velocity.version>2.3</velocity.version>
-        <fastjson.version>2.0.41</fastjson.version>
+        <fastjson.version>2.0.43</fastjson.version>
         <jjwt.version>0.9.1</jjwt.version>
         <minio.version>8.2.2</minio.version>
         <hutool.version>5.8.22</hutool.version>
         <poi.version>4.1.2</poi.version>
+        <transmittable-thread-local.version>2.14.4</transmittable-thread-local.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <easy-rules.version>4.1.0</easy-rules.version>
         <transmittable-thread-local.version>2.14.3</transmittable-thread-local.version>
@@ -44,6 +49,15 @@
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
+
+            <!-- SpringFramework的依赖配置-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring-framework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <!-- SpringCloud 微服务 -->
             <dependency>
@@ -206,6 +220,13 @@
                 <version>${ruoyi.version}</version>
             </dependency>
 
+            <!-- 数据脱敏 -->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>ruoyi-common-sensitive</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
             <!-- 权限范围 -->
             <dependency>
                 <groupId>com.ruoyi</groupId>
@@ -337,3 +358,4 @@
     </pluginRepositories>
 
 </project>
+

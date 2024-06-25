@@ -30,7 +30,7 @@ public class FileUploadUtils {
     /**
      * 默认大小 50M
      */
-    public static final long DEFAULT_MAX_SIZE = 50 * 1024 * 1024;
+    public static final long DEFAULT_MAX_SIZE = 50 * 1024 * 1024L;
 
     /**
      * 根据文件路径上传

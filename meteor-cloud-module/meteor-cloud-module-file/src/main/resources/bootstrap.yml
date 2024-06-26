@@ -1,0 +1,31 @@
+# Tomcat
+server:
+  port: 9300
+
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: ruoyi-file
+  profiles:
+    # 环境配置
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 127.0.0.1:8848
+      config:
+        # 配置中心地址
+        server-addr: 127.0.0.1:8848
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+cypto:
+  decrypt:
+    secretKey: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCsuiA3QLv5x9uFw7szm8PUYT/r1b5uyhYINq/FIOU3/zoWCkq3Onq+6rJu0aZC03KFxlkDstQgkFlF2PDMVOZGFP+jhSO2Wu6vNlhHQa/xRqllwgXk7xnXXrb2GTl8xi4gYQK6KqiBN/1AAFOy2VhCNSv0c4vVoPw0AGLRPOgbC2V2VT9CYUDafhR0B8QGjxUWqcZTWaFANj0nepjwoFGj/hQT509P45np4v69/NMtvCjxBF/DoBI4mmcLEhbZTfv4WIBz2pWTx1KurMiwNGsD+mhDbesZXFIN31kPlo3nt4JAwNUQAkykuytFOU1bkFCKByc7wtwUytaoUBu2tWwnAgMBAAECggEAd35waSksolnkgb7uVH7PVK9OxH3jt8uwwE/s++iNC1dTvQmztN0NK+U8OjRp3FNiKDAXRtrBrCGQ0SSLOiEGCbffPyYNlcuE0sw6+Fj2OmoTKSW4ZDAR5ZBN7SV4Qtzr7lSOyXJXjsXIOy2+ub1pNKyKUxxYwhsUP3mA45ZKUOJG7RE20QCwZVmsh2vsWLQeBETX/mVsGeDDUpFdFx6d1Au952x9x8UxrtP1je8ZxG+TmAogGeaBUFTqlU0oPO5UAMg7uvM47d2qfgF7ERtWt2FBVi//B0bIlaWSZCboXa+/0NYS6FSS037AX7iS0YjjaKIW6zzGOgJR/Q9w1HtdUQKBgQDgHnfGAq641yfuKPygTf+Ye+QdkeW22dnD40QGhuvknoUDpXn96EOt2GVSGfzibyqU2pir4e5QFYubOaC33pY8F+8yPOYEIlzXLPBlJOizBarKEpoS5EFYOfpGgGuELdadTGENCELAiuvaZPbospG411gOmgx+DXNxlzvXhqRHSQKBgQDFTCpDwnsjaWe+inX21aRp6EZVG/eV9PpCiNRVPNLWYOsDdfONoJdE9W+rVM5T3PSU2h0VAR/LE3eH5ZzzwS8TA0yAJmUVbRCc8kMgmnFRnBNvX9Ns7kunZOjCZNXxzJQcxtqXS1f5r1JuPXJyPqFSHuS9NbGX8FuOYQGq+uTn7wKBgAl6wG4rpuBCmXnFWgodwnXcp6VoimLVjBRxBGuSQWAGJHInCaXnsRUlVgPG/Z9GPHLXXCXJBJ92idUi9t1QGOKp0IA7ey8plOu1BuYATadk0fiCGOo7pVfp++AHhoSsu6sjk+dNNiWWuqseIiNtiiRbV2omseiTARMI5osTMtehAoGAHFmCZTQnz4HQ12873hj6xAENQiN/ovuNjkvs/sZ7oTRR8LBdK8eclNsTjbHk5+YC+vSQYzlDIUIN1egnclsa8Ydy0aMyuS5vya2B+chXahucK0/AqJFhK49zZqNonpL/4VatiDnaTVVk6dRIgqP/ODaaNZnmh+eQsFe+Dpx4kd8CgYEAqQvD77jPc89OnNZD5BfkP5f7OVfCwXUMMcedoqTMOnUr0KgnznBPJELTTTlJcVHaacnV4ux9Ql2hwiGo0/dczCC9hfYePFPi99Ybm4Z/0Is3DncOId+Prx1hRb6r4yi9R3Mt8/XYcRh296XvIee77nX9PdFaA3zAmFW9CPN+OwY=
+  encrypt:
+    secretKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArLogN0C7+cfbhcO7M5vD1GE/69W+bsoWCDavxSDlN/86FgpKtzp6vuqybtGmQtNyhcZZA7LUIJBZRdjwzFTmRhT/o4UjtlrurzZYR0Gv8UapZcIF5O8Z11629hk5fMYuIGECuiqogTf9QABTstlYQjUr9HOL1aD8NABi0TzoGwtldlU/QmFA2n4UdAfEBo8VFqnGU1mhQDY9J3qY8KBRo/4UE+dPT+OZ6eL+vfzTLbwo8QRfw6ASOJpnCxIW2U37+FiAc9qVk8dSrqzIsDRrA/poQ23rGVxSDd9ZD5aN57eCQMDVEAJMpLsrRTlNW5BQigcnO8LcFMrWqFAbtrVsJwIDAQAB
+

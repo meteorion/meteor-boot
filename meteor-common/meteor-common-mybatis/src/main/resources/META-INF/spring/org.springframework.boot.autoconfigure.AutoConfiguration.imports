@@ -1,0 +1,2 @@
+pers.meteor.mybatis.config.IdTypeEnvironmentPostProcessor
+pers.meteor.mybatis.config.MybatisAutoConfiguration

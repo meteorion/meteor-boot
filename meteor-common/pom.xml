@@ -23,6 +23,7 @@
         <module>meteor-common-file</module>
         <module>meteor-common-rule</module>
         <module>meteor-common-mybatis</module>
+        <module>meteor-common-test</module>
     </modules>
 
     <properties>

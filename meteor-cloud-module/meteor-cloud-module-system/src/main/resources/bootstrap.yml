@@ -6,6 +6,8 @@ logging:
   config: classpath:logback-nacos.xml
   file:
     path: logs
+  level:
+    pers.meteor: debug
 # Spring
 spring:
   application:

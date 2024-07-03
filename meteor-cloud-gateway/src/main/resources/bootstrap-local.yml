@@ -11,8 +11,8 @@ spring:
           enabled: true
       routes:
         # 认证中心
-        - id: ruoyi-auth
-          uri: lb://ruoyi-auth
+        - id: meteor-cloud-auth
+          uri: lb://meteor-cloud-auth
           predicates:
             - Path=/auth/**
           filters:
@@ -21,37 +21,31 @@ spring:
             - ValidateCodeFilter
             - StripPrefix=1
         # 代码生成
-        - id: ruoyi-gen
-          uri: lb://ruoyi-gen
+        - id: meteor-cloud-module-gen
+          uri: lb://meteor-cloud-module-gen
           predicates:
             - Path=/code/**
           filters:
             - StripPrefix=1
         # 定时任务
-        - id: ruoyi-job
-          uri: lb://ruoyi-job
+        - id: meteor-cloud-module-job
+          uri: lb://meteor-cloud-module-job
           predicates:
             - Path=/schedule/**
           filters:
             - StripPrefix=1
         # 系统模块
-        - id: ruoyi-system
-          uri: lb://ruoyi-system
+        - id: meteor-cloud-module-system
+          uri: lb://meteor-cloud-module-system
           predicates:
             - Path=/system/**
           filters:
             - StripPrefix=1
         # 文件服务
-        - id: ruoyi-file
-          uri: lb://ruoyi-file
+        - id: meteor-cloud-module-file
+          uri: lb://meteor-cloud-module-file
           predicates:
             - Path=/file/**
-          filters:
-            - StripPrefix=1
-        - id: meteor-test
-          uri: lb://meteor-test
-          predicates:
-            - Path=/rule/**
           filters:
             - StripPrefix=1
 

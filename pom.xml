@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pers.meteor</groupId>
-    <artifactId>meteor-cloud</artifactId>
+    <artifactId>meteor-cloud-v2</artifactId>
     <version>1.0.0-snapshot</version>
     <name>meteor-cloud-v2</name>
     <description>meteor微服务系统</description>

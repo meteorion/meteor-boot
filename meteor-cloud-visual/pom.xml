@@ -19,4 +19,10 @@
         meteor-cloud-visual图形化管理模块
     </description>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+    </dependencies>
 </project>

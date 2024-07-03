@@ -1,22 +1,26 @@
-package pers.meteor.module.monitor;
+package pers.meteor.gen;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import de.codecentric.boot.admin.server.config.EnableAdminServer;
+import pers.meteor.common.security.annotation.EnableCustomConfig;
+import pers.meteor.common.security.annotation.EnableRyFeignClients;
+import pers.meteor.common.swagger.annotation.EnableCustomSwagger2;
 
 /**
- * 监控中心
+ * 代码生成
  *
  * @author ruoyi
  */
-@EnableAdminServer
+@EnableCustomConfig
+@EnableCustomSwagger2
+@EnableRyFeignClients
 @SpringBootApplication
-public class RuoYiMonitorApplication
+public class GenApplication
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(RuoYiMonitorApplication.class, args);
-        System.out.println("(♥◠‿◠)ﾉﾞ  监控中心启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
+        SpringApplication.run(GenApplication.class, args);
+        System.out.println("(♥◠‿◠)ﾉﾞ  代码生成模块启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
                 " .-------.       ____     __        \n" +
                 " |  _ _   \\      \\   \\   /  /    \n" +
                 " | ( ' )  |       \\  _. /  '       \n" +

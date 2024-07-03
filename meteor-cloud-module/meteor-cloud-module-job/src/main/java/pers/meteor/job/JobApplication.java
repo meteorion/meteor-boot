@@ -1,23 +1,26 @@
-package pers.meteor.auth;
+package pers.meteor.job;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import pers.meteor.common.security.annotation.EnableCustomConfig;
 import pers.meteor.common.security.annotation.EnableRyFeignClients;
+import pers.meteor.common.swagger.annotation.EnableCustomSwagger2;
 
 /**
- * 认证授权中心
+ * 定时任务
  *
  * @author ruoyi
  */
+@EnableCustomConfig
+@EnableCustomSwagger2
 @EnableRyFeignClients
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
-public class RuoYiAuthApplication
+@SpringBootApplication
+public class JobApplication
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(RuoYiAuthApplication.class, args);
-        System.out.println("(♥◠‿◠)ﾉﾞ  认证授权中心启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
+        SpringApplication.run(JobApplication.class, args);
+        System.out.println("(♥◠‿◠)ﾉﾞ  定时任务模块启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
                 " .-------.       ____     __        \n" +
                 " |  _ _   \\      \\   \\   /  /    \n" +
                 " | ( ' )  |       \\  _. /  '       \n" +

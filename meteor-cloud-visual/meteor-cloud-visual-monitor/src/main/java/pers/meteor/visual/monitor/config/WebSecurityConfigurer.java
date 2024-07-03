@@ -1,4 +1,4 @@
-package pers.meteor.module.monitor.config;
+package pers.meteor.visual.monitor.config;
 
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
 import org.springframework.context.annotation.Bean;

@@ -13,6 +13,10 @@
         <module>meteor-cloud-module-gen</module>
         <module>meteor-cloud-module-job</module>
         <module>meteor-cloud-module-file</module>
+        <module>meteor-cloud-module-pay</module>
+        <module>meteor-cloud-module-order</module>
+        <module>meteor-cloud-module-member</module>
+        <module>meteor-cloud-module-mall</module>
     </modules>
 
     <artifactId>meteor-cloud-module</artifactId>

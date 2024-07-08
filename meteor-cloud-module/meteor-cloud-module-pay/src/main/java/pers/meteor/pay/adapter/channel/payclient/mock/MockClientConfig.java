@@ -1,4 +1,4 @@
-package pers.meteor.pay.acl.channel.adapter.payclient.mock;
+package pers.meteor.pay.adapter.channel.payclient.mock;
 
 import lombok.Data;
 import pers.meteor.pay.domain.channel.service.PayClientConfig;

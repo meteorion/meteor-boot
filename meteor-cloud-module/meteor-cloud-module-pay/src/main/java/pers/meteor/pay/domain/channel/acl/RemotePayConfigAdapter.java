@@ -16,6 +16,7 @@ public interface RemotePayConfigAdapter {
      * @return /
      */
     SystemChannelConfig getSystemChannelConfig();
+
     /**
      * 获取默认费率配置
      *

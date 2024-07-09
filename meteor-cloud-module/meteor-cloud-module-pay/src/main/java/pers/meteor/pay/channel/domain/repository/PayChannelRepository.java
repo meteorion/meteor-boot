@@ -1,6 +1,7 @@
 package pers.meteor.pay.channel.domain.repository;
 
 import pers.meteor.pay.channel.domain.module.PayChannel;
+import pers.meteor.pay.channel.domain.module.PayClientConfig;
 
 import java.util.List;
 
@@ -38,4 +39,12 @@ public interface PayChannelRepository {
      * @return /
      */
     List<PayChannel> selectByCode(String code);
+
+    /**
+     * 获取通道配置
+     *
+     * @param channelId /
+     * @return /
+     */
+    PayClientConfig selectPayClientConfig(Long channelId);
 }

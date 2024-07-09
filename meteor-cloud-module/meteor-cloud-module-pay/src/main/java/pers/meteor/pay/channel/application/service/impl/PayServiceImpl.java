@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pers.meteor.pay.channel.application.service.PayService;
 import pers.meteor.pay.channel.domain.service.PayClient;
-import pers.meteor.pay.channel.domain.service.PayClientFactory;
 /**
  * @author meteor
  */
@@ -15,7 +14,6 @@ import pers.meteor.pay.channel.domain.service.PayClientFactory;
 @Slf4j
 @RequiredArgsConstructor
 public class PayServiceImpl implements PayService {
-    private final PayClientFactory payClientFactory;
     private final PayClientCacheLoader payClientCacheLoader;
 
     @Getter

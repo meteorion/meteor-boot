@@ -54,11 +54,11 @@ public class PayClientFactoryImpl implements PayClientFactory {
 
     @Override
     @SuppressWarnings("unchecked")
-    public <Config extends PayClientConfig> void createOrUpdatePayClient(Long channelId, String channelCode,
-                                                                         Config config) {
-        AbstractPayClient<Config> client = (AbstractPayClient<Config>) clients.get(channelId);
+    public <Config extends PayClientConfig> void createOrUpdatePayClient(Config config) {
+        Long configId = config.getConfigId();
+        AbstractPayClient<Config> client = (AbstractPayClient<Config>) clients.get(configId);
         if (client == null) {
-            client = this.createPayClient(channelId, channelCode, config);
+            client = this.createPayClient(config);
             client.initClient();
             clients.put(client.getChannelId(), client);
         } else {
@@ -67,8 +67,9 @@ public class PayClientFactoryImpl implements PayClientFactory {
     }
 
     @SuppressWarnings("unchecked")
-    private <Config extends PayClientConfig> AbstractPayClient<Config> createPayClient(Long channelId, String channelCode,
-                                                                                       Config config) {
+    private <Config extends PayClientConfig> AbstractPayClient<Config> createPayClient(Config config) {
+        Long channelId = config.getConfigId();
+        String channelCode = config.getPayChannel().getCode();
         PayChannelEnum channelEnum = PayChannelEnum.getByCode(channelCode);
         Assert.notNull(channelEnum, String.format("支付渠道(%s) 为空", channelCode));
         Class<?> payClientClass = clientClass.get(channelEnum);

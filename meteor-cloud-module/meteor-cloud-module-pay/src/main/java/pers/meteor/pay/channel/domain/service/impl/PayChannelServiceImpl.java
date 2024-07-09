@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import pers.meteor.common.core.exception.ServiceException;
 import pers.meteor.pay.channel.domain.acl.RemotePayConfigAdapter;
 import pers.meteor.pay.channel.domain.module.PayChannel;
-import pers.meteor.pay.channel.domain.module.valueobject.ChannelConfig;
+import pers.meteor.pay.channel.domain.module.PayClientConfig;
 import pers.meteor.pay.channel.domain.module.valueobject.ChannelRate;
 import pers.meteor.pay.channel.domain.module.enums.RateTypeEnum;
 import pers.meteor.pay.channel.domain.module.valueobject.SystemChannelConfig;
@@ -57,7 +57,7 @@ public class PayChannelServiceImpl implements PayChannelService {
     }
 
     @Override
-    public void updateChannelConfig(Long channelId, ChannelConfig channelConfig) {
+    public void updateChannelConfig(Long channelId, PayClientConfig channelConfig) {
         // 检查通道ID是否存在
         PayChannel payChannel = checkChannelExists(channelId);
         payChannel.updateConfig(channelConfig);
@@ -129,7 +129,7 @@ public class PayChannelServiceImpl implements PayChannelService {
      */
     private void checkChannelRate(PayChannel payChannel) {
         // 1. 获取系统费率配置
-        EnumMap<RateTypeEnum, ChannelConfig> defaultRates = configAdapter.getDefaultRates();
+        EnumMap<RateTypeEnum, PayClientConfig> defaultRates = configAdapter.getDefaultRates();
         // 2. 校验费率
         payChannel.checkRates(defaultRates);
     }

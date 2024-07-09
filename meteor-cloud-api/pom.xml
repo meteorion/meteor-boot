@@ -10,6 +10,7 @@
 
     <modules>
         <module>meteor-cloud-api-system</module>
+        <module>meteor-cloud-api-pay</module>
     </modules>
 
     <artifactId>meteor-cloud-api</artifactId>

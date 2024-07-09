@@ -3,14 +3,14 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>pers.meteor</groupId>
-        <artifactId>meteor-cloud-module</artifactId>
+        <artifactId>meteor-cloud-api</artifactId>
         <version>1.0.0-snapshot</version>
     </parent>
 
-    <artifactId>meteor-cloud-module-pay</artifactId>
+    <artifactId>meteor-cloud-api-pay</artifactId>
     <packaging>jar</packaging>
 
-    <name>meteor-cloud-module-pay</name>
+    <name>meteor-cloud-api-pay</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -19,13 +19,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>pers.meteor</groupId>
-            <artifactId>meteor-common-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

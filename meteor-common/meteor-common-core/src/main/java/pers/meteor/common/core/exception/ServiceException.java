@@ -3,6 +3,8 @@ package pers.meteor.common.core.exception;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.text.MessageFormat;
+
 /**
  * 业务异常
  *
@@ -33,14 +35,17 @@ public final class ServiceException extends RuntimeException {
      * 空构造方法，避免反序列化问题
      */
     public ServiceException() {
+        this.code = GlobalErrorCode.UNKNOWN.getCode();
+        this.message = GlobalErrorCode.UNKNOWN.getMsg();
     }
 
-    public ServiceException(String message) {
-        this.message = message;
+    public ServiceException(String message, Object... args) {
+        this.message = MessageFormat.format(message, args);
+        this.code = GlobalErrorCode.UNKNOWN.getCode();
     }
 
-    public ServiceException(String message, Integer code) {
-        this.message = message;
+    public ServiceException(Integer code, String message, Object... args) {
+        this.message = MessageFormat.format(message, args);
         this.code = code;
     }
 }

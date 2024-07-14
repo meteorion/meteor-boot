@@ -130,6 +130,12 @@
                 <artifactId>meteor-common-rule</artifactId>
                 <version>${component.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-common-test</artifactId>
+                <version>${component.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>

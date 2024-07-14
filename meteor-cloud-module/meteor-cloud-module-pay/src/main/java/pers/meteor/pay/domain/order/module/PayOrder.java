@@ -1,11 +1,11 @@
 package pers.meteor.pay.domain.order.module;
 
 import lombok.Data;
-import pers.meteor.pay.domain.order.module.valueobject.Account;
-import pers.meteor.pay.domain.order.module.valueobject.Channel;
+import pers.meteor.pay.domain.order.module.enums.CurrencyTypeEnum;
 import pers.meteor.pay.domain.order.module.valueobject.Fee;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 /**
  * 支付订单
@@ -27,17 +27,37 @@ public class PayOrder {
      */
     private Fee fee;
     /**
-     * 付款账户
+     * 币种类型
      */
-    private Account payAccount;
+    private CurrencyTypeEnum currency;
     /**
-     * 收款账户
+     * 付款账户ID
      */
-    private Account receiveAccount;
+    private Long payAccountId;
     /**
-     * 交易通道
+     * 收款账户ID
      */
-    private Channel tradeChannel;
+    private Long receiveAccountId;
+    /**
+     * 交易通道ID
+     */
+    private Long tradeChannelId;
+    /**
+     * 商品详情
+     */
+    private Map<String, Object> itemDetails;
+    /**
+     * 交易附属参数
+     */
+    private Map<String, String> metadata;
+    /**
+     * 商户订单号
+     */
+    private String merchantOrderNo;
+    /**
+     * 通道订单号
+     */
+    private String channelOrderNo;
     /**
      * 下单时间
      */
@@ -46,4 +66,16 @@ public class PayOrder {
      * 支付时间
      */
     private LocalDateTime payTime;
+    /**
+     * 支付结果
+     */
+    private String result;
+    /**
+     * 结算订单
+     */
+    private SettleOrder settleOrder;
+    /**
+     * 退款订单
+     */
+    private RefundOrder refundOrder;
 }

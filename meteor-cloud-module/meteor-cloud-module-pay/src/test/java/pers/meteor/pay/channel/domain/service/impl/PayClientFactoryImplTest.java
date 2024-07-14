@@ -4,9 +4,9 @@ import com.alibaba.fastjson2.JSON;
 import org.junit.jupiter.api.Test;
 import pers.meteor.pay.domain.channel.module.PayClientConfig;
 import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
-import pers.meteor.pay.domain.channel.service.PayClient;
-import pers.meteor.pay.domain.channel.service.PayClientFactory;
-import pers.meteor.pay.domain.channel.service.impl.PayClientFactoryImpl;
+import pers.meteor.pay.application.channel.PayClient;
+import pers.meteor.pay.application.channel.PayClientFactory;
+import pers.meteor.pay.application.channel.impl.PayClientFactoryImpl;
 
 /**
  * @author meteor

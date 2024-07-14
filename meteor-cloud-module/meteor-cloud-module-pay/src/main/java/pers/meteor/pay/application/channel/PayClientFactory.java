@@ -1,4 +1,4 @@
-package pers.meteor.pay.domain.channel.service;
+package pers.meteor.pay.application.channel;
 
 import pers.meteor.pay.domain.channel.module.PayClientConfig;
 import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;

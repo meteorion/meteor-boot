@@ -1,4 +1,4 @@
-package pers.meteor.pay.domain.channel.service.impl;
+package pers.meteor.pay.application.channel.impl;
 
 import cn.hutool.core.lang.Assert;
 import lombok.extern.slf4j.Slf4j;
@@ -8,8 +8,8 @@ import pers.meteor.common.core.exception.ServiceException;
 import pers.meteor.pay.adapter.channel.payclient.mock.MockPayClient;
 import pers.meteor.pay.domain.channel.module.PayClientConfig;
 import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
-import pers.meteor.pay.domain.channel.service.PayClient;
-import pers.meteor.pay.domain.channel.service.PayClientFactory;
+import pers.meteor.pay.application.channel.PayClient;
+import pers.meteor.pay.application.channel.PayClientFactory;
 
 import java.lang.reflect.Constructor;
 import java.util.Map;

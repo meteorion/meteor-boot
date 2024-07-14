@@ -1,4 +1,4 @@
-package pers.meteor.pay.domain.channel.module.valueobject;
+package pers.meteor.pay.dto;
 
 /**
  * 转账

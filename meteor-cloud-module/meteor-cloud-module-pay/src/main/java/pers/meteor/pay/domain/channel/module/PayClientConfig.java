@@ -22,10 +22,6 @@ public class PayClientConfig {
      */
     private PayChannelEnum payChannel;
     /**
-     * 是否启用
-     */
-    private boolean enabled;
-    /**
      * 服务地址
      */
     private String serviceUrl;
@@ -34,11 +30,15 @@ public class PayClientConfig {
      */
     private String appId;
     /**
-     * 签名类型
+     * 代理编号
      */
-    private String signType;
+    private String agentId;
     /**
-     * 通道秘钥
+     * 公钥
+     */
+    private String publicKey;
+    /**
+     * 私钥
      */
     private String secretKey;
     /**
@@ -49,7 +49,7 @@ public class PayClientConfig {
     /**
      * 扩展参数
      */
-    private JSONObject extendArgs;
+    private JSONObject metedata;
 
     /**
      * 校验通道配置

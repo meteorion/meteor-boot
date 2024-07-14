@@ -1,8 +1,8 @@
-package pers.meteor.pay.domain.channel.service.impl;
+package pers.meteor.pay.application.channel.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import pers.meteor.pay.domain.channel.module.PayClientConfig;
-import pers.meteor.pay.domain.channel.service.PayClient;
+import pers.meteor.pay.application.channel.PayClient;
 
 /**
  * 支付模板

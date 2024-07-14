@@ -2,8 +2,8 @@ package pers.meteor.pay.adapter.channel.payclient.mock;
 
 import lombok.extern.slf4j.Slf4j;
 import pers.meteor.pay.domain.channel.module.PayClientConfig;
-import pers.meteor.pay.domain.channel.module.valueobject.*;
-import pers.meteor.pay.domain.channel.service.impl.AbstractPayClient;
+import pers.meteor.pay.application.channel.impl.AbstractPayClient;
+import pers.meteor.pay.dto.*;
 
 import java.util.Map;
 

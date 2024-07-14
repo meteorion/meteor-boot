@@ -32,5 +32,11 @@
             <groupId>pers.meteor</groupId>
             <artifactId>meteor-common-test</artifactId>
         </dependency>
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-cloud-api-pay</artifactId>
+            <version>1.0.0-snapshot</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>

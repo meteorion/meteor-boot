@@ -2,8 +2,9 @@ package pers.meteor.pay.domain.channel.module;
 
 import lombok.Data;
 import pers.meteor.common.core.enums.SwitchStatusEnum;
-import pers.meteor.pay.domain.channel.module.enums.RateTypeEnum;
+import pers.meteor.pay.domain.channel.module.enums.PayTypeEnum;
 import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
+import pers.meteor.pay.domain.channel.module.valueobject.ChannelQuota;
 import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
 
 import java.util.EnumMap;
@@ -34,11 +35,11 @@ public class PayChannel {
     /**
      * 通道配置
      */
-    private EnumMap<PayChannelEnum, PayClientConfig> channelConfigs;
+    private EnumMap<PayChannelEnum, ChannelConfig> channelConfigs;
     /**
      * 通道费率
      */
-    private EnumMap<RateTypeEnum, ChannelRate> channelRates;
+    private ChannelQuota channelQuota;
     /**
      * 更新通道配置
      *
@@ -47,9 +48,7 @@ public class PayChannel {
     public void updateChannel(PayChannel newPayChannel) {
         // 更细基本信息
         // 更新通道配置
-        this.updateConfig(newPayChannel.getChannelConfigs());
         // 更细费率
-        this.updateRate(newPayChannel.getChannelRates());
     }
 
     /**
@@ -70,7 +69,7 @@ public class PayChannel {
      *
      * @param channelRates /
      */
-    public void updateRate(EnumMap<RateTypeEnum, ChannelRate> channelRates) {
+    public void updateRate(EnumMap<PayTypeEnum, ChannelRate> channelRates) {
 
     }
 
@@ -93,7 +92,7 @@ public class PayChannel {
      *
      * @param defaultRates /
      */
-    public void checkRates(EnumMap<RateTypeEnum, PayClientConfig> defaultRates) {
+    public void checkRates(EnumMap<PayTypeEnum, PayClientConfig> defaultRates) {
 
     }
 }

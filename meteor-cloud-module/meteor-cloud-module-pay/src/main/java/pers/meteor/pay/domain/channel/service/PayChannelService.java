@@ -1,7 +1,7 @@
 package pers.meteor.pay.domain.channel.service;
 
 import pers.meteor.pay.domain.channel.module.PayChannel;
-import pers.meteor.pay.domain.channel.module.enums.RateTypeEnum;
+import pers.meteor.pay.domain.channel.module.enums.PayTypeEnum;
 import pers.meteor.pay.domain.channel.module.PayClientConfig;
 import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
 
@@ -39,7 +39,7 @@ public interface PayChannelService {
      * @param channelId 通道id
      * @param channelRates 通道费率
      */
-    void updateChannelRate(Long channelId, EnumMap<RateTypeEnum, ChannelRate> channelRates);
+    void updateChannelRate(Long channelId, EnumMap<PayTypeEnum, ChannelRate> channelRates);
 
     /**
      * 是否启用

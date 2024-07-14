@@ -16,11 +16,7 @@ public class ChannelRate {
      */
     private BigDecimal costRate;
     /**
-     * 最低费率
+     * 成本手续费
      */
-    private BigDecimal minRate;
-    /**
-     * 最高费率
-     */
-    private BigDecimal maxRate;
+    private long costFee;
 }

@@ -7,8 +7,8 @@ import pers.meteor.common.core.exception.ServiceException;
 import pers.meteor.pay.domain.channel.acl.RemotePayConfigAdapter;
 import pers.meteor.pay.domain.channel.module.PayChannel;
 import pers.meteor.pay.domain.channel.module.PayClientConfig;
+import pers.meteor.pay.domain.channel.module.enums.PayTypeEnum;
 import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
-import pers.meteor.pay.domain.channel.module.enums.RateTypeEnum;
 import pers.meteor.pay.domain.channel.module.valueobject.SystemChannelConfig;
 import pers.meteor.pay.domain.channel.repository.PayChannelRepository;
 import pers.meteor.pay.domain.channel.service.PayChannelService;
@@ -64,7 +64,7 @@ public class PayChannelServiceImpl implements PayChannelService {
     }
 
     @Override
-    public void updateChannelRate(Long channelId, EnumMap<RateTypeEnum, ChannelRate> channelRates) {
+    public void updateChannelRate(Long channelId, EnumMap<PayTypeEnum, ChannelRate> channelRates) {
         // 检查通道ID是否存在
         PayChannel payChannel = checkChannelExists(channelId);
         payChannel.updateRate(channelRates);
@@ -127,7 +127,7 @@ public class PayChannelServiceImpl implements PayChannelService {
      */
     private void checkChannelRate(PayChannel payChannel) {
         // 1. 获取系统费率配置
-        EnumMap<RateTypeEnum, PayClientConfig> defaultRates = configAdapter.getDefaultRates();
+        EnumMap<PayTypeEnum, PayClientConfig> defaultRates = configAdapter.getDefaultRates();
         // 2. 校验费率
         payChannel.checkRates(defaultRates);
     }

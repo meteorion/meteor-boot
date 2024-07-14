@@ -38,5 +38,10 @@
             <version>1.0.0-snapshot</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-common-mybatis</artifactId>
+        </dependency>
     </dependencies>
 </project>

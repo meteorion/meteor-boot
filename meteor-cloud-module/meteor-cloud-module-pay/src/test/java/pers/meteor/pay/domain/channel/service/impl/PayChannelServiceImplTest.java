@@ -119,7 +119,7 @@ public class PayChannelServiceImplTest {
         // 当渠道不存在时，模拟返回 null
         when(payChannelRepository.selectById(anyLong())).thenReturn(null);
         // 验证更新渠道配置时，如果渠道不存在，应抛出 ServiceException
-        assertThrows(ServiceException.class, () -> payChannelService.updateChannelConfig(1L, null));
+        assertThrows(ServiceException.class, () -> payChannelService.updateChannelConfig(new ChannelConfig()));
     }
 
     @Test
@@ -134,7 +134,7 @@ public class PayChannelServiceImplTest {
         // 模拟保存成功
         when(payChannelRepository.save(any(PayChannel.class))).thenReturn(1L);
         // 验证更新渠道配置时，如果渠道存在，应成功更新
-        payChannelService.updateChannelConfig(1L, new ChannelConfig());
+        payChannelService.updateChannelConfig(new ChannelConfig());
         verify(payChannelRepository, times(1)).save(any(PayChannel.class));
     }
 

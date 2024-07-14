@@ -57,38 +57,38 @@ public class PayChannelServiceImpl implements PayChannelService {
     }
 
     @Override
-    public void updateChannelConfig(Long channelId, ChannelConfig channelConfig) {
+    public void updateChannelConfig(ChannelConfig channelConfig) {
         // 检查通道ID是否存在
-        PayChannel payChannel = checkChannelExists(channelId);
+        PayChannel payChannel = checkChannelExists(channelConfig.getPayChannelId());
         payChannel.updateConfig(channelConfig);
         // 检查费率
         checkChannelRate(payChannel);
         // 更新数据
-        payChannelRepository.save(payChannel);
+        payChannelRepository.saveChannelConfig(channelConfig);
     }
 
     @Override
-    public void updateChannelRate(Long channelId, List<ChannelRate> channelRates) {
+    public void updateChannelRate(Long payChannelId, List<ChannelRate> channelRates) {
         // 检查通道ID是否存在
-        PayChannel payChannel = checkChannelExists(channelId);
+        PayChannel payChannel = checkChannelExists(payChannelId);
         payChannel.updateRate(channelRates);
         // 检查通道费率
         checkChannelRate(payChannel);
         // 更新数据
-        payChannelRepository.save(payChannel);
+        payChannelRepository.saveChannelRates(payChannelId, channelRates);
     }
 
     @Override
-    public void enabled(Long channelId, boolean enabled) {
+    public void enabled(Long payChannelId, boolean enabled) {
         // 检查通道ID是否存在
-        PayChannel payChannel = checkChannelExists(channelId);
+        PayChannel payChannel = checkChannelExists(payChannelId);
         if (enabled) {
             payChannel.open();
         } else {
             payChannel.close();
         }
         // 更新数据
-        payChannelRepository.save(payChannel);
+        payChannelRepository.updateChannelStatus(payChannelId, payChannel.getEnabled());
     }
 
     /**

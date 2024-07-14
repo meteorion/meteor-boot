@@ -63,6 +63,18 @@ public class PayChannel {
     }
 
     /**
+     * 添加通道配置
+     *
+     * @param channelConfig /
+     */
+    public void addChanneConfig(ChannelConfig channelConfig) {
+        if (channelConfigs == null) {
+            channelConfigs = new EnumMap<>(PayChannelEnum.class);
+        }
+        channelConfigs.put(channelConfig.getChannelType(), channelConfig);
+    }
+
+    /**
      * 修改通道配置
      *
      * @param channelConfigs /
@@ -77,7 +89,7 @@ public class PayChannel {
      * @param newChannelConfig /
      */
     public void updateConfig(ChannelConfig newChannelConfig) {
-        PayChannelEnum payType = newChannelConfig.getPayChannel();
+        PayChannelEnum payType = newChannelConfig.getChannelType();
         this.channelConfigs.put(payType, newChannelConfig);
     }
 

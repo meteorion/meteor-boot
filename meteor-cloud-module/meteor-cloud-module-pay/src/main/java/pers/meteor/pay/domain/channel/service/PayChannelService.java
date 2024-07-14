@@ -31,19 +31,19 @@ public interface PayChannelService {
      * @param channelId 通道id
      * @param channelConfig 通道配置
      */
-    void updateChannelConfig(Long channelId, ChannelConfig channelConfig);
+    void updateChannelConfig(ChannelConfig channelConfig);
 
     /**
      * 修改通道费率配置
-     * @param channelId 通道id
+     * @param payChannelId 通道id
      * @param channelRates 通道费率
      */
-    void updateChannelRate(Long channelId, List<ChannelRate> channelRates);
+    void updateChannelRate(Long payChannelId, List<ChannelRate> channelRates);
 
     /**
      * 是否启用
-     * @param channelId 通道id
+     * @param payChannelId 通道id
      * @param enabled 是否启用
      */
-    void enabled(Long channelId, boolean enabled);
+    void enabled(Long payChannelId, boolean enabled);
 }

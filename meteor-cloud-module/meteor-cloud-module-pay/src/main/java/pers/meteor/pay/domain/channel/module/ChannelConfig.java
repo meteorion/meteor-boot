@@ -17,7 +17,7 @@ public class ChannelConfig {
     /**
      * 通道id
      */
-    private Long channelId;
+    private Long payChannelId;
     /**
      * 状态
      */
@@ -25,7 +25,7 @@ public class ChannelConfig {
     /**
      * 支付类型
      */
-    private PayChannelEnum payChannel;
+    private PayChannelEnum channelType;
     /**
      * 通道费率
      */

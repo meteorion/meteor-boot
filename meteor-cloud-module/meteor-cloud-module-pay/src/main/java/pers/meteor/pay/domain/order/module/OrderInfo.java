@@ -1,7 +1,7 @@
 package pers.meteor.pay.domain.order.module;
 
 import lombok.Data;
-import pers.meteor.pay.order.domain.module.enums.OrderStatusEnum;
+import pers.meteor.pay.domain.order.module.enums.OrderStatusEnum;
 
 /**
  * 退款订单信息(聚合)

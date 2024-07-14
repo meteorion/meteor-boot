@@ -1,9 +1,9 @@
 package pers.meteor.pay.domain.order.module;
 
 import lombok.Data;
-import pers.meteor.pay.order.domain.module.valueobject.Account;
-import pers.meteor.pay.order.domain.module.valueobject.Channel;
-import pers.meteor.pay.order.domain.module.valueobject.Fee;
+import pers.meteor.pay.domain.order.module.valueobject.Account;
+import pers.meteor.pay.domain.order.module.valueobject.Channel;
+import pers.meteor.pay.domain.order.module.valueobject.Fee;
 
 import java.time.LocalDateTime;
 

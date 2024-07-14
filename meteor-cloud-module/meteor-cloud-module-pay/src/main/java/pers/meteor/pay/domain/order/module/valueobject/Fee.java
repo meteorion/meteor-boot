@@ -1,4 +1,4 @@
-package pers.meteor.pay.order.domain.module.valueobject;
+package pers.meteor.pay.domain.order.module.valueobject;
 
 import lombok.Data;
 

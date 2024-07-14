@@ -1,4 +1,4 @@
-package pers.meteor.pay.order.domain.module.enums;
+package pers.meteor.pay.domain.order.module.enums;
 
 /**
  * 订单状态

@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 import pers.meteor.common.core.exception.ServiceException;
-import pers.meteor.pay.channel.adapter.payclient.mock.MockPayClient;
+import pers.meteor.pay.adapter.channel.payclient.mock.MockPayClient;
 import pers.meteor.pay.domain.channel.module.PayClientConfig;
 import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
 import pers.meteor.pay.domain.channel.service.PayClient;

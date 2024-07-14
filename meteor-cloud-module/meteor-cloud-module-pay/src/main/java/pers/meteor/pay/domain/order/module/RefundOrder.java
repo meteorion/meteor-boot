@@ -1,4 +1,4 @@
-package pers.meteor.pay.order.domain.module;
+package pers.meteor.pay.domain.order.module;
 
 /**
  * 退款订单

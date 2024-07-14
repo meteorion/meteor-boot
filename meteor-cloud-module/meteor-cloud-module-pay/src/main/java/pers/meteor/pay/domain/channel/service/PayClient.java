@@ -1,6 +1,5 @@
 package pers.meteor.pay.domain.channel.service;
 
-import pers.meteor.pay.channel.domain.module.valueobject.*;
 import pers.meteor.pay.domain.channel.module.valueobject.*;
 
 import java.util.Map;

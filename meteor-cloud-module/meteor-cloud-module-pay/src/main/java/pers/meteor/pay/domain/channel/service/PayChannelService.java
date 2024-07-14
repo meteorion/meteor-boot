@@ -1,11 +1,10 @@
 package pers.meteor.pay.domain.channel.service;
 
+import pers.meteor.pay.domain.channel.module.ChannelConfig;
 import pers.meteor.pay.domain.channel.module.PayChannel;
-import pers.meteor.pay.domain.channel.module.enums.PayTypeEnum;
-import pers.meteor.pay.domain.channel.module.PayClientConfig;
 import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
 
-import java.util.EnumMap;
+import java.util.List;
 
 /**
  * @author meteor
@@ -32,14 +31,14 @@ public interface PayChannelService {
      * @param channelId 通道id
      * @param channelConfig 通道配置
      */
-    void updateChannelConfig(Long channelId, PayClientConfig channelConfig);
+    void updateChannelConfig(Long channelId, ChannelConfig channelConfig);
 
     /**
      * 修改通道费率配置
      * @param channelId 通道id
      * @param channelRates 通道费率
      */
-    void updateChannelRate(Long channelId, EnumMap<PayTypeEnum, ChannelRate> channelRates);
+    void updateChannelRate(Long channelId, List<ChannelRate> channelRates);
 
     /**
      * 是否启用

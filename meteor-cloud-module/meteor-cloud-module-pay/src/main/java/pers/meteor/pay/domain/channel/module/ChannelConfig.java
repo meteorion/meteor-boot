@@ -2,7 +2,7 @@ package pers.meteor.pay.domain.channel.module;
 
 import lombok.Data;
 import pers.meteor.common.core.enums.SwitchStatusEnum;
-import pers.meteor.pay.domain.channel.module.enums.PayTypeEnum;
+import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
 import pers.meteor.pay.domain.channel.module.valueobject.ChannelQuota;
 import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
 import pers.meteor.pay.domain.channel.module.valueobject.TimeRange;
@@ -25,7 +25,7 @@ public class ChannelConfig {
     /**
      * 支付类型
      */
-    private PayTypeEnum payType;
+    private PayChannelEnum payChannel;
     /**
      * 通道费率
      */

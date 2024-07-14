@@ -1,7 +1,7 @@
 package pers.meteor.pay.domain.channel.acl;
 
-import pers.meteor.pay.domain.channel.module.PayClientConfig;
-import pers.meteor.pay.domain.channel.module.enums.PayTypeEnum;
+import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
+import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
 import pers.meteor.pay.domain.channel.module.valueobject.SystemChannelConfig;
 
 import java.util.EnumMap;
@@ -22,5 +22,5 @@ public interface RemotePayConfigAdapter {
      *
      * @return /
      */
-    EnumMap<PayTypeEnum, PayClientConfig> getDefaultRates();
+    EnumMap<PayChannelEnum, ChannelRate> getDefaultRates();
 }

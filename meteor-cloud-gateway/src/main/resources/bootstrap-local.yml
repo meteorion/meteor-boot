@@ -48,6 +48,13 @@ spring:
             - Path=/file/**
           filters:
             - StripPrefix=1
+        # 支付中心
+        - id: meteor-cloud-module-pay
+          uri: lb://meteor-cloud-module-pay
+          predicates:
+            - Path=/file/**
+          filters:
+            - StripPrefix=1
 
 # 安全配置
 security:

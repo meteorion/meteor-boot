@@ -218,6 +218,18 @@
             </dependency>
 
             <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-jdk8</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.jeasy</groupId>
                 <artifactId>easy-rules-core</artifactId>
                 <version>${easy-rules.version}</version>

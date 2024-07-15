@@ -16,7 +16,7 @@ public class ChannelRate {
     /**
      * 费率类型
      */
-    private PayChannelEnum payChannel;
+    private PayChannelEnum channelType;
     /**
      * 成本费率（我方）
      */
@@ -96,22 +96,22 @@ public class ChannelRate {
         // 检查成本费率
         boolean isEffectiveRate = this.isEffectiveRate(channelRate.getCostRate());
         if (!isEffectiveRate) {
-            throw new ServiceException("{0}费率不在有效范围内：{1}-{2}", payChannel.name(), this.getMinRate(), this.getMaxRate());
+            throw new ServiceException("{0}费率不在有效范围内：{1}-{2}", channelType.name(), this.getMinRate(), this.getMaxRate());
         }
         // 检查成本费率范围
         boolean isEffectiveRateRange = this.isEffectiveRateRange(channelRate.getMinRate(), channelRate.getMaxRate());
         if (!isEffectiveRateRange) {
-            throw new ServiceException("{0}费率范围不在有效范围内：{1}-{2}", payChannel.name(), this.getMinRate(), this.getMaxRate());
+            throw new ServiceException("{0}费率范围不在有效范围内：{1}-{2}", channelType.name(), this.getMinRate(), this.getMaxRate());
         }
         // 检查成本手续费
         boolean isEffectiveFee = this.isEffectiveFee(channelRate.getCostFee());
         if (!isEffectiveFee) {
-            throw new ServiceException("{0}手续费不在有效范围内：{1}-{2}", payChannel.name(), this.getMinFee(), this.getMaxFee());
+            throw new ServiceException("{0}手续费不在有效范围内：{1}-{2}", channelType.name(), this.getMinFee(), this.getMaxFee());
         }
         // 检查成本手续费范围
         boolean isEffectiveFeeRange = this.isEffectiveFeeRange(channelRate.getMinFee(), channelRate.getMaxFee());
         if (!isEffectiveFeeRange) {
-            throw new ServiceException("{0}手续费范围不在有效范围内：{1}-{2}", payChannel.name(), this.getMinFee(), this.getMaxFee());
+            throw new ServiceException("{0}手续费范围不在有效范围内：{1}-{2}", channelType.name(), this.getMinFee(), this.getMaxFee());
         }
     }
 }

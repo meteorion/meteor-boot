@@ -15,6 +15,10 @@ import pers.meteor.pay.domain.channel.module.valueobject.TimeRange;
 @Data
 public class ChannelConfig {
     /**
+     * 通道配置id
+     */
+    private Long channelConfigId;
+    /**
      * 通道id
      */
     private Long payChannelId;

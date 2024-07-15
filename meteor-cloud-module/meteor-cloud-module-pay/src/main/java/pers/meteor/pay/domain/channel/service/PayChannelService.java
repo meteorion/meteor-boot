@@ -4,8 +4,6 @@ import pers.meteor.pay.domain.channel.module.ChannelConfig;
 import pers.meteor.pay.domain.channel.module.PayChannel;
 import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
 
-import java.util.List;
-
 /**
  * @author meteor
  */
@@ -35,10 +33,10 @@ public interface PayChannelService {
 
     /**
      * 修改通道费率配置
-     * @param payChannelId 通道id
-     * @param channelRates 通道费率
+     * @param payChannelConfigId 通道id
+     * @param channelRate 通道费率
      */
-    void updateChannelRate(Long payChannelId, List<ChannelRate> channelRates);
+    void updateChannelRate(Long payChannelConfigId, ChannelRate channelRate);
 
     /**
      * 是否启用

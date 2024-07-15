@@ -18,6 +18,10 @@ public class ChannelQuota {
      */
     private int dailyLimit;
     /**
+     * 月限额
+     */
+    private int monthLimit;
+    /**
      * 单笔最低金额
      */
     private int singleMinLimit;

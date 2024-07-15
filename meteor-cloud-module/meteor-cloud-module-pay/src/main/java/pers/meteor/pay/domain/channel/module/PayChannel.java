@@ -7,9 +7,7 @@ import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
 import pers.meteor.pay.domain.channel.module.valueobject.ChannelQuota;
 import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
 
-import java.util.Collection;
-import java.util.EnumMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 支付通道
@@ -21,7 +19,7 @@ public class PayChannel {
     /**
      * 通道id
      */
-    private Long channelId;
+    private Long payChannelId;
     /**
      * 通道代号
      */
@@ -33,7 +31,7 @@ public class PayChannel {
     /**
      * 是否可用
      */
-    private SwitchStatusEnum enabled;
+    private SwitchStatusEnum status;
     /**
      * 通道配置
      */
@@ -44,7 +42,7 @@ public class PayChannel {
     private ChannelQuota channelQuota;
 
     public PayChannel() {
-        this.enabled = SwitchStatusEnum.OPEN;
+        this.status = SwitchStatusEnum.OPEN;
         this.channelConfigs = new EnumMap<>(PayChannelEnum.class);
     }
 
@@ -55,8 +53,8 @@ public class PayChannel {
      */
     public void updateChannel(PayChannel newPayChannel) {
         // 更细基本信息
-        if (newPayChannel.getEnabled() != null) {
-            this.enabled = newPayChannel.getEnabled();
+        if (newPayChannel.getStatus() != null) {
+            this.status = newPayChannel.getStatus();
         }
         // 更新通道配置
         this.updateConfig(newPayChannel.getChannelConfigs().values());
@@ -97,14 +95,14 @@ public class PayChannel {
      * 打开通道
      */
     public void open() {
-        this.enabled = SwitchStatusEnum.OPEN;
+        this.status = SwitchStatusEnum.OPEN;
     }
 
     /**
      * 关闭通道
      */
     public void close() {
-        this.enabled = SwitchStatusEnum.CLOSE;
+        this.status = SwitchStatusEnum.CLOSE;
     }
 
     /**
@@ -132,9 +130,8 @@ public class PayChannel {
         }
         for (Map.Entry<PayChannelEnum, ChannelConfig> entry : this.channelConfigs.entrySet()) {
             ChannelConfig channelConfig = entry.getValue();
-            if (channelConfig.getChannelRate() != null) {
-                channelRates.put(entry.getKey(), channelConfig.getChannelRate());
-            }
+            Optional<ChannelRate> channelRateOptional = Optional.ofNullable(channelConfig.getChannelRate());
+            channelRateOptional.ifPresent(rate -> channelRates.put(entry.getKey(), rate));
         }
         return channelRates;
     }
@@ -144,11 +141,10 @@ public class PayChannel {
      *
      * @param defaultRates /
      */
-    public void checkRates(EnumMap<PayChannelEnum, ChannelRate> defaultRates) {
-        for (Map.Entry<PayChannelEnum, ChannelRate> entry : defaultRates.entrySet()) {
-            PayChannelEnum payType = entry.getKey();
-            ChannelRate defaultRate = entry.getValue();
-            ChannelRate channelRate = getChannelRate(payType);
+    public void checkRates(List<ChannelRate> defaultRates) {
+        for (ChannelRate defaultRate : defaultRates) {
+            PayChannelEnum payChannel = defaultRate.getChannelType();
+            ChannelRate channelRate = getChannelRate(payChannel);
             if (channelRate == null) {
                 continue;
             }
@@ -171,7 +167,7 @@ public class PayChannel {
      * @param channelRate /
      */
     public void updateRate(ChannelRate channelRate) {
-        PayChannelEnum payType = channelRate.getPayChannel();
+        PayChannelEnum payType = channelRate.getChannelType();
         ChannelConfig channelConfig = this.channelConfigs.get(payType);
         if (channelConfig == null) {
             throw new ServiceException("获取通道配置失败");

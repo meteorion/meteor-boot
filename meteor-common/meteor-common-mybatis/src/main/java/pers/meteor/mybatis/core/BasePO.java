@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
  * @author meteor
  */
 @Data
-public abstract class BaseDO implements Serializable {
+public abstract class BasePO implements Serializable {
 
     /**
      * 创建时间

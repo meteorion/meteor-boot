@@ -8,14 +8,12 @@ import pers.meteor.common.core.exception.ServiceException;
 import pers.meteor.pay.domain.channel.acl.RemotePayConfigAdapter;
 import pers.meteor.pay.domain.channel.module.ChannelConfig;
 import pers.meteor.pay.domain.channel.module.PayChannel;
-import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
 import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
 import pers.meteor.pay.domain.channel.module.valueobject.SystemChannelConfig;
 import pers.meteor.pay.domain.channel.repository.PayChannelRepository;
 import pers.meteor.pay.domain.channel.service.PayChannelService;
 
 import javax.annotation.Resource;
-import java.util.EnumMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,7 +44,7 @@ public class PayChannelServiceImpl implements PayChannelService {
     @Override
     public void updatePayChannel(PayChannel newPayChannel) {
         // 检查通道ID是否存在
-        PayChannel payChannel = checkChannelExists(newPayChannel.getChannelId());
+        PayChannel payChannel = checkChannelExists(newPayChannel.getPayChannelId());
         payChannel.updateChannel(newPayChannel);
         // 检查通道信息是否存在
         checkChannelUnique(payChannel);
@@ -68,14 +66,14 @@ public class PayChannelServiceImpl implements PayChannelService {
     }
 
     @Override
-    public void updateChannelRate(Long payChannelId, List<ChannelRate> channelRates) {
+    public void updateChannelRate(Long payChannelConfigId, ChannelRate channelRate) {
         // 检查通道ID是否存在
-        PayChannel payChannel = checkChannelExists(payChannelId);
-        payChannel.updateRate(channelRates);
+        ChannelConfig channelConfig = checkChannelConfigExists(payChannelConfigId);
+        channelConfig.setChannelRate(channelRate);
         // 检查通道费率
-        checkChannelRate(payChannel);
+        checkChannelRate(channelConfig);
         // 更新数据
-        payChannelRepository.saveChannelRates(payChannelId, channelRates);
+        payChannelRepository.saveChannelRate(payChannelConfigId, channelConfig.getChannelRate());
     }
 
     @Override
@@ -88,7 +86,7 @@ public class PayChannelServiceImpl implements PayChannelService {
             payChannel.close();
         }
         // 更新数据
-        payChannelRepository.updateChannelStatus(payChannelId, payChannel.getEnabled());
+        payChannelRepository.updateChannelStatus(payChannelId, payChannel.getStatus());
     }
 
     /**
@@ -99,9 +97,23 @@ public class PayChannelServiceImpl implements PayChannelService {
     private PayChannel checkChannelExists(Long channelId) {
         PayChannel payChannel = payChannelRepository.selectById(channelId);
         if (payChannel == null) {
-            throw new ServiceException("通道配置不存在");
+            throw new ServiceException("通道不存在");
         }
         return payChannel;
+    }
+
+    /**
+     * 校验通道配置
+     *
+     * @param channelConfigId /
+     * @return /
+     */
+    private ChannelConfig checkChannelConfigExists(Long channelConfigId) {
+        ChannelConfig channelConfig = payChannelRepository.selectPayChannelConfig(channelConfigId);
+        if (channelConfig == null) {
+            throw new ServiceException("通道配置不存在");
+        }
+        return channelConfig;
     }
 
     /**
@@ -111,13 +123,13 @@ public class PayChannelServiceImpl implements PayChannelService {
      */
     private void checkChannelUnique(PayChannel payChannel) {
         PayChannel payChannelDb = payChannelRepository.selectByName(payChannel.getName());
-        if (payChannelDb != null && !Objects.equals(payChannelDb.getChannelId(), payChannel.getChannelId())) {
+        if (payChannelDb != null && !Objects.equals(payChannelDb.getPayChannelId(), payChannel.getPayChannelId())) {
             throw new ServiceException("通道名称已配置");
         }
         SystemChannelConfig systemChannelConfig = configAdapter.getSystemChannelConfig();
         if (systemChannelConfig.isUniqueCode()) {
             List<PayChannel> payChannels = payChannelRepository.selectByCode(payChannel.getCode());
-            long count = payChannels.stream().filter(item -> !Objects.equals(item.getChannelId(), payChannel.getChannelId())).count();
+            long count = payChannels.stream().filter(item -> !Objects.equals(item.getPayChannelId(), payChannel.getPayChannelId())).count();
             if (count > 0) {
                 throw new ServiceException("通道代号已配置");
             }
@@ -131,9 +143,23 @@ public class PayChannelServiceImpl implements PayChannelService {
      */
     private void checkChannelRate(PayChannel payChannel) {
         // 1. 获取系统费率配置
-        EnumMap<PayChannelEnum, ChannelRate> defaultRates = configAdapter.getDefaultRates();
+        List<ChannelRate> defaultRates = configAdapter.getDefaultRates();
         // 2. 校验费率
         payChannel.checkRates(defaultRates);
+    }
+
+    private void checkChannelRate(ChannelConfig channelConfig) {
+        ChannelRate channelRate = channelConfig.getChannelRate();
+        if (channelRate == null) {
+            throw new ServiceException("通道费率不能为空");
+        }
+        // 1. 获取系统费率配置
+        List<ChannelRate> defaultRates = configAdapter.getDefaultRates();
+        for (ChannelRate defaultRate : defaultRates) {
+            if (channelRate.getChannelType().equals(defaultRate.getChannelType())) {
+                defaultRate.checkRateConfig(channelRate);
+            }
+        }
     }
 
 }

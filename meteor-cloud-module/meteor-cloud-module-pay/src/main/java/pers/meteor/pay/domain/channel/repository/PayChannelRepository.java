@@ -4,6 +4,7 @@ import pers.meteor.common.core.enums.SwitchStatusEnum;
 import pers.meteor.pay.domain.channel.module.ChannelConfig;
 import pers.meteor.pay.domain.channel.module.PayChannel;
 import pers.meteor.pay.domain.channel.module.PayClientConfig;
+import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
 import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
 
 import java.util.List;
@@ -46,18 +47,10 @@ public interface PayChannelRepository {
     /**
      * 保存通道费率
      *
-     * @param payChanneId /
+     * @param payChanneConfigId /
      * @param channelRate /
      */
-    void saveChannelRate(Long payChanneId, ChannelRate channelRate);
-
-    /**
-     * 保存通道费率
-     *
-     * @param payChannelId /
-     * @param channelRates /
-     */
-    void saveChannelRates(Long payChannelId, List<ChannelRate> channelRates);
+    void saveChannelRate(Long payChanneConfigId, ChannelRate channelRate);
 
     /**
      * 保存客户端配置
@@ -91,10 +84,27 @@ public interface PayChannelRepository {
     List<PayChannel> selectByCode(String code);
 
     /**
-     * 获取通道配置
+     * 获取通道客户端配置
      *
      * @param payClientlId /
      * @return /
      */
     PayClientConfig selectPayClientConfig(Long payClientlId);
+
+    /**
+     * 获取通道配置
+     *
+     * @param payChannelConfigId /
+     * @return /
+     */
+    ChannelConfig selectPayChannelConfig(Long payChannelConfigId);
+
+    /**
+     * 查询通道配置
+     *
+     * @param payChannelId 通道id
+     * @param channelType 通道类型
+     * @return /
+     */
+    ChannelConfig selectPayChannelConfig(Long payChannelId, PayChannelEnum channelType);
 }

@@ -3,7 +3,7 @@ package pers.meteor.mybatis.core.handler;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
 import pers.meteor.common.core.context.SecurityContextHolder;
-import pers.meteor.mybatis.core.BaseDO;
+import pers.meteor.mybatis.core.BasePO;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -18,8 +18,8 @@ public class DefaultDBFieldHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        if (Objects.nonNull(metaObject) && metaObject.getOriginalObject() instanceof BaseDO) {
-            BaseDO baseDO = (BaseDO) metaObject.getOriginalObject();
+        if (Objects.nonNull(metaObject) && metaObject.getOriginalObject() instanceof BasePO) {
+            BasePO baseDO = (BasePO) metaObject.getOriginalObject();
 
             LocalDateTime current = LocalDateTime.now();
             // 创建时间为空，则以当前时间为插入时间

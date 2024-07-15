@@ -16,11 +16,15 @@ public class PayClientConfig {
     /**
      * 配置id
      */
-    private Long configId;
+    private Long channelConfigId;
+    /**
+     * 支付通道id
+     */
+    private Long payChannelId;
     /**
      * 支付通道类型
      */
-    private PayChannelEnum payChannel;
+    private PayChannelEnum channelType;
     /**
      * 服务地址
      */

@@ -20,9 +20,6 @@ public class TimeRange {
      */
     private LocalDateTime endTime;
 
-    public TimeRange() {
-    }
-
     public TimeRange(LocalDateTime startTime, LocalDateTime endTime) {
         this.startTime = startTime;
         this.endTime = endTime;

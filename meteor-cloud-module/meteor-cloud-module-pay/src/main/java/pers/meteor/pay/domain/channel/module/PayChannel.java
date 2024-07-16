@@ -182,15 +182,6 @@ public class PayChannel {
     /**
      * 修改费率
      *
-     * @param channelRates /
-     */
-    public void updateRate(Collection<ChannelRate> channelRates) {
-        channelRates.forEach(this::updateRate);
-    }
-
-    /**
-     * 修改费率
-     *
      * @param channelRate /
      */
     public void updateRate(ChannelRate channelRate) {

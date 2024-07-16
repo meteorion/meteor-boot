@@ -34,7 +34,7 @@ public interface PayChannelRepository {
      *
      * @param channelConfig /
      */
-    void saveChannelConfig(ChannelConfig channelConfig);
+    Long saveChannelConfig(ChannelConfig channelConfig);
 
     /**
      * 保存通道配置
@@ -107,4 +107,18 @@ public interface PayChannelRepository {
      * @return /
      */
     ChannelConfig selectPayChannelConfig(Long payChannelId, PayChannelEnum channelType);
+
+    /**
+     * 删除通道
+     *
+     * @param payChannelId /
+     */
+    void delete(Long payChannelId);
+
+    /**
+     * 删除通道配置
+     *
+     * @param payChannelConfigId /
+     */
+    void deleteChannelConfig(Long payChannelConfigId);
 }

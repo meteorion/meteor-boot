@@ -57,7 +57,22 @@ public class PayChannel {
             this.status = newPayChannel.getStatus();
         }
         // 更新通道配置
-        this.updateConfig(newPayChannel.getChannelConfigs().values());
+        if (newPayChannel.getChannelConfigs() != null) {
+            this.updateConfig(newPayChannel.getChannelConfigs().values());
+        }
+    }
+
+    /**
+     * 获取通道配置
+     *
+     * @param channelTyle /
+     * @return /
+     */
+    public ChannelConfig getChannelConfig(PayChannelEnum channelTyle) {
+        if (channelConfigs == null) {
+            return null;
+        }
+        return channelConfigs.get(channelTyle);
     }
 
     /**
@@ -89,6 +104,18 @@ public class PayChannel {
     public void updateConfig(ChannelConfig newChannelConfig) {
         PayChannelEnum payType = newChannelConfig.getChannelType();
         this.channelConfigs.put(payType, newChannelConfig);
+    }
+
+    /**
+     * 添加通道配置
+     *
+     * @param channelConfig /
+     */
+    public void addConfig(ChannelConfig channelConfig) {
+        PayChannelEnum channelType = channelConfig.getChannelType();
+        if (this.channelConfigs.containsKey(channelType)) {
+            throw new ServiceException("支付类型配置已存在");
+        }
     }
 
     /**

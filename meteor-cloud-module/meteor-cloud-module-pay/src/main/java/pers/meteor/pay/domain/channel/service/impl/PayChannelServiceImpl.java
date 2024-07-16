@@ -3,11 +3,13 @@ package pers.meteor.pay.domain.channel.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import pers.meteor.common.core.exception.ServiceException;
 import pers.meteor.pay.domain.channel.acl.RemotePayConfigAdapter;
 import pers.meteor.pay.domain.channel.module.ChannelConfig;
 import pers.meteor.pay.domain.channel.module.PayChannel;
+import pers.meteor.pay.domain.channel.module.PayClientConfig;
 import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
 import pers.meteor.pay.domain.channel.module.valueobject.SystemChannelConfig;
 import pers.meteor.pay.domain.channel.repository.PayChannelRepository;
@@ -55,12 +57,32 @@ public class PayChannelServiceImpl implements PayChannelService {
     }
 
     @Override
+    public Long addChannelConfig(ChannelConfig channelConfig) {
+        // 检查通道ID是否存在
+        PayChannel payChannel = checkChannelExists(channelConfig.getPayChannelId());
+        payChannel.addConfig(channelConfig);
+        // 检查费率
+        checkChannelRate(payChannel);
+        // 更新数据
+        return payChannelRepository.saveChannelConfig(channelConfig);
+    }
+
+    @Override
     public void updateChannelConfig(ChannelConfig channelConfig) {
         // 检查通道ID是否存在
         PayChannel payChannel = checkChannelExists(channelConfig.getPayChannelId());
         payChannel.updateConfig(channelConfig);
         // 检查费率
         checkChannelRate(payChannel);
+        // 更新数据
+        payChannelRepository.saveChannelConfig(channelConfig);
+    }
+
+    @Override
+    public void updateClientConfig(PayClientConfig clientConfig) {
+        // 检查通道ID是否存在
+        ChannelConfig channelConfig = checkChannelConfigExists(clientConfig.getChannelConfigId());
+        channelConfig.setPayClientConfig(clientConfig);
         // 更新数据
         payChannelRepository.saveChannelConfig(channelConfig);
     }
@@ -87,6 +109,18 @@ public class PayChannelServiceImpl implements PayChannelService {
         }
         // 更新数据
         payChannelRepository.updateChannelStatus(payChannelId, payChannel.getStatus());
+    }
+
+    @Override
+    public void delete(Long payChannelId) {
+        checkChannelExists(payChannelId);
+        payChannelRepository.delete(payChannelId);
+    }
+
+    @Override
+    public void deleteChannelConfig(Long payChannelConfigId) {
+        checkChannelConfigExists(payChannelConfigId);
+        payChannelRepository.deleteChannelConfig(payChannelConfigId);
     }
 
     /**
@@ -142,6 +176,9 @@ public class PayChannelServiceImpl implements PayChannelService {
      * @param payChannel 通道配置
      */
     private void checkChannelRate(PayChannel payChannel) {
+        if (CollectionUtils.isEmpty(payChannel.getChannelRates().values())) {
+            return;
+        }
         // 1. 获取系统费率配置
         List<ChannelRate> defaultRates = configAdapter.getDefaultRates();
         // 2. 校验费率

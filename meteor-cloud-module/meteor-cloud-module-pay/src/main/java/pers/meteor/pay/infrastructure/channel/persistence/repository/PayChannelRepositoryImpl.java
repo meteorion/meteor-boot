@@ -13,9 +13,9 @@ import pers.meteor.pay.infrastructure.channel.persistence.mapper.PayChannelConfi
 import pers.meteor.pay.infrastructure.channel.persistence.mapper.PayChannelMapper;
 import pers.meteor.pay.infrastructure.channel.persistence.mapper.PayClientConfigMapper;
 import pers.meteor.pay.infrastructure.channel.persistence.mapstruct.PayChannelMapstruct;
-import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelConfigPo;
+import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelConfigPO;
 import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelPO;
-import pers.meteor.pay.infrastructure.channel.persistence.po.PayClientConfigPo;
+import pers.meteor.pay.infrastructure.channel.persistence.po.PayClientConfigPO;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -58,12 +58,12 @@ public class PayChannelRepositoryImpl implements PayChannelRepository {
     }
 
     @Override
-    public void saveChannelConfig(ChannelConfig channelConfig) {
+    public Long saveChannelConfig(ChannelConfig channelConfig) {
         Long payChannelId = channelConfig.getPayChannelId();
-        PayChannelConfigPo payClientConfigPo = PayChannelMapstruct.INSTANCE.toChannelConfigPo(channelConfig);
-        PayChannelConfigPo payChannelConfigDbPo = payChannelConfigMapper.selectOne(payChannelId, payClientConfigPo.getChannelType());
+        PayChannelConfigPO payClientConfigPo = PayChannelMapstruct.INSTANCE.toChannelConfigPo(channelConfig);
+        PayChannelConfigPO payChannelConfigDbPo = payChannelConfigMapper.selectOne(payChannelId, payClientConfigPo.getChannelType());
         if (payChannelConfigDbPo != null) {
-            payClientConfigPo.setConfigId(payChannelConfigDbPo.getConfigId());
+            payClientConfigPo.setChannelConfigId(payChannelConfigDbPo.getChannelConfigId());
             payChannelConfigMapper.updateById(payClientConfigPo);
         } else {
             payChannelConfigMapper.insert(payClientConfigPo);
@@ -72,23 +72,25 @@ public class PayChannelRepositoryImpl implements PayChannelRepository {
         saveChannelRate(payChannelId, channelConfig.getChannelRate());
         // 保存客户端配置
         saveClientConfig(payChannelId, channelConfig.getPayClientConfig());
+
+        return payClientConfigPo.getChannelConfigId();
     }
 
     @Override
     public void saveChannelConfigs(Long payChannelId, PayChannel payChannel) {
         EnumMap<PayChannelEnum, ChannelConfig> channelConfigs = payChannel.getChannelConfigs();
-        List<PayChannelConfigPo> payClientConfigPos = payChannelConfigMapper.selectPayChannelConfigList(payChannelId);
-        Map<String, PayChannelConfigPo> clientConfigPoMap = payClientConfigPos.stream().collect(Collectors.toMap(PayChannelConfigPo::getChannelType, po -> po));
+        List<PayChannelConfigPO> payClientConfigPos = payChannelConfigMapper.selectPayChannelConfigList(payChannelId);
+        Map<String, PayChannelConfigPO> clientConfigPoMap = payClientConfigPos.stream().collect(Collectors.toMap(PayChannelConfigPO::getChannelType, po -> po));
 
         for (Map.Entry<PayChannelEnum, ChannelConfig> entry : channelConfigs.entrySet()) {
             PayChannelEnum channelType = entry.getKey();
             ChannelConfig channelConfig = entry.getValue();
             channelConfig.setPayChannelId(payChannelId);
 
-            PayChannelConfigPo payClientConfigPo = clientConfigPoMap.get(channelType.getCode());
-            PayChannelConfigPo newChannelConfig = PayChannelMapstruct.INSTANCE.toChannelConfigPo(channelConfig);
+            PayChannelConfigPO payClientConfigPo = clientConfigPoMap.get(channelType.getCode());
+            PayChannelConfigPO newChannelConfig = PayChannelMapstruct.INSTANCE.toChannelConfigPo(channelConfig);
             if (payClientConfigPo != null) {
-                newChannelConfig.setConfigId(payClientConfigPo.getConfigId());
+                newChannelConfig.setChannelConfigId(payClientConfigPo.getChannelConfigId());
                 payChannelConfigMapper.updateById(newChannelConfig);
             } else {
                 payChannelConfigMapper.insert(newChannelConfig);
@@ -105,8 +107,8 @@ public class PayChannelRepositoryImpl implements PayChannelRepository {
         if (channelRate == null) {
             return;
         }
-        PayChannelConfigPo channelRatePo = PayChannelMapstruct.INSTANCE.toChannelConfigPo(payChanneConfigId, channelRate);
-        if (channelRatePo.getConfigId() != null) {
+        PayChannelConfigPO channelRatePo = PayChannelMapstruct.INSTANCE.toChannelConfigPo(payChanneConfigId, channelRate);
+        if (channelRatePo.getChannelConfigId() != null) {
             payChannelConfigMapper.updateById(channelRatePo);
         } else {
             payChannelConfigMapper.insert(channelRatePo);
@@ -118,8 +120,8 @@ public class PayChannelRepositoryImpl implements PayChannelRepository {
         if (clientConfig == null) {
             return;
         }
-        PayClientConfigPo clientConfigPo = PayChannelMapstruct.INSTANCE.toPayClinetConfigPo(clientConfig);
-        PayClientConfigPo clientConfigPoDb = payClientConfigMapper.selectOne(payChanneId, clientConfigPo.getChannelType());
+        PayClientConfigPO clientConfigPo = PayChannelMapstruct.INSTANCE.toPayClinetConfigPo(clientConfig);
+        PayClientConfigPO clientConfigPoDb = payClientConfigMapper.selectOne(payChanneId, clientConfigPo.getChannelType());
         if (clientConfigPoDb != null) {
             clientConfigPo.setChannelConfigId(clientConfigPoDb.getChannelConfigId());
             payClientConfigMapper.updateById(clientConfigPo);
@@ -148,30 +150,44 @@ public class PayChannelRepositoryImpl implements PayChannelRepository {
 
     @Override
     public PayClientConfig selectPayClientConfig(Long payClientlId) {
-        PayClientConfigPo payClientConfigPo = payClientConfigMapper.selectById(payClientlId);
+        PayClientConfigPO payClientConfigPo = payClientConfigMapper.selectById(payClientlId);
         return PayChannelMapstruct.INSTANCE.toPayClientConfg(payClientConfigPo);
     }
 
     @Override
     public ChannelConfig selectPayChannelConfig(Long payChannelConfigId) {
-        PayChannelConfigPo payChannelConfigPo = payChannelConfigMapper.selectById(payChannelConfigId);
+        PayChannelConfigPO payChannelConfigPo = payChannelConfigMapper.selectById(payChannelConfigId);
         if (payChannelConfigPo == null) {
             return null;
         }
-        PayClientConfigPo payClientConfigPo = payClientConfigMapper.selectOne(payChannelConfigPo.getPayChannelId(),
+        PayClientConfigPO payClientConfigPo = payClientConfigMapper.selectOne(payChannelConfigPo.getPayChannelId(),
                 payChannelConfigPo.getChannelType());
         return PayChannelMapstruct.INSTANCE.toChannelConfig(payChannelConfigPo, payClientConfigPo);
     }
 
     @Override
     public ChannelConfig selectPayChannelConfig(Long payChannelId, PayChannelEnum channelType) {
-        PayChannelConfigPo payChannelConfigPo = payChannelConfigMapper.selectOne(payChannelId, channelType.getCode());
+        PayChannelConfigPO payChannelConfigPo = payChannelConfigMapper.selectOne(payChannelId, channelType.getCode());
         if (payChannelConfigPo == null) {
             return null;
         }
-        PayClientConfigPo payClientConfigPo = payClientConfigMapper.selectOne(payChannelConfigPo.getPayChannelId(),
+        PayClientConfigPO payClientConfigPo = payClientConfigMapper.selectOne(payChannelConfigPo.getPayChannelId(),
                 payChannelConfigPo.getChannelType());
         return PayChannelMapstruct.INSTANCE.toChannelConfig(payChannelConfigPo, payClientConfigPo);
+    }
+
+    @Override
+    public void delete(Long payChannelId) {
+        payChannelMapper.deleteById(payChannelId);
+        // 删除通道配置
+        payChannelConfigMapper.deleteByPayChannelId(payChannelId);
+        payClientConfigMapper.deleteByPayChannelId(payChannelId);
+    }
+
+    @Override
+    public void deleteChannelConfig(Long payChannelConfigId) {
+        payChannelConfigMapper.deleteById(payChannelConfigId);
+        payClientConfigMapper.deleteByChannelConfigId(payChannelConfigId);
     }
 
     /**
@@ -186,9 +202,9 @@ public class PayChannelRepositoryImpl implements PayChannelRepository {
         }
         Long payChannelId = payChannelPo.getPayChannelId();
         // 同时查询通道配置
-        List<PayChannelConfigPo> payChannelConfigPos = payChannelConfigMapper.selectPayChannelConfigList(payChannelId);
+        List<PayChannelConfigPO> payChannelConfigPos = payChannelConfigMapper.selectPayChannelConfigList(payChannelId);
         // 查询通道配置
-        List<PayClientConfigPo> payClientConfigPos = payClientConfigMapper.selectPayClientConfigList(payChannelId);
+        List<PayClientConfigPO> payClientConfigPos = payClientConfigMapper.selectPayClientConfigList(payChannelId);
 
         return PayChannelMapstruct.INSTANCE.toPayChannel(payChannelPo, payChannelConfigPos, payClientConfigPos);
     }

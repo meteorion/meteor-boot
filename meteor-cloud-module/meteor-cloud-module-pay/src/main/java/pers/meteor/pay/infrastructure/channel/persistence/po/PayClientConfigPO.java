@@ -11,7 +11,7 @@ import lombok.Data;
  */
 @TableName("pay_client_config")
 @Data
-public class PayClientConfigPo {
+public class PayClientConfigPO {
     /**
      * 主键
      */

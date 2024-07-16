@@ -6,8 +6,6 @@ import pers.meteor.common.core.enums.SwitchStatusEnum;
 import pers.meteor.pay.domain.channel.module.PayChannel;
 import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelPO;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * @author meteor
  */

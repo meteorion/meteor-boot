@@ -1,20 +1,25 @@
 package pers.meteor.pay.infrastructure.channel.persistence.mapper;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import pers.meteor.mybatis.core.query.BaseMapperX;
-import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelConfigPo;
+import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelConfigPO;
 
 import java.util.List;
 
 /**
  * @author meteor
  */
-public interface PayChannelConfigMapper extends BaseMapperX<PayChannelConfigPo> {
+public interface PayChannelConfigMapper extends BaseMapperX<PayChannelConfigPO> {
 
-    default List<PayChannelConfigPo> selectPayChannelConfigList(Long payChannelId) {
-        return selectList(PayChannelConfigPo::getPayChannelId, payChannelId);
+    default List<PayChannelConfigPO> selectPayChannelConfigList(Long payChannelId) {
+        return selectList(PayChannelConfigPO::getPayChannelId, payChannelId);
     }
 
-    default PayChannelConfigPo selectOne(Long payChannelId, String channelType) {
-        return selectOne(PayChannelConfigPo::getPayChannelId, payChannelId, PayChannelConfigPo::getChannelType, channelType);
+    default PayChannelConfigPO selectOne(Long payChannelId, String channelType) {
+        return selectOne(PayChannelConfigPO::getPayChannelId, payChannelId, PayChannelConfigPO::getChannelType, channelType);
+    }
+
+    default int deleteByPayChannelId(Long payChannelId) {
+        return delete(Wrappers.lambdaQuery(PayChannelConfigPO.class).eq(PayChannelConfigPO::getPayChannelId, payChannelId));
     }
 }

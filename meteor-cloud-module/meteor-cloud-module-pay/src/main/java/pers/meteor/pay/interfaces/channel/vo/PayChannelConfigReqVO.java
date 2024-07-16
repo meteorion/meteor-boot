@@ -1,11 +1,6 @@
-package pers.meteor.pay.infrastructure.channel.persistence.po;
+package pers.meteor.pay.interfaces.channel.vo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import pers.meteor.mybatis.core.BasePO;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,15 +8,8 @@ import java.time.LocalDateTime;
 /**
  * @author meteor
  */
-@TableName("pay_channel_config")
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class PayChannelConfigPo extends BasePO {
-    /**
-     * 配置id
-     */
-    @TableId(type = IdType.AUTO)
-    private Long configId;
+public class PayChannelConfigReqVO {
     /**
      * 通道id
      */

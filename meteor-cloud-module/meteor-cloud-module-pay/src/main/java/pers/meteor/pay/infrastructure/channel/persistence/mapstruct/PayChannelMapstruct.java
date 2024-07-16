@@ -9,9 +9,9 @@ import pers.meteor.pay.domain.channel.module.PayChannel;
 import pers.meteor.pay.domain.channel.module.PayClientConfig;
 import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
 import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
-import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelConfigPo;
+import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelConfigPO;
 import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelPO;
-import pers.meteor.pay.infrastructure.channel.persistence.po.PayClientConfigPo;
+import pers.meteor.pay.infrastructure.channel.persistence.po.PayClientConfigPO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public interface PayChannelMapstruct {
     PayChannelMapstruct INSTANCE = Mappers.getMapper(PayChannelMapstruct.class);
 
-    default PayChannel toPayChannel(PayChannelPO payChannelPo, List<PayChannelConfigPo> payChannelConfigPos, List<PayClientConfigPo> payClientConfigPos) {
+    default PayChannel toPayChannel(PayChannelPO payChannelPo, List<PayChannelConfigPO> payChannelConfigPos, List<PayClientConfigPO> payClientConfigPos) {
         if (payChannelPo == null) {
             return null;
         }
@@ -37,7 +37,7 @@ public interface PayChannelMapstruct {
 
             Map<PayChannelEnum, PayClientConfig> payClientConfigs = Optional.ofNullable(payClientConfigPos).orElse(new ArrayList<>()).stream().collect(Collectors.toMap(po -> PayChannelEnum.getByCode(po.getChannelType()), this::toPayClientConfg));
 
-            for (PayChannelConfigPo payChannelConfigPo : payChannelConfigPos) {
+            for (PayChannelConfigPO payChannelConfigPo : payChannelConfigPos) {
                 ChannelConfig channelConfig = toChannelConfig(payChannelConfigPo);
                 PayChannelEnum channelType = channelConfig.getChannelType();
                 if (channelType != null) {
@@ -84,9 +84,9 @@ public interface PayChannelMapstruct {
     @Mapping(target = "timeRange.startTime", source = "startTime")
     @Mapping(target = "timeRange.endTime", source = "endTime")
     @Mapping(target = "payClientConfig", ignore = true)
-    ChannelConfig toChannelConfig(PayChannelConfigPo payChannelConfigPo);
+    ChannelConfig toChannelConfig(PayChannelConfigPO payChannelConfigPo);
 
-    default ChannelConfig toChannelConfig(PayChannelConfigPo payChannelConfigPo, PayClientConfigPo payClientConfigPo) {
+    default ChannelConfig toChannelConfig(PayChannelConfigPO payChannelConfigPo, PayClientConfigPO payClientConfigPo) {
         ChannelConfig channelConfig = toChannelConfig(payChannelConfigPo);
         if (channelConfig == null) {
             return null;
@@ -116,11 +116,11 @@ public interface PayChannelMapstruct {
     @Mapping(target = "creator", ignore = true)
     @Mapping(target = "updater", ignore = true)
     @Mapping(target = "deleted", ignore = true)
-    PayChannelConfigPo toChannelConfigPo(ChannelConfig channelConfig);
+    PayChannelConfigPO toChannelConfigPo(ChannelConfig channelConfig);
 
-    default PayChannelConfigPo toChannelConfigPo(Long payChannelConfigId, ChannelRate channelRate) {
-        PayChannelConfigPo payChannelConfigPo = new PayChannelConfigPo();
-        payChannelConfigPo.setConfigId(payChannelConfigId);
+    default PayChannelConfigPO toChannelConfigPo(Long payChannelConfigId, ChannelRate channelRate) {
+        PayChannelConfigPO payChannelConfigPo = new PayChannelConfigPO();
+        payChannelConfigPo.setChannelConfigId(payChannelConfigId);
         payChannelConfigPo.setCostRate(channelRate.getCostRate());
         payChannelConfigPo.setMaxRate(channelRate.getMaxRate());
         payChannelConfigPo.setMaxFee(channelRate.getMaxFee());
@@ -131,8 +131,8 @@ public interface PayChannelMapstruct {
     }
 
     @Mapping(target = "channelType", expression = "java(PayChannelEnum.getByCode(payClientConfigPo.getChannelType()))")
-    PayClientConfig toPayClientConfg(PayClientConfigPo payClientConfigPo);
+    PayClientConfig toPayClientConfg(PayClientConfigPO payClientConfigPo);
 
     @Mapping(target = "channelType", source = "channelType.code")
-    PayClientConfigPo toPayClinetConfigPo(PayClientConfig payClientConfig);
+    PayClientConfigPO toPayClinetConfigPo(PayClientConfig payClientConfig);
 }

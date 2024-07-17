@@ -10,7 +10,7 @@ import pers.meteor.pay.domain.channel.module.PayChannel;
 import pers.meteor.pay.domain.channel.module.PayClientConfig;
 import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
 import pers.meteor.pay.domain.channel.service.PayChannelService;
-import pers.meteor.pay.interfaces.channel.vo.*;
+import pers.meteor.pay.interfaces.channel.web.vo.*;
 
 /**
  * @author meteor

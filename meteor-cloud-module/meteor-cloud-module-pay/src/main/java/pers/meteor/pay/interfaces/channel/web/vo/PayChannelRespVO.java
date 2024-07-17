@@ -1,4 +1,4 @@
-package pers.meteor.pay.interfaces.channel.vo;
+package pers.meteor.pay.interfaces.channel.web.vo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

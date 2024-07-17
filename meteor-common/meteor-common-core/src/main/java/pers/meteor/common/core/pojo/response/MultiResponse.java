@@ -36,10 +36,6 @@ public class MultiResponse<T> extends Response {
         return data == null || data.isEmpty();
     }
 
-    public boolean isNotEmpty() {
-        return !isEmpty();
-    }
-
     public static MultiResponse<Void> success() {
         MultiResponse<Void> response = new MultiResponse<>();
         response.setSuccess(true);

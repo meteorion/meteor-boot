@@ -1,16 +1,21 @@
-package pers.meteor.pay.interfaces.channel.vo;
+package pers.meteor.pay.infrastructure.channel.persistence.po;
 
 import com.alibaba.fastjson2.JSONObject;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
  * @author meteor
  */
+@TableName("pay_channel_client_config")
 @Data
-public class PayClientConfigVO {
+public class PayClientConfigPo {
     /**
      * 主键
      */
+    @TableId(type = IdType.INPUT)
     private Long channelConfigId;
     /**
      * 支付通道id

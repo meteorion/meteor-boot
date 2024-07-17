@@ -10,11 +10,11 @@ public enum SwitchStatusEnum {
     /**
      * 关闭
      */
-    CLOSE(0),
+    CLOSE(1),
     /**
      * 开启
      */
-    OPEN(1)
+    OPEN(0)
     ;
     private final int code;
 

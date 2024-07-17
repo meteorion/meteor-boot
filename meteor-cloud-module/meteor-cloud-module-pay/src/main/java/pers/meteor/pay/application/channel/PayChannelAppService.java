@@ -1,6 +1,6 @@
 package pers.meteor.pay.application.channel;
 
-import pers.meteor.pay.interfaces.channel.vo.*;
+import pers.meteor.pay.interfaces.channel.web.vo.*;
 
 /**
  * @author meteor

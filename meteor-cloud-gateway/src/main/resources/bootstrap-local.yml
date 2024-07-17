@@ -52,7 +52,7 @@ spring:
         - id: meteor-cloud-module-pay
           uri: lb://meteor-cloud-module-pay
           predicates:
-            - Path=/file/**
+            - Path=/pay/**
           filters:
             - StripPrefix=1
 

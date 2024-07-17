@@ -6,7 +6,7 @@ import pers.meteor.common.core.pojo.response.MultiResponse;
 import pers.meteor.common.core.pojo.response.SingleResponse;
 import pers.meteor.pay.application.channel.PayChannelAppService;
 import pers.meteor.pay.application.channel.PayChannelQueryService;
-import pers.meteor.pay.interfaces.channel.vo.*;
+import pers.meteor.pay.interfaces.channel.web.vo.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author meteor
  */
-@RequestMapping("/pay/channel")
+@RequestMapping("/channel")
 @RestController
 @RequiredArgsConstructor
 public class PayChannelController {

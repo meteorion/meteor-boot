@@ -1,4 +1,4 @@
-package pers.meteor.pay.interfaces.channel.vo;
+package pers.meteor.pay.interfaces.channel.web.vo;
 
 import lombok.Data;
 
@@ -9,7 +9,11 @@ import java.time.LocalDateTime;
  * @author meteor
  */
 @Data
-public class PayChannelConfigReqVO {
+public class PayChannelConfigRespVO {
+    /**
+     * 配置id
+     */
+    private Long channelConfigId;
     /**
      * 通道id
      */
@@ -73,4 +77,8 @@ public class PayChannelConfigReqVO {
      * 截止时间
      */
     private LocalDateTime endTime;
+    /**
+     * 客户端配置
+     */
+    private PayClientConfigVO clientConfig;
 }

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import pers.meteor.mybatis.core.BasePO;
+import pers.meteor.mybatis.core.BasePo;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @TableName("pay_channel_config")
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class PayChannelConfigPO extends BasePO {
+public class PayChannelConfigPo extends BasePo {
     /**
      * 配置id
      */

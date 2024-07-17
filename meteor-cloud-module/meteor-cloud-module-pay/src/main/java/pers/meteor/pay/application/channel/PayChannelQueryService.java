@@ -1,7 +1,7 @@
 package pers.meteor.pay.application.channel;
 
-import pers.meteor.pay.interfaces.channel.vo.PayChannelRespVO;
-import pers.meteor.pay.interfaces.channel.vo.PayChannelSimpleRespVO;
+import pers.meteor.pay.interfaces.channel.web.vo.PayChannelRespVO;
+import pers.meteor.pay.interfaces.channel.web.vo.PayChannelSimpleRespVO;
 
 import java.util.List;
 

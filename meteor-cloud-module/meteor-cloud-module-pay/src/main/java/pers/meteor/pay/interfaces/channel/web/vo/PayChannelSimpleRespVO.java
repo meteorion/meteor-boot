@@ -1,4 +1,4 @@
-package pers.meteor.pay.interfaces.channel.vo;
+package pers.meteor.pay.interfaces.channel.web.vo;
 
 import lombok.Data;
 
@@ -6,7 +6,11 @@ import lombok.Data;
  * @author meteor
  */
 @Data
-public class PayChannelBaseVO {
+public class PayChannelSimpleRespVO {
+    /**
+     * 通道id
+     */
+    private Long payChannelId;
     /**
      * 通道名称
      */
@@ -19,12 +23,4 @@ public class PayChannelBaseVO {
      * 通道状态
      */
     private Integer status;
-    /**
-     * 日限额
-     */
-    private int dailyLimit;
-    /**
-     * 月限额
-     */
-    private int monthLimit;
 }

@@ -1,6 +1,6 @@
 # Tomcat
 server:
-  port: 9501
+  port: 9204
 # 日志配置
 logging:
   config: classpath:logback-nacos.xml

@@ -1,11 +1,11 @@
-DROP DATABASE IF EXISTS `ry-seata`;
-
-CREATE DATABASE  `ry-seata` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+DROP DATABASE IF EXISTS `meteor-cloud-v2-seata`;
+# --
+CREATE DATABASE  `meteor-cloud-v2-seata` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
-USE `ry-seata`;
+USE `meteor-cloud-v2-seata`;
 
 -- -------------------------------- The script used when storeMode is 'db' --------------------------------
 -- the table to store GlobalSession data

@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * @author meteor
@@ -72,11 +73,11 @@ public class PayChannelConfigRespVO {
     /**
      * 开始时间
      */
-    private LocalDateTime startTime;
+    private LocalTime startTime;
     /**
      * 截止时间
      */
-    private LocalDateTime endTime;
+    private LocalTime endTime;
     /**
      * 客户端配置
      */

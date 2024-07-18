@@ -37,9 +37,9 @@ public class PayChannelRepositoryImpl implements PayChannelRepository {
         PayChannelPo payChannelPo = PayChannelMapstruct.INSTANCE.toPayChannelPo(payChannel);
         Long payChannelId = payChannelPo.getPayChannelId();
         if (payChannelId == null) {
-            payChannelMapper.updateById(payChannelPo);
-        } else {
             payChannelMapper.insert(payChannelPo);
+        } else {
+            payChannelMapper.updateById(payChannelPo);
         }
         payChannelId = payChannelPo.getPayChannelId();
         payChannel.setPayChannelId(payChannelId);

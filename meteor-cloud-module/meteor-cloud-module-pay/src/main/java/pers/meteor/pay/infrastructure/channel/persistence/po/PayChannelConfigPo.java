@@ -9,6 +9,7 @@ import pers.meteor.mybatis.core.BasePo;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * @author meteor
@@ -80,9 +81,9 @@ public class PayChannelConfigPo extends BasePo {
     /**
      * 开始时间
      */
-    private LocalDateTime startTime;
+    private LocalTime startTime;
     /**
      * 截止时间
      */
-    private LocalDateTime endTime;
+    private LocalTime endTime;
 }

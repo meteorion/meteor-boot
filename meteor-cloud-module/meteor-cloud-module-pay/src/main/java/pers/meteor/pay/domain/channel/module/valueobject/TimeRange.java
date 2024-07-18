@@ -4,6 +4,7 @@ import lombok.Data;
 import pers.meteor.common.core.exception.ServiceException;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * 时间范围
@@ -14,13 +15,13 @@ public class TimeRange {
     /**
      * 开始时间
      */
-    private LocalDateTime startTime;
+    private LocalTime startTime;
     /**
      * 截止时间
      */
-    private LocalDateTime endTime;
+    private LocalTime endTime;
 
-    public TimeRange(LocalDateTime startTime, LocalDateTime endTime) {
+    public TimeRange(LocalTime startTime, LocalTime endTime) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.checkRange();

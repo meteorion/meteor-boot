@@ -3,14 +3,14 @@
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button type="success" icon="el-icon-plus" size="mini" @click="handleAdd">新增</el-button>
+        <el-button type="success" icon="el-icon-plus" size="mini" @click="handleAdd" v-hasPermi="['pay:channel:edit']">新增</el-button>
       </el-form-item>
     </el-form>
 
     <el-table v-loading="loading" :data="payChannelList" >
       <el-table-column label="通道id" align="center" prop="payChannelId" />
       <el-table-column label="通道名称" align="center" prop="name" />
-      <el-table-column label="通道代号" align="center" prop="code" />
+      <el-table-column label="通道编码" align="center" prop="code" />
       <el-table-column label="通道状态" align="center" prop="status" >
         <template v-slot:default="scope">
           <dict-tag :options="dict.type['sys_normal_disable']" :value="scope.row.status"/>
@@ -36,11 +36,26 @@
       </el-table-column>
     </el-table>
 
+    <!-- 添加或修改参数配置对话框 -->
+    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
+      <el-form ref="channelForm" :model="channelForm" :rules="channelRules" label-width="80px">
+        <el-form-item label="渠道名称" prop="name">
+          <el-input v-model="channelForm.name" placeholder="请输入渠道名称" />
+        </el-form-item>
+        <el-form-item label="渠道编码" prop="code">
+          <el-input v-model="channelForm.code" placeholder="请输入渠道编码" />
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-import {listPayChannel} from "@/api/pay/channel";
+import {addPayChannel, listPayChannel} from "@/api/pay/channel";
 
 export default {
   name: "payChannel",
@@ -69,17 +84,14 @@ export default {
       queryParams: {
       },
       // 表单参数
-      form: {},
+      channelForm: {},
       // 表单校验
-      rules: {
-        configName: [
-          {required: true, message: "参数名称不能为空", trigger: "blur"}
+      channelRules: {
+        name: [
+          {required: true, message: "渠道名称不能为空", trigger: "blur"}
         ],
-        configKey: [
-          {required: true, message: "参数键名不能为空", trigger: "blur"}
-        ],
-        configValue: [
-          {required: true, message: "参数键值不能为空", trigger: "blur"}
+        code: [
+          {required: true, message: "渠道编码不能为空", trigger: "blur"}
         ]
       }
     };
@@ -130,8 +142,13 @@ export default {
     },
     /** 提交按钮 */
     submitForm: function() {
-      this.$refs["form"].validate(valid => {
+      this.$refs["channelForm"].validate(valid => {
         if (valid) {
+          addPayChannel(this.channelForm).then(() => {
+            this.$modal.msgSuccess("新增成功");
+            this.handleQuery()
+            this.open = false
+          })
         }
       });
     },

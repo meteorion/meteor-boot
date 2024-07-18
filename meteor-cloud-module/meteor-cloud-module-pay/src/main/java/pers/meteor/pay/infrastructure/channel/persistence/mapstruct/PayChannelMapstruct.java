@@ -64,7 +64,6 @@ public interface PayChannelMapstruct {
     @Mapping(target = "updateTime", ignore = true)
     @Mapping(target = "creator", ignore = true)
     @Mapping(target = "updater", ignore = true)
-    @Mapping(target = "deleted", ignore = true)
     PayChannelPo toPayChannelPo(PayChannel payChannel);
 
     @Mapping(target = "status", expression = "java(SwitchStatusEnum.ofCode(payChannelConfigPo.getStatus()))")
@@ -113,7 +112,6 @@ public interface PayChannelMapstruct {
     @Mapping(target = "updateTime", ignore = true)
     @Mapping(target = "creator", ignore = true)
     @Mapping(target = "updater", ignore = true)
-    @Mapping(target = "deleted", ignore = true)
     PayChannelConfigPo toChannelConfigPo(ChannelConfig channelConfig);
 
     default PayChannelConfigPo toChannelConfigPo(Long payChannelConfigId, ChannelRate channelRate) {

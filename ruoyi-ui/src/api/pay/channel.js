@@ -16,4 +16,37 @@ export function getPayChannel(query) {
     params: query
   })
 }
+// 新增渠道
+export function addPayChannel(params) {
+  return request({
+    url: '/pay/channel/create',
+    method: 'post',
+    data: params
+  })
+}
+// 修改渠道
+export function updatePayChannel(params) {
+  return request({
+    url: '/pay/channel/update',
+    method: 'put',
+    data: params
+  })
+}
 
+// 新增支付配置
+export function addPayChannelConfig(params) {
+  return request({
+    url: '/pay/channel/config/add',
+    method: 'post',
+    data: params
+  })
+}
+
+// 修改支付配置
+export function updatePayChannelConfig(params) {
+  return request({
+    url: '/pay/channel/config/update',
+    method: 'put',
+    data: params
+  })
+}

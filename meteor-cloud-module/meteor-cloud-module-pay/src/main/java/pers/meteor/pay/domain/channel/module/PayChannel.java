@@ -60,6 +60,9 @@ public class PayChannel {
         if (newPayChannel.getChannelConfigs() != null) {
             this.updateConfig(newPayChannel.getChannelConfigs().values());
         }
+        if (newPayChannel.getChannelQuota() != null) {
+            this.channelQuota = newPayChannel.getChannelQuota();
+        }
     }
 
     /**

@@ -14,5 +14,5 @@ public class PayChannelCreateReqVO extends PayChannelBaseVO {
     /**
      * 通道配置
      */
-    private List<PayChannelConfigRespVO> configs;
+    private List<PayChannelConfigReqVO> configs;
 }

@@ -5,6 +5,7 @@ import pers.meteor.pay.domain.channel.acl.RemotePayConfigAdapter;
 import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
 import pers.meteor.pay.domain.channel.module.valueobject.SystemChannelConfig;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,11 +16,11 @@ public class RemoteConfigAdapterImpl implements RemotePayConfigAdapter {
 
     @Override
     public SystemChannelConfig getSystemChannelConfig() {
-        return null;
+        return new SystemChannelConfig();
     }
 
     @Override
     public List<ChannelRate> getDefaultRates() {
-        return null;
+        return new ArrayList<>();
     }
 }

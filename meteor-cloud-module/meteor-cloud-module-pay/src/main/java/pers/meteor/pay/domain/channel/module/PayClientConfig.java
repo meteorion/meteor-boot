@@ -3,6 +3,7 @@ package pers.meteor.pay.domain.channel.module;
 import com.alibaba.fastjson2.JSONObject;
 import lombok.Data;
 import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
+import pers.meteor.pay.domain.channel.module.enums.SignTypeEnum;
 
 import javax.validation.Validator;
 
@@ -44,7 +45,11 @@ public class PayClientConfig {
     /**
      * 私钥
      */
-    private String secretKey;
+    private String privateKey;
+    /**
+     * 签名类型
+     */
+    private SignTypeEnum signType;
     /**
      * 签名key
      */

@@ -1,10 +1,15 @@
 package pers.meteor.pay.application.channel.asselmber;
 
+import cn.hutool.json.JSONUtil;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import org.apache.commons.collections4.CollectionUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import pers.meteor.common.core.enums.SwitchStatusEnum;
+import pers.meteor.common.core.exception.ServiceException;
+import pers.meteor.common.core.utils.StringUtils;
 import pers.meteor.pay.domain.channel.module.ChannelConfig;
 import pers.meteor.pay.domain.channel.module.PayChannel;
 import pers.meteor.pay.domain.channel.module.PayClientConfig;
@@ -26,7 +31,7 @@ import java.util.stream.Collectors;
  * @author meteor
  */
 @Mapper
-public interface PayChannelAssembler {
+public interface PayChannelAssembler extends BaseAssembler {
     PayChannelAssembler INSTANCE = Mappers.getMapper(PayChannelAssembler.class);
 
     @Mapping(target = "configs", ignore = true)
@@ -119,12 +124,4 @@ public interface PayChannelAssembler {
     ChannelRate toPayChannelRate(PayChannelRateReqVO createReqVo);
 
     PayClientConfig toPayChannelClient(PayClientConfigVO createReqVo);
-
-    default PayChannelEnum toPayChannelType(String code) {
-        return PayChannelEnum.getByCode(code);
-    }
-
-    default SwitchStatusEnum toSwitchStatus(Integer code) {
-        return SwitchStatusEnum.ofCode(code);
-    }
 }

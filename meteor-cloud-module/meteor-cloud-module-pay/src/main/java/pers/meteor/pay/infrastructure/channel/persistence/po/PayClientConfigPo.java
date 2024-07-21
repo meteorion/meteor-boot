@@ -2,8 +2,10 @@ package pers.meteor.pay.infrastructure.channel.persistence.po;
 
 import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import lombok.Data;
 
 /**
@@ -44,7 +46,11 @@ public class PayClientConfigPo {
     /**
      * 私钥
      */
-    private String secretKey;
+    private String privateKey;
+    /**
+     * 签名类型
+     */
+    private String signType;
     /**
      * 签名key
      */
@@ -53,5 +59,6 @@ public class PayClientConfigPo {
     /**
      * 扩展参数
      */
+    @TableField(typeHandler = JacksonTypeHandler.class)
     private JSONObject metedata;
 }

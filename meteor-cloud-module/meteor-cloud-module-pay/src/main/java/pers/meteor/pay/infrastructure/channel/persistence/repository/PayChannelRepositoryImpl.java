@@ -68,8 +68,6 @@ public class PayChannelRepositoryImpl implements PayChannelRepository {
         } else {
             payChannelConfigMapper.insert(payClientConfigPo);
         }
-        // 保存费率
-        saveChannelRate(payChannelId, channelConfig.getChannelRate());
         // 保存客户端配置
         saveClientConfig(payChannelId, channelConfig.getPayClientConfig());
 

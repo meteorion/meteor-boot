@@ -50,3 +50,12 @@ export function updatePayChannelConfig(params) {
     data: params
   })
 }
+
+// 修改客户端配置
+export function editPayCclientConfig(params) {
+  return request({
+    url: '/pay/channel/client/update',
+    method: 'put',
+    data: params
+  })
+}

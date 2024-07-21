@@ -24,6 +24,8 @@
         <module>meteor-common-rule</module>
         <module>meteor-common-mybatis</module>
         <module>meteor-common-test</module>
+        <module>meteor-common-mq</module>
+        <module>meteor-common-event</module>
     </modules>
 
     <properties>
@@ -134,6 +136,18 @@
             <dependency>
                 <groupId>pers.meteor</groupId>
                 <artifactId>meteor-common-test</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-common-mq</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-common-event</artifactId>
                 <version>${component.version}</version>
             </dependency>
         </dependencies>

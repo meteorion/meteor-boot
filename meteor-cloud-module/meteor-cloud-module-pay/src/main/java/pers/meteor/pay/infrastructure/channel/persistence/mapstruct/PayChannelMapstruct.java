@@ -127,8 +127,10 @@ public interface PayChannelMapstruct {
     }
 
     @Mapping(target = "channelType", expression = "java(PayChannelEnum.getByCode(payClientConfigPo.getChannelType()))")
+    @Mapping(target = "signType", expression = "java(SignTypeEnum.getByCode(payClientConfigPo.getSignType()))")
     PayClientConfig toPayClientConfg(PayClientConfigPo payClientConfigPo);
 
     @Mapping(target = "channelType", source = "channelType.code")
+    @Mapping(target = "signType", source = "signType.code")
     PayClientConfigPo toPayClinetConfigPo(PayClientConfig payClientConfig);
 }

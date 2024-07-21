@@ -105,8 +105,12 @@ public class PayChannel {
      * @param newChannelConfig /
      */
     public void updateConfig(ChannelConfig newChannelConfig) {
-        PayChannelEnum payType = newChannelConfig.getChannelType();
-        this.channelConfigs.put(payType, newChannelConfig);
+        PayChannelEnum channelType = newChannelConfig.getChannelType();
+        ChannelConfig channelConfig = getChannelConfig(channelType);
+        if (!Objects.equals(channelConfig.getChannelConfigId(), newChannelConfig.getChannelConfigId())) {
+            throw new ServiceException("支付类型配置已存在");
+        }
+        this.channelConfigs.put(channelType, newChannelConfig);
     }
 
     /**

@@ -21,6 +21,8 @@
         <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
         <spring-framework.version>5.3.33</spring-framework.version>
         <spring-boot-admin.version>2.7.15</spring-boot-admin.version>
+        <!-- 消息队列 -->
+        <rocketmq-spring.version>2.2.3</rocketmq-spring.version>
         <swagger.fox.version>3.0.0</swagger.fox.version>
         <swagger.core.version>1.6.2</swagger.core.version>
         <tobato.version>1.27.2</tobato.version>
@@ -32,6 +34,7 @@
         <pagehelper.boot.version>2.0.0</pagehelper.boot.version>
         <druid.version>1.2.23</druid.version>
         <dynamic-ds.version>4.2.0</dynamic-ds.version>
+        <redisson.version>3.18.0</redisson.version>
         <commons.io.version>2.13.0</commons.io.version>
         <velocity.version>2.3</velocity.version>
         <fastjson.version>2.0.43</fastjson.version>
@@ -85,6 +88,12 @@
                 <scope>import</scope>
             </dependency>
 
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq-spring.version}</version>
+            </dependency>
+
             <!-- SpringBoot Admin -->
             <dependency>
                 <groupId>de.codecentric</groupId>
@@ -111,6 +120,12 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
                 <version>${dynamic-ds.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.version}</version>
             </dependency>
 
             <!-- Swagger 依赖配置 -->

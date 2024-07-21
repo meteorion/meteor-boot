@@ -1,6 +1,5 @@
 package pers.meteor.pay.interfaces.channel.web.vo;
 
-import com.alibaba.fastjson2.JSONObject;
 import lombok.Data;
 
 /**
@@ -39,7 +38,11 @@ public class PayClientConfigVO {
     /**
      * 私钥
      */
-    private String secretKey;
+    private String privateKey;
+    /**
+     * 签名类型
+     */
+    private String signType;
     /**
      * 签名key
      */
@@ -48,5 +51,5 @@ public class PayClientConfigVO {
     /**
      * 扩展参数
      */
-    private JSONObject metedata;
+    private String metedata;
 }

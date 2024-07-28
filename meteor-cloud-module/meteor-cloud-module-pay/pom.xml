@@ -81,6 +81,11 @@
             <groupId>pers.meteor</groupId>
             <artifactId>meteor-common-security</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-common-event</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

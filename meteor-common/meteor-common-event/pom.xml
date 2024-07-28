@@ -28,5 +28,10 @@
             <artifactId>spring-rabbit</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-common-test</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -2,6 +2,7 @@ package pers.meteor.mq.redis.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 @Slf4j
 @AutoConfiguration(after = RedisAutoConfiguration.class)
+@ConditionalOnProperty(value = "mq.redis.enabled", havingValue = "true")
 public class RedisMQProducerAutoConfiguration {
 
     @Bean

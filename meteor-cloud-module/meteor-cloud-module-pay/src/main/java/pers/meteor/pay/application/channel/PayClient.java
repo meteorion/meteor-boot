@@ -21,7 +21,7 @@ public interface PayClient {
      * @param payRequest 支付请求
      * @return 支付响应
      */
-    PayResponse createOrder(PayRequest payRequest);
+    PayResponse unifiedOrder(PayRequest payRequest);
 
     /**
      * 解析订单回调
@@ -45,7 +45,7 @@ public interface PayClient {
      * @param refundRequest 退款请求
      * @return 退款结果
      */
-    RefundResponse refund(RefundRequest refundRequest);
+    RefundResponse unifiedRefund(RefundRequest refundRequest);
 
     /**
      * 解析退款通知
@@ -53,7 +53,7 @@ public interface PayClient {
      * @param params 回调参数
      * @return 退款结果
      */
-    RefundResponse parseRefundResponse(Map<String, String> params);
+    RefundResponse parseRefundNotify(Map<String, String> params);
 
     /**
      * 转账
@@ -61,5 +61,5 @@ public interface PayClient {
      * @param transferRequest 转账参数
      * @return 转账结果
      */
-    TransferResponse transfer(TransferRequest transferRequest);
+    TransferResponse unifiedTransfer(TransferRequest transferRequest);
 }

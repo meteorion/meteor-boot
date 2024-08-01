@@ -68,4 +68,8 @@ public class PayClientConfig {
     public void validate(Validator validator) {
         // empty
     };
+
+    public String getMetedata(String key) {
+        return metedata != null ? metedata.getString(key) : null;
+    }
 }

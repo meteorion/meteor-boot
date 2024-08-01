@@ -11,39 +11,39 @@ import java.util.Map;
  * @author meteor
  */
 @Slf4j
-public class MockPayClient extends AbstractPayClient<PayClientConfig> {
+public class MockPayClient extends AbstractPayClient {
 
     public MockPayClient(Long channelId, PayClientConfig config) {
         super(channelId, config);
     }
 
     @Override
-    public PayResponse createOrder(PayRequest payRequest) {
+    public PayResponse doUnfiedOrder(PayRequest payRequest) {
         return null;
     }
 
     @Override
-    public PayResponse parseOrderNotify(Map<String, String> params) {
+    protected PayResponse doParseOrderNotify(Map<String, String> params) throws Throwable {
         return null;
     }
 
     @Override
-    public PayResponse queryOrder(String outTradeNo) {
+    protected PayResponse doQueryOrdery(String outTradeNo) throws Throwable {
         return null;
     }
 
     @Override
-    public RefundResponse refund(RefundRequest refundRequest) {
+    protected RefundResponse doUnifiedRefund(RefundRequest refundRequest) throws Throwable {
         return null;
     }
 
     @Override
-    public RefundResponse parseRefundResponse(Map<String, String> params) {
+    protected RefundResponse doParseRefundNotify(Map<String, String> params) throws Throwable {
         return null;
     }
 
     @Override
-    public TransferResponse transfer(TransferRequest transferRequest) {
+    protected TransferResponse doUnifiedTransfer(TransferRequest transferRequest) throws Throwable {
         return null;
     }
 }

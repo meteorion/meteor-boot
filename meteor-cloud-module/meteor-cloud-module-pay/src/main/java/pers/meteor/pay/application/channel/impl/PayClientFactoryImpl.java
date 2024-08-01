@@ -28,7 +28,7 @@ public class PayClientFactoryImpl implements PayClientFactory {
      * 支付客户端 Map
      * key：渠道编号
      */
-    private final ConcurrentMap<Long, AbstractPayClient<?>> clients = new ConcurrentHashMap<>();
+    private final ConcurrentMap<Long, AbstractPayClient> clients = new ConcurrentHashMap<>();
 
     /**
      * 支付客户端 Class Map
@@ -47,7 +47,7 @@ public class PayClientFactoryImpl implements PayClientFactory {
 
     @Override
     public PayClient getPayClient(Long channelId) {
-        AbstractPayClient<?> client = clients.get(channelId);
+        AbstractPayClient client = clients.get(channelId);
         if (client == null) {
             log.error("[pay-client-factory][渠道编号({}) 找不到客户端]", channelId);
         }
@@ -55,10 +55,9 @@ public class PayClientFactoryImpl implements PayClientFactory {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public <Config extends PayClientConfig> void createOrUpdatePayClient(Config config) {
+    public void createOrUpdatePayClient(PayClientConfig config) {
         Long configId = config.getChannelConfigId();
-        AbstractPayClient<Config> client = (AbstractPayClient<Config>) clients.get(configId);
+        AbstractPayClient client = clients.get(configId);
         if (client == null) {
             client = this.createPayClient(config);
             client.initClient();
@@ -68,8 +67,7 @@ public class PayClientFactoryImpl implements PayClientFactory {
         }
     }
 
-    @SuppressWarnings("unchecked")
-    private <Config extends PayClientConfig> AbstractPayClient<Config> createPayClient(Config config) {
+    private AbstractPayClient createPayClient(PayClientConfig config) {
         Long channelId = config.getChannelConfigId();
         String channelCode = config.getChannelType().getCode();
         PayChannelEnum channelEnum = PayChannelEnum.getByCode(channelCode);
@@ -79,7 +77,7 @@ public class PayClientFactoryImpl implements PayClientFactory {
 
         try {
             Constructor<?> constructor = ReflectionUtils.accessibleConstructor(payClientClass, Long.class, PayClientConfig.class);
-            return (AbstractPayClient<Config>) constructor.newInstance(channelId, config);
+            return (AbstractPayClient) constructor.newInstance(channelId, config);
         } catch (Exception e) {
             throw new ServiceException("服务构建失败：{0}", payClientClass);
         }

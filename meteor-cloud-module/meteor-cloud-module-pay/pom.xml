@@ -45,18 +45,8 @@
         </dependency>
 
         <dependency>
-            <groupId>pers.meteor</groupId>
-            <artifactId>meteor-common-core</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>pers.meteor</groupId>
-            <artifactId>meteor-common-test</artifactId>
         </dependency>
 
         <dependency>
@@ -64,6 +54,21 @@
             <artifactId>meteor-cloud-api-pay</artifactId>
             <version>1.0.0-snapshot</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-pay</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-common-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-common-test</artifactId>
         </dependency>
 
         <dependency>

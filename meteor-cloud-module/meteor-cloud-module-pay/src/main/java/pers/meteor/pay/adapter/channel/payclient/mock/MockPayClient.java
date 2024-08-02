@@ -48,6 +48,11 @@ public class MockPayClient extends AbstractPayClient<NonePayClientConfig> {
     }
 
     @Override
+    protected RefundResponse doGetRefund(String outTradeNo, String outRefundNo) throws Throwable {
+        return null;
+    }
+
+    @Override
     protected TransferResponse doUnifiedTransfer(TransferRequest transferRequest) throws Throwable {
         return null;
     }

@@ -1,8 +1,12 @@
 package pers.meteor.pay.adapter.channel.payclient.mock;
 
 import lombok.extern.slf4j.Slf4j;
-import pers.meteor.pay.domain.channel.module.PayClientConfig;
 import pers.meteor.pay.application.channel.impl.AbstractPayClient;
+import pers.meteor.pay.domain.channel.module.valueobject.NonePayClientConfig;
+import pers.meteor.pay.domain.order.module.PayOrder;
+import pers.meteor.pay.domain.order.module.RefundOrder;
+import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
+import pers.meteor.pay.domain.order.module.valueobject.RefundResponse;
 import pers.meteor.pay.dto.*;
 
 import java.util.Map;
@@ -11,21 +15,22 @@ import java.util.Map;
  * @author meteor
  */
 @Slf4j
-public class MockPayClient extends AbstractPayClient {
+public class MockPayClient extends AbstractPayClient<NonePayClientConfig> {
 
-    public MockPayClient(Long channelId, PayClientConfig config) {
+    public MockPayClient(Long channelId, NonePayClientConfig config) {
         super(channelId, config);
     }
 
     @Override
-    public PayResponse doUnifiedOrder(PayRequest payRequest) {
+    public PayResponse doUnifiedOrder(PayOrder payOrder) {
         return null;
     }
 
     @Override
-    protected PayResponse doParseOrderNotify(Map<String, String> params) throws Throwable {
+    protected PayResponse doParseOrderNotify(String body) throws Throwable {
         return null;
     }
+
 
     @Override
     protected PayResponse doQueryOrder(String outTradeNo) throws Throwable {
@@ -33,12 +38,12 @@ public class MockPayClient extends AbstractPayClient {
     }
 
     @Override
-    protected RefundResponse doUnifiedRefund(RefundRequest refundRequest) throws Throwable {
+    protected RefundResponse doUnifiedRefund(RefundOrder refundOrder) throws Throwable {
         return null;
     }
 
     @Override
-    protected RefundResponse doParseRefundNotify(Map<String, String> params) throws Throwable {
+    protected RefundResponse doParseRefundNotify(String body) throws Throwable {
         return null;
     }
 

@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class WeiXinPayClientConfig extends PayClientConfig {
+public class WechatPayClientConfig extends PayClientConfig {
     /**
      * API 版本 - V2
      * <a href="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=4_1">V2 协议说明</a>

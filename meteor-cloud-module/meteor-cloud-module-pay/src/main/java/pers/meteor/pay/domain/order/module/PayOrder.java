@@ -2,7 +2,11 @@ package pers.meteor.pay.domain.order.module;
 
 import lombok.Data;
 import pers.meteor.pay.domain.order.module.enums.CurrencyTypeEnum;
+import pers.meteor.pay.domain.order.module.enums.PayStatusEnum;
 import pers.meteor.pay.domain.order.module.valueobject.Fee;
+import pers.meteor.pay.domain.order.module.valueobject.Goods;
+import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
+import pers.meteor.pay.domain.order.module.valueobject.Payer;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -19,9 +23,18 @@ public class PayOrder {
      */
     private String orderNo;
     /**
+     * 商户订单号
+     */
+    private String merchantOrderNo;
+    /**
+     * 订单状态
+     */
+    private PayStatusEnum payStatus;
+
+    /**
      * 交易金额
      */
-    private long amount;
+    private Integer amount;
     /**
      * 手续费
      */
@@ -31,45 +44,36 @@ public class PayOrder {
      */
     private CurrencyTypeEnum currency;
     /**
-     * 付款账户ID
+     * 付款人信息
      */
-    private Long payAccountId;
-    /**
-     * 收款账户ID
-     */
-    private Long receiveAccountId;
-    /**
-     * 交易通道ID
-     */
-    private Long tradeChannelId;
+    private Payer payer;
     /**
      * 商品属性
      */
-    private Map<String, Object> itemDetails;
+    private Goods goods;
+    /**
+     * 回调地址
+     */
+    private String notifyUrl;
     /**
      * 交易附属参数
      */
     private Map<String, String> metadata;
-    /**
-     * 商户订单号
-     */
-    private String merchantOrderNo;
-    /**
-     * 通道订单号
-     */
-    private String channelOrderNo;
+
     /**
      * 下单时间
      */
     private LocalDateTime createTime;
     /**
-     * 支付时间
+     * 失效时间
      */
-    private LocalDateTime payTime;
+    private LocalDateTime expireTime;
+
     /**
      * 支付结果
      */
-    private String result;
+    private PayResponse payResponse;
+
     /**
      * 结算订单
      */
@@ -78,4 +82,8 @@ public class PayOrder {
      * 退款订单
      */
     private RefundOrder refundOrder;
+
+    public String getMetadata(String key) {
+        return metadata != null ? metadata.get(key) : null;
+    }
 }

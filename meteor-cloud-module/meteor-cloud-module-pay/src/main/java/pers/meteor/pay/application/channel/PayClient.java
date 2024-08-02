@@ -1,8 +1,10 @@
 package pers.meteor.pay.application.channel;
 
+import pers.meteor.pay.domain.order.module.PayOrder;
+import pers.meteor.pay.domain.order.module.RefundOrder;
+import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
+import pers.meteor.pay.domain.order.module.valueobject.RefundResponse;
 import pers.meteor.pay.dto.*;
-
-import java.util.Map;
 
 /**
  * @author meteor
@@ -21,31 +23,31 @@ public interface PayClient {
      * @param payRequest 支付请求
      * @return 支付响应
      */
-    PayResponse unifiedOrder(PayRequest payRequest);
+    PayResponse unifiedOrder(PayOrder payOrder);
 
     /**
      * 解析订单回调
      *
-     * @param params 回调参数
+     * @param body 回调参数
      * @return 解析结果
      */
-    PayResponse parseOrderNotify(Map<String, String> params);
+    PayResponse parseOrderNotify(String body);
 
     /**
      * 查询订单
      *
-     * @param outTradeNo 通道订单号
+     * @param payOrderNo 通道订单号
      * @return /
      */
-    PayResponse queryOrder(String outTradeNo);
+    PayResponse getOrder(String payOrderNo);
 
     /**
      * 退款
      *
-     * @param refundRequest 退款请求
+     * @param refundOrder 退款请求
      * @return 退款结果
      */
-    RefundResponse unifiedRefund(RefundRequest refundRequest);
+    RefundResponse unifiedRefund(RefundOrder refundOrder);
 
     /**
      * 解析退款通知
@@ -53,7 +55,16 @@ public interface PayClient {
      * @param params 回调参数
      * @return 退款结果
      */
-    RefundResponse parseRefundNotify(Map<String, String> params);
+    RefundResponse parseRefundNotify(String body);
+
+    /**
+     * 获得退款订单信息
+     *
+     * @param outTradeNo 外部订单号
+     * @param outRefundNo 外部退款号
+     * @return 退款订单信息
+     */
+    RefundResponse getRefund(String outTradeNo, String outRefundNo);
 
     /**
      * 转账

@@ -5,6 +5,10 @@ import pers.meteor.common.core.exception.ServiceException;
 import pers.meteor.common.core.utils.json.JsonUtils;
 import pers.meteor.pay.application.channel.PayClient;
 import pers.meteor.pay.domain.channel.module.PayClientConfig;
+import pers.meteor.pay.domain.order.module.PayOrder;
+import pers.meteor.pay.domain.order.module.RefundOrder;
+import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
+import pers.meteor.pay.domain.order.module.valueobject.RefundResponse;
 import pers.meteor.pay.dto.*;
 import pers.meteor.pay.infrastructure.channel.exception.PayException;
 
@@ -67,48 +71,48 @@ public abstract class AbstractPayClient<Config extends PayClientConfig> implemen
     }
 
     @Override
-    public final PayResponse unifiedOrder(PayRequest payRequest) {
+    public final PayResponse unifiedOrder(PayOrder payOrder) {
         PayResponse payResponse;
         try {
-            payResponse = doUnifiedOrder(payRequest);
+            payResponse = doUnifiedOrder(payOrder);
         } catch (ServiceException ex) {
             throw ex;
         } catch (Throwable ex) {
-            log.error("发起支付异常-{}：{}", getChannelId(), JsonUtils.toJsonString(payRequest), ex);
+            log.error("发起支付异常-{}：{}", getChannelId(), JsonUtils.toJsonString(payOrder), ex);
             throw buildPayException(ex);
         }
 
         return payResponse;
     }
 
-    protected abstract PayResponse doUnifiedOrder(PayRequest payRequest) throws Throwable;
+    protected abstract PayResponse doUnifiedOrder(PayOrder payOrder) throws Throwable;
 
     @Override
-    public final PayResponse parseOrderNotify(Map<String, String> params) {
+    public final PayResponse parseOrderNotify(String body) {
         PayResponse payResponse;
         try {
-            payResponse = doParseOrderNotify(params);
+            payResponse = doParseOrderNotify(body);
         } catch (ServiceException ex) {
             throw ex;
         } catch (Throwable ex) {
-            log.error("解析订单通知异常-{}：{}", getChannelId(), JsonUtils.toJsonString(params), ex);
+            log.error("解析订单通知异常-{}：{}", getChannelId(), body, ex);
             throw buildPayException(ex);
         }
 
         return payResponse;
     }
 
-    protected abstract PayResponse doParseOrderNotify(Map<String, String> params) throws Throwable;
+    protected abstract PayResponse doParseOrderNotify(String body) throws Throwable;
 
     @Override
-    public final PayResponse queryOrder(String outTradeNo) {
+    public final PayResponse getOrder(String payOrderNo) {
         PayResponse payResponse;
         try {
-            payResponse = doQueryOrder(outTradeNo);
+            payResponse = doQueryOrder(payOrderNo);
         } catch (ServiceException ex) {
             throw ex;
         } catch (Throwable ex) {
-            log.error("订单查询异常-{}：{}", getChannelId(), JsonUtils.toJsonString(outTradeNo), ex);
+            log.error("订单查询异常-{}：{}", getChannelId(), JsonUtils.toJsonString(payOrderNo), ex);
             throw buildPayException(ex);
         }
 
@@ -118,38 +122,55 @@ public abstract class AbstractPayClient<Config extends PayClientConfig> implemen
     protected abstract PayResponse doQueryOrder(String outTradeNo) throws Throwable;
 
     @Override
-    public final RefundResponse unifiedRefund(RefundRequest refundRequest) {
+    public final RefundResponse unifiedRefund(RefundOrder refundOrder) {
         RefundResponse refundResponse;
         try {
-            refundResponse = doUnifiedRefund(refundRequest);
+            refundResponse = doUnifiedRefund(refundOrder);
         } catch (ServiceException ex) {
             throw ex;
         } catch (Throwable ex) {
-            log.error("发起退款异常-{}：{}", getChannelId(), JsonUtils.toJsonString(refundRequest), ex);
+            log.error("发起退款异常-{}：{}", getChannelId(), JsonUtils.toJsonString(refundOrder), ex);
             throw buildPayException(ex);
         }
 
         return refundResponse;
     }
 
-    protected abstract RefundResponse doUnifiedRefund(RefundRequest refundRequest) throws Throwable;
+    protected abstract RefundResponse doUnifiedRefund(RefundOrder refundOrder) throws Throwable;
 
     @Override
-    public final RefundResponse parseRefundNotify(Map<String, String> params) {
+    public final RefundResponse parseRefundNotify(String body) {
         RefundResponse refundResponse;
         try {
-            refundResponse = doParseRefundNotify(params);
+            refundResponse = doParseRefundNotify(body);
         } catch (ServiceException ex) {
             throw ex;
         } catch (Throwable ex) {
-            log.error("解析退款通知异常-{}：{}", getChannelId(), JsonUtils.toJsonString(params), ex);
+            log.error("解析退款通知异常-{}：{}", getChannelId(), body, ex);
             throw buildPayException(ex);
         }
 
         return refundResponse;
     }
 
-    protected abstract RefundResponse doParseRefundNotify(Map<String, String> params) throws Throwable;
+    protected abstract RefundResponse doParseRefundNotify(String body) throws Throwable;
+
+    @Override
+    public RefundResponse getRefund(String payOrderNo, String refundOrderNo) {
+        RefundResponse refundResponse;
+        try {
+            refundResponse = doGetRefund(payOrderNo, refundOrderNo);
+        } catch (ServiceException ex) {
+            throw ex;
+        } catch (Throwable ex) {
+            log.error("获取退款订单异常-{}：{},{}", getChannelId(), payOrderNo, refundOrderNo, ex);
+            throw buildPayException(ex);
+        }
+
+        return refundResponse;
+    }
+
+    protected abstract RefundResponse doGetRefund(String outTradeNo, String outRefundNo) throws Throwable;
 
     @Override
     public final TransferResponse unifiedTransfer(TransferRequest transferRequest) {

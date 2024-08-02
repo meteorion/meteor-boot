@@ -18,7 +18,7 @@ public class MockPayClient extends AbstractPayClient {
     }
 
     @Override
-    public PayResponse doUnfiedOrder(PayRequest payRequest) {
+    public PayResponse doUnifiedOrder(PayRequest payRequest) {
         return null;
     }
 
@@ -28,7 +28,7 @@ public class MockPayClient extends AbstractPayClient {
     }
 
     @Override
-    protected PayResponse doQueryOrdery(String outTradeNo) throws Throwable {
+    protected PayResponse doQueryOrder(String outTradeNo) throws Throwable {
         return null;
     }
 

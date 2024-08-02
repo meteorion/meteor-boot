@@ -43,7 +43,7 @@ public class PayOrder {
      */
     private Long tradeChannelId;
     /**
-     * 商品详情
+     * 商品属性
      */
     private Map<String, Object> itemDetails;
     /**

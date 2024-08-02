@@ -35,7 +35,7 @@ public interface PayChannelMapstruct {
 
         if (CollectionUtils.isNotEmpty(payChannelConfigPos)) {
 
-            Map<PayChannelEnum, PayClientConfig> payClientConfigs = Optional.ofNullable(payClientConfigPos).orElse(new ArrayList<>()).stream().collect(Collectors.toMap(po -> PayChannelEnum.getByCode(po.getChannelType()), this::toPayClientConfg));
+            Map<PayChannelEnum, PayClientConfig> payClientConfigs = Optional.ofNullable(payClientConfigPos).orElse(new ArrayList<>()).stream().collect(Collectors.toMap(po -> PayChannelEnum.getByCode(po.getChannelType()), this::toPayClientConfig));
 
             for (PayChannelConfigPo payChannelConfigPo : payChannelConfigPos) {
                 ChannelConfig channelConfig = toChannelConfig(payChannelConfigPo);
@@ -89,8 +89,8 @@ public interface PayChannelMapstruct {
         if (channelConfig == null) {
             return null;
         }
-        PayClientConfig payClientConfg = toPayClientConfg(payClientConfigPo);
-        channelConfig.setPayClientConfig(payClientConfg);
+        PayClientConfig payClientConfig = toPayClientConfig(payClientConfigPo);
+        channelConfig.setPayClientConfig(payClientConfig);
         return channelConfig;
     }
 
@@ -126,11 +126,7 @@ public interface PayChannelMapstruct {
         return payChannelConfigPo;
     }
 
-    @Mapping(target = "channelType", expression = "java(PayChannelEnum.getByCode(payClientConfigPo.getChannelType()))")
-    @Mapping(target = "signType", expression = "java(SignTypeEnum.getByCode(payClientConfigPo.getSignType()))")
-    PayClientConfig toPayClientConfg(PayClientConfigPo payClientConfigPo);
+    PayClientConfig toPayClientConfig(PayClientConfigPo payClientConfigPo);
 
-    @Mapping(target = "channelType", source = "channelType.code")
-    @Mapping(target = "signType", source = "signType.code")
-    PayClientConfigPo toPayClinetConfigPo(PayClientConfig payClientConfig);
+    PayClientConfigPo toPayClientConfigPo(PayClientConfig payClientConfig);
 }

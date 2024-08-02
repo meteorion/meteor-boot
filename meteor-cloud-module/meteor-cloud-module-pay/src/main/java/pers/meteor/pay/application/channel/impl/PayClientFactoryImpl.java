@@ -1,6 +1,7 @@
 package pers.meteor.pay.application.channel.impl;
 
 import cn.hutool.core.lang.Assert;
+import com.alibaba.fastjson2.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
@@ -13,6 +14,7 @@ import pers.meteor.pay.application.channel.PayClientFactory;
 
 import java.lang.reflect.Constructor;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -28,7 +30,7 @@ public class PayClientFactoryImpl implements PayClientFactory {
      * 支付客户端 Map
      * key：渠道编号
      */
-    private final ConcurrentMap<Long, AbstractPayClient> clients = new ConcurrentHashMap<>();
+    private final ConcurrentMap<Long, AbstractPayClient<?>> clients = new ConcurrentHashMap<>();
 
     /**
      * 支付客户端 Class Map
@@ -47,7 +49,7 @@ public class PayClientFactoryImpl implements PayClientFactory {
 
     @Override
     public PayClient getPayClient(Long channelId) {
-        AbstractPayClient client = clients.get(channelId);
+        AbstractPayClient<?> client = clients.get(channelId);
         if (client == null) {
             log.error("[pay-client-factory][渠道编号({}) 找不到客户端]", channelId);
         }
@@ -55,9 +57,10 @@ public class PayClientFactoryImpl implements PayClientFactory {
     }
 
     @Override
-    public void createOrUpdatePayClient(PayClientConfig config) {
+    @SuppressWarnings("unchecked")
+    public <Config extends PayClientConfig> void createOrUpdatePayClient(Config config) {
         Long configId = config.getChannelConfigId();
-        AbstractPayClient client = clients.get(configId);
+        AbstractPayClient<Config> client = (AbstractPayClient<Config>) clients.get(configId);
         if (client == null) {
             client = this.createPayClient(config);
             client.initClient();
@@ -67,7 +70,8 @@ public class PayClientFactoryImpl implements PayClientFactory {
         }
     }
 
-    private AbstractPayClient createPayClient(PayClientConfig config) {
+    @SuppressWarnings("unchecked")
+    private <Config extends PayClientConfig> AbstractPayClient<Config> createPayClient(Config config) {
         Long channelId = config.getChannelConfigId();
         String channelCode = config.getChannelType().getCode();
         PayChannelEnum channelEnum = PayChannelEnum.getByCode(channelCode);
@@ -76,8 +80,11 @@ public class PayClientFactoryImpl implements PayClientFactory {
         Assert.notNull(payClientClass, String.format("支付渠道(%s) Class 为空", channelCode));
 
         try {
-            Constructor<?> constructor = ReflectionUtils.accessibleConstructor(payClientClass, Long.class, PayClientConfig.class);
-            return (AbstractPayClient) constructor.newInstance(channelId, config);
+            JSONObject metadata = Optional.ofNullable(config.getMetadata()).orElse(new JSONObject());
+            metadata.put("serviceUrl", config.getServiceUrl());
+            metadata.put("appId", config.getAppId());
+            Constructor<?> constructor = ReflectionUtils.accessibleConstructor(payClientClass, Long.class, channelEnum.getConfigClass());
+            return (AbstractPayClient<Config>) constructor.newInstance(channelId, metadata.toJavaObject(channelEnum.getConfigClass()));
         } catch (Exception e) {
             throw new ServiceException("服务构建失败：{0}", payClientClass);
         }

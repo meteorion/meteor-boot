@@ -118,7 +118,7 @@ public class PayChannelRepositoryImpl implements PayChannelRepository {
         if (clientConfig == null) {
             return;
         }
-        PayClientConfigPo clientConfigPo = PayChannelMapstruct.INSTANCE.toPayClinetConfigPo(clientConfig);
+        PayClientConfigPo clientConfigPo = PayChannelMapstruct.INSTANCE.toPayClientConfigPo(clientConfig);
         PayClientConfigPo clientConfigPoDb = payClientConfigMapper.selectOne(payChanneId, clientConfigPo.getChannelType());
         if (clientConfigPoDb != null) {
             clientConfigPo.setChannelConfigId(clientConfigPoDb.getChannelConfigId());
@@ -149,7 +149,7 @@ public class PayChannelRepositoryImpl implements PayChannelRepository {
     @Override
     public PayClientConfig selectPayClientConfig(Long payClientlId) {
         PayClientConfigPo payClientConfigPo = payClientConfigMapper.selectById(payClientlId);
-        return PayChannelMapstruct.INSTANCE.toPayClientConfg(payClientConfigPo);
+        return PayChannelMapstruct.INSTANCE.toPayClientConfig(payClientConfigPo);
     }
 
     @Override

@@ -16,7 +16,7 @@ import java.util.Map;
  * @author meteor
  */
 @Slf4j
-public abstract class AbstractPayClient implements PayClient {
+public abstract class AbstractPayClient<Config extends PayClientConfig> implements PayClient {
     /**
      * 通道id
      */
@@ -24,9 +24,9 @@ public abstract class AbstractPayClient implements PayClient {
     /**
      * 通道配置
      */
-    protected PayClientConfig config;
+    protected Config config;
 
-    public AbstractPayClient(Long channelId, PayClientConfig config) {
+    public AbstractPayClient(Long channelId, Config config) {
         this.channelId = channelId;
         this.config = config;
     }
@@ -51,7 +51,7 @@ public abstract class AbstractPayClient implements PayClient {
      *
      * @param config /
      */
-    public final void refreshConfig(PayClientConfig config) {
+    public final void refreshConfig(Config config) {
         if (config.equals(this.config)) {
             log.debug("[pay-client-{}] - 配置未更新", getChannelId());
             return;
@@ -70,7 +70,7 @@ public abstract class AbstractPayClient implements PayClient {
     public final PayResponse unifiedOrder(PayRequest payRequest) {
         PayResponse payResponse;
         try {
-            payResponse = doUnfiedOrder(payRequest);
+            payResponse = doUnifiedOrder(payRequest);
         } catch (ServiceException ex) {
             throw ex;
         } catch (Throwable ex) {
@@ -81,7 +81,7 @@ public abstract class AbstractPayClient implements PayClient {
         return payResponse;
     }
 
-    protected abstract PayResponse doUnfiedOrder(PayRequest payRequest) throws Throwable;
+    protected abstract PayResponse doUnifiedOrder(PayRequest payRequest) throws Throwable;
 
     @Override
     public final PayResponse parseOrderNotify(Map<String, String> params) {
@@ -104,7 +104,7 @@ public abstract class AbstractPayClient implements PayClient {
     public final PayResponse queryOrder(String outTradeNo) {
         PayResponse payResponse;
         try {
-            payResponse = doQueryOrdery(outTradeNo);
+            payResponse = doQueryOrder(outTradeNo);
         } catch (ServiceException ex) {
             throw ex;
         } catch (Throwable ex) {
@@ -115,7 +115,7 @@ public abstract class AbstractPayClient implements PayClient {
         return payResponse;
     }
 
-    protected abstract PayResponse doQueryOrdery(String outTradeNo) throws Throwable;
+    protected abstract PayResponse doQueryOrder(String outTradeNo) throws Throwable;
 
     @Override
     public final RefundResponse unifiedRefund(RefundRequest refundRequest) {

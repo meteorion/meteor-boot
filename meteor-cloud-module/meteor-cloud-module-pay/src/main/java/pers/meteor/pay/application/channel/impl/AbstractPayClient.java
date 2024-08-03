@@ -7,12 +7,12 @@ import pers.meteor.pay.application.channel.PayClient;
 import pers.meteor.pay.domain.channel.module.PayClientConfig;
 import pers.meteor.pay.domain.order.module.PayOrder;
 import pers.meteor.pay.domain.order.module.RefundOrder;
+import pers.meteor.pay.domain.order.module.TransferOrder;
 import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
 import pers.meteor.pay.domain.order.module.valueobject.RefundResponse;
-import pers.meteor.pay.dto.*;
+import pers.meteor.pay.domain.order.module.valueobject.TransferResponse;
+import pers.meteor.pay.dto.TransferRequest;
 import pers.meteor.pay.infrastructure.channel.exception.PayException;
-
-import java.util.Map;
 
 /**
  * 支付模板
@@ -108,7 +108,7 @@ public abstract class AbstractPayClient<Config extends PayClientConfig> implemen
     public final PayResponse getOrder(String payOrderNo) {
         PayResponse payResponse;
         try {
-            payResponse = doQueryOrder(payOrderNo);
+            payResponse = doGetOrder(payOrderNo);
         } catch (ServiceException ex) {
             throw ex;
         } catch (Throwable ex) {
@@ -119,7 +119,7 @@ public abstract class AbstractPayClient<Config extends PayClientConfig> implemen
         return payResponse;
     }
 
-    protected abstract PayResponse doQueryOrder(String outTradeNo) throws Throwable;
+    protected abstract PayResponse doGetOrder(String outTradeNo) throws Throwable;
 
     @Override
     public final RefundResponse unifiedRefund(RefundOrder refundOrder) {
@@ -173,21 +173,21 @@ public abstract class AbstractPayClient<Config extends PayClientConfig> implemen
     protected abstract RefundResponse doGetRefund(String outTradeNo, String outRefundNo) throws Throwable;
 
     @Override
-    public final TransferResponse unifiedTransfer(TransferRequest transferRequest) {
+    public final TransferResponse unifiedTransfer(TransferOrder transferOrder) {
         TransferResponse transferResponse;
         try {
-            transferResponse = doUnifiedTransfer(transferRequest);
+            transferResponse = doUnifiedTransfer(transferOrder);
         } catch (ServiceException ex) {
             throw ex;
         } catch (Throwable ex) {
-            log.error("解析退款通知异常-{}：{}", getChannelId(), JsonUtils.toJsonString(transferRequest), ex);
+            log.error("解析退款通知异常-{}：{}", getChannelId(), JsonUtils.toJsonString(transferOrder), ex);
             throw buildPayException(ex);
         }
 
         return transferResponse;
     }
 
-    protected abstract TransferResponse doUnifiedTransfer(TransferRequest transferRequest) throws Throwable;
+    protected abstract TransferResponse doUnifiedTransfer(TransferOrder transferOrder) throws Throwable;
 
     private PayException buildPayException(Throwable ex) {
         if (ex instanceof PayException) {

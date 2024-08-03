@@ -19,13 +19,9 @@ import pers.meteor.common.core.utils.json.JsonUtils;
 import pers.meteor.pay.application.channel.impl.AbstractPayClient;
 import pers.meteor.pay.domain.order.module.PayOrder;
 import pers.meteor.pay.domain.order.module.RefundOrder;
+import pers.meteor.pay.domain.order.module.TransferOrder;
 import pers.meteor.pay.domain.order.module.enums.PayStatusEnum;
-import pers.meteor.pay.domain.order.module.valueobject.Goods;
-import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
-import pers.meteor.pay.domain.order.module.valueobject.Payer;
-import pers.meteor.pay.domain.order.module.valueobject.RefundResponse;
-import pers.meteor.pay.dto.TransferRequest;
-import pers.meteor.pay.dto.TransferResponse;
+import pers.meteor.pay.domain.order.module.valueobject.*;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -214,7 +210,7 @@ public abstract class AbstractWechatPayClient extends AbstractPayClient<WechatPa
     }
 
     @Override
-    protected PayResponse doQueryOrder(String outTradeNo) throws Throwable {
+    protected PayResponse doGetOrder(String outTradeNo) throws Throwable {
         try {
             switch (config.getApiVersion()) {
                 case WechatPayClientConfig.API_VERSION_V2:
@@ -406,7 +402,7 @@ public abstract class AbstractWechatPayClient extends AbstractPayClient<WechatPa
     }
 
     @Override
-    protected TransferResponse doUnifiedTransfer(TransferRequest transferRequest) throws Throwable {
+    protected TransferResponse doUnifiedTransfer(TransferOrder transferOrder) throws Throwable {
         return null;
     }
 }

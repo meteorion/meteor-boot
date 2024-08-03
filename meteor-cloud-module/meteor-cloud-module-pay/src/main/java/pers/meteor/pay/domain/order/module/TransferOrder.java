@@ -2,12 +2,10 @@ package pers.meteor.pay.domain.order.module;
 
 import lombok.Data;
 import pers.meteor.pay.domain.order.module.enums.CurrencyTypeEnum;
-import pers.meteor.pay.domain.order.module.enums.DisplayModeEnum;
 import pers.meteor.pay.domain.order.module.enums.PayStatusEnum;
-import pers.meteor.pay.domain.order.module.valueobject.Fee;
-import pers.meteor.pay.domain.order.module.valueobject.Goods;
-import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
-import pers.meteor.pay.domain.order.module.valueobject.Payer;
+import pers.meteor.pay.domain.order.module.enums.TransferStatusEnum;
+import pers.meteor.pay.domain.order.module.enums.TransferTypeEnum;
+import pers.meteor.pay.domain.order.module.valueobject.*;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -18,19 +16,23 @@ import java.util.Map;
  * @author meteor
  */
 @Data
-public class PayOrder {
+public class TransferOrder {
     /**
      * 支付订单号
      */
-    private String orderNo;
+    private String transferOrderNo;
     /**
      * 商户订单号
      */
     private String merchantOrderNo;
     /**
-     * 订单状态
+     * 转账状态
      */
-    private PayStatusEnum payStatus;
+    private TransferStatusEnum transferStatus;
+    /**
+     * 转账类型
+     */
+    private TransferTypeEnum transferType;
 
     /**
      * 交易金额
@@ -49,23 +51,19 @@ public class PayOrder {
      */
     private Payer payer;
     /**
-     * 商品属性
+     * 收款人信息
      */
-    private Goods goods;
+    private Payee payee;
+    /**
+     * 转账标题
+     */
+    private String title;
     /**
      * 回调地址
      */
     private String notifyUrl;
     /**
-     * 响应地址
-     */
-    private String returnUrl;
-    /**
-     * 展示样式
-     */
-    private DisplayModeEnum displayMode;
-    /**
-     * 交易附属参数
+     * 转账附属参数
      */
     private Map<String, String> metadata;
 

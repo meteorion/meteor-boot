@@ -2,9 +2,10 @@ package pers.meteor.pay.application.channel;
 
 import pers.meteor.pay.domain.order.module.PayOrder;
 import pers.meteor.pay.domain.order.module.RefundOrder;
+import pers.meteor.pay.domain.order.module.TransferOrder;
 import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
 import pers.meteor.pay.domain.order.module.valueobject.RefundResponse;
-import pers.meteor.pay.dto.*;
+import pers.meteor.pay.domain.order.module.valueobject.TransferResponse;
 
 /**
  * @author meteor
@@ -69,8 +70,8 @@ public interface PayClient {
     /**
      * 转账
      *
-     * @param transferRequest 转账参数
+     * @param transferOrder 转账参数
      * @return 转账结果
      */
-    TransferResponse unifiedTransfer(TransferRequest transferRequest);
+    TransferResponse unifiedTransfer(TransferOrder transferOrder);
 }

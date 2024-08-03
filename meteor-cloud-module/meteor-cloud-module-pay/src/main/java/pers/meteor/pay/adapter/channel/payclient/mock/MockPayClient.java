@@ -5,8 +5,10 @@ import pers.meteor.pay.application.channel.impl.AbstractPayClient;
 import pers.meteor.pay.domain.channel.module.valueobject.NonePayClientConfig;
 import pers.meteor.pay.domain.order.module.PayOrder;
 import pers.meteor.pay.domain.order.module.RefundOrder;
+import pers.meteor.pay.domain.order.module.TransferOrder;
 import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
 import pers.meteor.pay.domain.order.module.valueobject.RefundResponse;
+import pers.meteor.pay.domain.order.module.valueobject.TransferResponse;
 import pers.meteor.pay.dto.*;
 
 import java.util.Map;
@@ -33,7 +35,7 @@ public class MockPayClient extends AbstractPayClient<NonePayClientConfig> {
 
 
     @Override
-    protected PayResponse doQueryOrder(String outTradeNo) throws Throwable {
+    protected PayResponse doGetOrder(String outTradeNo) throws Throwable {
         return null;
     }
 
@@ -53,7 +55,7 @@ public class MockPayClient extends AbstractPayClient<NonePayClientConfig> {
     }
 
     @Override
-    protected TransferResponse doUnifiedTransfer(TransferRequest transferRequest) throws Throwable {
+    protected TransferResponse doUnifiedTransfer(TransferOrder transferOrder) throws Throwable {
         return null;
     }
 }

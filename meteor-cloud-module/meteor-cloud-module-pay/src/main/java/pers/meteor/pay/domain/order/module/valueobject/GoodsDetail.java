@@ -3,7 +3,8 @@ package pers.meteor.pay.domain.order.module.valueobject;
 import lombok.Data;
 
 /**
- * 产品信息
+ * 商品详情
+ *
  * @author 钟宗兵
  * @since 1.0.0
  */

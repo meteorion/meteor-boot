@@ -11,7 +11,6 @@ import pers.meteor.pay.domain.order.module.TransferOrder;
 import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
 import pers.meteor.pay.domain.order.module.valueobject.RefundResponse;
 import pers.meteor.pay.domain.order.module.valueobject.TransferResponse;
-import pers.meteor.pay.dto.TransferRequest;
 import pers.meteor.pay.infrastructure.channel.exception.PayException;
 
 /**
@@ -156,10 +155,10 @@ public abstract class AbstractPayClient<Config extends PayClientConfig> implemen
     protected abstract RefundResponse doParseRefundNotify(String body) throws Throwable;
 
     @Override
-    public RefundResponse getRefund(String payOrderNo, String refundOrderNo) {
+    public RefundResponse getRefundOrder(String payOrderNo, String refundOrderNo) {
         RefundResponse refundResponse;
         try {
-            refundResponse = doGetRefund(payOrderNo, refundOrderNo);
+            refundResponse = doGetRefundOrder(payOrderNo, refundOrderNo);
         } catch (ServiceException ex) {
             throw ex;
         } catch (Throwable ex) {
@@ -170,7 +169,7 @@ public abstract class AbstractPayClient<Config extends PayClientConfig> implemen
         return refundResponse;
     }
 
-    protected abstract RefundResponse doGetRefund(String outTradeNo, String outRefundNo) throws Throwable;
+    protected abstract RefundResponse doGetRefundOrder(String outTradeNo, String outRefundNo) throws Throwable;
 
     @Override
     public final TransferResponse unifiedTransfer(TransferOrder transferOrder) {

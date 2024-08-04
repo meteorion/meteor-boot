@@ -33,13 +33,21 @@ public class PayChannel {
      */
     private SwitchStatusEnum status;
     /**
+     * 通道费率
+     */
+    private ChannelQuota channelQuota;
+    /**
      * 通道配置
      */
     private EnumMap<PayChannelEnum, ChannelConfig> channelConfigs;
     /**
-     * 通道费率
+     * 支付订单回调地址
      */
-    private ChannelQuota channelQuota;
+    private String orderNotifyUrl;
+    /**
+     * 退款订单回调地址
+     */
+    private String refundNotifyUrl;
 
     public PayChannel() {
         this.status = SwitchStatusEnum.OPEN;

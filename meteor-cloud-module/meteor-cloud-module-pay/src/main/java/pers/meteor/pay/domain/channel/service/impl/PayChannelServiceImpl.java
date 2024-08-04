@@ -81,7 +81,7 @@ public class PayChannelServiceImpl implements PayChannelService {
     @Override
     public void updateClientConfig(PayClientConfig clientConfig) {
         // 检查通道ID是否存在
-        ChannelConfig channelConfig = checkChannelConfigExists(clientConfig.getChannelConfigId());
+        ChannelConfig channelConfig = checkChannelConfigExists(clientConfig.getPayClientId());
         channelConfig.setPayClientConfig(clientConfig);
         // 更新数据
         payChannelRepository.saveChannelConfig(channelConfig);

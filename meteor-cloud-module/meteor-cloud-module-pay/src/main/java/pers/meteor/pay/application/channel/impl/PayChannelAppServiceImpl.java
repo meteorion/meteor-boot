@@ -60,7 +60,7 @@ public class PayChannelAppServiceImpl implements PayChannelAppService {
         PayClientConfig payChannelClient = payChannelAssembler.toPayChannelClient(clientConfigVo);
         payChannelService.updateClientConfig(payChannelClient);
         // 发布修改事件
-        channelEventPublisher.channelConfigUpdated(payChannelClient.getChannelConfigId());
+        channelEventPublisher.channelConfigUpdated(payChannelClient.getPayClientId());
     }
 
     @Override

@@ -59,7 +59,7 @@ public class PayClientFactoryImpl implements PayClientFactory {
     @Override
     @SuppressWarnings("unchecked")
     public <Config extends PayClientConfig> void createOrUpdatePayClient(Config config) {
-        Long configId = config.getChannelConfigId();
+        Long configId = config.getPayClientId();
         AbstractPayClient<Config> client = (AbstractPayClient<Config>) clients.get(configId);
         if (client == null) {
             client = this.createPayClient(config);
@@ -72,7 +72,7 @@ public class PayClientFactoryImpl implements PayClientFactory {
 
     @SuppressWarnings("unchecked")
     private <Config extends PayClientConfig> AbstractPayClient<Config> createPayClient(Config config) {
-        Long channelId = config.getChannelConfigId();
+        Long channelId = config.getPayClientId();
         String channelCode = config.getChannelType().getCode();
         PayChannelEnum channelEnum = PayChannelEnum.getByCode(channelCode);
         Assert.notNull(channelEnum, String.format("支付渠道(%s) 为空", channelCode));

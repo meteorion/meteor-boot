@@ -71,13 +71,13 @@ public class PayResponse {
      * 创建【WAITING】状态的订单返回
      */
     public static PayResponse waitingOf(DisplayModeEnum displayMode, String displayContent,
-                                            String outTradeNo, Object rawData) {
+                                            String orderNo, Object rawData) {
         PayResponse payResponse = new PayResponse();
         payResponse.payStatus = PayStatusEnum.WAITING;
         payResponse.displayMode = displayMode;
         payResponse.displayContent = displayContent;
         // 相对通用的字段
-        payResponse.orderNo = outTradeNo;
+        payResponse.orderNo = orderNo;
         payResponse.rawData = rawData;
         return payResponse;
     }
@@ -86,14 +86,14 @@ public class PayResponse {
      * 创建【SUCCESS】状态的订单返回
      */
     public static PayResponse successOf(String channelOrderNo, String channelUserId, LocalDateTime successTime,
-                                            String outTradeNo, Object rawData) {
+                                            String orderNo, Object rawData) {
         PayResponse payResponse = new PayResponse();
         payResponse.payStatus = PayStatusEnum.SUCCESS;
         payResponse.channelOrderNo = channelOrderNo;
         payResponse.channelUserId = channelUserId;
         payResponse.payTime = successTime;
         // 相对通用的字段
-        payResponse.orderNo = outTradeNo;
+        payResponse.orderNo = orderNo;
         payResponse.rawData = rawData;
         return payResponse;
     }
@@ -102,14 +102,14 @@ public class PayResponse {
      * 创建指定状态的订单返回，适合支付渠道回调时
      */
     public static PayResponse of(Integer status, String channelOrderNo, String channelUserId, LocalDateTime successTime,
-                                     String outTradeNo, Object rawData) {
+                                     String orderNo, Object rawData) {
         PayResponse payResponse = new PayResponse();
         payResponse.payStatus = PayStatusEnum.of(status);
         payResponse.channelOrderNo = channelOrderNo;
         payResponse.channelUserId = channelUserId;
         payResponse.payTime = successTime;
         // 相对通用的字段
-        payResponse.orderNo = outTradeNo;
+        payResponse.orderNo = orderNo;
         payResponse.rawData = rawData;
         return payResponse;
     }
@@ -118,13 +118,13 @@ public class PayResponse {
      * 创建【CLOSED】状态的订单返回，适合调用支付渠道失败时
      */
     public static PayResponse closedOf(String channelErrorCode, String channelErrorMsg,
-                                           String outTradeNo, Object rawData) {
+                                           String orderNo, Object rawData) {
         PayResponse payResponse = new PayResponse();
         payResponse.payStatus = PayStatusEnum.CLOSED;
         payResponse.channelErrorCode = channelErrorCode;
         payResponse.channelErrorMsg = channelErrorMsg;
         // 相对通用的字段
-        payResponse.orderNo = outTradeNo;
+        payResponse.orderNo = orderNo;
         payResponse.rawData = rawData;
         return payResponse;
     }

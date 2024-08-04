@@ -50,7 +50,7 @@ public class MockPayClient extends AbstractPayClient<NonePayClientConfig> {
     }
 
     @Override
-    protected RefundResponse doGetRefund(String outTradeNo, String outRefundNo) throws Throwable {
+    protected RefundResponse doGetRefundOrder(String outTradeNo, String outRefundNo) throws Throwable {
         return null;
     }
 

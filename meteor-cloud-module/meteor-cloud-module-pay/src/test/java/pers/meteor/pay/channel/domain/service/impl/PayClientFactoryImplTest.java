@@ -17,7 +17,7 @@ public class PayClientFactoryImplTest {
     public void createOrUpdatePayClient() {
         PayClientFactory payClientFactory = new PayClientFactoryImpl();
         PayClientConfig payClientConfig = new PayClientConfig();
-        payClientConfig.setChannelConfigId(1L);
+        payClientConfig.setPayClientId(1L);
         payClientConfig.setChannelType(PayChannelEnum.MOCK);
         payClientFactory.createOrUpdatePayClient(payClientConfig);
 

@@ -21,7 +21,7 @@ public interface PayClient {
     /**
      * 下单
      *
-     * @param payRequest 支付请求
+     * @param payOrder 支付请求
      * @return 支付响应
      */
     PayResponse unifiedOrder(PayOrder payOrder);
@@ -53,7 +53,7 @@ public interface PayClient {
     /**
      * 解析退款通知
      *
-     * @param params 回调参数
+     * @param body 回调参数
      * @return 退款结果
      */
     RefundResponse parseRefundNotify(String body);
@@ -65,7 +65,7 @@ public interface PayClient {
      * @param outRefundNo 外部退款号
      * @return 退款订单信息
      */
-    RefundResponse getRefund(String outTradeNo, String outRefundNo);
+    RefundResponse getRefundOrder(String outTradeNo, String outRefundNo);
 
     /**
      * 转账

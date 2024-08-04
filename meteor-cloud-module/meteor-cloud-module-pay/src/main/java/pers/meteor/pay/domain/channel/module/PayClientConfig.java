@@ -16,7 +16,7 @@ public class PayClientConfig {
     /**
      * 配置id
      */
-    private Long channelConfigId;
+    private Long payClientId;
     /**
      * 支付通道id
      */

@@ -23,7 +23,7 @@ public class RefundResponse {
      * 外部退款号
      * 对应 PayRefundDO 的 no 字段
      */
-    private String outRefundNo;
+    private String refundOrderNo;
 
     /**
      * 渠道退款单号
@@ -59,12 +59,12 @@ public class RefundResponse {
      * 创建【WAITING】状态的退款返回
      */
     public static RefundResponse waitingOf(String channelRefundNo,
-                                             String outRefundNo, Object rawData) {
+                                             String refundOrderNo, Object rawData) {
         RefundResponse respDTO = new RefundResponse();
         respDTO.status = RefundStatusEnum.WAITING.getStatus();
         respDTO.channelRefundNo = channelRefundNo;
         // 相对通用的字段
-        respDTO.outRefundNo = outRefundNo;
+        respDTO.refundOrderNo = refundOrderNo;
         respDTO.rawData = rawData;
         return respDTO;
     }
@@ -73,13 +73,13 @@ public class RefundResponse {
      * 创建【SUCCESS】状态的退款返回
      */
     public static RefundResponse successOf(String channelRefundNo, LocalDateTime successTime,
-                                             String outRefundNo, Object rawData) {
+                                             String refundOrderNo, Object rawData) {
         RefundResponse respDTO = new RefundResponse();
         respDTO.status = RefundStatusEnum.SUCCESS.getStatus();
         respDTO.channelRefundNo = channelRefundNo;
         respDTO.refundTime = successTime;
         // 相对通用的字段
-        respDTO.outRefundNo = outRefundNo;
+        respDTO.refundOrderNo = refundOrderNo;
         respDTO.rawData = rawData;
         return respDTO;
     }
@@ -87,22 +87,22 @@ public class RefundResponse {
     /**
      * 创建【FAILURE】状态的退款返回
      */
-    public static RefundResponse failureOf(String outRefundNo, Object rawData) {
+    public static RefundResponse failureOf(String refundOrderNo, Object rawData) {
         return failureOf(null, null,
-                outRefundNo, rawData);
+                refundOrderNo, rawData);
     }
 
     /**
      * 创建【FAILURE】状态的退款返回
      */
     public static RefundResponse failureOf(String channelErrorCode, String channelErrorMsg,
-                                             String outRefundNo, Object rawData) {
+                                             String refundOrderNo, Object rawData) {
         RefundResponse respDTO = new RefundResponse();
         respDTO.status = RefundStatusEnum.FAILURE.getStatus();
         respDTO.channelErrorCode = channelErrorCode;
         respDTO.channelErrorMsg = channelErrorMsg;
         // 相对通用的字段
-        respDTO.outRefundNo = outRefundNo;
+        respDTO.refundOrderNo = refundOrderNo;
         respDTO.rawData = rawData;
         return respDTO;
     }

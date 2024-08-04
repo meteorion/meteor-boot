@@ -335,7 +335,7 @@ public abstract class AbstractWechatPayClient extends AbstractPayClient<WechatPa
     }
 
     @Override
-    protected RefundResponse doGetRefund(String payOrderNo, String refundOrderNo) throws Throwable {
+    protected RefundResponse doGetRefundOrder(String payOrderNo, String refundOrderNo) throws Throwable {
         try {
             switch (config.getApiVersion()) {
                 case WechatPayClientConfig.API_VERSION_V2:

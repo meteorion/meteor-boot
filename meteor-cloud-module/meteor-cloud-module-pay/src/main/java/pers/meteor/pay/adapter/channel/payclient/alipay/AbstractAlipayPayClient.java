@@ -63,6 +63,12 @@ public abstract class AbstractAlipayPayClient extends AbstractPayClient<AlipayPa
         super(channelId, config);
     }
 
+    private static Integer parseStatus(String tradeStatus) {
+        return Objects.equals("WAIT_BUYER_PAY", tradeStatus) ? PayStatusEnum.WAITING.getStatus() : StringUtils.equalsAny(tradeStatus, "TRADE_FINISHED", "TRADE_SUCCESS") ? PayStatusEnum.SUCCESS.getStatus() : Objects.equals("TRADE_CLOSED", tradeStatus) ? PayStatusEnum.CLOSED.getStatus() : null;
+    }
+
+    // ============ 支付相关 ==========
+
     @Override
     @SneakyThrows
     protected void doInit() {
@@ -70,8 +76,6 @@ public abstract class AbstractAlipayPayClient extends AbstractPayClient<AlipayPa
         BeanUtil.copyProperties(config, alipayConfig, false);
         this.client = new DefaultAlipayClient(alipayConfig);
     }
-
-    // ============ 支付相关 ==========
 
     /**
      * 构造支付关闭的 {@link PayResponse} 对象
@@ -87,8 +91,7 @@ public abstract class AbstractAlipayPayClient extends AbstractPayClient<AlipayPa
     public PayResponse doParseOrderNotify(String body) throws Throwable {
         // 1. 校验回调数据
         Map<String, String> bodyObj = HttpUtil.decodeParamMap(body, StandardCharsets.UTF_8);
-        AlipaySignature.rsaCheckV1(bodyObj, config.getAlipayPublicKey(),
-                StandardCharsets.UTF_8.name(), config.getSignType());
+        AlipaySignature.rsaCheckV1(bodyObj, config.getAlipayPublicKey(), StandardCharsets.UTF_8.name(), config.getSignType());
 
         // 2. 解析订单的状态
         // 额外说明：支付宝不仅仅支付成功会回调，再各种触发支付单数据变化时，都会进行回调，所以这里 status 的解析会写的比较复杂
@@ -100,9 +103,9 @@ public abstract class AbstractAlipayPayClient extends AbstractPayClient<AlipayPa
         Assert.notNull(status, (Supplier<Throwable>) () -> {
             throw new IllegalArgumentException(StrUtil.format("body({}) 的 trade_status 不正确", body));
         });
-        Map<String, String> params = JsonUtils.parseObject(body, new TypeReference<Map<String, String>>() {});
-        return PayResponse.of(status, bodyObj.get("trade_no"), bodyObj.get("seller_id"), parseTime(params.get("gmt_payment")),
-                bodyObj.get("out_trade_no"), body);
+        Map<String, String> params = JsonUtils.parseObject(body, new TypeReference<Map<String, String>>() {
+        });
+        return PayResponse.of(status, bodyObj.get("trade_no"), bodyObj.get("seller_id"), parseTime(params.get("gmt_payment")), bodyObj.get("out_trade_no"), body);
     }
 
     @Override
@@ -121,22 +124,14 @@ public abstract class AbstractAlipayPayClient extends AbstractPayClient<AlipayPa
             response = client.execute(request);
         }
         if (!response.isSuccess()) { // 不成功，例如说订单不存在
-            return PayResponse.closedOf(response.getSubCode(), response.getSubMsg(),
-                    outTradeNo, response);
+            return PayResponse.closedOf(response.getSubCode(), response.getSubMsg(), outTradeNo, response);
         }
         // 2.2 解析订单的状态
         Integer status = parseStatus(response.getTradeStatus());
-        Assert.notNull(status,  () -> {
+        Assert.notNull(status, () -> {
             throw new IllegalArgumentException(StrUtil.format("body({}) 的 trade_status 不正确", response.getBody()));
         });
-        return PayResponse.of(status, response.getTradeNo(), response.getBuyerUserId(), LocalDateTimeUtil.of(response.getSendPayDate()),
-                outTradeNo, response);
-    }
-
-    private static Integer parseStatus(String tradeStatus) {
-        return Objects.equals("WAIT_BUYER_PAY", tradeStatus) ? PayStatusEnum.WAITING.getStatus()
-                : StringUtils.equalsAny(tradeStatus, "TRADE_FINISHED", "TRADE_SUCCESS") ? PayStatusEnum.SUCCESS.getStatus()
-                : Objects.equals("TRADE_CLOSED", tradeStatus) ? PayStatusEnum.CLOSED.getStatus() : null;
+        return PayResponse.of(status, response.getTradeNo(), response.getBuyerUserId(), LocalDateTimeUtil.of(response.getSendPayDate()), outTradeNo, response);
     }
 
     // ============ 退款相关 ==========
@@ -176,8 +171,7 @@ public abstract class AbstractAlipayPayClient extends AbstractPayClient<AlipayPa
         // 2.2 创建返回结果
         // 支付宝只要退款调用返回 success，就认为退款成功，不需要回调。具体可见 parseNotify 方法的说明。
         // 另外，支付宝没有退款单号，所以不用设置
-        return RefundResponse.successOf(null, LocalDateTimeUtil.of(response.getGmtRefundPay()),
-                refundOrder.getRufundOrderNo(), response);
+        return RefundResponse.successOf(null, LocalDateTimeUtil.of(response.getGmtRefundPay()), refundOrder.getRufundOrderNo(), response);
     }
 
     @Override
@@ -191,7 +185,7 @@ public abstract class AbstractAlipayPayClient extends AbstractPayClient<AlipayPa
     }
 
     @Override
-    protected RefundResponse doGetRefund(String outTradeNo, String outRefundNo) throws AlipayApiException {
+    protected RefundResponse doGetRefundOrder(String outTradeNo, String outRefundNo) throws AlipayApiException {
         // 1.1 构建 AlipayTradeFastpayRefundQueryModel 请求
         AlipayTradeFastpayRefundQueryModel model = new AlipayTradeFastpayRefundQueryModel();
         model.setOutTradeNo(outTradeNo);
@@ -218,8 +212,7 @@ public abstract class AbstractAlipayPayClient extends AbstractPayClient<AlipayPa
         }
         // 2.2 创建返回结果
         if (Objects.equals(response.getRefundStatus(), "REFUND_SUCCESS")) {
-            return RefundResponse.successOf(null, LocalDateTimeUtil.of(response.getGmtRefundPay()),
-                    outRefundNo, response);
+            return RefundResponse.successOf(null, LocalDateTimeUtil.of(response.getGmtRefundPay()), outRefundNo, response);
         }
         return RefundResponse.waitingOf(null, outRefundNo, response);
     }
@@ -270,11 +263,9 @@ public abstract class AbstractAlipayPayClient extends AbstractPayClient<AlipayPa
                     if (StringUtils.equalsAny(response.getSubCode(), "SYSTEM_ERROR", "ACQ.SYSTEM_ERROR")) {
                         return TransferResponse.waitingOf(null, transferOrder.getTransferOrderNo(), response);
                     }
-                    return TransferResponse.closedOf(response.getSubCode(), response.getSubMsg(),
-                            transferOrder.getTransferOrderNo(), response);
+                    return TransferResponse.closedOf(response.getSubCode(), response.getSubMsg(), transferOrder.getTransferOrderNo(), response);
                 }
-                return TransferResponse.successOf(response.getOrderId(), parseTime(response.getTransDate()),
-                        response.getOutBizNo(), response);
+                return TransferResponse.successOf(response.getOrderId(), parseTime(response.getTransDate()), response.getOutBizNo(), response);
             }
             case BANK_CARD: {
                 Participant payeeInfo = new Participant();

@@ -26,6 +26,7 @@
         <module>meteor-common-test</module>
         <module>meteor-common-mq</module>
         <module>meteor-common-event</module>
+        <module>meteor-common-export</module>
     </modules>
 
     <properties>

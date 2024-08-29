@@ -45,8 +45,8 @@ public class DefaultDomainEventBus implements DomainEventBus {
         DomainEventType eventType = event.getEventType();
         log.info("publish event: {}", eventType);
         // 先执行内部订阅处理
-        CopyOnWriteArraySet<DomainEventSubscriber> enevntSubsceibers = subscribers.getOrDefault(eventType, new CopyOnWriteArraySet<>());
-        enevntSubsceibers.stream()
+        CopyOnWriteArraySet<DomainEventSubscriber> eventSubscribers = subscribers.getOrDefault(eventType, new CopyOnWriteArraySet<>());
+        eventSubscribers.stream()
                 .sorted(Comparator.comparingInt(DomainEventSubscriber::order))
                 .forEach(subscriber -> subscriber.onEvent(event));
         // 处理消息订阅

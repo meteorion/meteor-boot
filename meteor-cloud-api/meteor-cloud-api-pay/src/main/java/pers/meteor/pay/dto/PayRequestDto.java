@@ -14,7 +14,7 @@ public class PayRequestDto implements Serializable {
     /**
      * 支付客户端id
      */
-    private String payClientId;
+    private Long payClientId;
     /**
      * 用户ip
      */

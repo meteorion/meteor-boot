@@ -147,7 +147,7 @@ public abstract class AbstractAlipayPayClient extends AbstractPayClient<AlipayPa
         // 1.1 构建 AlipayTradeRefundModel 请求
         AlipayTradeRefundModel model = new AlipayTradeRefundModel();
         model.setOutTradeNo(refundOrder.getPayOrderNo());
-        model.setOutRequestNo(refundOrder.getRufundOrderNo());
+        model.setOutRequestNo(refundOrder.getRefundOrderNo());
         model.setRefundAmount(formatAmount(refundOrder.getRefundPrice()));
         model.setRefundReason(refundOrder.getReason());
         // 1.2 构建 AlipayTradePayRequest 请求
@@ -164,14 +164,14 @@ public abstract class AbstractAlipayPayClient extends AbstractPayClient<AlipayPa
         if (!response.isSuccess()) {
             // 当出现 ACQ.SYSTEM_ERROR, 退款可能成功也可能失败。 返回 WAIT 状态. 后续 job 会轮询
             if (StringUtils.equalsAny(response.getSubCode(), "ACQ.SYSTEM_ERROR", "SYSTEM_ERROR")) {
-                return RefundResponse.waitingOf(null, refundOrder.getRufundOrderNo(), response);
+                return RefundResponse.waitingOf(null, refundOrder.getRefundOrderNo(), response);
             }
-            return RefundResponse.failureOf(response.getSubCode(), response.getSubMsg(), refundOrder.getRufundOrderNo(), response);
+            return RefundResponse.failureOf(response.getSubCode(), response.getSubMsg(), refundOrder.getRefundOrderNo(), response);
         }
         // 2.2 创建返回结果
         // 支付宝只要退款调用返回 success，就认为退款成功，不需要回调。具体可见 parseNotify 方法的说明。
         // 另外，支付宝没有退款单号，所以不用设置
-        return RefundResponse.successOf(null, LocalDateTimeUtil.of(response.getGmtRefundPay()), refundOrder.getRufundOrderNo(), response);
+        return RefundResponse.successOf(null, LocalDateTimeUtil.of(response.getGmtRefundPay()), refundOrder.getRefundOrderNo(), response);
     }
 
     @Override

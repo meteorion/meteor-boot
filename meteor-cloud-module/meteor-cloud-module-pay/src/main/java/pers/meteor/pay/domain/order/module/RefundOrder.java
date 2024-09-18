@@ -18,7 +18,7 @@ public class RefundOrder {
     /**
      * 退款单号
      */
-    private String rufundOrderNo;
+    private String refundOrderNo;
     /**
      * 退款状态
      */

@@ -31,7 +31,7 @@ spring:
           driver-class-name: com.mysql.cj.jdbc.Driver
           url: jdbc:mysql://127.0.0.1:3306/meteor-cloud-v2?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
           username: root
-          password: YcPmzbEELsIPT9d
+          password: yl2vXBS%FjGoSfby
           # 从库数据源
           # slave:
           # username:

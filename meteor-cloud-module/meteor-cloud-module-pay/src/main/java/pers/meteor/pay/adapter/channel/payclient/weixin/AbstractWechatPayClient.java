@@ -273,29 +273,29 @@ public abstract class AbstractWechatPayClient extends AbstractPayClient<WechatPa
 
     private RefundResponse doUnifiedRefundV2(RefundOrder refundOrder) throws Throwable {
         // 1. 构建 WxPayRefundRequest 请求
-        WxPayRefundRequest request = new WxPayRefundRequest().setOutTradeNo(refundOrder.getPayOrderNo()).setOutRefundNo(refundOrder.getRufundOrderNo()).setRefundFee(refundOrder.getRefundPrice()).setRefundDesc(refundOrder.getReason()).setTotalFee(refundOrder.getPayPrice()).setNotifyUrl(refundOrder.getNotifyUrl());
+        WxPayRefundRequest request = new WxPayRefundRequest().setOutTradeNo(refundOrder.getPayOrderNo()).setOutRefundNo(refundOrder.getRefundOrderNo()).setRefundFee(refundOrder.getRefundPrice()).setRefundDesc(refundOrder.getReason()).setTotalFee(refundOrder.getPayPrice()).setNotifyUrl(refundOrder.getNotifyUrl());
         // 2.1 执行请求
         WxPayRefundResult response = wxPayService.refundV2(request);
         // 2.2 创建返回结果
         if (Objects.equals("SUCCESS", response.getResultCode())) { // V2 情况下，不直接返回退款成功，而是等待异步通知
-            return RefundResponse.waitingOf(response.getRefundId(), refundOrder.getRufundOrderNo(), response);
+            return RefundResponse.waitingOf(response.getRefundId(), refundOrder.getRefundOrderNo(), response);
         }
-        return RefundResponse.failureOf(refundOrder.getRufundOrderNo(), response);
+        return RefundResponse.failureOf(refundOrder.getRefundOrderNo(), response);
     }
 
     private RefundResponse doUnifiedRefundV3(RefundOrder refundOrder) throws Throwable {
         // 1. 构建 WxPayRefundRequest 请求
-        WxPayRefundV3Request request = new WxPayRefundV3Request().setOutTradeNo(refundOrder.getPayOrderNo()).setOutRefundNo(refundOrder.getRufundOrderNo()).setAmount(new WxPayRefundV3Request.Amount().setRefund(refundOrder.getRefundPrice()).setTotal(refundOrder.getPayPrice()).setCurrency("CNY")).setReason(refundOrder.getReason()).setNotifyUrl(refundOrder.getNotifyUrl());
+        WxPayRefundV3Request request = new WxPayRefundV3Request().setOutTradeNo(refundOrder.getPayOrderNo()).setOutRefundNo(refundOrder.getRefundOrderNo()).setAmount(new WxPayRefundV3Request.Amount().setRefund(refundOrder.getRefundPrice()).setTotal(refundOrder.getPayPrice()).setCurrency("CNY")).setReason(refundOrder.getReason()).setNotifyUrl(refundOrder.getNotifyUrl());
         // 2.1 执行请求
         WxPayRefundV3Result response = wxPayService.refundV3(request);
         // 2.2 创建返回结果
         if (Objects.equals("SUCCESS", response.getStatus())) {
-            return RefundResponse.successOf(response.getRefundId(), parseDateV3(response.getSuccessTime()), refundOrder.getRufundOrderNo(), response);
+            return RefundResponse.successOf(response.getRefundId(), parseDateV3(response.getSuccessTime()), refundOrder.getRefundOrderNo(), response);
         }
         if (Objects.equals("PROCESSING", response.getStatus())) {
-            return RefundResponse.waitingOf(response.getRefundId(), refundOrder.getRufundOrderNo(), response);
+            return RefundResponse.waitingOf(response.getRefundId(), refundOrder.getRefundOrderNo(), response);
         }
-        return RefundResponse.failureOf(refundOrder.getRufundOrderNo(), response);
+        return RefundResponse.failureOf(refundOrder.getRefundOrderNo(), response);
     }
 
     // ========== 各种工具方法 ==========

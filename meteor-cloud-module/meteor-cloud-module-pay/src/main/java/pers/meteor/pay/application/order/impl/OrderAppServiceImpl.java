@@ -8,9 +8,10 @@ import pers.meteor.pay.application.channel.PayClient;
 import pers.meteor.pay.application.channel.PayClientFactory;
 import pers.meteor.pay.application.order.OrderAppService;
 import pers.meteor.pay.application.order.assembler.OrderAssembler;
+import pers.meteor.pay.application.order.event.publisher.PayOrderEventPublisher;
 import pers.meteor.pay.domain.order.module.PayOrder;
 import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
-import pers.meteor.pay.domain.order.service.OrderService;
+import pers.meteor.pay.domain.order.service.PayOrderService;
 import pers.meteor.pay.dto.PayRequestDto;
 
 /**
@@ -22,24 +23,23 @@ import pers.meteor.pay.dto.PayRequestDto;
 public class OrderAppServiceImpl implements OrderAppService {
     private final static OrderAssembler ORDER_ASSEMBLER = OrderAssembler.INSTANCE;
 
-    private final OrderService orderService;
+    private final PayOrderService payOrderService;
     private final PayClientFactory payClientFactory;
+    private final PayOrderEventPublisher payOrderEventPublisher;
 
-    /**
-     * 创建订单
-     *
-     * @return /
-     */
+    @Override
     public PayResponse createOrder(PayRequestDto payRequest) {
         // 获取支付通道
         PayClient payClient = checkAndGetPayClient(payRequest.getPayClientId());
         // 创建支付订单
         PayOrder payOrder = ORDER_ASSEMBLER.toPayOrder(payRequest);
-        payOrder = orderService.createOrder(payOrder);
+        payOrder = payOrderService.createOrder(payOrder);
         // 通道下单
         PayResponse payResponse = payClient.unifiedOrder(payOrder);
         // 修改订单状态
-        orderService.updateOrderStatus(payOrder.getOrderNo(), payResponse.getPayStatus());
+        payOrderService.updateOrderStatus(payOrder.getOrderNo(), payResponse.getPayStatus());
+        // 发布订单事件
+        payOrderEventPublisher.payOrderCreated(payOrder);
         return payResponse;
     }
 

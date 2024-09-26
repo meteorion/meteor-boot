@@ -6,7 +6,7 @@ import pers.meteor.pay.domain.order.module.enums.PayStatusEnum;
 /**
  * @author meteor
  */
-public interface OrderService {
+public interface PayOrderService {
     /**
      * 创建订单
      *

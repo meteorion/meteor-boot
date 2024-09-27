@@ -13,7 +13,7 @@ public interface OrderAssembler extends BaseOrderAssembler {
     OrderAssembler INSTANCE = Mappers.getMapper(OrderAssembler.class);
 
     default PayOrder toPayOrder(PayRequestDto payRequestDto) {
-
+        PayOrder payOrder = new PayOrder();
 
         return new PayOrder();
     }

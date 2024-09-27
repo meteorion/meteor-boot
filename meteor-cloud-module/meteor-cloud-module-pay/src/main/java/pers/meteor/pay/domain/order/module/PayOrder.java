@@ -28,6 +28,10 @@ public class PayOrder {
      */
     private String merchantOrderNo;
     /**
+     * 交易通道ID
+     */
+    private Long tradeChannelId;
+    /**
      * 订单状态
      */
     private PayStatusEnum payStatus;

@@ -3,8 +3,8 @@ package pers.meteor.pay.domain.channel.module.enums;
 import cn.hutool.core.util.ArrayUtil;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import pers.meteor.pay.domain.channel.module.PayClientConfig;
-import pers.meteor.pay.domain.channel.module.valueobject.NonePayClientConfig;
+import pers.meteor.pay.domain.channel.module.PayClient;
+import pers.meteor.pay.domain.channel.module.valueobject.NonePayClient;
 
 /**
  * 支付通道类型
@@ -14,9 +14,9 @@ import pers.meteor.pay.domain.channel.module.valueobject.NonePayClientConfig;
 @Getter
 @RequiredArgsConstructor
 public enum PayChannelEnum {
-    MOCK("mock", "模拟支付", NonePayClientConfig.class),
+    MOCK("mock", "模拟支付", NonePayClient.class),
 
-    WALLET("wallet", "钱包支付", NonePayClientConfig.class);
+    WALLET("wallet", "钱包支付", NonePayClient.class);
 
     /**
      * 编码
@@ -31,7 +31,7 @@ public enum PayChannelEnum {
     /**
      * 配置类
      */
-    private final Class<? extends PayClientConfig> configClass;
+    private final Class<? extends PayClient> configClass;
 
     /**
      * 微信支付

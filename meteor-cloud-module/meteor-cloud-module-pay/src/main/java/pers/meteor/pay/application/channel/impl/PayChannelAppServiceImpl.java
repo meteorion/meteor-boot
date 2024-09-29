@@ -4,13 +4,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pers.meteor.pay.application.channel.PayChannelAppService;
-import pers.meteor.pay.application.channel.asselmber.PayChannelAssembler;
+import pers.meteor.pay.application.channel.asselmber.PayAppAssembler;
 import pers.meteor.pay.application.channel.event.publisher.ChannelEventPublisher;
-import pers.meteor.pay.domain.channel.module.ChannelConfig;
+import pers.meteor.pay.domain.channel.module.PayApp;
 import pers.meteor.pay.domain.channel.module.PayChannel;
-import pers.meteor.pay.domain.channel.module.PayClientConfig;
-import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
-import pers.meteor.pay.domain.channel.service.PayChannelService;
+import pers.meteor.pay.domain.channel.module.PayClient;
+import pers.meteor.pay.domain.channel.module.valueobject.Rate;
+import pers.meteor.pay.domain.channel.service.PayAppService;
+import pers.meteor.pay.interfaces.channel.web.cmd.ChannelRateUpdateCmd;
+import pers.meteor.pay.interfaces.channel.web.cmd.PayAppCreateCmd;
+import pers.meteor.pay.interfaces.channel.web.cmd.PayAppUpdateCmd;
+import pers.meteor.pay.interfaces.channel.web.cmd.PayChannelCreateCmd;
 import pers.meteor.pay.interfaces.channel.web.vo.*;
 
 /**
@@ -20,62 +24,62 @@ import pers.meteor.pay.interfaces.channel.web.vo.*;
 @Service
 @RequiredArgsConstructor
 public class PayChannelAppServiceImpl implements PayChannelAppService {
-    private final PayChannelAssembler payChannelAssembler = PayChannelAssembler.INSTANCE;
+    private final PayAppAssembler payChannelAssembler = PayAppAssembler.INSTANCE;
 
-    private final PayChannelService payChannelService;
+    private final PayAppService payAppService;
     private final ChannelEventPublisher channelEventPublisher;
 
     @Override
-    public Long createPayChannel(PayChannelCreateReqVO createReqVo) {
-        PayChannel payChannel = payChannelAssembler.toPayChannel(createReqVo);
+    public Long createPayChannel(PayAppCreateCmd appCreateCmd) {
+        PayApp payApp = payChannelAssembler.toPayApp(appCreateCmd);
         // 发布通道创建事件
-        return payChannelService.addPayChannel(payChannel);
+        return payAppService.addPayApp(payApp);
     }
 
     @Override
-    public void updatePayChannel(PayChannelUpdateReqVO updateReqVo) {
-        PayChannel payChannel = payChannelAssembler.toPayChannel(updateReqVo);
-        payChannelService.updatePayChannel(payChannel);
+    public void updatePayChannel(PayAppUpdateCmd appUpdateCmd) {
+        PayApp payApp = payChannelAssembler.toPayApp(appUpdateCmd);
+        payAppService.updatePayApp(payApp);
     }
 
     @Override
-    public Long addPayChannelConfig(PayChannelConfigReqVO createReqVo) {
-        ChannelConfig payChannelConfig = payChannelAssembler.toPayChannelConfig(createReqVo);
-        Long channelConfigId = payChannelService.addChannelConfig(payChannelConfig);
+    public Long addPayChannelConfig(PayChannelCreateCmd channelCreateCmd) {
+        PayChannel payChannel = payChannelAssembler.toPayChannel(channelCreateCmd);
+        Long channelId = payAppService.addPayChannel(payChannel);
         // 发布修改事件
-        channelEventPublisher.channelConfigUpdated(channelConfigId);
-        return channelConfigId;
+        channelEventPublisher.channelConfigUpdated(channelId);
+        return channelId;
     }
 
     @Override
-    public void updatePayChannelConfig(PayChannelConfigReqVO createReqVo) {
-        ChannelConfig payChannelConfig = payChannelAssembler.toPayChannelConfig(createReqVo);
-        payChannelService.updateChannelConfig(payChannelConfig);
+    public void updatePayChannelConfig(PayChannelCreateCmd channelCreateCmd) {
+        PayChannel payChannel = payChannelAssembler.toPayChannel(channelCreateCmd);
+        payAppService.updatePayChannel(payChannel);
         // 发布修改事件
-        channelEventPublisher.channelConfigUpdated(payChannelConfig.getChannelConfigId());
+        channelEventPublisher.channelConfigUpdated(payChannel.getChannelId());
     }
 
     @Override
-    public void updatePayClientConfig(PayClientConfigVO clientConfigVo) {
-        PayClientConfig payChannelClient = payChannelAssembler.toPayChannelClient(clientConfigVo);
-        payChannelService.updateClientConfig(payChannelClient);
+    public void updatePayClientConfig(PayClientRespVO clientCreateCmd) {
+        PayClient payClient = payChannelAssembler.toPayClient(clientCreateCmd);
+        payAppService.updatePayClient(payClient);
         // 发布修改事件
-        channelEventPublisher.channelConfigUpdated(payChannelClient.getPayClientId());
+        channelEventPublisher.channelConfigUpdated(payClient.getClientId());
     }
 
     @Override
-    public void updatePayChannelRate(PayChannelRateReqVO createReqVo) {
-        ChannelRate payChannelRate = payChannelAssembler.toPayChannelRate(createReqVo);
-        payChannelService.updateChannelRate(createReqVo.getPayChannelId(), payChannelRate);
+    public void updatePayChannelRate(ChannelRateUpdateCmd rateUpdateCmd) {
+        Rate channelRate = payChannelAssembler.toPayChannelRate(rateUpdateCmd);
+        payAppService.updateChannelRate(rateUpdateCmd.getPayChannelId(), channelRate);
     }
 
     @Override
-    public void deletePayChannel(Long payChannelId) {
-        payChannelService.delete(payChannelId);
+    public void deletePayChannel(Long appId) {
+        payAppService.deleteApp(appId);
     }
 
     @Override
-    public void deletePayChannelConfig(Long payChannelConfigId) {
-        payChannelService.deleteChannelConfig(payChannelConfigId);
+    public void deletePayChannelConfig(Long channelId) {
+        payAppService.deletePayChannel(channelId);
     }
 }

@@ -32,10 +32,10 @@ import static cn.hutool.core.date.DatePattern.*;
 /**
  * @author meteor
  */
-public abstract class AbstractWechatPayClient extends AbstractPayClient<WechatPayClientConfig> {
+public abstract class AbstractWechatPayClient extends AbstractPayClient<WechatPayClient> {
     protected WxPayService wxPayService;
 
-    public AbstractWechatPayClient(Long channelId, WechatPayClientConfig config) {
+    public AbstractWechatPayClient(Long channelId, WechatPayClient config) {
         super(channelId, config);
     }
 
@@ -114,9 +114,9 @@ public abstract class AbstractWechatPayClient extends AbstractPayClient<WechatPa
         try {
             String apiVersion = config.getApiVersion();
             switch (apiVersion) {
-                case WechatPayClientConfig.API_VERSION_V2:
+                case WechatPayClient.API_VERSION_V2:
                     return doUnifiedOrderV2(payOrder);
-                case WechatPayClientConfig.API_VERSION_V3:
+                case WechatPayClient.API_VERSION_V3:
                     return doUnifiedOrderV3(payOrder);
                 default:
                     throw new IllegalArgumentException("不支持的API版本:" + apiVersion);
@@ -181,9 +181,9 @@ public abstract class AbstractWechatPayClient extends AbstractPayClient<WechatPa
     @Override
     protected PayResponse doParseOrderNotify(String body) throws Throwable {
         switch (config.getApiVersion()) {
-            case WechatPayClientConfig.API_VERSION_V2:
+            case WechatPayClient.API_VERSION_V2:
                 return doParseOrderNotifyV2(body);
-            case WechatPayClientConfig.API_VERSION_V3:
+            case WechatPayClient.API_VERSION_V3:
                 return doParseOrderNotifyV3(body);
             default:
                 throw new IllegalArgumentException(String.format("未知的 API 版本(%s)", config.getApiVersion()));
@@ -213,9 +213,9 @@ public abstract class AbstractWechatPayClient extends AbstractPayClient<WechatPa
     protected PayResponse doGetOrder(String outTradeNo) throws Throwable {
         try {
             switch (config.getApiVersion()) {
-                case WechatPayClientConfig.API_VERSION_V2:
+                case WechatPayClient.API_VERSION_V2:
                     return doGetOrderV2(outTradeNo);
-                case WechatPayClientConfig.API_VERSION_V3:
+                case WechatPayClient.API_VERSION_V3:
                     return doGetOrderV3(outTradeNo);
                 default:
                     throw new IllegalArgumentException(String.format("未知的 API 版本(%s)", config.getApiVersion()));
@@ -257,9 +257,9 @@ public abstract class AbstractWechatPayClient extends AbstractPayClient<WechatPa
     protected RefundResponse doUnifiedRefund(RefundOrder refundOrder) throws Throwable {
         try {
             switch (config.getApiVersion()) {
-                case WechatPayClientConfig.API_VERSION_V2:
+                case WechatPayClient.API_VERSION_V2:
                     return doUnifiedRefundV2(refundOrder);
-                case WechatPayClientConfig.API_VERSION_V3:
+                case WechatPayClient.API_VERSION_V3:
                     return doUnifiedRefundV3(refundOrder);
                 default:
                     throw new IllegalArgumentException(String.format("未知的 API 版本(%s)", config.getApiVersion()));
@@ -303,9 +303,9 @@ public abstract class AbstractWechatPayClient extends AbstractPayClient<WechatPa
     @Override
     protected RefundResponse doParseRefundNotify(String body) throws Throwable {
         switch (config.getApiVersion()) {
-            case WechatPayClientConfig.API_VERSION_V2:
+            case WechatPayClient.API_VERSION_V2:
                 return doParseRefundNotifyV2(body);
-            case WechatPayClientConfig.API_VERSION_V3:
+            case WechatPayClient.API_VERSION_V3:
                 return parseRefundNotifyV3(body);
             default:
                 throw new IllegalArgumentException(String.format("未知的 API 版本(%s)", config.getApiVersion()));
@@ -338,9 +338,9 @@ public abstract class AbstractWechatPayClient extends AbstractPayClient<WechatPa
     protected RefundResponse doGetRefundOrder(String payOrderNo, String refundOrderNo) throws Throwable {
         try {
             switch (config.getApiVersion()) {
-                case WechatPayClientConfig.API_VERSION_V2:
+                case WechatPayClient.API_VERSION_V2:
                     return doGetRefundV2(payOrderNo, refundOrderNo);
-                case WechatPayClientConfig.API_VERSION_V3:
+                case WechatPayClient.API_VERSION_V3:
                     return doGetRefundV3(payOrderNo, refundOrderNo);
                 default:
                     throw new IllegalArgumentException(String.format("未知的 API 版本(%s)", config.getApiVersion()));

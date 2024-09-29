@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WechatLitePayClient extends WechatPubPayClient {
 
-    public WechatLitePayClient(Long channelId, WechatPayClientConfig config) {
+    public WechatLitePayClient(Long channelId, WechatPayClient config) {
         super(channelId, config);
     }
 

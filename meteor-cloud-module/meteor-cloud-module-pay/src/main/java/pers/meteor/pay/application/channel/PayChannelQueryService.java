@@ -1,7 +1,7 @@
 package pers.meteor.pay.application.channel;
 
-import pers.meteor.pay.interfaces.channel.web.vo.PayChannelRespVO;
-import pers.meteor.pay.interfaces.channel.web.vo.PayChannelSimpleRespVO;
+import pers.meteor.pay.interfaces.channel.web.vo.PayAppRespVO;
+import pers.meteor.pay.interfaces.channel.web.vo.PayAppSimpleRespVO;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public interface PayChannelQueryService {
      *
      * @return /
      */
-    List<PayChannelSimpleRespVO> listPayChannel();
+    List<PayAppSimpleRespVO> listPayChannel();
 
     /**
      * 查询支付通道详情
@@ -22,5 +22,5 @@ public interface PayChannelQueryService {
      * @param payChannelId /
      * @return /
      */
-    PayChannelRespVO getPayChannel(Long payChannelId);
+    PayAppRespVO getPayChannel(Long payChannelId);
 }

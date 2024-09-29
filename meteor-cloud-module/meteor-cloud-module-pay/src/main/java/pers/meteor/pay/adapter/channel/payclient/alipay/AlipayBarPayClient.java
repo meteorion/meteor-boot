@@ -16,7 +16,7 @@ import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import static pers.meteor.pay.adapter.channel.payclient.alipay.AlipayPayClientConfig.MODE_CERTIFICATE;
+import static pers.meteor.pay.adapter.channel.payclient.alipay.AlipayPayClient.MODE_CERTIFICATE;
 
 /**
  * 支付宝【条码支付】的 PayClient 实现类
@@ -27,7 +27,7 @@ import static pers.meteor.pay.adapter.channel.payclient.alipay.AlipayPayClientCo
 @Slf4j
 public class AlipayBarPayClient extends AbstractAlipayPayClient {
 
-    public AlipayBarPayClient(Long channelId, AlipayPayClientConfig config) {
+    public AlipayBarPayClient(Long channelId, AlipayPayClient config) {
         super(channelId, config);
     }
 

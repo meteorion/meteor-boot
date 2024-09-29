@@ -1,27 +1,84 @@
 package pers.meteor.pay.interfaces.channel.web.vo;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.math.BigDecimal;
+import java.time.LocalTime;
 
 /**
  * @author meteor
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class PayChannelRespVO extends PayChannelBaseVO {
+public class PayChannelRespVO {
+    /**
+     * 配置id
+     */
+    private Long channelId;
     /**
      * 通道id
      */
-    private Long payChannelId;
+    private Long appId;
     /**
-     * 创建时间
+     * 支付通道类型，{@link  pers.meteor.pay.domain.channel.module.enums.PayChannelEnum}
      */
-    private LocalDateTime createTime;
+    private String channelType;
     /**
-     * 通道配置
+     * 通道状态
      */
-    private List<PayChannelConfigRespVO> configs;
+    private Integer status;
+
+    /**
+     * 成本费率（我方）
+     */
+    private BigDecimal costRate;
+    /**
+     * 成本手续费（我方）
+     */
+    private int costFee;
+    /**
+     * 最大费率(通道)
+     */
+    private BigDecimal maxRate;
+    /**
+     * 最低费率(通道)
+     */
+    private BigDecimal minRate;
+    /**
+     * 最大手续费(通道)
+     */
+    private int maxFee;
+    /**
+     * 最低手续费(通道)
+     */
+    private int minFee;
+
+    /**
+     * 日订单限额
+     */
+    private int dailyOrderLimit;
+    /**
+     * 日限额
+     */
+    private int dailyLimit;
+    /**
+     * 单笔最低金额
+     */
+    private int singleMinLimit;
+    /**
+     * 单笔最大限额
+     */
+    private int singleMaxLimit;
+
+    /**
+     * 开始时间
+     */
+    private LocalTime startTime;
+    /**
+     * 截止时间
+     */
+    private LocalTime endTime;
+    /**
+     * 客户端配置
+     */
+    private PayClientRespVO payClient;
 }

@@ -1,5 +1,9 @@
 package pers.meteor.pay.application.channel;
 
+import pers.meteor.pay.interfaces.channel.web.cmd.PayAppCreateCmd;
+import pers.meteor.pay.interfaces.channel.web.cmd.PayAppUpdateCmd;
+import pers.meteor.pay.interfaces.channel.web.cmd.ChannelRateUpdateCmd;
+import pers.meteor.pay.interfaces.channel.web.cmd.PayChannelCreateCmd;
 import pers.meteor.pay.interfaces.channel.web.vo.*;
 
 /**
@@ -12,42 +16,42 @@ public interface PayChannelAppService {
      * @param createReqVo /
      * @return /
      */
-    Long createPayChannel(PayChannelCreateReqVO createReqVo);
+    Long createPayChannel(PayAppCreateCmd createReqVo);
 
     /**
      * 更新支付通道
      *
      * @param updateReqVo /
      */
-    void updatePayChannel(PayChannelUpdateReqVO updateReqVo);
+    void updatePayChannel(PayAppUpdateCmd updateReqVo);
 
     /**
      * 添加支付通道配置
      *
      * @param createReqVo /
      */
-    Long addPayChannelConfig(PayChannelConfigReqVO createReqVo);
+    Long addPayChannelConfig(PayChannelCreateCmd createReqVo);
 
     /**
      * 更新支付通道配置
      *
      * @param createReqVo /
      */
-    void updatePayChannelConfig(PayChannelConfigReqVO createReqVo);
+    void updatePayChannelConfig(PayChannelCreateCmd createReqVo);
 
     /**
      * 更新支付通道配置
      *
      * @param clientConfigVo /
      */
-    void updatePayClientConfig(PayClientConfigVO clientConfigVo);
+    void updatePayClientConfig(PayClientRespVO clientConfigVo);
 
     /**
      * 更新支付通道费率
      *
      * @param createReqVo /
      */
-    void updatePayChannelRate(PayChannelRateReqVO createReqVo);
+    void updatePayChannelRate(ChannelRateUpdateCmd createReqVo);
 
     /**
      * 删除支付通道

@@ -2,7 +2,7 @@ package pers.meteor.pay.adapter;
 
 import org.springframework.stereotype.Service;
 import pers.meteor.pay.domain.channel.acl.RemotePayConfigAdapter;
-import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
+import pers.meteor.pay.domain.channel.module.valueobject.Rate;
 import pers.meteor.pay.domain.channel.module.valueobject.SystemChannelConfig;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class RemoteConfigAdapterImpl implements RemotePayConfigAdapter {
     }
 
     @Override
-    public List<ChannelRate> getDefaultRates() {
+    public List<Rate> getDefaultRates() {
         return new ArrayList<>();
     }
 }

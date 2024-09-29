@@ -16,7 +16,7 @@ import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
  */
 public class WechatNativePayClient extends AbstractWechatPayClient {
 
-    public WechatNativePayClient(Long channelId, WechatPayClientConfig config) {
+    public WechatNativePayClient(Long channelId, WechatPayClient config) {
         super(channelId, config);
     }
 

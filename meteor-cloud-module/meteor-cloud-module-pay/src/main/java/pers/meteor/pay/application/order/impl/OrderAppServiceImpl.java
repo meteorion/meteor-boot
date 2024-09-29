@@ -11,10 +11,12 @@ import pers.meteor.pay.application.order.PrePaymentHandlerFactory;
 import pers.meteor.pay.application.order.RiskControlAppService;
 import pers.meteor.pay.application.order.assembler.OrderAssembler;
 import pers.meteor.pay.application.order.event.publisher.PayOrderEventPublisher;
+import pers.meteor.pay.cmd.PayOrderCreateCmd;
+import pers.meteor.pay.cmd.PayOrderSubmitCmd;
 import pers.meteor.pay.domain.order.module.PayOrder;
 import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
 import pers.meteor.pay.domain.order.service.PayOrderService;
-import pers.meteor.pay.dto.PayRequestDto;
+import pers.meteor.pay.interfaces.channel.web.vo.PayAppRespVO;
 
 /**
  * @author meteor
@@ -31,8 +33,19 @@ public class OrderAppServiceImpl implements OrderAppService {
     private final RiskControlAppService riskControlAppService;
     private final PayOrderEventPublisher payOrderEventPublisher;
 
+    /**
+     * 创建支付订单
+     *
+     * @param payOrderCreateCmd /
+     * @return /
+     */
+    public String createOrder(PayOrderCreateCmd payOrderCreateCmd) {
+
+        return "";
+    }
+
     @Override
-    public PayResponse createOrder(PayRequestDto payRequest) {
+    public PayResponse submitOrder(PayOrderSubmitCmd payRequest) {
         // 获取支付通道
         PayClient payClient = checkAndGetPayClient(payRequest.getPayClientId());
 
@@ -57,6 +70,10 @@ public class OrderAppServiceImpl implements OrderAppService {
         // 发布订单事件
         payOrderEventPublisher.payOrderCreated(payOrder);
         return payResponse;
+    }
+
+    private PayAppRespVO checkAndPayChannel(String appId) {
+
     }
 
     private PayClient checkAndGetPayClient(Long payClientId) {

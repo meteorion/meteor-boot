@@ -1,6 +1,5 @@
 package pers.meteor.pay.application.channel;
 
-import pers.meteor.pay.domain.channel.module.PayClientConfig;
 import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
 
 /**
@@ -13,14 +12,14 @@ public interface PayClientFactory {
      * @param channelId 渠道编号
      * @return 支付客户端
      */
-    PayClient getPayClient(Long channelId);
+    pers.meteor.pay.application.channel.PayClient getPayClient(Long channelId);
 
     /**
      * 创建支付客户端
      *
      * @param config 支付配置
      */
-    <Config extends PayClientConfig> void createOrUpdatePayClient(Config config);
+    <Config extends pers.meteor.pay.domain.channel.module.PayClient> void createOrUpdatePayClient(Config config);
 
     /**
      * 注册支付客户端 Class，用于模块中实现的 PayClient

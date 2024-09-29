@@ -33,7 +33,7 @@ public class WechatBarPayClient extends AbstractWechatPayClient {
      */
     private static final Duration AUTH_CODE_EXPIRE = Duration.ofMinutes(3);
 
-    public WechatBarPayClient(Long channelId, WechatPayClientConfig config) {
+    public WechatBarPayClient(Long channelId, WechatPayClient config) {
         super(channelId, config);
     }
 

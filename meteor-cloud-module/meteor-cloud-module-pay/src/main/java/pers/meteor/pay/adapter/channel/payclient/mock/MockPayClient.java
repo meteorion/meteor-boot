@@ -2,24 +2,21 @@ package pers.meteor.pay.adapter.channel.payclient.mock;
 
 import lombok.extern.slf4j.Slf4j;
 import pers.meteor.pay.application.channel.impl.AbstractPayClient;
-import pers.meteor.pay.domain.channel.module.valueobject.NonePayClientConfig;
+import pers.meteor.pay.domain.channel.module.valueobject.NonePayClient;
 import pers.meteor.pay.domain.order.module.PayOrder;
 import pers.meteor.pay.domain.order.module.RefundOrder;
 import pers.meteor.pay.domain.order.module.TransferOrder;
 import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
 import pers.meteor.pay.domain.order.module.valueobject.RefundResponse;
 import pers.meteor.pay.domain.order.module.valueobject.TransferResponse;
-import pers.meteor.pay.dto.*;
-
-import java.util.Map;
 
 /**
  * @author meteor
  */
 @Slf4j
-public class MockPayClient extends AbstractPayClient<NonePayClientConfig> {
+public class MockPayClient extends AbstractPayClient<NonePayClient> {
 
-    public MockPayClient(Long channelId, NonePayClientConfig config) {
+    public MockPayClient(Long channelId, NonePayClient config) {
         super(channelId, config);
     }
 

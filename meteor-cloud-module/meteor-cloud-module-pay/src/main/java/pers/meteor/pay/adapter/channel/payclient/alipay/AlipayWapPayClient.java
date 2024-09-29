@@ -20,7 +20,7 @@ import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
 @Slf4j
 public class AlipayWapPayClient extends AbstractAlipayPayClient {
 
-    public AlipayWapPayClient(Long channelId, AlipayPayClientConfig config) {
+    public AlipayWapPayClient(Long channelId, AlipayPayClient config) {
         super(channelId, config);
     }
 

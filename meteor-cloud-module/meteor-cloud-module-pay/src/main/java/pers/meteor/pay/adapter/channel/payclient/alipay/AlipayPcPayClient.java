@@ -23,7 +23,7 @@ import java.util.Objects;
 @Slf4j
 public class AlipayPcPayClient extends AbstractAlipayPayClient {
 
-    public AlipayPcPayClient(Long channelId, AlipayPayClientConfig config) {
+    public AlipayPcPayClient(Long channelId, AlipayPayClient config) {
         super(channelId, config);
     }
 

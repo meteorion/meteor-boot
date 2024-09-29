@@ -6,6 +6,10 @@ import pers.meteor.common.core.pojo.response.MultiResponse;
 import pers.meteor.common.core.pojo.response.SingleResponse;
 import pers.meteor.pay.application.channel.PayChannelAppService;
 import pers.meteor.pay.application.channel.PayChannelQueryService;
+import pers.meteor.pay.interfaces.channel.web.cmd.ChannelRateUpdateCmd;
+import pers.meteor.pay.interfaces.channel.web.cmd.PayAppCreateCmd;
+import pers.meteor.pay.interfaces.channel.web.cmd.PayAppUpdateCmd;
+import pers.meteor.pay.interfaces.channel.web.cmd.PayChannelCreateCmd;
 import pers.meteor.pay.interfaces.channel.web.vo.*;
 
 import javax.validation.Valid;
@@ -22,37 +26,37 @@ public class PayChannelController {
     private final PayChannelAppService payChannelAppService;
 
     @PostMapping("/create")
-    public SingleResponse<Long> createPayChannel(@Valid @RequestBody PayChannelCreateReqVO createReqVo) {
+    public SingleResponse<Long> createPayChannel(@Valid @RequestBody PayAppCreateCmd createReqVo) {
         Long payChannelId = payChannelAppService.createPayChannel(createReqVo);
         return SingleResponse.success(payChannelId);
     }
 
     @PutMapping("/update")
-    public SingleResponse<Boolean> updatePayChannel(@Valid @RequestBody PayChannelUpdateReqVO updateReqVo) {
+    public SingleResponse<Boolean> updatePayChannel(@Valid @RequestBody PayAppUpdateCmd updateReqVo) {
         payChannelAppService.updatePayChannel(updateReqVo);
         return SingleResponse.success(true);
     }
 
     @PostMapping("/config/add")
-    public SingleResponse<Long> addPayChannelConfig(@Valid @RequestBody PayChannelConfigReqVO configReqVo) {
+    public SingleResponse<Long> addPayChannelConfig(@Valid @RequestBody PayChannelCreateCmd configReqVo) {
         Long channelConfigId = payChannelAppService.addPayChannelConfig(configReqVo);
         return SingleResponse.success(channelConfigId);
     }
 
     @PutMapping("/config/update")
-    public SingleResponse<Boolean> updatePayChannelConfig(@Valid @RequestBody PayChannelConfigReqVO configReqVo) {
+    public SingleResponse<Boolean> updatePayChannelConfig(@Valid @RequestBody PayChannelCreateCmd configReqVo) {
         payChannelAppService.updatePayChannelConfig(configReqVo);
         return SingleResponse.success(true);
     }
 
     @PutMapping("/client/update")
-    public SingleResponse<Boolean> updatePayClientConfig(@Valid @RequestBody PayClientConfigVO configReqVo) {
+    public SingleResponse<Boolean> updatePayClientConfig(@Valid @RequestBody PayClientRespVO configReqVo) {
         payChannelAppService.updatePayClientConfig(configReqVo);
         return SingleResponse.success(true);
     }
 
     @PutMapping("/rate/update")
-    public SingleResponse<Boolean> updatePayChannelRate(@Valid @RequestBody PayChannelRateReqVO rateReqVo) {
+    public SingleResponse<Boolean> updatePayChannelRate(@Valid @RequestBody ChannelRateUpdateCmd rateReqVo) {
         payChannelAppService.updatePayChannelRate(rateReqVo);
         return SingleResponse.success(true);
     }
@@ -70,14 +74,14 @@ public class PayChannelController {
     }
 
     @GetMapping("/get")
-    public SingleResponse<PayChannelRespVO> getPayChannel(@RequestParam("id") Long id) {
-        PayChannelRespVO payChannel = payChannelQueryService.getPayChannel(id);
+    public SingleResponse<PayAppRespVO> getPayChannel(@RequestParam("id") Long id) {
+        PayAppRespVO payChannel = payChannelQueryService.getPayChannel(id);
         return SingleResponse.success(payChannel);
     }
 
     @GetMapping("/list")
-    public MultiResponse<PayChannelSimpleRespVO> getPayChannelList() {
-        List<PayChannelSimpleRespVO> payChannels = payChannelQueryService.listPayChannel();
+    public MultiResponse<PayAppSimpleRespVO> getPayChannelList() {
+        List<PayAppSimpleRespVO> payChannels = payChannelQueryService.listPayChannel();
         return MultiResponse.success(payChannels);
     }
 }

@@ -12,7 +12,7 @@ import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
 
 import java.util.Objects;
 
-import static pers.meteor.pay.adapter.channel.payclient.alipay.AlipayPayClientConfig.MODE_CERTIFICATE;
+import static pers.meteor.pay.adapter.channel.payclient.alipay.AlipayPayClient.MODE_CERTIFICATE;
 
 
 /**
@@ -24,7 +24,7 @@ import static pers.meteor.pay.adapter.channel.payclient.alipay.AlipayPayClientCo
 @Slf4j
 public class AlipayQrPayClient extends AbstractAlipayPayClient {
 
-    public AlipayQrPayClient(Long channelId, AlipayPayClientConfig config) {
+    public AlipayQrPayClient(Long channelId, AlipayPayClient config) {
         super(channelId, config);
     }
 

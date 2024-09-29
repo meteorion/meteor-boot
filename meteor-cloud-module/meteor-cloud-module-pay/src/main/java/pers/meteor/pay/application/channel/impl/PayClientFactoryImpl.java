@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 import pers.meteor.common.core.exception.ServiceException;
 import pers.meteor.pay.adapter.channel.payclient.mock.MockPayClient;
-import pers.meteor.pay.domain.channel.module.PayClientConfig;
-import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
-import pers.meteor.pay.application.channel.PayClient;
 import pers.meteor.pay.application.channel.PayClientFactory;
+import pers.meteor.pay.domain.channel.module.PayClient;
+import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
 
 import java.lang.reflect.Constructor;
 import java.util.Map;
@@ -48,7 +47,7 @@ public class PayClientFactoryImpl implements PayClientFactory {
     }
 
     @Override
-    public PayClient getPayClient(Long channelId) {
+    public pers.meteor.pay.application.channel.PayClient getPayClient(Long channelId) {
         AbstractPayClient<?> client = clients.get(channelId);
         if (client == null) {
             log.error("[pay-client-factory][渠道编号({}) 找不到客户端]", channelId);
@@ -58,8 +57,8 @@ public class PayClientFactoryImpl implements PayClientFactory {
 
     @Override
     @SuppressWarnings("unchecked")
-    public <Config extends PayClientConfig> void createOrUpdatePayClient(Config config) {
-        Long configId = config.getPayClientId();
+    public <Config extends PayClient> void createOrUpdatePayClient(Config config) {
+        Long configId = config.getClientId();
         AbstractPayClient<Config> client = (AbstractPayClient<Config>) clients.get(configId);
         if (client == null) {
             client = this.createPayClient(config);
@@ -71,8 +70,8 @@ public class PayClientFactoryImpl implements PayClientFactory {
     }
 
     @SuppressWarnings("unchecked")
-    private <Config extends PayClientConfig> AbstractPayClient<Config> createPayClient(Config config) {
-        Long channelId = config.getPayClientId();
+    private <Config extends PayClient> AbstractPayClient<Config> createPayClient(Config config) {
+        Long channelId = config.getClientId();
         String channelCode = config.getChannelType().getCode();
         PayChannelEnum channelEnum = PayChannelEnum.getByCode(channelCode);
         Assert.notNull(channelEnum, String.format("支付渠道(%s) 为空", channelCode));

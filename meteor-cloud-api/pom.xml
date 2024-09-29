@@ -27,4 +27,12 @@
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-common-core</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
 </project>

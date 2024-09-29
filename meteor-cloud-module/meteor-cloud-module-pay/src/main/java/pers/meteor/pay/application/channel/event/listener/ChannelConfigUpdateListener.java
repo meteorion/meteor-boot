@@ -10,8 +10,8 @@ import pers.meteor.event.core.subscriber.DomainEventSubscriber;
 import pers.meteor.pay.application.channel.PayClientFactory;
 import pers.meteor.pay.domain.channel.event.ChannelConfigEvent;
 import pers.meteor.pay.domain.channel.event.ChannelConfigEventType;
-import pers.meteor.pay.domain.channel.module.PayClientConfig;
-import pers.meteor.pay.domain.channel.repository.PayChannelRepository;
+import pers.meteor.pay.domain.channel.module.PayClient;
+import pers.meteor.pay.domain.channel.repository.PayAppRepository;
 
 /**
  * @author meteor
@@ -23,13 +23,13 @@ public class ChannelConfigUpdateListener implements DomainEventSubscriber {
     private final DomainEventType eventType  = ChannelConfigEventType.UPDATED;
 
     private final PayClientFactory payClientFactory;
-    private final PayChannelRepository payChannelRepository;
+    private final PayAppRepository payChannelRepository;
 
     @Async
     @Override
     public void onEvent(DomainEvent event) {
         ChannelConfigEvent channelConfigEvent = (ChannelConfigEvent) event;
-        PayClientConfig payClientConfig = payChannelRepository.selectPayClientConfig(channelConfigEvent.getChannelConfigId());
+        PayClient payClientConfig = payChannelRepository.selectPayClient(channelConfigEvent.getChannelConfigId());
         payClientFactory.createOrUpdatePayClient(payClientConfig);
     }
 }

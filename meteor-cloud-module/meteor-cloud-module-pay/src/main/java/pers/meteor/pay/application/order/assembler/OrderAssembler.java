@@ -3,11 +3,11 @@ package pers.meteor.pay.application.order.assembler;
 import org.apache.commons.collections4.MapUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import pers.meteor.pay.cmd.PayOrderSubmitCmd;
 import pers.meteor.pay.domain.order.module.PayOrder;
 import pers.meteor.pay.domain.order.module.valueobject.Fee;
 import pers.meteor.pay.domain.order.module.valueobject.Goods;
 import pers.meteor.pay.domain.order.module.valueobject.Payer;
-import pers.meteor.pay.dto.PayRequestDto;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ import java.util.Optional;
 public interface OrderAssembler extends BaseOrderAssembler {
     OrderAssembler INSTANCE = Mappers.getMapper(OrderAssembler.class);
 
-    default PayOrder toPayOrder(PayRequestDto payRequestDto) {
+    default PayOrder toPayOrder(PayOrderSubmitCmd payRequestDto) {
         Map<String, Object> attachData = Optional.ofNullable(payRequestDto.getAttachData()).orElse(new HashMap<>());
 
         PayOrder payOrder = new PayOrder();

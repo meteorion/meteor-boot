@@ -3,8 +3,7 @@ package pers.meteor.pay.application.channel.impl;
 import lombok.extern.slf4j.Slf4j;
 import pers.meteor.common.core.exception.ServiceException;
 import pers.meteor.common.core.utils.json.JsonUtils;
-import pers.meteor.pay.application.channel.PayClient;
-import pers.meteor.pay.domain.channel.module.PayClientConfig;
+import pers.meteor.pay.domain.channel.module.PayClient;
 import pers.meteor.pay.domain.order.module.PayOrder;
 import pers.meteor.pay.domain.order.module.RefundOrder;
 import pers.meteor.pay.domain.order.module.TransferOrder;
@@ -19,7 +18,7 @@ import pers.meteor.pay.infrastructure.channel.exception.PayException;
  * @author meteor
  */
 @Slf4j
-public abstract class AbstractPayClient<Config extends PayClientConfig> implements PayClient {
+public abstract class AbstractPayClient<Config extends PayClient> implements pers.meteor.pay.application.channel.PayClient {
     /**
      * 通道id
      */

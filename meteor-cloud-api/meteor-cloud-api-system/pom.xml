@@ -15,15 +15,4 @@
     <description>
         meteor-cloud-api-system系统接口模块
     </description>
-
-    <dependencies>
-
-        <!-- RuoYi Common Core-->
-        <dependency>
-            <groupId>pers.meteor</groupId>
-            <artifactId>meteor-common-core</artifactId>
-        </dependency>
-
-    </dependencies>
-
 </project>

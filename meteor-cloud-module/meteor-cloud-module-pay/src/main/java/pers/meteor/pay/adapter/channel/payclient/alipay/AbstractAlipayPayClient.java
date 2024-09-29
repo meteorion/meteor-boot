@@ -45,7 +45,7 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 import static cn.hutool.core.date.DatePattern.NORM_DATETIME_FORMATTER;
-import static pers.meteor.pay.adapter.channel.payclient.alipay.AlipayPayClientConfig.MODE_CERTIFICATE;
+import static pers.meteor.pay.adapter.channel.payclient.alipay.AlipayPayClient.MODE_CERTIFICATE;
 
 /**
  * 支付宝抽象类，实现支付宝统一的接口、以及部分实现（退款）
@@ -54,12 +54,12 @@ import static pers.meteor.pay.adapter.channel.payclient.alipay.AlipayPayClientCo
  */
 @Getter
 @Slf4j
-public abstract class AbstractAlipayPayClient extends AbstractPayClient<AlipayPayClientConfig> {
+public abstract class AbstractAlipayPayClient extends AbstractPayClient<AlipayPayClient> {
 
     // 仅用于单测场景
     protected DefaultAlipayClient client;
 
-    public AbstractAlipayPayClient(Long channelId, AlipayPayClientConfig config) {
+    public AbstractAlipayPayClient(Long channelId, AlipayPayClient config) {
         super(channelId, config);
     }
 

@@ -25,7 +25,7 @@ import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
 @Slf4j
 public class WechatPubPayClient extends AbstractWechatPayClient {
 
-    public WechatPubPayClient(Long channelId, WechatPayClientConfig config) {
+    public WechatPubPayClient(Long channelId, WechatPayClient config) {
         super(channelId, config);
     }
 

@@ -1,6 +1,6 @@
 package pers.meteor.pay.domain.channel.acl;
 
-import pers.meteor.pay.domain.channel.module.valueobject.ChannelRate;
+import pers.meteor.pay.domain.channel.module.valueobject.Rate;
 import pers.meteor.pay.domain.channel.module.valueobject.SystemChannelConfig;
 
 import java.util.List;
@@ -21,5 +21,5 @@ public interface RemotePayConfigAdapter {
      *
      * @return /
      */
-    List<ChannelRate> getDefaultRates();
+    List<Rate> getDefaultRates();
 }

@@ -2,6 +2,7 @@ package pers.meteor.pay.domain.channel.module;
 
 import com.alibaba.fastjson2.JSONObject;
 import lombok.Data;
+import lombok.Getter;
 import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
 
 import javax.validation.Validator;
@@ -33,6 +34,14 @@ public class PayClientConfig {
      * 运用id
      */
     private String appId;
+    /**
+     * 支付订单回调地址
+     */
+    protected String orderNotifyUrl;
+    /**
+     * 退款订单回调地址
+     */
+    protected String refundNotifyUrl;
 
     /**
      * 扩展参数

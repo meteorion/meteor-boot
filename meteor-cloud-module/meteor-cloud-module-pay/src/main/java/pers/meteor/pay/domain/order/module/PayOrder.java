@@ -57,14 +57,6 @@ public class PayOrder {
      */
     private Goods goods;
     /**
-     * 回调地址
-     */
-    private String notifyUrl;
-    /**
-     * 响应地址
-     */
-    private String returnUrl;
-    /**
      * 展示样式
      */
     private DisplayModeEnum displayMode;

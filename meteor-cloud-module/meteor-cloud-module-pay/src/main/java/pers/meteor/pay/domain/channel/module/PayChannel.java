@@ -40,14 +40,6 @@ public class PayChannel {
      * 通道配置
      */
     private EnumMap<PayChannelEnum, ChannelConfig> channelConfigs;
-    /**
-     * 支付订单回调地址
-     */
-    private String orderNotifyUrl;
-    /**
-     * 退款订单回调地址
-     */
-    private String refundNotifyUrl;
 
     public PayChannel() {
         this.status = SwitchStatusEnum.OPEN;

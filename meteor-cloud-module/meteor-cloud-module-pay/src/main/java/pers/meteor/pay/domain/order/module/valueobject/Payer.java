@@ -20,6 +20,10 @@ public class Payer {
      * 支付设备id
      */
     private String deviceId;
+    /**
+     * 门店信息
+     */
+    private Store store;
 
     @Data
     public static class Store {

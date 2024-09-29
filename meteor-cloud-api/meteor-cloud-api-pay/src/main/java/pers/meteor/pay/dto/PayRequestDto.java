@@ -49,6 +49,10 @@ public class PayRequestDto implements Serializable {
      * 手续费
      */
     private Integer fee;
+    /**
+     * 币种
+     */
+    private String currency;
 
     /**
      * 附加数据

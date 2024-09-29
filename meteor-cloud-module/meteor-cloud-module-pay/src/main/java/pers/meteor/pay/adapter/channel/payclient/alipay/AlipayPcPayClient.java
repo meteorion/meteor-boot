@@ -47,8 +47,8 @@ public class AlipayPcPayClient extends AbstractAlipayPayClient {
         // 1.2 构建 AlipayTradePagePayRequest 请求
         AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
         request.setBizModel(model);
-        request.setNotifyUrl(payOrder.getNotifyUrl());
-        request.setReturnUrl(payOrder.getReturnUrl());
+        request.setNotifyUrl(config.getOrderNotifyUrl());
+        request.setReturnUrl(config.getRefundNotifyUrl());
 
         // 2.1 执行请求
         AlipayTradePagePayResponse response;

@@ -40,8 +40,8 @@ public enum PayStatusEnum {
      * @param status 状态
      * @return 是否支付成功
      */
-    public static boolean isSuccess(Integer status) {
-        return Objects.equals(status, SUCCESS.getStatus());
+    public static boolean isSuccess(PayStatusEnum status) {
+        return Objects.equals(status, SUCCESS);
     }
 
     /**
@@ -50,8 +50,8 @@ public enum PayStatusEnum {
      * @param status 状态
      * @return 是否支付成功
      */
-    public static boolean isRefund(Integer status) {
-        return Objects.equals(status, REFUND.getStatus());
+    public static boolean isRefund(PayStatusEnum status) {
+        return Objects.equals(status, REFUND);
     }
 
     /**
@@ -60,7 +60,7 @@ public enum PayStatusEnum {
      * @param status 状态
      * @return 是否支付关闭
      */
-    public static boolean isClosed(Integer status) {
-        return Objects.equals(status, CLOSED.getStatus());
+    public static boolean isClosed(PayStatusEnum status) {
+        return Objects.equals(status, CLOSED);
     }
 }

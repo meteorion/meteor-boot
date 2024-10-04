@@ -13,7 +13,7 @@ public class PayOrderCreateCmd extends Command {
     /**
      * 支付运用
      */
-    private String appId;
+    private Long appId;
     /**
      * 用户ip
      */

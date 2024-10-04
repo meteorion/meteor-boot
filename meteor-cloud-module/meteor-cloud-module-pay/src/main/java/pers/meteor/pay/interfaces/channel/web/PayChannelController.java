@@ -10,7 +10,9 @@ import pers.meteor.pay.interfaces.channel.web.cmd.ChannelRateUpdateCmd;
 import pers.meteor.pay.interfaces.channel.web.cmd.PayAppCreateCmd;
 import pers.meteor.pay.interfaces.channel.web.cmd.PayAppUpdateCmd;
 import pers.meteor.pay.interfaces.channel.web.cmd.PayChannelCreateCmd;
-import pers.meteor.pay.interfaces.channel.web.vo.*;
+import pers.meteor.pay.interfaces.channel.web.vo.PayAppRespVO;
+import pers.meteor.pay.interfaces.channel.web.vo.PayAppSimpleRespVO;
+import pers.meteor.pay.interfaces.channel.web.vo.PayClientRespVO;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -75,13 +77,13 @@ public class PayChannelController {
 
     @GetMapping("/get")
     public SingleResponse<PayAppRespVO> getPayChannel(@RequestParam("id") Long id) {
-        PayAppRespVO payChannel = payChannelQueryService.getPayChannel(id);
+        PayAppRespVO payChannel = payChannelQueryService.getPayApp(id);
         return SingleResponse.success(payChannel);
     }
 
     @GetMapping("/list")
     public MultiResponse<PayAppSimpleRespVO> getPayChannelList() {
-        List<PayAppSimpleRespVO> payChannels = payChannelQueryService.listPayChannel();
+        List<PayAppSimpleRespVO> payChannels = payChannelQueryService.listPayApp();
         return MultiResponse.success(payChannels);
     }
 }

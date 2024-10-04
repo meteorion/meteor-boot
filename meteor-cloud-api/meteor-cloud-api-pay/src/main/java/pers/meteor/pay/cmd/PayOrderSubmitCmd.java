@@ -12,9 +12,9 @@ import java.util.Map;
 @Data
 public class PayOrderSubmitCmd implements Serializable {
     /**
-     * 支付订单号
+     * 订单编号
      */
-    private String payOrderNo;
+    private Long orderId;
 
     /**
      * 支付客户端id

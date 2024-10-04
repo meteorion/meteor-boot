@@ -30,10 +30,6 @@ public class PayClient {
      */
     private String serviceUrl;
     /**
-     * 运用id
-     */
-    private String appId;
-    /**
      * 支付订单回调地址
      */
     protected String orderNotifyUrl;

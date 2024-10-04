@@ -1,6 +1,5 @@
 package pers.meteor.pay.application.channel.asselmber;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -16,13 +15,12 @@ import pers.meteor.pay.interfaces.channel.web.cmd.ChannelRateUpdateCmd;
 import pers.meteor.pay.interfaces.channel.web.cmd.PayAppCreateCmd;
 import pers.meteor.pay.interfaces.channel.web.cmd.PayAppUpdateCmd;
 import pers.meteor.pay.interfaces.channel.web.cmd.PayChannelCreateCmd;
-import pers.meteor.pay.interfaces.channel.web.vo.*;
+import pers.meteor.pay.interfaces.channel.web.vo.PayAppRespVO;
+import pers.meteor.pay.interfaces.channel.web.vo.PayAppSimpleRespVO;
+import pers.meteor.pay.interfaces.channel.web.vo.PayChannelRespVO;
+import pers.meteor.pay.interfaces.channel.web.vo.PayClientRespVO;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * @author meteor
@@ -40,31 +38,6 @@ public interface PayAppAssembler extends BaseAssembler {
     PayChannelRespVO toPayChannelResp(PayChannelPo payChannelPo);
 
     PayClientRespVO toPayClientResp(PayClientPo payClientPo);
-
-    default PayAppRespVO toPayAppResp(PayAppPo payAppPo,
-                                      List<PayChannelPo> payChannelPos,
-                                      List<PayClientPo> payClientPos) {
-        PayAppRespVO payAppResp = toPayAppResp(payAppPo);
-
-        ArrayList<PayChannelRespVO> channelRespVOs = new ArrayList<>();
-
-        if (CollectionUtils.isNotEmpty(payChannelPos)) {
-            Map<String, PayClientRespVO> payClientMap = Optional.ofNullable(payClientPos)
-                    .orElse(new ArrayList<>())
-                    .stream()
-                    .collect(Collectors.toMap(PayClientPo::getChannelType, INSTANCE::toPayClientResp));
-
-            for (PayChannelPo payChannelPo : payChannelPos) {
-                PayChannelRespVO payChannelResp = INSTANCE.toPayChannelResp(payChannelPo);
-                PayClientRespVO payClientRespVO = payClientMap.get(payChannelPo.getChannelType());
-                payChannelResp.setPayClient(payClientRespVO);
-                channelRespVOs.add(payChannelResp);
-            }
-        }
-        payAppResp.setPayChannels(channelRespVOs);
-
-        return payAppResp;
-    }
 
     default PayApp toPayApp(PayAppCreateCmd createReqVo) {
         PayApp payApp = new PayApp();

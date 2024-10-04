@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import pers.meteor.event.core.entity.DomainEvent;
 import pers.meteor.event.core.entity.DomainEventType;
 import pers.meteor.event.core.subscriber.DomainEventSubscriber;
-import pers.meteor.pay.application.channel.PayClientFactory;
+import pers.meteor.pay.application.channel.PayServiceFactory;
 import pers.meteor.pay.domain.channel.event.ChannelConfigEvent;
 import pers.meteor.pay.domain.channel.event.ChannelConfigEventType;
 import pers.meteor.pay.domain.channel.module.PayClient;
@@ -22,7 +22,7 @@ import pers.meteor.pay.domain.channel.repository.PayAppRepository;
 public class ChannelConfigUpdateListener implements DomainEventSubscriber {
     private final DomainEventType eventType  = ChannelConfigEventType.UPDATED;
 
-    private final PayClientFactory payClientFactory;
+    private final PayServiceFactory payClientFactory;
     private final PayAppRepository payChannelRepository;
 
     @Async

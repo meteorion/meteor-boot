@@ -14,13 +14,21 @@ public interface PayChannelQueryService {
      *
      * @return /
      */
-    List<PayAppSimpleRespVO> listPayChannel();
+    List<PayAppSimpleRespVO> listPayApp();
 
     /**
      * 查询支付通道详情
      *
-     * @param payChannelId /
+     * @param appId /
      * @return /
      */
-    PayAppRespVO getPayChannel(Long payChannelId);
+    PayAppRespVO getPayApp(Long appId);
+
+    /**
+     * 检查支付运用
+     *
+     * @param appId /
+     * @return /
+     */
+    PayAppSimpleRespVO validPayApp(Long appId);
 }

@@ -32,6 +32,10 @@ public class PayAppPo extends BasePo {
      */
     private Integer status;
     /**
+     * 订单有效时间
+     */
+    private Long expiry;
+    /**
      * 日限额
      */
     private int dailyLimit;

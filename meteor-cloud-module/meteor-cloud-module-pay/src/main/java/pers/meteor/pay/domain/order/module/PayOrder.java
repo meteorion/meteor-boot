@@ -1,12 +1,12 @@
 package pers.meteor.pay.domain.order.module;
 
 import lombok.Data;
+import pers.meteor.common.core.exception.ServiceException;
 import pers.meteor.pay.domain.order.module.enums.CurrencyTypeEnum;
 import pers.meteor.pay.domain.order.module.enums.DisplayModeEnum;
 import pers.meteor.pay.domain.order.module.enums.PayStatusEnum;
 import pers.meteor.pay.domain.order.module.valueobject.Fee;
 import pers.meteor.pay.domain.order.module.valueobject.Goods;
-import pers.meteor.pay.domain.order.module.valueobject.PayResponse;
 import pers.meteor.pay.domain.order.module.valueobject.Payer;
 
 import java.time.LocalDateTime;
@@ -20,17 +20,17 @@ import java.util.Map;
 @Data
 public class PayOrder {
     /**
-     * 支付订单号
+     * 订单id
      */
-    private String orderNo;
+    private Long orderId;
     /**
      * 商户订单号
      */
     private String merchantOrderNo;
     /**
-     * 交易通道ID
+     * 交易运用ID
      */
-    private Long tradeChannelId;
+    private Long appId;
     /**
      * 订单状态
      */
@@ -75,9 +75,13 @@ public class PayOrder {
     private LocalDateTime expireTime;
 
     /**
-     * 支付结果
+     * 支付订单号
      */
-    private PayResponse payResponse;
+    private String orderNo;
+    /**
+     * 支付成功的记录id
+     */
+    private Long payRecordId;
 
     /**
      * 结算订单
@@ -90,5 +94,37 @@ public class PayOrder {
 
     public String getMetadata(String key) {
         return metadata != null ? metadata.get(key) : null;
+    }
+
+    /**
+     * 初始化创建
+     */
+    public void initCreate() {
+        this.payStatus = PayStatusEnum.WAITING;
+        this.createTime = LocalDateTime.now();
+        if (this.expireTime != null && isExpired()) {
+            throw new ServiceException("订单已失效");
+        }
+    }
+
+    public boolean isPaid() {
+        return PayStatusEnum.SUCCESS.equals(this.payStatus);
+    }
+
+    /**
+     * 是否可支付
+     *
+     * @return /
+     */
+    public boolean canPay() {
+        return PayStatusEnum.WAITING.equals(this.payStatus);
+    }
+
+    /**
+     * 订单是否过期
+     * @return /
+     */
+    public boolean isExpired() {
+        return LocalDateTime.now().isAfter(expireTime);
     }
 }

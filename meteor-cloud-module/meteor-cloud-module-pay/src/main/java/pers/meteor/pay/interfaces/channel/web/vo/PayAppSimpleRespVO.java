@@ -23,4 +23,8 @@ public class PayAppSimpleRespVO {
      * 通道状态
      */
     private Integer status;
+    /**
+     * 订单有效时间
+     */
+    private Long expiry;
 }

@@ -3,6 +3,8 @@ package pers.meteor.pay.application.channel.query;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pers.meteor.common.core.enums.SwitchStatusEnum;
+import pers.meteor.common.core.exception.ServiceException;
 import pers.meteor.pay.application.channel.PayChannelQueryService;
 import pers.meteor.pay.application.channel.asselmber.PayAppAssembler;
 import pers.meteor.pay.infrastructure.channel.persistence.mapper.PayAppMapper;
@@ -13,7 +15,10 @@ import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelPo;
 import pers.meteor.pay.infrastructure.channel.persistence.po.PayClientPo;
 import pers.meteor.pay.interfaces.channel.web.vo.PayAppRespVO;
 import pers.meteor.pay.interfaces.channel.web.vo.PayAppSimpleRespVO;
+import pers.meteor.pay.interfaces.channel.web.vo.PayChannelRespVO;
+import pers.meteor.pay.interfaces.channel.web.vo.PayClientRespVO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,21 +33,41 @@ public class PayChannelQueryServiceImpl implements PayChannelQueryService {
     private final PayClientMapper payClientConfigMapper;
 
     @Override
-    public List<PayAppSimpleRespVO> listPayChannel() {
+    public List<PayAppSimpleRespVO> listPayApp() {
         List<PayAppPo> payChannelPos = payChannelMapper.selectList(Wrappers.emptyWrapper());
         return payChannelPos.stream().map(PayAppAssembler.INSTANCE::toPayAppSimpleResp).collect(Collectors.toList());
     }
 
     @Override
-    public PayAppRespVO getPayChannel(Long payChannelId) {
-        PayAppPo payChannelPo = payChannelMapper.selectById(payChannelId);
-        if (payChannelPo != null) {
-            List<PayChannelPo> payChannelConfigPos = payChannelConfigMapper.selectPayChannelList(payChannelId);
-            List<PayClientPo> payClientConfigPos = payClientConfigMapper.selectPayClientList(payChannelId);
-
-            return PayAppAssembler.INSTANCE.toPayAppResp(payChannelPo, payChannelConfigPos, payClientConfigPos);
+    public PayAppRespVO getPayApp(Long appId) {
+        PayAppPo payAppPo = payChannelMapper.selectById(appId);
+        if (payAppPo != null) {
+            PayAppRespVO payAppResp = PayAppAssembler.INSTANCE.toPayAppResp(payAppPo);
+            List<PayChannelPo> payChannelPos = payChannelConfigMapper.selectPayChannelList(appId);
+            ArrayList<PayChannelRespVO> payChannelResps = new ArrayList<>();
+            for (PayChannelPo payChannelPo : payChannelPos) {
+                PayChannelRespVO payChannelResp = PayAppAssembler.INSTANCE.toPayChannelResp(payChannelPo);
+                PayClientPo payClientPo = payClientConfigMapper.selectByChannelId(payChannelPo.getChannelId());
+                PayClientRespVO payClientResp = PayAppAssembler.INSTANCE.toPayClientResp(payClientPo);
+                payChannelResp.setPayClient(payClientResp);
+                payChannelResps.add(payChannelResp);
+            }
+            payAppResp.setPayChannels(payChannelResps);
+            return payAppResp;
         }
 
-        return new PayAppRespVO();
+        return null;
+    }
+
+    @Override
+    public PayAppSimpleRespVO validPayApp(Long appId) {
+        PayAppPo payAppPo = payChannelMapper.selectById(appId);
+        if (payAppPo == null) {
+            throw new ServiceException("支付运用不存在");
+        }
+        if (SwitchStatusEnum.CLOSE.getCode() == payAppPo.getStatus()) {
+            throw new ServiceException("支付运用已禁用");
+        }
+        return PayAppAssembler.INSTANCE.toPayAppSimpleResp(payAppPo);
     }
 }

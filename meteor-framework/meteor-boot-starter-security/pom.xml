@@ -24,7 +24,7 @@
 
         <dependency>
             <groupId>pers.meteor</groupId>
-            <artifactId>meteor-cloud-api-system</artifactId>
+            <artifactId>meteor-system-api</artifactId>
             <version>1.0.0-snapshot</version>
         </dependency>
 

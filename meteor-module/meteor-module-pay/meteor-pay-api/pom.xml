@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>pers.meteor</groupId>
-        <artifactId>meteor-cloud-api</artifactId>
+        <artifactId>meteor-module-pay</artifactId>
         <version>1.0.0-snapshot</version>
     </parent>
 
-    <artifactId>meteor-cloud-api-pay</artifactId>
+    <artifactId>meteor-pay-api</artifactId>
     <packaging>jar</packaging>
 
     <name>meteor-cloud-api-pay</name>

@@ -16,7 +16,6 @@
         <module>meteor-gateway</module>
         <module>meteor-visual</module>
         <module>meteor-module</module>
-        <module>meteor-cloud-api</module>
     </modules>
 
     <dependencyManagement>

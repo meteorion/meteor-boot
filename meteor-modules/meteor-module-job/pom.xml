@@ -4,15 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>pers.meteor</groupId>
-        <artifactId>meteor-module</artifactId>
+        <artifactId>meteor-modules</artifactId>
         <version>1.0.0-snapshot</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>meteor-module-gen</artifactId>
+    <artifactId>meteor-module-job</artifactId>
 
     <description>
-        meteor-cloud-module-gen代码生成
+        meteor-cloud-module-job定时任务
     </description>
 
     <dependencies>
@@ -47,10 +47,16 @@
             <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
 
-        <!-- Apache Velocity -->
+        <!-- Quartz -->
         <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-engine-core</artifactId>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.mchange</groupId>
+                    <artifactId>c3p0</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Mysql Connector -->
@@ -64,7 +70,6 @@
             <artifactId>meteor-boot-starter-log</artifactId>
         </dependency>
 
-        <!-- RuoYi Common Swagger -->
         <dependency>
             <groupId>pers.meteor</groupId>
             <artifactId>meteor-boot-starter-document</artifactId>

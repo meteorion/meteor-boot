@@ -17,7 +17,7 @@
         <module>meteor-module-member</module>
     </modules>
 
-    <artifactId>meteor-module</artifactId>
+    <artifactId>meteor-modules</artifactId>
     <packaging>pom</packaging>
 
     <description>

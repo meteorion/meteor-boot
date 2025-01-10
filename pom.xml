@@ -12,6 +12,8 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>meteor-dependencies</module>
+        <module>meteor-framework</module>
         <module>meteor-auth</module>
         <module>meteor-gateway</module>
         <module>meteor-visual</module>

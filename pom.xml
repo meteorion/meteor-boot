@@ -12,10 +12,10 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>meteor-cloud-auth</module>
-        <module>meteor-cloud-gateway</module>
-        <module>meteor-cloud-visual</module>
-        <module>meteor-cloud-module</module>
+        <module>meteor-auth</module>
+        <module>meteor-gateway</module>
+        <module>meteor-visual</module>
+        <module>meteor-module</module>
         <module>meteor-cloud-api</module>
     </modules>
 
@@ -23,7 +23,7 @@
         <dependencies>
             <dependency>
                 <groupId>pers.meteor</groupId>
-                <artifactId>meteor-common</artifactId>
+                <artifactId>meteor-framework</artifactId>
                 <version>1.0.0-snapshot</version>
                 <type>pom</type>
                 <scope>import</scope>

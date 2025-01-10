@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>pers.meteor</groupId>
+    <artifactId>meteor-framework</artifactId>
+    <packaging>pom</packaging>
+    <name>meteor-framework</name>
+    <version>1.0.0-snapshot</version>
+    <description>meteor-common通用模块</description>
+
+    <modules>
+        <module>meteor-common</module>
+        <module>meteor-boot-starter-log</module>
+        <module>meteor-boot-starter-redis</module>
+        <module>meteor-boot-starter-seata</module>
+        <module>meteor-boot-starter-document</module>
+        <module>meteor-boot-starter-security</module>
+        <module>meteor-boot-starter-sensitive</module>
+        <module>meteor-boot-starter-datascope</module>
+        <module>meteor-boot-starter-datasource</module>
+        <module>meteor-boot-starter-file</module>
+        <module>meteor-boot-starter-rule</module>
+        <module>meteor-boot-starter-mybatis</module>
+        <module>meteor-boot-starter-test</module>
+        <module>meteor-boot-starter-mq</module>
+        <module>meteor-boot-starter-event</module>
+        <module>meteor-boot-starter-export</module>
+    </modules>
+
+    <properties>
+        <component.version>1.0.0-snapshot</component.version>
+
+        <!-- Maven 相关 -->
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+
+        <lombok.version>1.18.24</lombok.version>
+        <mapstruct.version>1.5.3.Final</mapstruct.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-dependencies</artifactId>
+                <version>${component.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- 核心模块 -->
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-common</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <!-- 接口模块 -->
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-boot-starter-document</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <!-- 安全模块 -->
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-boot-starter-security</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <!-- 数据脱敏 -->
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-boot-starter-sensitive</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <!-- 权限范围 -->
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-boot-starter-datascope</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <!-- 多数据源 -->
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-boot-starter-datasource</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-boot-starter-mybatis</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <!-- 分布式事务 -->
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-boot-starter-seata</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <!-- 日志记录 -->
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-boot-starter-log</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <!-- 缓存服务 -->
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-boot-starter-redis</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-boot-starter-file</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-boot-starter-rule</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-boot-starter-test</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-boot-starter-mq</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-boot-starter-event</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <!-- maven-surefire-plugin 插件，用于运行单元测试。 -->
+                <!-- 注意，需要使用 3.0.X+，因为要支持 Junit 5 版本 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                </plugin>
+                <!-- maven-compiler-plugin 插件，解决 Lombok + MapStruct 组合 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.mapstruct</groupId>
+                                <artifactId>mapstruct-processor</artifactId>
+                                <version>${mapstruct.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <!-- 使用 aliyun 的 Maven 源，提升下载速度 -->
+    <repositories>
+        <repository>
+            <id>aliyunmaven</id>
+            <name>aliyun</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </repository>
+    </repositories>
+
+</project>

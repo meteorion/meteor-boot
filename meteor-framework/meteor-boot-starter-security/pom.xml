@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>pers.meteor</groupId>
+        <artifactId>meteor-framework</artifactId>
+        <version>1.0.0-snapshot</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>meteor-boot-starter-security</artifactId>
+
+    <description>
+        meteor-common-security安全模块
+    </description>
+
+    <dependencies>
+
+        <!-- Spring Web -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-cloud-api-system</artifactId>
+            <version>1.0.0-snapshot</version>
+        </dependency>
+
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-boot-starter-redis</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>

@@ -19,7 +19,7 @@
         <dependencies>
             <dependency>
                 <groupId>pers.meteor</groupId>
-                <artifactId>meteor-common</artifactId>
+                <artifactId>meteor-framework</artifactId>
                 <version>1.0.0-snapshot</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -30,7 +30,7 @@
     <dependencies>
         <dependency>
             <groupId>pers.meteor</groupId>
-            <artifactId>meteor-common-core</artifactId>
+            <artifactId>meteor-common</artifactId>
             <scope>compile</scope>
         </dependency>
     </dependencies>

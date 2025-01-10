@@ -17,7 +17,7 @@
         <module>meteor-auth</module>
         <module>meteor-gateway</module>
         <module>meteor-visual</module>
-        <module>meteor-module</module>
+        <module>meteor-modules</module>
     </modules>
 
     <dependencyManagement>

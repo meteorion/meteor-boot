@@ -4,12 +4,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import pers.meteor.common.core.web.domain.BaseEntity;
-import pers.meteor.common.core.xss.Xss;
+import pers.meteor.common.web.domain.BaseEntity;
+import pers.meteor.common.xss.Xss;
 
 /**
  * 通知公告表 sys_notice
- * 
+ *
  * @author ruoyi
  */
 public class SysNotice extends BaseEntity

@@ -3,7 +3,7 @@ package pers.meteor.common.security.crypto;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import pers.meteor.common.core.exception.ServiceException;
+import pers.meteor.common.exception.ServiceException;
 import pers.meteor.common.security.annotation.SecurityApi;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

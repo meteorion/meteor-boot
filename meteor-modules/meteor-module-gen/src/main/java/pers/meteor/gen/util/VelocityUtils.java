@@ -7,9 +7,9 @@ import java.util.Set;
 import org.apache.velocity.VelocityContext;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import pers.meteor.common.core.constant.GenConstants;
-import pers.meteor.common.core.utils.DateUtils;
-import pers.meteor.common.core.utils.StringUtils;
+import pers.meteor.common.constant.GenConstants;
+import pers.meteor.common.utils.DateUtils;
+import pers.meteor.common.utils.StringUtils;
 import pers.meteor.gen.domain.GenTable;
 import pers.meteor.gen.domain.GenTableColumn;
 

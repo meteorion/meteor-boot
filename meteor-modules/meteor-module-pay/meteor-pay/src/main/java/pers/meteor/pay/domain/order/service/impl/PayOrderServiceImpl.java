@@ -2,7 +2,7 @@ package pers.meteor.pay.domain.order.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pers.meteor.common.core.exception.ServiceException;
+import pers.meteor.common.exception.ServiceException;
 import pers.meteor.pay.domain.order.module.PayOrder;
 import pers.meteor.pay.domain.order.module.valueobject.PayRecord;
 import pers.meteor.pay.domain.order.module.valueobject.PayResponse;

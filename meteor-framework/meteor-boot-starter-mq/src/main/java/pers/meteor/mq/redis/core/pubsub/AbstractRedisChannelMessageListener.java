@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.SneakyThrows;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
-import pers.meteor.common.core.utils.json.JsonUtils;
+import pers.meteor.common.utils.json.JsonUtils;
 import pers.meteor.mq.redis.core.RedisMQTemplate;
 import pers.meteor.mq.redis.core.interceptor.RedisMessageInterceptor;
 import pers.meteor.mq.redis.core.message.AbstractRedisMessage;

@@ -5,9 +5,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import pers.meteor.common.core.annotation.Excel;
-import pers.meteor.common.core.annotation.Excel.ColumnType;
-import pers.meteor.common.core.web.domain.BaseEntity;
+import pers.meteor.common.annotation.Excel;
+import pers.meteor.common.annotation.Excel.ColumnType;
+import pers.meteor.common.web.domain.BaseEntity;
 
 /**
  * 岗位表 sys_post

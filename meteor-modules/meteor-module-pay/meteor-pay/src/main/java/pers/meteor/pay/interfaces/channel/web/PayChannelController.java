@@ -2,8 +2,8 @@ package pers.meteor.pay.interfaces.channel.web;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import pers.meteor.common.core.pojo.response.MultiResponse;
-import pers.meteor.common.core.pojo.response.SingleResponse;
+import pers.meteor.common.pojo.response.MultiResponse;
+import pers.meteor.common.pojo.response.SingleResponse;
 import pers.meteor.pay.application.channel.PayChannelAppService;
 import pers.meteor.pay.application.channel.PayChannelQueryService;
 import pers.meteor.pay.interfaces.channel.web.cmd.ChannelRateUpdateCmd;

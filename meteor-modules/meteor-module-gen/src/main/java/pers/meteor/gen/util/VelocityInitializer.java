@@ -2,7 +2,7 @@ package pers.meteor.gen.util;
 
 import java.util.Properties;
 import org.apache.velocity.app.Velocity;
-import pers.meteor.common.core.constant.Constants;
+import pers.meteor.common.constant.Constants;
 
 /**
  * VelocityEngine工厂

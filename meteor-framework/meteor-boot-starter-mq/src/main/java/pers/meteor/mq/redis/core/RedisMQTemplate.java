@@ -5,7 +5,7 @@ import lombok.Getter;
 import org.springframework.data.redis.connection.stream.RecordId;
 import org.springframework.data.redis.connection.stream.StreamRecords;
 import org.springframework.data.redis.core.RedisTemplate;
-import pers.meteor.common.core.utils.json.JsonUtils;
+import pers.meteor.common.utils.json.JsonUtils;
 import pers.meteor.mq.redis.core.interceptor.RedisMessageInterceptor;
 import pers.meteor.mq.redis.core.message.AbstractRedisMessage;
 import pers.meteor.mq.redis.core.pubsub.AbstractRedisChannelMessage;

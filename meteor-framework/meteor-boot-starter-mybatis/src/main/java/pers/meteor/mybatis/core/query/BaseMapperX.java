@@ -8,8 +8,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.toolkit.Db;
 import org.apache.ibatis.annotations.Param;
-import pers.meteor.common.core.pojo.command.PageQuery;
-import pers.meteor.common.core.pojo.response.PageResponse;
+import pers.meteor.common.pojo.command.PageQuery;
+import pers.meteor.common.pojo.response.PageResponse;
 import pers.meteor.mybatis.core.util.MyBatisUtils;
 
 import java.util.Collection;

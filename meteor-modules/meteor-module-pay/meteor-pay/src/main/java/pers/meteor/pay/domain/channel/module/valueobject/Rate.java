@@ -1,7 +1,7 @@
 package pers.meteor.pay.domain.channel.module.valueobject;
 
 import lombok.Data;
-import pers.meteor.common.core.exception.ServiceException;
+import pers.meteor.common.exception.ServiceException;
 import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
 
 import java.math.BigDecimal;

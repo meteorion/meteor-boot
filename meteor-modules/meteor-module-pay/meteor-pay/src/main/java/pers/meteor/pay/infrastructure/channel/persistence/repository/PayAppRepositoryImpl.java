@@ -2,7 +2,7 @@ package pers.meteor.pay.infrastructure.channel.persistence.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import pers.meteor.common.core.enums.SwitchStatusEnum;
+import pers.meteor.common.enums.SwitchStatusEnum;
 import pers.meteor.pay.domain.channel.module.PayApp;
 import pers.meteor.pay.domain.channel.module.PayChannel;
 import pers.meteor.pay.domain.channel.module.PayClient;

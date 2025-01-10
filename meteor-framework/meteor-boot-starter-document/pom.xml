@@ -12,7 +12,7 @@
     <artifactId>meteor-boot-starter-document</artifactId>
 
     <description>
-        meteor-common-swagger系统接口
+        meteor-boot-starter-document
     </description>
 
 	<dependencies>
@@ -25,8 +25,8 @@
 
         <!-- Swagger -->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
+            <groupId>org.springdoc</groupId> <!-- 接口文档 UI：默认 -->
+            <artifactId>springdoc-openapi-ui</artifactId>
         </dependency>
 
 	</dependencies>

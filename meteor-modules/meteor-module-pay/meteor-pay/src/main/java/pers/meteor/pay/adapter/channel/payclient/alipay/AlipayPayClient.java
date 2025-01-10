@@ -2,7 +2,7 @@ package pers.meteor.pay.adapter.channel.payclient.alipay;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import pers.meteor.common.core.utils.validation.ValidationUtils;
+import pers.meteor.common.utils.validation.ValidationUtils;
 import pers.meteor.pay.domain.channel.module.PayClient;
 
 import javax.validation.Validator;

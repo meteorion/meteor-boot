@@ -1,7 +1,7 @@
 package pers.meteor.pay.domain.channel.module;
 
 import lombok.Data;
-import pers.meteor.common.core.enums.SwitchStatusEnum;
+import pers.meteor.common.enums.SwitchStatusEnum;
 import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
 import pers.meteor.pay.domain.channel.module.valueobject.Quota;
 import pers.meteor.pay.domain.channel.module.valueobject.Rate;

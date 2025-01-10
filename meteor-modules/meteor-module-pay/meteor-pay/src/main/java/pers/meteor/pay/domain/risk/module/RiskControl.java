@@ -1,7 +1,7 @@
 package pers.meteor.pay.domain.risk.module;
 
 import lombok.Data;
-import pers.meteor.common.core.utils.StringUtils;
+import pers.meteor.common.utils.StringUtils;
 import pers.meteor.pay.domain.risk.module.enums.RiskControlTypeEnum;
 
 import java.util.ArrayList;

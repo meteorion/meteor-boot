@@ -2,7 +2,7 @@ package pers.meteor.mybatis.core.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
-import pers.meteor.common.core.context.SecurityContextHolder;
+import pers.meteor.common.context.SecurityContextHolder;
 import pers.meteor.mybatis.core.BasePo;
 
 import java.time.LocalDateTime;

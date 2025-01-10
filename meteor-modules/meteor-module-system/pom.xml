@@ -15,4 +15,11 @@
         <module>meteor-system-api</module>
         <module>meteor-system</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-common</artifactId>
+        </dependency>
+    </dependencies>
 </project>

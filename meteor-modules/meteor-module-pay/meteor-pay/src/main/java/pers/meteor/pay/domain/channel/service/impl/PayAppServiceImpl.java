@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
-import pers.meteor.common.core.exception.ServiceException;
+import pers.meteor.common.exception.ServiceException;
 import pers.meteor.pay.domain.channel.acl.RemotePayConfigAdapter;
 import pers.meteor.pay.domain.channel.module.PayApp;
 import pers.meteor.pay.domain.channel.module.PayChannel;

@@ -1,7 +1,7 @@
 package pers.meteor.pay.domain.order.module;
 
 import lombok.Data;
-import pers.meteor.common.core.exception.ServiceException;
+import pers.meteor.common.exception.ServiceException;
 import pers.meteor.pay.domain.order.module.enums.CurrencyTypeEnum;
 import pers.meteor.pay.domain.order.module.enums.DisplayModeEnum;
 import pers.meteor.pay.domain.order.module.enums.PayStatusEnum;

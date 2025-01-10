@@ -5,10 +5,10 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
-import pers.meteor.common.core.constant.SecurityConstants;
-import pers.meteor.common.core.exception.InnerAuthException;
-import pers.meteor.common.core.utils.ServletUtils;
-import pers.meteor.common.core.utils.StringUtils;
+import pers.meteor.common.constant.SecurityConstants;
+import pers.meteor.common.exception.InnerAuthException;
+import pers.meteor.common.utils.ServletUtils;
+import pers.meteor.common.utils.StringUtils;
 import pers.meteor.common.security.annotation.InnerAuth;
 
 /**

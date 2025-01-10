@@ -4,13 +4,13 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import org.apache.commons.lang3.ArrayUtils;
-import pers.meteor.common.core.constant.GenConstants;
-import pers.meteor.common.core.utils.StringUtils;
-import pers.meteor.common.core.web.domain.BaseEntity;
+import pers.meteor.common.constant.GenConstants;
+import pers.meteor.common.utils.StringUtils;
+import pers.meteor.common.web.domain.BaseEntity;
 
 /**
  * 业务表 gen_table
- * 
+ *
  * @author ruoyi
  */
 public class GenTable extends BaseEntity

@@ -5,7 +5,7 @@ import com.alipay.api.domain.AlipayTradePrecreateModel;
 import com.alipay.api.request.AlipayTradePrecreateRequest;
 import com.alipay.api.response.AlipayTradePrecreateResponse;
 import lombok.extern.slf4j.Slf4j;
-import pers.meteor.common.core.utils.json.JsonUtils;
+import pers.meteor.common.utils.json.JsonUtils;
 import pers.meteor.pay.domain.order.module.PayOrder;
 import pers.meteor.pay.domain.order.module.enums.DisplayModeEnum;
 import pers.meteor.pay.domain.order.module.valueobject.PayResponse;

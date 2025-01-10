@@ -3,7 +3,7 @@ package pers.meteor.pay.application.risk.impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.util.ReflectionUtils;
-import pers.meteor.common.core.exception.ServiceException;
+import pers.meteor.common.exception.ServiceException;
 import pers.meteor.pay.application.risk.RiskController;
 import pers.meteor.pay.application.risk.RiskControllerFactory;
 import pers.meteor.pay.domain.risk.module.RiskControl;

@@ -6,16 +6,16 @@ import javax.validation.constraints.Size;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import pers.meteor.common.core.annotation.Excel;
-import pers.meteor.common.core.annotation.Excel.ColumnType;
-import pers.meteor.common.core.constant.ScheduleConstants;
-import pers.meteor.common.core.utils.StringUtils;
-import pers.meteor.common.core.web.domain.BaseEntity;
+import pers.meteor.common.annotation.Excel;
+import pers.meteor.common.annotation.Excel.ColumnType;
+import pers.meteor.common.constant.ScheduleConstants;
+import pers.meteor.common.utils.StringUtils;
+import pers.meteor.common.web.domain.BaseEntity;
 import pers.meteor.job.util.CronUtils;
 
 /**
  * 定时任务调度表 sys_job
- * 
+ *
  * @author ruoyi
  */
 public class SysJob extends BaseEntity

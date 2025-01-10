@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
-import pers.meteor.common.core.pojo.command.PageQuery;
-import pers.meteor.common.core.pojo.command.SortingField;
+import pers.meteor.common.pojo.command.PageQuery;
+import pers.meteor.common.pojo.command.SortingField;
 
 import java.util.ArrayList;
 import java.util.Collection;

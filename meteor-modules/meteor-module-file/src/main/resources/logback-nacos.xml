@@ -16,7 +16,7 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder
                 class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
-            <layout class="pers.meteor.common.core.pojo.log.EasyPatternLayout">
+            <layout class="log.pojo.pers.meteor.common.EasyPatternLayout">
                 <pattern>
                     ${logging.console.pattern:-${STDOUT_PATTERN}}
                 </pattern>
@@ -42,7 +42,7 @@
         </rollingPolicy>
 
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
-            <layout class="pers.meteor.common.core.pojo.log.EasyPatternLayout">
+            <layout class="log.pojo.pers.meteor.common.EasyPatternLayout">
                 <pattern>
                     ${logging.console.pattern:-${FILE_PATTERN}}
                 </pattern>
@@ -63,7 +63,7 @@
         </rollingPolicy>
 
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
-            <layout class="pers.meteor.common.core.pojo.log.EasyPatternLayout">
+            <layout class="log.pojo.pers.meteor.common.EasyPatternLayout">
                 <pattern>
                     ${logging.console.pattern:-${FILE_PATTERN}}
                 </pattern>
@@ -90,7 +90,7 @@
         </rollingPolicy>
 
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
-            <layout class="pers.meteor.common.core.pojo.log.EasyPatternLayout">
+            <layout class="log.pojo.pers.meteor.common.EasyPatternLayout">
                 <pattern>
                     ${logging.console.pattern:-${FILE_PATTERN}}
                 </pattern>

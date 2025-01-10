@@ -1,8 +1,8 @@
 package pers.meteor.gateway.service;
 
 import java.io.IOException;
-import pers.meteor.common.core.exception.CaptchaException;
-import pers.meteor.common.core.web.domain.AjaxResult;
+import pers.meteor.common.exception.CaptchaException;
+import pers.meteor.common.web.domain.AjaxResult;
 
 /**
  * 验证码处理

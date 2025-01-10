@@ -1,6 +1,6 @@
 package pers.meteor.pay.domain.channel.repository;
 
-import pers.meteor.common.core.enums.SwitchStatusEnum;
+import pers.meteor.common.enums.SwitchStatusEnum;
 import pers.meteor.pay.domain.channel.module.PayApp;
 import pers.meteor.pay.domain.channel.module.PayChannel;
 import pers.meteor.pay.domain.channel.module.PayClient;

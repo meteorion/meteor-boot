@@ -2,10 +2,10 @@ package pers.meteor.auth.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pers.meteor.common.core.constant.Constants;
-import pers.meteor.common.core.constant.SecurityConstants;
-import pers.meteor.common.core.utils.StringUtils;
-import pers.meteor.common.core.utils.ip.IpUtils;
+import pers.meteor.common.constant.Constants;
+import pers.meteor.common.constant.SecurityConstants;
+import pers.meteor.common.utils.StringUtils;
+import pers.meteor.common.utils.ip.IpUtils;
 import pers.meteor.system.api.RemoteLogService;
 import pers.meteor.system.api.domain.SysLogininfor;
 

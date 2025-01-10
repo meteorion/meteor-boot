@@ -2,12 +2,12 @@ package pers.meteor.gen.domain;
 
 import javax.validation.constraints.NotBlank;
 
-import pers.meteor.common.core.utils.StringUtils;
-import pers.meteor.common.core.web.domain.BaseEntity;
+import pers.meteor.common.utils.StringUtils;
+import pers.meteor.common.web.domain.BaseEntity;
 
 /**
  * 代码生成业务字段表 gen_table_column
- * 
+ *
  * @author ruoyi
  */
 public class GenTableColumn extends BaseEntity

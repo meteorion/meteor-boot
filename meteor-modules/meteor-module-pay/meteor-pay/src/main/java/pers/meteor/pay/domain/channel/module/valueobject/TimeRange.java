@@ -1,9 +1,8 @@
 package pers.meteor.pay.domain.channel.module.valueobject;
 
 import lombok.Data;
-import pers.meteor.common.core.exception.ServiceException;
+import pers.meteor.common.exception.ServiceException;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**

@@ -8,8 +8,8 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.HandlerFunction;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import pers.meteor.common.core.exception.CaptchaException;
-import pers.meteor.common.core.web.domain.AjaxResult;
+import pers.meteor.common.exception.CaptchaException;
+import pers.meteor.common.web.domain.AjaxResult;
 import pers.meteor.gateway.service.ValidateCodeService;
 import reactor.core.publisher.Mono;
 

@@ -3,9 +3,9 @@ package pers.meteor.common.security.utils;
 import java.util.Collection;
 import java.util.List;
 import com.alibaba.fastjson2.JSONArray;
-import pers.meteor.common.core.constant.CacheConstants;
-import pers.meteor.common.core.utils.SpringUtils;
-import pers.meteor.common.core.utils.StringUtils;
+import pers.meteor.common.constant.CacheConstants;
+import pers.meteor.common.utils.SpringUtils;
+import pers.meteor.common.utils.StringUtils;
 import pers.meteor.common.redis.service.RedisService;
 import pers.meteor.system.api.domain.SysDictData;
 

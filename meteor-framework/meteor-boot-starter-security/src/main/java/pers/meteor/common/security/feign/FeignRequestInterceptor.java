@@ -3,10 +3,10 @@ package pers.meteor.common.security.feign;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
-import pers.meteor.common.core.constant.SecurityConstants;
-import pers.meteor.common.core.utils.ServletUtils;
-import pers.meteor.common.core.utils.StringUtils;
-import pers.meteor.common.core.utils.ip.IpUtils;
+import pers.meteor.common.constant.SecurityConstants;
+import pers.meteor.common.utils.ServletUtils;
+import pers.meteor.common.utils.StringUtils;
+import pers.meteor.common.utils.ip.IpUtils;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 

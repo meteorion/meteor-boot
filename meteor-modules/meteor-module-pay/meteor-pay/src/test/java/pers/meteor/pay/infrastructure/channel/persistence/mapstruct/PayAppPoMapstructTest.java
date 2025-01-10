@@ -2,7 +2,7 @@ package pers.meteor.pay.infrastructure.channel.persistence.mapstruct;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pers.meteor.common.core.enums.SwitchStatusEnum;
+import pers.meteor.common.enums.SwitchStatusEnum;
 import pers.meteor.pay.infrastructure.channel.persistence.po.PayAppPo;
 
 /**

@@ -1,6 +1,6 @@
 package pers.meteor.common.security.crypto;
 
-import pers.meteor.common.core.web.domain.AjaxResult;
+import pers.meteor.common.web.domain.AjaxResult;
 import pers.meteor.common.security.annotation.SecurityApi;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

@@ -10,17 +10,17 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
-import pers.meteor.common.core.constant.Constants;
-import pers.meteor.common.core.constant.ScheduleConstants;
-import pers.meteor.common.core.exception.job.TaskException;
-import pers.meteor.common.core.exception.job.TaskException.Code;
-import pers.meteor.common.core.utils.SpringUtils;
-import pers.meteor.common.core.utils.StringUtils;
+import pers.meteor.common.constant.Constants;
+import pers.meteor.common.constant.ScheduleConstants;
+import pers.meteor.common.exception.job.TaskException;
+import pers.meteor.common.exception.job.TaskException.Code;
+import pers.meteor.common.utils.SpringUtils;
+import pers.meteor.common.utils.StringUtils;
 import pers.meteor.job.domain.SysJob;
 
 /**
  * 定时任务工具类
- * 
+ *
  * @author ruoyi
  *
  */
@@ -121,7 +121,7 @@ public class ScheduleUtils
 
     /**
      * 检查包名是否为白名单配置
-     * 
+     *
      * @param invokeTarget 目标字符串
      * @return 结果
      */

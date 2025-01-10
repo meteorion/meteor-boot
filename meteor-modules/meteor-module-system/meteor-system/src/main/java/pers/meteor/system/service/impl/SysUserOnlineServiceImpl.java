@@ -1,7 +1,7 @@
 package pers.meteor.system.service.impl;
 
 import org.springframework.stereotype.Service;
-import pers.meteor.common.core.utils.StringUtils;
+import pers.meteor.common.utils.StringUtils;
 import pers.meteor.system.api.model.LoginUser;
 import pers.meteor.system.domain.SysUserOnline;
 import pers.meteor.system.service.ISysUserOnlineService;

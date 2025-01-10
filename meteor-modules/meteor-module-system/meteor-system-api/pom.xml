@@ -15,4 +15,12 @@
     <description>
         meteor-cloud-api-system系统接口模块
     </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-boot-starter-document</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

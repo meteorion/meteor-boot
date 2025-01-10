@@ -1,6 +1,6 @@
 package pers.meteor.common.sensitive.utils;
 
-import pers.meteor.common.core.utils.StringUtils;
+import pers.meteor.common.utils.StringUtils;
 
 /**
  * 脱敏工具类

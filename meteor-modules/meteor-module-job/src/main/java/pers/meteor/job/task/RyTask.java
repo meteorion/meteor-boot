@@ -1,7 +1,7 @@
 package pers.meteor.job.task;
 
 import org.springframework.stereotype.Component;
-import pers.meteor.common.core.utils.StringUtils;
+import pers.meteor.common.utils.StringUtils;
 
 /**
  * 定时任务调度测试

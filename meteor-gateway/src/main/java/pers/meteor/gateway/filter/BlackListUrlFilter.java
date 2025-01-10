@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.stereotype.Component;
-import pers.meteor.common.core.utils.ServletUtils;
+import pers.meteor.common.utils.ServletUtils;
 
 /**
  * 黑名单过滤器

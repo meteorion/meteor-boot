@@ -1,5 +1,6 @@
-package pers.meteor.auth.service;
+package pers.meteor.auth.service.impl;
 
+import pers.meteor.auth.service.AuthUserService;
 import pers.meteor.common.security.core.model.AuthUserDetail;
 
 /**

@@ -15,8 +15,4 @@ public interface AuthConvert {
     AuthConvert INSTANCE = Mappers.getMapper(AuthConvert.class);
 
     AuthLoginVO convert(AccessToken accessToken, String openId);
-
-    AccessToken convert(RefreshToken refreshToken);
-
-    RefreshToken convertRefreshToken(AuthUserDetail userDetail);
 }

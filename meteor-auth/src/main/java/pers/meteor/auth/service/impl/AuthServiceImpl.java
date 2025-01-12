@@ -1,10 +1,15 @@
-package pers.meteor.auth.service;
+package pers.meteor.auth.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pers.meteor.auth.convert.AuthConvert;
 import pers.meteor.auth.dto.form.*;
 import pers.meteor.auth.dto.vo.AuthLoginVO;
+import pers.meteor.auth.service.AuthLogService;
+import pers.meteor.auth.service.AuthService;
+import pers.meteor.auth.service.AuthUserService;
+import pers.meteor.common.enums.LoginLogTypeEnum;
+import pers.meteor.common.enums.LoginResultEnum;
 import pers.meteor.common.exception.ServiceException;
 import pers.meteor.common.security.core.model.AccessToken;
 import pers.meteor.common.security.core.model.AuthUserDetail;
@@ -23,23 +28,30 @@ public class AuthServiceImpl implements AuthService {
     private TokenService tokenService;
     @Resource
     private AuthUserService authUserService;
+    @Resource
+    private AuthLogService authLogService;
 
     @Override
     public AuthLoginVO login(AuthLoginForm loginForm) {
         // 校验手机密码并获取用户信息
         AuthUserDetail authUser = authUserService.getUserByMobile(loginForm.getClientId(), loginForm.getMobile());
         if (authUser == null) {
+            authLogService.saveLoginRecord(null, LoginLogTypeEnum.LOGIN_MOBILE, LoginResultEnum.BAD_CREDENTIALS);
             throw new ServiceException("登录失败，账号密码不正确");
         }
         // 校验密码
         if (!authUserService.isPasswordMatch(authUser, loginForm.getPassword())) {
+            authLogService.saveLoginRecord(authUser, LoginLogTypeEnum.LOGIN_MOBILE, LoginResultEnum.BAD_CREDENTIALS);
             throw new ServiceException("登录失败，账号密码不正确");
         }
         // 校验账户是否锁定
         if (authUser.isAccountLocked()) {
+            authLogService.saveLoginRecord(authUser, LoginLogTypeEnum.LOGIN_MOBILE, LoginResultEnum.USER_DISABLED);
             throw new ServiceException("登录失败，账号已被锁定，请联系管理员");
         }
-        // todo 保存登录日志
+
+        // 记录登录日志
+        authLogService.saveLoginRecord(authUser, LoginLogTypeEnum.LOGIN_MOBILE, LoginResultEnum.SUCCESS);
 
         // 创建令牌
         AccessToken accessToken = tokenService.createAccessToken(authUser);
@@ -49,7 +61,11 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void logout(String token) {
-
+        AccessToken accessToken = tokenService.removeAccessToken(token);
+        if (accessToken == null) {
+            return;
+        }
+        authLogService.saveLogoutLog(accessToken.getUserId(), LoginLogTypeEnum.LOGIN_MOBILE);
     }
 
     @Override

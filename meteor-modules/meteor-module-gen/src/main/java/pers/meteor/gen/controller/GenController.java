@@ -22,7 +22,7 @@ import pers.meteor.common.web.domain.AjaxResult;
 import pers.meteor.common.web.page.TableDataInfo;
 import pers.meteor.common.log.annotation.Log;
 import pers.meteor.common.log.enums.BusinessType;
-import pers.meteor.common.security.annotation.RequiresPermissions;
+import pers.meteor.common.security.core.annotation.RequiresPermissions;
 import pers.meteor.gen.domain.GenTable;
 import pers.meteor.gen.domain.GenTableColumn;
 import pers.meteor.gen.service.IGenTableColumnService;

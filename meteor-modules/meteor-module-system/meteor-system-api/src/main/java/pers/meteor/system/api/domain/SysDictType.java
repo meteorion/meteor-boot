@@ -5,9 +5,8 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import pers.meteor.common.core.annotation.Excel;
-import pers.meteor.common.core.annotation.Excel.ColumnType;
-import pers.meteor.common.core.web.domain.BaseEntity;
+import pers.meteor.common.annotation.Excel;
+import pers.meteor.common.web.domain.BaseEntity;
 
 /**
  * 字典类型表 sys_dict_type
@@ -19,7 +18,7 @@ public class SysDictType extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 字典主键 */
-    @Excel(name = "字典主键", cellType = ColumnType.NUMERIC)
+    @Excel(name = "字典主键", cellType = Excel.ColumnType.NUMERIC)
     private Long dictId;
 
     /** 字典名称 */

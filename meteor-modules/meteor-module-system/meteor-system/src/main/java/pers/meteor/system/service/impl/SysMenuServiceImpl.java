@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import pers.meteor.common.constant.Constants;
 import pers.meteor.common.constant.UserConstants;
 import pers.meteor.common.utils.StringUtils;
-import pers.meteor.common.security.utils.SecurityUtils;
+import pers.meteor.common.security.core.utils.SecurityUtils;
 import pers.meteor.system.api.domain.SysRole;
 import pers.meteor.system.api.domain.SysUser;
 import pers.meteor.system.domain.SysMenu;

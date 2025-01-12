@@ -2,9 +2,8 @@ package pers.meteor.system.api.domain;
 
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import pers.meteor.common.core.annotation.Excel;
-import pers.meteor.common.core.annotation.Excel.ColumnType;
-import pers.meteor.common.core.web.domain.BaseEntity;
+import pers.meteor.common.annotation.Excel;
+import pers.meteor.common.web.domain.BaseEntity;
 
 /**
  * 操作日志记录表 oper_log
@@ -16,7 +15,7 @@ public class SysOperLog extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 日志主键 */
-    @Excel(name = "操作序号", cellType = ColumnType.NUMERIC)
+    @Excel(name = "操作序号", cellType = Excel.ColumnType.NUMERIC)
     private Long operId;
 
     /** 操作模块 */

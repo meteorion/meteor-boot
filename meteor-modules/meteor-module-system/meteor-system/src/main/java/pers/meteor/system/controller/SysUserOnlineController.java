@@ -18,7 +18,7 @@ import pers.meteor.common.web.page.TableDataInfo;
 import pers.meteor.common.log.annotation.Log;
 import pers.meteor.common.log.enums.BusinessType;
 import pers.meteor.common.redis.service.RedisService;
-import pers.meteor.common.security.annotation.RequiresPermissions;
+import pers.meteor.common.security.core.annotation.RequiresPermissions;
 import pers.meteor.system.api.model.LoginUser;
 import pers.meteor.system.domain.SysUserOnline;
 import pers.meteor.system.service.ISysUserOnlineService;

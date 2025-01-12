@@ -2,9 +2,8 @@ package pers.meteor.system.api.domain;
 
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import pers.meteor.common.core.annotation.Excel;
-import pers.meteor.common.core.annotation.Excel.ColumnType;
-import pers.meteor.common.core.web.domain.BaseEntity;
+import pers.meteor.common.annotation.Excel;
+import pers.meteor.common.web.domain.BaseEntity;
 
 /**
  * 系统访问记录表 sys_logininfor
@@ -16,7 +15,7 @@ public class SysLogininfor extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** ID */
-    @Excel(name = "序号", cellType = ColumnType.NUMERIC)
+    @Excel(name = "序号", cellType = Excel.ColumnType.NUMERIC)
     private Long infoId;
 
     /** 用户账号 */

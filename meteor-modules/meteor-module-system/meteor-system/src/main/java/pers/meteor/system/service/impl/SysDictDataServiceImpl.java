@@ -3,7 +3,7 @@ package pers.meteor.system.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pers.meteor.common.security.utils.DictUtils;
+import pers.meteor.common.security.core.utils.DictUtils;
 import pers.meteor.system.api.domain.SysDictData;
 import pers.meteor.system.mapper.SysDictDataMapper;
 import pers.meteor.system.service.ISysDictDataService;

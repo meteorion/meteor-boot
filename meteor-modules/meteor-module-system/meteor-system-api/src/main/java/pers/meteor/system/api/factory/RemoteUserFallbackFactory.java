@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
-import pers.meteor.common.core.domain.R;
+import pers.meteor.common.domain.R;
 import pers.meteor.system.api.RemoteUserService;
 import pers.meteor.system.api.domain.SysUser;
 import pers.meteor.system.api.model.LoginUser;

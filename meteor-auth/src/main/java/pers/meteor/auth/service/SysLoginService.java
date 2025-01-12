@@ -13,7 +13,7 @@ import pers.meteor.common.text.Convert;
 import pers.meteor.common.utils.StringUtils;
 import pers.meteor.common.utils.ip.IpUtils;
 import pers.meteor.common.redis.service.RedisService;
-import pers.meteor.common.security.utils.SecurityUtils;
+import pers.meteor.common.security.core.utils.SecurityUtils;
 import pers.meteor.system.api.RemoteUserService;
 import pers.meteor.system.api.domain.SysUser;
 import pers.meteor.system.api.model.LoginUser;

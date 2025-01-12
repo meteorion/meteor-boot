@@ -16,8 +16,8 @@ import pers.meteor.common.web.domain.AjaxResult;
 import pers.meteor.common.web.page.TableDataInfo;
 import pers.meteor.common.log.annotation.Log;
 import pers.meteor.common.log.enums.BusinessType;
-import pers.meteor.common.security.annotation.InnerAuth;
-import pers.meteor.common.security.annotation.RequiresPermissions;
+import pers.meteor.common.security.core.annotation.InnerAuth;
+import pers.meteor.common.security.core.annotation.RequiresPermissions;
 import pers.meteor.system.api.domain.SysOperLog;
 import pers.meteor.system.service.ISysOperLogService;
 

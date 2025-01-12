@@ -2,7 +2,7 @@ package pers.meteor.common.security.config;
 
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import pers.meteor.common.security.interceptor.HeaderInterceptor;
+import pers.meteor.common.security.core.interceptor.HeaderInterceptor;
 
 /**
  * 拦截器配置

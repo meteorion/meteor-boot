@@ -4,10 +4,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import pers.meteor.common.core.annotation.Excel;
-import pers.meteor.common.core.annotation.Excel.ColumnType;
-import pers.meteor.common.core.constant.UserConstants;
-import pers.meteor.common.core.web.domain.BaseEntity;
+import pers.meteor.common.annotation.Excel;
+import pers.meteor.common.constant.UserConstants;
+import pers.meteor.common.web.domain.BaseEntity;
 
 /**
  * 字典数据表 sys_dict_data
@@ -19,11 +18,11 @@ public class SysDictData extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 字典编码 */
-    @Excel(name = "字典编码", cellType = ColumnType.NUMERIC)
+    @Excel(name = "字典编码", cellType = Excel.ColumnType.NUMERIC)
     private Long dictCode;
 
     /** 字典排序 */
-    @Excel(name = "字典排序", cellType = ColumnType.NUMERIC)
+    @Excel(name = "字典排序", cellType = Excel.ColumnType.NUMERIC)
     private Long dictSort;
 
     /** 字典标签 */

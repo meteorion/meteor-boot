@@ -3,9 +3,9 @@ package pers.meteor.auth.convert;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import pers.meteor.auth.dto.vo.AuthLoginVO;
-import pers.meteor.auth.model.AccessToken;
-import pers.meteor.auth.model.AuthUserDetail;
-import pers.meteor.system.api.token.dto.vo.AccessTokenVO;
+import pers.meteor.common.security.core.model.AccessToken;
+import pers.meteor.common.security.core.model.AuthUserDetail;
+import pers.meteor.common.security.core.model.RefreshToken;
 
 /**
  * @author meteor
@@ -16,5 +16,7 @@ public interface AuthConvert {
 
     AuthLoginVO convert(AccessToken accessToken, String openId);
 
-    AccessToken convert(AuthUserDetail userDetail);
+    AccessToken convert(RefreshToken refreshToken);
+
+    RefreshToken convertRefreshToken(AuthUserDetail userDetail);
 }

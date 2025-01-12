@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pers.meteor.common.constant.UserConstants;
 import pers.meteor.common.exception.ServiceException;
 import pers.meteor.common.utils.StringUtils;
-import pers.meteor.common.security.utils.DictUtils;
+import pers.meteor.common.security.core.utils.DictUtils;
 import pers.meteor.system.api.domain.SysDictData;
 import pers.meteor.system.api.domain.SysDictType;
 import pers.meteor.system.mapper.SysDictDataMapper;

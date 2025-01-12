@@ -12,10 +12,21 @@ public class SecurityConstants
      */
     public static final String DETAILS_USER_ID = "user_id";
 
+    public static final String DETAILS_USER_TYPE = "user_type";
+
+    public static final String DETAILS_CLIENT_ID = "client_id";
+
+    public static final String DETAILS_ROLE = "role";
+
+    public static final String DETAILS_PERMISSIONS = "permissions";
+
+    public static final String DETAILS_MOBILE = "mobile";
     /**
      * 用户名字段
      */
     public static final String DETAILS_USERNAME = "username";
+
+    public static final String DETAILS_REFREST_TOKEN = "refresh_token";
 
     /**
      * 授权信息字段

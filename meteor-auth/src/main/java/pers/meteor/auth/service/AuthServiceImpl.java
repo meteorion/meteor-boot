@@ -5,10 +5,10 @@ import org.springframework.stereotype.Service;
 import pers.meteor.auth.convert.AuthConvert;
 import pers.meteor.auth.dto.form.*;
 import pers.meteor.auth.dto.vo.AuthLoginVO;
-import pers.meteor.auth.model.AccessToken;
-import pers.meteor.auth.model.AuthUserDetail;
-import pers.meteor.auth.service.token.TokenService;
 import pers.meteor.common.exception.ServiceException;
+import pers.meteor.common.security.core.model.AccessToken;
+import pers.meteor.common.security.core.model.AuthUserDetail;
+import pers.meteor.common.security.core.service.TokenService;
 
 import javax.annotation.Resource;
 
@@ -32,7 +32,7 @@ public class AuthServiceImpl implements AuthService {
             throw new ServiceException("登录失败，账号密码不正确");
         }
         // 校验密码
-        if (!authUserService.isPasswordMatch(loginForm.getClientId(), authUser.getPassword(), loginForm.getPassword())) {
+        if (!authUserService.isPasswordMatch(authUser, loginForm.getPassword())) {
             throw new ServiceException("登录失败，账号密码不正确");
         }
         // 校验账户是否锁定

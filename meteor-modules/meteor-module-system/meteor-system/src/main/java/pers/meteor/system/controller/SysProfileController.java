@@ -18,8 +18,8 @@ import pers.meteor.common.web.controller.BaseController;
 import pers.meteor.common.web.domain.AjaxResult;
 import pers.meteor.common.log.annotation.Log;
 import pers.meteor.common.log.enums.BusinessType;
-import pers.meteor.common.security.service.TokenService;
-import pers.meteor.common.security.utils.SecurityUtils;
+import pers.meteor.common.security.core.service.TokenService2;
+import pers.meteor.common.security.core.utils.SecurityUtils;
 import pers.meteor.system.api.RemoteFileService;
 import pers.meteor.system.api.domain.SysFile;
 import pers.meteor.system.api.domain.SysUser;
@@ -39,7 +39,7 @@ public class SysProfileController extends BaseController
     private ISysUserService userService;
 
     @Autowired
-    private TokenService tokenService;
+    private TokenService2 tokenService;
 
     @Autowired
     private RemoteFileService remoteFileService;

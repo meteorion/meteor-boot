@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import pers.meteor.common.core.domain.R;
+import pers.meteor.common.domain.R;
 import pers.meteor.system.api.RemoteFileService;
 import pers.meteor.system.api.domain.SysFile;
 

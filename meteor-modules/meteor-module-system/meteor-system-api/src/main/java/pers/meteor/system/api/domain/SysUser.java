@@ -5,12 +5,10 @@ import java.util.List;
 import javax.validation.constraints.*;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import pers.meteor.common.core.annotation.Excel;
-import pers.meteor.common.core.annotation.Excel.ColumnType;
-import pers.meteor.common.core.annotation.Excel.Type;
-import pers.meteor.common.core.annotation.Excels;
-import pers.meteor.common.core.web.domain.BaseEntity;
-import pers.meteor.common.core.xss.Xss;
+import pers.meteor.common.annotation.Excel;
+import pers.meteor.common.annotation.Excels;
+import pers.meteor.common.web.domain.BaseEntity;
+import pers.meteor.common.xss.Xss;
 
 /**
  * 用户对象 sys_user
@@ -22,11 +20,11 @@ public class SysUser extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 用户ID */
-    @Excel(name = "用户序号", type = Type.EXPORT, cellType = ColumnType.NUMERIC, prompt = "用户编号")
+    @Excel(name = "用户序号", type = Excel.Type.EXPORT, cellType = Excel.ColumnType.NUMERIC, prompt = "用户编号")
     private Long userId;
 
     /** 部门ID */
-    @Excel(name = "部门编号", type = Type.IMPORT)
+    @Excel(name = "部门编号", type = Excel.Type.IMPORT)
     private Long deptId;
 
     /** 用户账号 */
@@ -42,7 +40,7 @@ public class SysUser extends BaseEntity
     private String email;
 
     /** 手机号码 */
-    @Excel(name = "手机号码", cellType = ColumnType.TEXT)
+    @Excel(name = "手机号码", cellType = Excel.ColumnType.TEXT)
     private String phonenumber;
 
     /** 用户性别 */
@@ -63,17 +61,17 @@ public class SysUser extends BaseEntity
     private String delFlag;
 
     /** 最后登录IP */
-    @Excel(name = "最后登录IP", type = Type.EXPORT)
+    @Excel(name = "最后登录IP", type = Excel.Type.EXPORT)
     private String loginIp;
 
     /** 最后登录时间 */
-    @Excel(name = "最后登录时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Type.EXPORT)
+    @Excel(name = "最后登录时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Excel.Type.EXPORT)
     private Date loginDate;
 
     /** 部门对象 */
     @Excels({
-        @Excel(name = "部门名称", targetAttr = "deptName", type = Type.EXPORT),
-        @Excel(name = "部门负责人", targetAttr = "leader", type = Type.EXPORT)
+        @Excel(name = "部门名称", targetAttr = "deptName", type = Excel.Type.EXPORT),
+        @Excel(name = "部门负责人", targetAttr = "leader", type = Excel.Type.EXPORT)
     })
     private SysDept dept;
 

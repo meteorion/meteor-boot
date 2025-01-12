@@ -7,7 +7,7 @@ import pers.meteor.common.constant.CacheConstants;
 import pers.meteor.common.constant.Constants;
 import pers.meteor.common.exception.ServiceException;
 import pers.meteor.common.redis.service.RedisService;
-import pers.meteor.common.security.utils.SecurityUtils;
+import pers.meteor.common.security.core.utils.SecurityUtils;
 import pers.meteor.system.api.domain.SysUser;
 
 /**

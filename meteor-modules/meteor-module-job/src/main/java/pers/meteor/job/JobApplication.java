@@ -2,9 +2,8 @@ package pers.meteor.job;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import pers.meteor.common.security.annotation.EnableCustomConfig;
-import pers.meteor.common.security.annotation.EnableRyFeignClients;
-import pers.meteor.common.swagger.annotation.EnableCustomSwagger2;
+import pers.meteor.common.security.core.annotation.EnableCustomConfig;
+import pers.meteor.common.security.core.annotation.EnableRyFeignClients;
 
 /**
  * 定时任务
@@ -12,7 +11,6 @@ import pers.meteor.common.swagger.annotation.EnableCustomSwagger2;
  * @author ruoyi
  */
 @EnableCustomConfig
-@EnableCustomSwagger2
 @EnableRyFeignClients
 @SpringBootApplication
 public class JobApplication

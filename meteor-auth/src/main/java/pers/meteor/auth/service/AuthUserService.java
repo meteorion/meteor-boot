@@ -1,6 +1,6 @@
 package pers.meteor.auth.service;
 
-import pers.meteor.auth.model.AuthUserDetail;
+import pers.meteor.common.security.core.model.AuthUserDetail;
 
 /**
  * @author meteor
@@ -19,10 +19,9 @@ public interface AuthUserService {
     /**
      * 验证密码是否匹配
      *
-     * @param appId 应用ID
-     * @param userPassword 用户密码
+     * @param authUser 用户
      * @param loginPassword 登录密码
      * @return 匹配结果
      */
-    boolean isPasswordMatch(String appId, String userPassword, String loginPassword);
+    boolean isPasswordMatch(AuthUserDetail authUser, String loginPassword);
 }

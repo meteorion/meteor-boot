@@ -1,6 +1,6 @@
 package pers.meteor.auth.service;
 
-import pers.meteor.auth.model.AuthUserDetail;
+import pers.meteor.common.security.core.model.AuthUserDetail;
 
 /**
  * @author meteor
@@ -12,7 +12,7 @@ public class AuthUserServiceImpl implements AuthUserService {
     }
 
     @Override
-    public boolean isPasswordMatch(String clientId, String userPassword, String loginPassword) {
+    public boolean isPasswordMatch(AuthUserDetail authUser, String loginPassword) {
         return false;
     }
 }

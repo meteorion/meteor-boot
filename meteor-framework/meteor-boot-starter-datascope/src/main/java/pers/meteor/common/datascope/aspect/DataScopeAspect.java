@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 import pers.meteor.common.context.SecurityContextHolder;
-import pers.meteor.common.text.Convert;
+import pers.meteor.common.utils.text.Convert;
 import pers.meteor.common.utils.StringUtils;
 import pers.meteor.common.web.domain.BaseEntity;
 import pers.meteor.common.datascope.annotation.DataScope;

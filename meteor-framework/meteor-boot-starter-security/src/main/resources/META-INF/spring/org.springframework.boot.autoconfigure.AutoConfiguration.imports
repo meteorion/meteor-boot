@@ -1,5 +1,3 @@
-pers.meteor.security.config.WebMvcConfig
-pers.meteor.security.core.service.TokenService2
-pers.meteor.security.core.aspect.PreAuthorizeAspect
-pers.meteor.security.core.aspect.InnerAuthAspect
-pers.meteor.security.core.handler.GlobalExceptionHandler
+pers.meteor.security.config.MeteorSecurityAutoConfiguration
+pers.meteor.security.config.MeteorSecurityFeignAutoConfiguration
+pers.meteor.security.config.MeteorWebSecurityConfigurerAdapter

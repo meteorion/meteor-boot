@@ -2,7 +2,7 @@ package pers.meteor.common.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import pers.meteor.common.core.IntArrayValuable;
+import pers.meteor.common.pojo.IntArrayValuable;
 
 import java.util.Arrays;
 

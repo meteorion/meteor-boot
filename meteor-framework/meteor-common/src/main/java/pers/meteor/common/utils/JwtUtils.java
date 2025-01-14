@@ -5,7 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import pers.meteor.common.constant.SecurityConstants;
 import pers.meteor.common.constant.TokenConstants;
-import pers.meteor.common.text.Convert;
+import pers.meteor.common.utils.text.Convert;
 
 import java.util.Map;
 

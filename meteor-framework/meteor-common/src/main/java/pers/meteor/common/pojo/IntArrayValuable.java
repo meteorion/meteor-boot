@@ -1,4 +1,4 @@
-package pers.meteor.common.core;
+package pers.meteor.common.pojo;
 
 /**
  * 可生成 Int 数组的接口

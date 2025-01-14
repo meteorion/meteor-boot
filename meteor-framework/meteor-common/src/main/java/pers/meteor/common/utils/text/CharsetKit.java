@@ -1,4 +1,4 @@
-package pers.meteor.common.text;
+package pers.meteor.common.utils.text;
 
 import pers.meteor.common.utils.StringUtils;
 

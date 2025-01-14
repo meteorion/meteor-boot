@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@ConfigurationProperties(prefix = "yudao.web")
+@ConfigurationProperties(prefix = "meteor.web")
 @Validated
 @Data
 public class WebProperties {

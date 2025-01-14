@@ -9,7 +9,7 @@ import pers.meteor.common.constant.UserConstants;
 import pers.meteor.common.domain.R;
 import pers.meteor.common.enums.UserStatus;
 import pers.meteor.common.exception.ServiceException;
-import pers.meteor.common.text.Convert;
+import pers.meteor.common.utils.text.Convert;
 import pers.meteor.common.utils.StringUtils;
 import pers.meteor.common.utils.ip.IpUtils;
 import pers.meteor.common.redis.service.RedisService;

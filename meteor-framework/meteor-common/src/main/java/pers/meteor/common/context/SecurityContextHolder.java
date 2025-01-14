@@ -2,7 +2,7 @@ package pers.meteor.common.context;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import pers.meteor.common.constant.SecurityConstants;
-import pers.meteor.common.text.Convert;
+import pers.meteor.common.utils.text.Convert;
 import pers.meteor.common.utils.StringUtils;
 
 import java.util.Map;

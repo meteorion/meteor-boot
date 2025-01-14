@@ -26,7 +26,7 @@ import com.alibaba.fastjson2.JSONObject;
 import pers.meteor.common.constant.Constants;
 import pers.meteor.common.constant.GenConstants;
 import pers.meteor.common.exception.ServiceException;
-import pers.meteor.common.text.CharsetKit;
+import pers.meteor.common.utils.text.CharsetKit;
 import pers.meteor.common.utils.StringUtils;
 import pers.meteor.security.core.utils.SecurityUtils;
 import pers.meteor.gen.domain.GenTable;

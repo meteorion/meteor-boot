@@ -3,7 +3,7 @@ package pers.meteor.gen.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pers.meteor.common.text.Convert;
+import pers.meteor.common.utils.text.Convert;
 import pers.meteor.gen.domain.GenTableColumn;
 import pers.meteor.gen.mapper.GenTableColumnMapper;
 

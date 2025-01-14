@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pers.meteor.common.text.Convert;
+import pers.meteor.common.utils.text.Convert;
 import pers.meteor.common.web.controller.BaseController;
 import pers.meteor.common.web.domain.AjaxResult;
 import pers.meteor.common.web.page.TableDataInfo;

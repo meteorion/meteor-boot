@@ -4,7 +4,7 @@ import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.text.StrPool;
 import org.springframework.util.AntPathMatcher;
 import pers.meteor.common.constant.Constants;
-import pers.meteor.common.text.StrFormatter;
+import pers.meteor.common.utils.text.StrFormatter;
 
 import java.util.*;
 import java.util.stream.Collectors;

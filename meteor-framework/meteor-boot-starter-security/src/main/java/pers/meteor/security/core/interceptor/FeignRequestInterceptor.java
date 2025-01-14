@@ -19,8 +19,7 @@ import pers.meteor.security.core.utils.SecurityUtils;
  * @author ruoyi
  */
 @Slf4j
-public class FeignRequestInterceptor implements RequestInterceptor
-{
+public class FeignRequestInterceptor implements RequestInterceptor {
     @Override
     public void apply(RequestTemplate requestTemplate) {
         AuthUserDetail authUser = SecurityUtils.getAuthUser();

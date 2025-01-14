@@ -1,6 +1,6 @@
 package pers.meteor.common.validation;
 
-import pers.meteor.common.core.IntArrayValuable;
+import pers.meteor.common.pojo.IntArrayValuable;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

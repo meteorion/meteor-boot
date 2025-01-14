@@ -3,7 +3,7 @@ package pers.meteor.common.enums;
 import cn.hutool.core.util.ArrayUtil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import pers.meteor.common.core.IntArrayValuable;
+import pers.meteor.common.pojo.IntArrayValuable;
 
 import java.util.Arrays;
 

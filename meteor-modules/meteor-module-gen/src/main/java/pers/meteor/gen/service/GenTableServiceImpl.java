@@ -28,7 +28,7 @@ import pers.meteor.common.constant.GenConstants;
 import pers.meteor.common.exception.ServiceException;
 import pers.meteor.common.text.CharsetKit;
 import pers.meteor.common.utils.StringUtils;
-import pers.meteor.common.security.core.utils.SecurityUtils;
+import pers.meteor.security.core.utils.SecurityUtils;
 import pers.meteor.gen.domain.GenTable;
 import pers.meteor.gen.domain.GenTableColumn;
 import pers.meteor.gen.mapper.GenTableColumnMapper;

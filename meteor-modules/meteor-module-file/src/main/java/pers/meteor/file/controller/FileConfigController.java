@@ -1,7 +1,5 @@
 package pers.meteor.file.controller;
 
-import pers.meteor.common.core.domain.PageResult;
-import pers.meteor.common.core.domain.R;
 import pers.meteor.file.controller.vo.config.FileConfigCreateReqVO;
 import pers.meteor.file.controller.vo.config.FileConfigPageReqVO;
 import pers.meteor.file.controller.vo.config.FileConfigRespVO;

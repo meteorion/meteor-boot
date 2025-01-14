@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import cn.hutool.core.io.IoUtil;
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.servlet.ServletUtil;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,6 +29,7 @@ import com.alibaba.fastjson2.JSON;
 import pers.meteor.common.constant.Constants;
 import pers.meteor.common.domain.R;
 import pers.meteor.common.text.Convert;
+import pers.meteor.common.utils.json.JsonUtils;
 import reactor.core.publisher.Mono;
 
 /**
@@ -239,6 +242,10 @@ public class ServletUtils
         return StringUtils.inStringIgnoreCase(ajax, "json", "xml");
     }
 
+    public static boolean isJsonRequest(ServletRequest request) {
+        return StrUtil.startWithIgnoreCase(request.getContentType(), MediaType.APPLICATION_JSON_VALUE);
+    }
+
     /**
      * 内容编码
      *
@@ -348,4 +355,18 @@ public class ServletUtils
         // 输出附件
         IoUtil.write(response.getOutputStream(), false, content);
     }
+
+    public static void writeJSON(HttpServletResponse response, Object object) {
+        String content = JsonUtils.toJsonString(object);
+        ServletUtil.write(response, content, MediaType.APPLICATION_JSON_VALUE);
+    }
+
+    public static byte[] getBodyBytes(HttpServletRequest request) {
+        // 只有在 json 请求在读取，因为只有 CacheRequestBodyFilter 才会进行缓存，支持重复读取
+        if (isJsonRequest(request)) {
+            return ServletUtil.getBodyBytes(request);
+        }
+        return null;
+    }
+
 }

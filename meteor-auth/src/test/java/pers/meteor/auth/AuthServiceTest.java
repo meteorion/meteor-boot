@@ -2,12 +2,12 @@ package pers.meteor.auth;
 
 import com.alibaba.fastjson.JSON;
 import org.junit.jupiter.api.Test;
-import pers.meteor.common.security.config.SecurityProperties;
-import pers.meteor.common.security.core.model.AccessToken;
-import pers.meteor.common.security.core.model.AuthUserDetail;
-import pers.meteor.common.security.core.model.RefreshToken;
-import pers.meteor.common.security.core.service.JwtService;
-import pers.meteor.common.security.core.service.impl.JwtServiceImpl;
+import pers.meteor.security.config.SecurityProperties;
+import pers.meteor.security.core.model.AccessToken;
+import pers.meteor.security.core.model.AuthUserDetail;
+import pers.meteor.security.core.model.RefreshToken;
+import pers.meteor.security.core.service.JwtService;
+import pers.meteor.security.core.service.impl.JwtServiceImpl;
 
 import java.util.ArrayList;
 

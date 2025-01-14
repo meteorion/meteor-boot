@@ -12,7 +12,7 @@ import pers.meteor.auth.dto.form.*;
 import pers.meteor.auth.dto.vo.AuthLoginVO;
 import pers.meteor.auth.service.AuthService;
 import pers.meteor.common.pojo.response.SingleResponse;
-import pers.meteor.common.security.core.utils.SecurityUtils;
+import pers.meteor.security.core.utils.SecurityUtils;
 
 import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;

@@ -12,7 +12,7 @@
     <artifactId>meteor-common</artifactId>
 
     <description>
-        meteor-common-core核心模块
+        meteor-common核心模块
     </description>
 
     <dependencies>

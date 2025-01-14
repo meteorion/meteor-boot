@@ -8,12 +8,13 @@ import pers.meteor.auth.dto.vo.AuthLoginVO;
 import pers.meteor.auth.service.AuthLogService;
 import pers.meteor.auth.service.AuthService;
 import pers.meteor.auth.service.AuthUserService;
+import pers.meteor.auth.service.AuthUserServiceFactory;
 import pers.meteor.common.enums.LoginLogTypeEnum;
 import pers.meteor.common.enums.LoginResultEnum;
 import pers.meteor.common.exception.ServiceException;
-import pers.meteor.common.security.core.model.AccessToken;
-import pers.meteor.common.security.core.model.AuthUserDetail;
-import pers.meteor.common.security.core.service.TokenService;
+import pers.meteor.security.core.model.AccessToken;
+import pers.meteor.security.core.model.AuthUserDetail;
+import pers.meteor.security.core.service.TokenService;
 
 import javax.annotation.Resource;
 
@@ -27,20 +28,21 @@ public class AuthServiceImpl implements AuthService {
     @Resource
     private TokenService tokenService;
     @Resource
-    private AuthUserService authUserService;
+    private AuthUserServiceFactory authUserServiceFactory;
     @Resource
     private AuthLogService authLogService;
 
     @Override
     public AuthLoginVO login(AuthLoginForm loginForm) {
+        AuthUserService userService = authUserServiceFactory.getUserService(loginForm.getUserType());
         // 校验手机密码并获取用户信息
-        AuthUserDetail authUser = authUserService.getUserByMobile(loginForm.getClientId(), loginForm.getMobile());
+        AuthUserDetail authUser = userService.getUserByAccount(loginForm.getAccount());
         if (authUser == null) {
             authLogService.saveLoginRecord(null, LoginLogTypeEnum.LOGIN_MOBILE, LoginResultEnum.BAD_CREDENTIALS);
             throw new ServiceException("登录失败，账号密码不正确");
         }
         // 校验密码
-        if (!authUserService.isPasswordMatch(authUser, loginForm.getPassword())) {
+        if (!userService.isPasswordMatch(authUser, loginForm.getPassword())) {
             authLogService.saveLoginRecord(authUser, LoginLogTypeEnum.LOGIN_MOBILE, LoginResultEnum.BAD_CREDENTIALS);
             throw new ServiceException("登录失败，账号密码不正确");
         }

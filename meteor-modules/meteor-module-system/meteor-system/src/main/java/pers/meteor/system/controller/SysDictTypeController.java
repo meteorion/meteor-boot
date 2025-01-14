@@ -18,8 +18,7 @@ import pers.meteor.common.web.domain.AjaxResult;
 import pers.meteor.common.web.page.TableDataInfo;
 import pers.meteor.common.log.annotation.Log;
 import pers.meteor.common.log.enums.BusinessType;
-import pers.meteor.common.security.core.annotation.RequiresPermissions;
-import pers.meteor.common.security.core.utils.SecurityUtils;
+import pers.meteor.security.core.utils.SecurityUtils;
 import pers.meteor.system.api.domain.SysDictType;
 import pers.meteor.system.service.ISysDictTypeService;
 
@@ -35,7 +34,6 @@ public class SysDictTypeController extends BaseController
     @Autowired
     private ISysDictTypeService dictTypeService;
 
-    @RequiresPermissions("system:dict:list")
     @GetMapping("/list")
     public TableDataInfo list(SysDictType dictType)
     {
@@ -45,7 +43,6 @@ public class SysDictTypeController extends BaseController
     }
 
     @Log(title = "字典类型", businessType = BusinessType.EXPORT)
-    @RequiresPermissions("system:dict:export")
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysDictType dictType)
     {
@@ -57,7 +54,6 @@ public class SysDictTypeController extends BaseController
     /**
      * 查询字典类型详细
      */
-    @RequiresPermissions("system:dict:query")
     @GetMapping(value = "/{dictId}")
     public AjaxResult getInfo(@PathVariable Long dictId)
     {
@@ -67,7 +63,6 @@ public class SysDictTypeController extends BaseController
     /**
      * 新增字典类型
      */
-    @RequiresPermissions("system:dict:add")
     @Log(title = "字典类型", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysDictType dict)
@@ -83,7 +78,6 @@ public class SysDictTypeController extends BaseController
     /**
      * 修改字典类型
      */
-    @RequiresPermissions("system:dict:edit")
     @Log(title = "字典类型", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysDictType dict)
@@ -99,7 +93,6 @@ public class SysDictTypeController extends BaseController
     /**
      * 删除字典类型
      */
-    @RequiresPermissions("system:dict:remove")
     @Log(title = "字典类型", businessType = BusinessType.DELETE)
     @DeleteMapping("/{dictIds}")
     public AjaxResult remove(@PathVariable Long[] dictIds)
@@ -111,7 +104,6 @@ public class SysDictTypeController extends BaseController
     /**
      * 刷新字典缓存
      */
-    @RequiresPermissions("system:dict:remove")
     @Log(title = "字典类型", businessType = BusinessType.CLEAN)
     @DeleteMapping("/refreshCache")
     public AjaxResult refreshCache()

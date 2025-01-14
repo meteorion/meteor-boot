@@ -15,7 +15,6 @@ import pers.meteor.common.web.domain.AjaxResult;
 import pers.meteor.common.web.page.TableDataInfo;
 import pers.meteor.common.log.annotation.Log;
 import pers.meteor.common.log.enums.BusinessType;
-import pers.meteor.common.security.core.annotation.RequiresPermissions;
 import pers.meteor.job.domain.SysJobLog;
 import pers.meteor.job.service.ISysJobLogService;
 
@@ -34,7 +33,6 @@ public class SysJobLogController extends BaseController
     /**
      * 查询定时任务调度日志列表
      */
-    @RequiresPermissions("monitor:job:list")
     @GetMapping("/list")
     public TableDataInfo list(SysJobLog sysJobLog)
     {
@@ -46,7 +44,6 @@ public class SysJobLogController extends BaseController
     /**
      * 导出定时任务调度日志列表
      */
-    @RequiresPermissions("monitor:job:export")
     @Log(title = "任务调度日志", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysJobLog sysJobLog)
@@ -59,7 +56,6 @@ public class SysJobLogController extends BaseController
     /**
      * 根据调度编号获取详细信息
      */
-    @RequiresPermissions("monitor:job:query")
     @GetMapping(value = "/{jobLogId}")
     public AjaxResult getInfo(@PathVariable Long jobLogId)
     {
@@ -69,7 +65,6 @@ public class SysJobLogController extends BaseController
     /**
      * 删除定时任务调度日志
      */
-    @RequiresPermissions("monitor:job:remove")
     @Log(title = "定时任务调度日志", businessType = BusinessType.DELETE)
     @DeleteMapping("/{jobLogIds}")
     public AjaxResult remove(@PathVariable Long[] jobLogIds)
@@ -80,7 +75,6 @@ public class SysJobLogController extends BaseController
     /**
      * 清空定时任务调度日志
      */
-    @RequiresPermissions("monitor:job:remove")
     @Log(title = "调度日志", businessType = BusinessType.CLEAN)
     @DeleteMapping("/clean")
     public AjaxResult clean()

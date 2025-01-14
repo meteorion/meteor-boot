@@ -57,4 +57,8 @@ public class SingleResponse<T> extends Response {
         return response;
     }
 
+    public T getCheckedData() {
+        checkError();
+        return data;
+    }
 }

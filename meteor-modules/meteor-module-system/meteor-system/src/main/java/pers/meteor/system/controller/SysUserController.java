@@ -25,9 +25,8 @@ import pers.meteor.common.web.domain.AjaxResult;
 import pers.meteor.common.web.page.TableDataInfo;
 import pers.meteor.common.log.annotation.Log;
 import pers.meteor.common.log.enums.BusinessType;
-import pers.meteor.common.security.core.annotation.InnerAuth;
-import pers.meteor.common.security.core.annotation.RequiresPermissions;
-import pers.meteor.common.security.core.utils.SecurityUtils;
+import pers.meteor.security.core.annotation.InnerAuth;
+import pers.meteor.security.core.utils.SecurityUtils;
 import pers.meteor.system.api.domain.SysDept;
 import pers.meteor.system.api.domain.SysRole;
 import pers.meteor.system.api.domain.SysUser;
@@ -69,7 +68,6 @@ public class SysUserController extends BaseController
     /**
      * 获取用户列表
      */
-    @RequiresPermissions("system:user:list")
     @GetMapping("/list")
     public TableDataInfo list(SysUser user)
     {
@@ -79,7 +77,6 @@ public class SysUserController extends BaseController
     }
 
     @Log(title = "用户管理", businessType = BusinessType.EXPORT)
-    @RequiresPermissions("system:user:export")
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysUser user)
     {
@@ -89,7 +86,6 @@ public class SysUserController extends BaseController
     }
 
     @Log(title = "用户管理", businessType = BusinessType.IMPORT)
-    @RequiresPermissions("system:user:import")
     @PostMapping("/importData")
     public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception
     {
@@ -172,7 +168,6 @@ public class SysUserController extends BaseController
     /**
      * 根据用户编号获取详细信息
      */
-    @RequiresPermissions("system:user:query")
     @GetMapping(value = { "/", "/{userId}" })
     public AjaxResult getInfo(@PathVariable(value = "userId", required = false) Long userId)
     {
@@ -194,7 +189,6 @@ public class SysUserController extends BaseController
     /**
      * 新增用户
      */
-    @RequiresPermissions("system:user:add")
     @Log(title = "用户管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysUser user)
@@ -221,7 +215,6 @@ public class SysUserController extends BaseController
     /**
      * 修改用户
      */
-    @RequiresPermissions("system:user:edit")
     @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysUser user)
@@ -249,7 +242,6 @@ public class SysUserController extends BaseController
     /**
      * 删除用户
      */
-    @RequiresPermissions("system:user:remove")
     @Log(title = "用户管理", businessType = BusinessType.DELETE)
     @DeleteMapping("/{userIds}")
     public AjaxResult remove(@PathVariable Long[] userIds)
@@ -264,7 +256,6 @@ public class SysUserController extends BaseController
     /**
      * 重置密码
      */
-    @RequiresPermissions("system:user:edit")
     @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @PutMapping("/resetPwd")
     public AjaxResult resetPwd(@RequestBody SysUser user)
@@ -279,7 +270,6 @@ public class SysUserController extends BaseController
     /**
      * 状态修改
      */
-    @RequiresPermissions("system:user:edit")
     @Log(title = "用户管理", businessType = BusinessType.UPDATE)
     @PutMapping("/changeStatus")
     public AjaxResult changeStatus(@RequestBody SysUser user)
@@ -293,7 +283,6 @@ public class SysUserController extends BaseController
     /**
      * 根据用户编号获取授权角色
      */
-    @RequiresPermissions("system:user:query")
     @GetMapping("/authRole/{userId}")
     public AjaxResult authRole(@PathVariable("userId") Long userId)
     {
@@ -308,7 +297,6 @@ public class SysUserController extends BaseController
     /**
      * 用户授权角色
      */
-    @RequiresPermissions("system:user:edit")
     @Log(title = "用户管理", businessType = BusinessType.GRANT)
     @PutMapping("/authRole")
     public AjaxResult insertAuthRole(Long userId, Long[] roleIds)
@@ -322,7 +310,6 @@ public class SysUserController extends BaseController
     /**
      * 获取部门树列表
      */
-    @RequiresPermissions("system:user:list")
     @GetMapping("/deptTree")
     public AjaxResult deptTree(SysDept dept)
     {

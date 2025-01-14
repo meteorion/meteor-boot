@@ -11,7 +11,7 @@ import pers.meteor.common.text.Convert;
 import pers.meteor.common.utils.StringUtils;
 import pers.meteor.common.web.domain.BaseEntity;
 import pers.meteor.common.datascope.annotation.DataScope;
-import pers.meteor.common.security.core.utils.SecurityUtils;
+import pers.meteor.security.core.utils.SecurityUtils;
 import pers.meteor.system.api.domain.SysRole;
 import pers.meteor.system.api.domain.SysUser;
 import pers.meteor.system.api.model.LoginUser;

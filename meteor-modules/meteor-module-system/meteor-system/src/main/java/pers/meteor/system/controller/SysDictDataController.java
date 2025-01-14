@@ -20,8 +20,7 @@ import pers.meteor.common.web.domain.AjaxResult;
 import pers.meteor.common.web.page.TableDataInfo;
 import pers.meteor.common.log.annotation.Log;
 import pers.meteor.common.log.enums.BusinessType;
-import pers.meteor.common.security.core.annotation.RequiresPermissions;
-import pers.meteor.common.security.core.utils.SecurityUtils;
+import pers.meteor.security.core.utils.SecurityUtils;
 import pers.meteor.system.api.domain.SysDictData;
 import pers.meteor.system.service.ISysDictDataService;
 import pers.meteor.system.service.ISysDictTypeService;
@@ -41,7 +40,6 @@ public class SysDictDataController extends BaseController
     @Autowired
     private ISysDictTypeService dictTypeService;
 
-    @RequiresPermissions("system:dict:list")
     @GetMapping("/list")
     public TableDataInfo list(SysDictData dictData)
     {
@@ -51,7 +49,6 @@ public class SysDictDataController extends BaseController
     }
 
     @Log(title = "字典数据", businessType = BusinessType.EXPORT)
-    @RequiresPermissions("system:dict:export")
     @PostMapping("/export")
     public void export(HttpServletResponse response, SysDictData dictData)
     {
@@ -63,7 +60,6 @@ public class SysDictDataController extends BaseController
     /**
      * 查询字典数据详细
      */
-    @RequiresPermissions("system:dict:query")
     @GetMapping(value = "/{dictCode}")
     public AjaxResult getInfo(@PathVariable Long dictCode)
     {
@@ -87,7 +83,6 @@ public class SysDictDataController extends BaseController
     /**
      * 新增字典类型
      */
-    @RequiresPermissions("system:dict:add")
     @Log(title = "字典数据", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysDictData dict)
@@ -99,7 +94,6 @@ public class SysDictDataController extends BaseController
     /**
      * 修改保存字典类型
      */
-    @RequiresPermissions("system:dict:edit")
     @Log(title = "字典数据", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysDictData dict)
@@ -111,7 +105,6 @@ public class SysDictDataController extends BaseController
     /**
      * 删除字典类型
      */
-    @RequiresPermissions("system:dict:remove")
     @Log(title = "字典类型", businessType = BusinessType.DELETE)
     @DeleteMapping("/{dictCodes}")
     public AjaxResult remove(@PathVariable Long[] dictCodes)

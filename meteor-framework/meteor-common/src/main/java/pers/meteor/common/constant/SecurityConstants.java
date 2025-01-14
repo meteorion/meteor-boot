@@ -26,6 +26,8 @@ public class SecurityConstants
      */
     public static final String DETAILS_USERNAME = "username";
 
+    public static final String DETAILS_USER_DEPT_ID = "dept_id";
+
     public static final String DETAILS_REFREST_TOKEN = "refresh_token";
 
     /**

@@ -26,7 +26,7 @@ import pers.meteor.common.log.annotation.Log;
 import pers.meteor.common.log.enums.BusinessStatus;
 import pers.meteor.common.log.filter.PropertyPreExcludeFilter;
 import pers.meteor.common.log.service.AsyncLogService;
-import pers.meteor.common.security.core.utils.SecurityUtils;
+import pers.meteor.security.core.utils.SecurityUtils;
 import pers.meteor.system.api.domain.SysOperLog;
 
 /**

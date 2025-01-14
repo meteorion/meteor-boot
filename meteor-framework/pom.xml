@@ -16,6 +16,7 @@
         <module>meteor-boot-starter-redis</module>
         <module>meteor-boot-starter-seata</module>
         <module>meteor-boot-starter-document</module>
+        <module>meteor-boot-starter-web</module>
         <module>meteor-boot-starter-security</module>
         <module>meteor-boot-starter-sensitive</module>
         <module>meteor-boot-starter-datascope</module>
@@ -149,6 +150,12 @@
             <dependency>
                 <groupId>pers.meteor</groupId>
                 <artifactId>meteor-boot-starter-event</artifactId>
+                <version>${component.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pers.meteor</groupId>
+                <artifactId>meteor-boot-starter-web</artifactId>
                 <version>${component.version}</version>
             </dependency>
         </dependencies>

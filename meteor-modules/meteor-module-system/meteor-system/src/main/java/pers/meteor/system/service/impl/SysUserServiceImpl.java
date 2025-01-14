@@ -16,7 +16,7 @@ import pers.meteor.common.utils.SpringUtils;
 import pers.meteor.common.utils.StringUtils;
 import pers.meteor.common.utils.bean.BeanValidators;
 import pers.meteor.common.datascope.annotation.DataScope;
-import pers.meteor.common.security.core.utils.SecurityUtils;
+import pers.meteor.security.core.utils.SecurityUtils;
 import pers.meteor.system.api.domain.SysRole;
 import pers.meteor.system.api.domain.SysUser;
 import pers.meteor.system.domain.SysPost;

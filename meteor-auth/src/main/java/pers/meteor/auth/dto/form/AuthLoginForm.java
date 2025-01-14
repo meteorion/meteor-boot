@@ -20,13 +20,17 @@ import javax.validation.constraints.NotBlank;
 @Builder
 public class AuthLoginForm {
 
+ @Schema(description = "用户类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
+ @NotBlank(message = "用户类型不能为空")
+ private Integer userType;
+
  @Schema(description = "客户端编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "10")
  @NotBlank(message = "客户端编号不能为空")
  private String clientId;
 
- @Schema(description = "手机号", requiredMode = Schema.RequiredMode.REQUIRED, example = "15601691300")
- @NotBlank(message = "手机号不能为空")
- private String mobile;
+ @Schema(description = "账户名称", requiredMode = Schema.RequiredMode.REQUIRED, example = "15601691300")
+ @NotBlank(message = "账户名称不能为空")
+ private String account;
 
  @Schema(description = "密码", requiredMode = Schema.RequiredMode.REQUIRED, example = "buzhidao")
  @NotBlank(message = "密码不能为空")

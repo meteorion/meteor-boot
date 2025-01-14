@@ -10,11 +10,10 @@ import pers.meteor.auth.dto.form.LoginBody;
 import pers.meteor.auth.dto.form.RegisterBody;
 import pers.meteor.auth.service.SysLoginService;
 import pers.meteor.common.domain.R;
-import pers.meteor.common.security.core.service.TokenService2;
 import pers.meteor.common.utils.JwtUtils;
 import pers.meteor.common.utils.StringUtils;
-import pers.meteor.common.security.core.auth.AuthUtil;
-import pers.meteor.common.security.core.utils.SecurityUtils;
+import pers.meteor.security.core.auth.AuthUtil;
+import pers.meteor.security.core.utils.SecurityUtils;
 import pers.meteor.system.api.model.LoginUser;
 
 /**

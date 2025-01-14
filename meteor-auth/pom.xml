@@ -73,6 +73,11 @@
             <artifactId>meteor-boot-starter-test</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-common</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

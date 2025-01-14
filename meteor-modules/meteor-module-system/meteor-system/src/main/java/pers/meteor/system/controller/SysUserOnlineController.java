@@ -18,7 +18,6 @@ import pers.meteor.common.web.page.TableDataInfo;
 import pers.meteor.common.log.annotation.Log;
 import pers.meteor.common.log.enums.BusinessType;
 import pers.meteor.common.redis.service.RedisService;
-import pers.meteor.common.security.core.annotation.RequiresPermissions;
 import pers.meteor.system.api.model.LoginUser;
 import pers.meteor.system.domain.SysUserOnline;
 import pers.meteor.system.service.ISysUserOnlineService;
@@ -38,7 +37,6 @@ public class SysUserOnlineController extends BaseController
     @Autowired
     private RedisService redisService;
 
-    @RequiresPermissions("monitor:online:list")
     @GetMapping("/list")
     public TableDataInfo list(String ipaddr, String userName)
     {
@@ -72,7 +70,6 @@ public class SysUserOnlineController extends BaseController
     /**
      * 强退用户
      */
-    @RequiresPermissions("monitor:online:forceLogout")
     @Log(title = "在线用户", businessType = BusinessType.FORCE)
     @DeleteMapping("/{tokenId}")
     public AjaxResult forceLogout(@PathVariable String tokenId)

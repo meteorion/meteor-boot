@@ -7,10 +7,19 @@
         <version>1.0.0-snapshot</version>
     </parent>
 
+    <groupId>pers.meteor.auth</groupId>
     <artifactId>meteor-auth-api</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
-    <name>meteor-auth-api</name>
-    <url>http://maven.apache.org</url>
+    <description>
+        meteor-auth-api系统接口模块
+    </description>
 
+    <dependencies>
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-boot-starter-document</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

@@ -16,7 +16,7 @@
     </description>
 
     <modules>
-        <module>meteor-auth-api</module>
         <module>meteor-auth</module>
+        <module>meteor-auth-api</module>
     </modules>
 </project>

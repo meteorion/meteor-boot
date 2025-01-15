@@ -41,6 +41,9 @@ public class SecurityProperties {
     @NotEmpty(message = "mock 模式的密钥不能为空") // 这里设置了一个默认值，因为实际上只有 mockEnable 为 true 时才需要配置。
     private String mockSecret = "test";
 
+    @NotNull(message = "mock 模式的开关不能为空")
+    private String authUser = "system";
+
     /**
      * 免登录的 URL 列表
      */

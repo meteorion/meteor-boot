@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 import pers.meteor.auth.api.dto.AccessToken;
+import pers.meteor.auth.api.dto.AccessTokenCheckResult;
 import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.auth.enums.ApiConstants;
 import pers.meteor.common.pojo.response.SingleResponse;
@@ -22,6 +23,8 @@ import javax.validation.Valid;
 public interface AuthTokenApi {
 
     String PREFIX = ApiConstants.PREFIX + "/auth/token";
+
+    String URL_CHECK = "http://" + ApiConstants.NAME + PREFIX + "/check";
 
     @PostMapping(PREFIX + "/create")
     @Operation(summary = "创建访问令牌")
@@ -39,7 +42,7 @@ public interface AuthTokenApi {
     @GetMapping(PREFIX + "/check")
     @Operation(summary = "校验访问令牌")
     @Parameter(name = "accessToken", description = "访问令牌", required = true, example = "tudou")
-    SingleResponse<AccessToken> checkAccessToken(@RequestParam("accessToken") String accessToken);
+    SingleResponse<AccessTokenCheckResult> checkAccessToken(@RequestParam("accessToken") String accessToken);
 
     @DeleteMapping(PREFIX + "/remove")
     @Operation(summary = "移除访问令牌")

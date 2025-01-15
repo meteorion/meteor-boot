@@ -29,7 +29,7 @@ public class AuthTokenApiImpl implements AuthTokenApi {
     }
 
     @Override
-    public SingleResponse<AccessToken> checkAccessToken(String accessToken) {
+    public SingleResponse<AccessTokenCheckResult> checkAccessToken(String accessToken) {
         return SingleResponse.success(tokenService.checkAccessToken(accessToken));
     }
 

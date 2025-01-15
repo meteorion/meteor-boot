@@ -12,12 +12,22 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ServerWebExchange;
+import pers.meteor.auth.api.AuthTokenApi;
+import pers.meteor.auth.api.dto.AccessTokenCheckResult;
+import pers.meteor.auth.api.dto.AuthUserDetail;
+import pers.meteor.common.pojo.KeyValue;
+import pers.meteor.common.pojo.response.SingleResponse;
 import pers.meteor.common.utils.json.JsonUtils;
+import pers.meteor.gateway.util.SecurityFrameworkUtils;
+import pers.meteor.gateway.util.WebFrameworkUtils;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.function.Function;
+
+import static pers.meteor.common.utils.cache.CacheUtils.buildAsyncReloadingCache;
 
 /**
  * Token 过滤器，验证 token 的有效性
@@ -32,8 +42,8 @@ public class TokenAuthenticationFilter implements GlobalFilter, Ordered {
     /**
      * CommonResult<OAuth2AccessTokenCheckRespDTO> 对应的 TypeReference 结果，用于解析 checkToken 的结果
      */
-    private static final TypeReference<CommonResult<OAuth2AccessTokenCheckRespDTO>> CHECK_RESULT_TYPE_REFERENCE
-            = new TypeReference<CommonResult<OAuth2AccessTokenCheckRespDTO>>() {};
+    private static final TypeReference<SingleResponse<AccessTokenCheckResult>> CHECK_RESULT_TYPE_REFERENCE
+            = new TypeReference<SingleResponse<AccessTokenCheckResult>>() {};
 
     /**
      * 空的 LoginUser 的结果
@@ -42,7 +52,7 @@ public class TokenAuthenticationFilter implements GlobalFilter, Ordered {
      * 1. {@link #getLoginUser(ServerWebExchange, String)} 返回 Mono.empty() 时，会导致后续的 flatMap 无法进行处理的问题。
      * 2. {@link #buildUser(String)} 时，如果 Token 已经过期，返回 LOGIN_USER_EMPTY 对象，避免缓存无法刷新
      */
-    private static final LoginUser LOGIN_USER_EMPTY = new LoginUser();
+    private static final AuthUserDetail LOGIN_USER_EMPTY = new AuthUserDetail();
 
     private final WebClient webClient;
 
@@ -52,15 +62,14 @@ public class TokenAuthenticationFilter implements GlobalFilter, Ordered {
      * key1：多租户的编号
      * key2：访问令牌
      */
-    private final LoadingCache<KeyValue<Long, String>, LoginUser> loginUserCache = buildAsyncReloadingCache(Duration.ofMinutes(1),
-            new CacheLoader<KeyValue<Long, String>, LoginUser>() {
+    private final LoadingCache<KeyValue<Long, String>, AuthUserDetail> loginUserCache = buildAsyncReloadingCache(Duration.ofMinutes(1),
+            new CacheLoader<KeyValue<Long, String>, AuthUserDetail>() {
 
                 @Override
-                public LoginUser load(KeyValue<Long, String> token) {
+                public AuthUserDetail load(KeyValue<Long, String> token) {
                     String body = checkAccessToken(token.getKey(), token.getValue()).block();
-                    return buildUser(body);
+                    return Objects.requireNonNull(buildUser(body));
                 }
-
             });
 
     public TokenAuthenticationFilter(ReactorLoadBalancerExchangeFilterFunction lbFunction) {
@@ -87,7 +96,7 @@ public class TokenAuthenticationFilter implements GlobalFilter, Ordered {
         return getLoginUser(exchange, token).defaultIfEmpty(LOGIN_USER_EMPTY).flatMap(user -> {
             // 1. 无用户，直接 filter 继续请求
             if (user == LOGIN_USER_EMPTY || // 下面 expiresTime 的判断，为了解决 token 实际已经过期的情况
-                    user.getExpiresTime() == null || LocalDateTimeUtils.beforeNow(user.getExpiresTime())) {
+                    user.getExpiresTime() == null || user.getExpiresTime().isBefore(LocalDateTime.now())) {
                 return chain.filter(exchange);
             }
 
@@ -100,18 +109,20 @@ public class TokenAuthenticationFilter implements GlobalFilter, Ordered {
         });
     }
 
-    private Mono<LoginUser> getLoginUser(ServerWebExchange exchange, String token) {
+    private Mono<AuthUserDetail> getLoginUser(ServerWebExchange exchange, String token) {
         // 从缓存中，获取 LoginUser
         Long tenantId = WebFrameworkUtils.getTenantId(exchange);
-        KeyValue<Long, String> cacheKey = new KeyValue<Long, String>().setKey(tenantId).setValue(token);
-        LoginUser localUser = loginUserCache.getIfPresent(cacheKey);
+        KeyValue<Long, String> cacheKey = new KeyValue<Long, String>();
+        cacheKey.setKey(tenantId);
+        cacheKey.setValue(token);
+        AuthUserDetail localUser = loginUserCache.getIfPresent(cacheKey);
         if (localUser != null) {
             return Mono.just(localUser);
         }
 
         // 缓存不存在，则请求远程服务
-        return checkAccessToken(tenantId, token).flatMap((Function<String, Mono<LoginUser>>) body -> {
-            LoginUser remoteUser = buildUser(body);
+        return checkAccessToken(tenantId, token).flatMap((Function<String, Mono<AuthUserDetail>>) body -> {
+            AuthUserDetail remoteUser = buildUser(body);
             if (remoteUser != null) {
                 // 非空，则进行缓存
                 loginUserCache.put(cacheKey, remoteUser);
@@ -123,18 +134,18 @@ public class TokenAuthenticationFilter implements GlobalFilter, Ordered {
 
     private Mono<String> checkAccessToken(Long tenantId, String token) {
         return webClient.get()
-                .uri(OAuth2TokenApi.URL_CHECK, uriBuilder -> uriBuilder.queryParam("accessToken", token).build())
+                .uri(AuthTokenApi.URL_CHECK, uriBuilder -> uriBuilder.queryParam("accessToken", token).build())
                 .headers(httpHeaders -> WebFrameworkUtils.setTenantIdHeader(tenantId, httpHeaders)) // 设置租户的 Header
                 .retrieve().bodyToMono(String.class);
     }
 
-    private LoginUser buildUser(String body) {
+    private AuthUserDetail buildUser(String body) {
         // 处理结果，结果不正确
-        CommonResult<OAuth2AccessTokenCheckRespDTO> result = JsonUtils.parseObject(body, CHECK_RESULT_TYPE_REFERENCE);
+        SingleResponse<AccessTokenCheckResult> result = JsonUtils.parseObject(body, CHECK_RESULT_TYPE_REFERENCE);
         if (result == null) {
             return null;
         }
-        if (result.isError()) {
+        if (!result.isSuccess()) {
             // 特殊情况：令牌已经过期（code = 401），需要返回 LOGIN_USER_EMPTY，避免 Token 一直因为缓存，被误判为有效
             if (Objects.equals(result.getCode(), HttpStatus.UNAUTHORIZED.value())) {
                 return LOGIN_USER_EMPTY;
@@ -143,11 +154,15 @@ public class TokenAuthenticationFilter implements GlobalFilter, Ordered {
         }
 
         // 创建登录用户
-        OAuth2AccessTokenCheckRespDTO tokenInfo = result.getData();
-        return new LoginUser().setId(tokenInfo.getUserId()).setUserType(tokenInfo.getUserType())
-                .setInfo(tokenInfo.getUserInfo()) // 额外的用户信息
-                .setTenantId(tokenInfo.getTenantId()).setScopes(tokenInfo.getScopes())
-                .setExpiresTime(tokenInfo.getExpiresTime());
+        AccessTokenCheckResult tokenInfo = result.getData();
+        return AuthUserDetail.builder()
+                .id(tokenInfo.getUserId())
+                .userType(tokenInfo.getUserType())
+                .userInfo(tokenInfo.getUserInfo()) // 额外的用户信息
+                .tenantId(tokenInfo.getTenantId())
+                .scopes(tokenInfo.getScopes())
+                .expiresTime(tokenInfo.getExpiresTime())
+                .build();
     }
 
     @Override

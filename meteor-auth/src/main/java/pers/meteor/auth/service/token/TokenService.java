@@ -1,6 +1,7 @@
 package pers.meteor.auth.service.token;
 
 import pers.meteor.auth.api.dto.AccessToken;
+import pers.meteor.auth.api.dto.AccessTokenCheckResult;
 import pers.meteor.auth.api.dto.AuthUserDetail;
 
 /**
@@ -43,7 +44,7 @@ public interface TokenService {
      * @param accessToken 访问令牌
      * @return 访问令牌的信息
      */
-    AccessToken checkAccessToken(String accessToken);
+    AccessTokenCheckResult checkAccessToken(String accessToken);
 
     /**
      * 移除访问令牌

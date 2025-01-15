@@ -58,6 +58,10 @@ public class AuthUserDetail {
      */
     private String clientId;
     /**
+     * 租户编号
+     */
+    private Long tenantId;
+    /**
      * 授权范围，英文逗号分隔
      */
     private List<String> scopes;

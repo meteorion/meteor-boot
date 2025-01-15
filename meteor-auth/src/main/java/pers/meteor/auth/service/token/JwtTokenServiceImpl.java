@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pers.meteor.auth.api.dto.AccessToken;
+import pers.meteor.auth.api.dto.AccessTokenCheckResult;
 import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.auth.api.dto.RefreshToken;
+import pers.meteor.auth.convert.AuthConvert;
 import pers.meteor.auth.service.jwt.JwtService;
 import pers.meteor.common.exception.ServiceException;
 import pers.meteor.security.config.SecurityProperties;
@@ -54,7 +56,7 @@ public class JwtTokenServiceImpl extends AbstractTokenService {
     }
 
     @Override
-    public AccessToken checkAccessToken(String token) {
+    public AccessTokenCheckResult checkAccessToken(String token) {
         // 判断是否缓存失效
         if (tokenStorgeService.getAccessToken(token) == null) {
             throw new ServiceException("访问令牌已失效");
@@ -63,6 +65,6 @@ public class JwtTokenServiceImpl extends AbstractTokenService {
         if (accessToken.isExpired()) {
             throw new ServiceException("访问令牌已过期");
         }
-        return accessToken;
+        return AuthConvert.INSTANCE.convert(accessToken);
     }
 }

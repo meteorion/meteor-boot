@@ -88,6 +88,11 @@
             <artifactId>meteor-boot-starter-redis</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-auth-api</artifactId>
+            <version>1.0.0-snapshot</version>
+        </dependency>
     </dependencies>
 
     <build>

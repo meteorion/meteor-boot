@@ -5,14 +5,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.filter.OncePerRequestFilter;
+import pers.meteor.auth.api.AuthTokenApi;
+import pers.meteor.auth.api.dto.AccessToken;
+import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.common.exception.ServiceException;
 import pers.meteor.common.pojo.response.SingleResponse;
 import pers.meteor.common.utils.ServletUtils;
 import pers.meteor.common.utils.json.JsonUtils;
 import pers.meteor.security.config.SecurityProperties;
-import pers.meteor.security.core.model.AccessToken;
-import pers.meteor.security.core.model.AuthUserDetail;
-import pers.meteor.security.core.service.TokenService;
 import pers.meteor.security.core.utils.SecurityUtils;
 import pers.meteor.web.core.handler.GlobalExceptionHandler;
 import pers.meteor.web.core.util.WebUtils;
@@ -39,7 +39,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     private final GlobalExceptionHandler globalExceptionHandler;
 
-    private final TokenService tokenService;
+    private final AuthTokenApi authTokenApi;
 
     @Override
     @SuppressWarnings("NullableProblems")
@@ -80,7 +80,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     private AuthUserDetail buildLoginUserByToken(String token) {
         try {
-            AccessToken accessToken = tokenService.checkAccessToken(token);
+            AccessToken accessToken = authTokenApi.checkAccessToken(token).getCheckedData();
             AuthUserDetail authUser = new AuthUserDetail();
             authUser.setId(accessToken.getUserId());
             authUser.setUserType(accessToken.getUserType());

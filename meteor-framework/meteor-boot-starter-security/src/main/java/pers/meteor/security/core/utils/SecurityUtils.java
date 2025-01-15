@@ -9,11 +9,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.common.constant.SecurityConstants;
 import pers.meteor.common.utils.ServletUtils;
-import pers.meteor.security.core.model.AuthUserDetail;
 import pers.meteor.web.core.util.WebUtils;
 
 import java.util.Collections;

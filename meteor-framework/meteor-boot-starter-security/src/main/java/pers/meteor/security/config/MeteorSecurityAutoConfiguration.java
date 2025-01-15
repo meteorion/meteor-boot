@@ -7,19 +7,17 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.token.TokenService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import pers.meteor.auth.api.AuthTokenApi;
 import pers.meteor.security.core.context.TransmittableThreadLocalSecurityContextHolderStrategy;
 import pers.meteor.security.core.filter.TokenAuthenticationFilter;
 import pers.meteor.security.core.handler.AccessDeniedHandlerImpl;
 import pers.meteor.security.core.handler.AuthenticationEntryPointImpl;
-import pers.meteor.security.core.service.JwtService;
 import pers.meteor.security.core.service.SecurityService;
-import pers.meteor.security.core.service.TokenService;
-import pers.meteor.security.core.service.impl.JwtServiceImpl;
-import pers.meteor.security.core.service.impl.JwtTokenServiceImpl;
 import pers.meteor.security.core.service.impl.SystemSecurityServiceImpl;
 import pers.meteor.system.api.permission.PermissionApi;
 import pers.meteor.web.core.handler.GlobalExceptionHandler;
@@ -65,25 +63,13 @@ public class MeteorSecurityAutoConfiguration {
         return new BCryptPasswordEncoder(securityProperties.getPasswordEncoderLength());
     }
 
-    @Bean
-    @ConditionalOnProperty(prefix = "meteor.security.jwt", name = "enable", havingValue = "true")
-    public JwtService jwtService(SecurityProperties securityProperties) {
-        return new JwtServiceImpl(securityProperties.getJwt());
-    }
-
-    @Bean
-    @ConditionalOnProperty(prefix = "meteor.security.jwt", name = "enable", havingValue = "true")
-    public TokenService jwtTokenService(SecurityProperties securityProperties, JwtService jwtService) {
-        return new JwtTokenServiceImpl(securityProperties.getJwt(), jwtService);
-    }
-
     /**
      * Token 认证过滤器 Bean
      */
     @Bean
     public TokenAuthenticationFilter authenticationTokenFilter(GlobalExceptionHandler globalExceptionHandler,
-                                                               TokenService tokenService) {
-        return new TokenAuthenticationFilter(securityProperties, globalExceptionHandler, tokenService);
+                                                               AuthTokenApi authTokenApi) {
+        return new TokenAuthenticationFilter(securityProperties, globalExceptionHandler, authTokenApi);
     }
 
     @Bean("ss") // 使用 Spring Security 的缩写，方便使用

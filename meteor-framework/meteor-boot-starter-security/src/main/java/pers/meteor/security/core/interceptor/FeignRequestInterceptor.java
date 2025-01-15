@@ -4,13 +4,13 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 import lombok.extern.slf4j.Slf4j;
+import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.common.constant.SecurityConstants;
 import pers.meteor.common.exception.ServiceException;
 import pers.meteor.common.utils.ip.IpUtils;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import pers.meteor.common.utils.json.JsonUtils;
-import pers.meteor.security.core.model.AuthUserDetail;
 import pers.meteor.security.core.utils.SecurityUtils;
 
 /**

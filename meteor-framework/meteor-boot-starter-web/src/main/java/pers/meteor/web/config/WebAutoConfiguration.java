@@ -15,7 +15,6 @@ import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import pers.meteor.common.enums.WebFilterOrderEnum;
 import pers.meteor.web.core.filter.CacheRequestBodyFilter;
-import pers.meteor.web.core.filter.DemoFilter;
 import pers.meteor.web.core.handler.GlobalExceptionHandler;
 import pers.meteor.web.core.handler.GlobalResponseBodyHandler;
 import pers.meteor.web.core.util.WebUtils;
@@ -95,15 +94,6 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
     @Bean
     public FilterRegistrationBean<CacheRequestBodyFilter> requestBodyCacheFilter() {
         return createFilterBean(new CacheRequestBodyFilter(), WebFilterOrderEnum.REQUEST_BODY_CACHE_FILTER);
-    }
-
-    /**
-     * 创建 DemoFilter Bean，演示模式
-     */
-    @Bean
-    @ConditionalOnProperty(value = "meteor.demo", havingValue = "true")
-    public FilterRegistrationBean<DemoFilter> demoFilter() {
-        return createFilterBean(new DemoFilter(), WebFilterOrderEnum.DEMO_FILTER);
     }
 
     public static <T extends Filter> FilterRegistrationBean<T> createFilterBean(T filter, Integer order) {

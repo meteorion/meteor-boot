@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Redis 消息队列 Producer 配置类
  *
- * @author 芋道源码
+ * @author meteor
  */
 @Slf4j
 @AutoConfiguration(after = RedisAutoConfiguration.class)

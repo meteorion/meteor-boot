@@ -11,7 +11,7 @@ import lombok.*;
 /**
  * 文件配置表
  *
- * @author 芋道源码
+ * @author meteor
  */
 @TableName(value = "sys_file_config", excludeProperty = {"searchValue", "params", "remark"}, autoResultMap = true)
 @Data

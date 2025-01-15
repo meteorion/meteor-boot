@@ -10,7 +10,7 @@ import lombok.*;
  * 文件内容表
  * 专门用于存储 {@link DBFileClient} 的文件内容
  *
- * @author 芋道源码
+ * @author meteor
  */
 @TableName("sys_file_content")
 @Data

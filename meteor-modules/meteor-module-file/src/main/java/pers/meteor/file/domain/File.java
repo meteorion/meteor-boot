@@ -10,7 +10,7 @@ import lombok.*;
  * 文件表
  * 每次文件上传，都会记录一条记录到该表中
  *
- * @author 芋道源码
+ * @author meteor
  */
 @TableName(value = "sys_file", excludeProperty = {"searchValue", "params", "remark"})
 @Data

@@ -5,7 +5,7 @@ import pers.meteor.common.constant.RpcConstants;
 /**
  * API 相关的枚举
  *
- * @author 芋道源码
+ * @author meteor
  */
 public class ApiConstants {
 

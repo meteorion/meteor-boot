@@ -6,7 +6,7 @@ import pers.meteor.mq.redis.core.message.AbstractRedisMessage;
 /**
  * Redis Channel Message 抽象类
  *
- * @author 芋道源码
+ * @author meteor
  */
 public abstract class AbstractRedisChannelMessage extends AbstractRedisMessage {
 

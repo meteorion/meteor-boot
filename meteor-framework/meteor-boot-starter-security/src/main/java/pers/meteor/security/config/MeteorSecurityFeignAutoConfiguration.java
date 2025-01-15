@@ -10,7 +10,7 @@ import pers.meteor.system.api.permission.PermissionApi;
 /**
  * Security 使用到 Feign 的配置项
  *
- * @author 芋道源码
+ * @author meteor
  */
 @AutoConfiguration
 @EnableFeignClients(clients = {PermissionApi.class, AuthTokenApi.class})

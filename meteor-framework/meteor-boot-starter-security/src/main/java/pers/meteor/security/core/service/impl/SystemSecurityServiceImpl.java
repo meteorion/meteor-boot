@@ -22,7 +22,7 @@ import static pers.meteor.web.core.util.WebUtils.getLoginUserId;
 /**
  * 默认的 {@link SecurityService} 实现类
  *
- * @author 芋道源码
+ * @author meteor
  */
 @AllArgsConstructor
 public class SystemSecurityServiceImpl implements SecurityService {

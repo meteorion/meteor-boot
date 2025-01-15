@@ -13,7 +13,7 @@ import static pers.meteor.common.utils.collection.CollectionUtils.convertList;
 /**
  * Array 工具类
  *
- * @author 芋道源码
+ * @author meteor
  */
 public class ArrayUtils {
 

@@ -16,7 +16,7 @@ import pers.meteor.mybatis.core.handler.DefaultDBFieldHandler;
 /**
  * MyBaits 配置类
  *
- * @author 芋道源码
+ * @author meteor
  */
 @AutoConfiguration
 public class MybatisAutoConfiguration {

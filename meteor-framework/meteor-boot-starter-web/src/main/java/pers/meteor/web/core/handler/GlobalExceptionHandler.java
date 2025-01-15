@@ -33,7 +33,7 @@ import static pers.meteor.common.exception.GlobalErrorCode.*;
 /**
  * 全局异常处理器，将 Exception 翻译成 SingleResponse + 对应的异常编号
  *
- * @author 芋道源码
+ * @author meteor
  */
 @RestControllerAdvice
 @AllArgsConstructor

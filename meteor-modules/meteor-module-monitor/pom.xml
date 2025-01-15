@@ -7,11 +7,11 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>meteor-module-member</artifactId>
+    <artifactId>meteor-module-monitor</artifactId>
     <packaging>pom</packaging>
-    <description>meteor-cloud-module-member会员管理</description>
+    <description>meteor-module-monitor</description>
 
     <modules>
-        <module>meteor-member-api</module>
+        <module>meteor-monitor-api</module>
     </modules>
 </project>

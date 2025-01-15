@@ -1,17 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>pers.meteor</groupId>
-        <artifactId>meteor-modules</artifactId>
+        <artifactId>meteor-module-auth</artifactId>
         <version>1.0.0-snapshot</version>
     </parent>
 
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>meteor-module-member</artifactId>
-    <packaging>pom</packaging>
-    <description>meteor-cloud-module-member会员管理</description>
+    <artifactId>meteor-auth-api</artifactId>
+    <packaging>jar</packaging>
 
-    <modules>
-        <module>meteor-member-api</module>
-    </modules>
+    <name>meteor-auth-api</name>
+    <url>http://maven.apache.org</url>
+
 </project>

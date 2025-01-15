@@ -9,12 +9,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <modules>
+        <module>meteor-module-auth</module>
         <module>meteor-module-system</module>
         <module>meteor-module-gen</module>
         <module>meteor-module-job</module>
         <module>meteor-module-file</module>
         <module>meteor-module-pay</module>
         <module>meteor-module-member</module>
+        <module>meteor-module-monitor</module>
     </modules>
 
     <artifactId>meteor-modules</artifactId>

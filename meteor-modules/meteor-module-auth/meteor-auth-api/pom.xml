@@ -4,10 +4,9 @@
     <parent>
         <groupId>pers.meteor</groupId>
         <artifactId>meteor-module-auth</artifactId>
-        <version>1.0.0-snapshot</version>
+        <version>${revision}</version>
     </parent>
 
-    <groupId>pers.meteor.auth</groupId>
     <artifactId>meteor-auth-api</artifactId>
     <packaging>pom</packaging>
 
@@ -16,6 +15,12 @@
     </description>
 
     <dependencies>
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-common</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>pers.meteor</groupId>
             <artifactId>meteor-boot-starter-document</artifactId>

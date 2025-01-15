@@ -6,8 +6,6 @@ import pers.meteor.security.config.SecurityProperties;
 import pers.meteor.security.core.model.AccessToken;
 import pers.meteor.security.core.model.AuthUserDetail;
 import pers.meteor.security.core.model.RefreshToken;
-import pers.meteor.security.core.service.JwtService;
-import pers.meteor.security.core.service.impl.JwtServiceImpl;
 
 import java.util.ArrayList;
 

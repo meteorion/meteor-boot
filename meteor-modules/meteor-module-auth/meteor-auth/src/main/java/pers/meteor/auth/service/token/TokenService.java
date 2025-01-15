@@ -1,7 +1,7 @@
-package pers.meteor.security.core.service;
+package pers.meteor.auth.service.token;
 
-import pers.meteor.security.core.model.AccessToken;
-import pers.meteor.security.core.model.AuthUserDetail;
+import pers.meteor.auth.api.dto.AccessToken;
+import pers.meteor.auth.api.dto.AuthUserDetail;
 
 /**
  * @author meteor

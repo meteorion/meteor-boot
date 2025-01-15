@@ -1,8 +1,8 @@
-package pers.meteor.auth.service;
+package pers.meteor.auth.service.log;
 
+import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.common.enums.LoginLogTypeEnum;
 import pers.meteor.common.enums.LoginResultEnum;
-import pers.meteor.security.core.model.AuthUserDetail;
 
 /**
  * 鉴权日志

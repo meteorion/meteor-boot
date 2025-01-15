@@ -1,17 +1,17 @@
-package pers.meteor.security.core.service.impl;
+package pers.meteor.auth.service.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import pers.meteor.auth.api.dto.AccessToken;
+import pers.meteor.auth.api.dto.AuthUserDetail;
+import pers.meteor.auth.api.dto.RefreshToken;
 import pers.meteor.common.constant.SecurityConstants;
 import pers.meteor.common.exception.ServiceException;
 import pers.meteor.security.config.SecurityProperties;
-import pers.meteor.security.core.model.AccessToken;
-import pers.meteor.security.core.model.AuthUserDetail;
-import pers.meteor.security.core.model.RefreshToken;
-import pers.meteor.security.core.service.JwtService;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -22,11 +22,12 @@ import java.util.Map;
 /**
  * @author meteor
  */
+@Service
 @Slf4j
 @RequiredArgsConstructor
 public class JwtServiceImpl implements JwtService {
 
-    private final SecurityProperties.JwtProperties jwt;
+    private final SecurityProperties securityProperties;
 
     @Override
     public String createToken(Map<String, Object> claims) {
@@ -39,7 +40,7 @@ public class JwtServiceImpl implements JwtService {
                 .setClaims(claims)
                 .setIssuedAt(new Date())
                 .setExpiration((Date.from(LocalDateTime.now().plusMinutes(expireTime).atZone(ZoneId.systemDefault()).toInstant())))
-                .signWith(SignatureAlgorithm.HS256, jwt.getSecret())
+                .signWith(SignatureAlgorithm.HS256, securityProperties.getJwt().getSecret())
                 .compact();
     }
 
@@ -56,7 +57,7 @@ public class JwtServiceImpl implements JwtService {
         claims.put(SecurityConstants.DETAILS_ROLE, userDetail.getRoles());
         claims.put(SecurityConstants.DETAILS_REFREST_TOKEN, refreshToken.getRefreshToken());
 
-        String accessToken = createToken(claims, jwt.getAccessTokenValiditySeconds());
+        String accessToken = createToken(claims, securityProperties.getJwt().getAccessTokenValiditySeconds());
 
         return AccessToken.builder()
                 .accessToken(accessToken)
@@ -66,7 +67,7 @@ public class JwtServiceImpl implements JwtService {
                 .userInfo(userDetail.getUserInfo())
                 .clientId(userDetail.getClientId())
                 .scopes(userDetail.getScopes())
-                .expiresTime(LocalDateTime.now().plusSeconds(jwt.getAccessTokenValiditySeconds()))
+                .expiresTime(LocalDateTime.now().plusSeconds(securityProperties.getJwt().getAccessTokenValiditySeconds()))
                 .build();
     }
 
@@ -77,7 +78,7 @@ public class JwtServiceImpl implements JwtService {
         claims.put(SecurityConstants.DETAILS_USER_TYPE, userDetail.getUserType());
         claims.put(SecurityConstants.DETAILS_CLIENT_ID, userDetail.getClientId());
 
-        String refreshToken = createToken(claims, jwt.getRefreshTokenValiditySeconds());
+        String refreshToken = createToken(claims, securityProperties.getJwt().getRefreshTokenValiditySeconds());
 
         return RefreshToken.builder()
                 .refreshToken(refreshToken)
@@ -85,13 +86,13 @@ public class JwtServiceImpl implements JwtService {
                 .userType(userDetail.getUserType())
                 .clientId(userDetail.getClientId())
                 .scopes(userDetail.getScopes())
-                .expiresTime(LocalDateTime.now().plusSeconds(jwt.getRefreshTokenValiditySeconds()))
+                .expiresTime(LocalDateTime.now().plusSeconds(securityProperties.getJwt().getRefreshTokenValiditySeconds()))
                 .build();
     }
 
     @Override
     public Claims parseToken(String token) {
-        return Jwts.parser().setSigningKey(jwt.getSecret()).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(securityProperties.getJwt().getSecret()).parseClaimsJws(token).getBody();
     }
 
     @Override
@@ -131,7 +132,7 @@ public class JwtServiceImpl implements JwtService {
     public boolean validateToken(String token) {
         try {
             Jwts.parser()
-                    .setSigningKey(jwt.getSecret())
+                    .setSigningKey(securityProperties.getJwt().getSecret())
                     .parseClaimsJws(token);
             return true;
         } catch (Exception e) {

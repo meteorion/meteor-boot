@@ -1,15 +1,14 @@
-package pers.meteor.security.core.service.impl;
+package pers.meteor.auth.service.token;
 
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import pers.meteor.auth.api.dto.AccessToken;
+import pers.meteor.auth.api.dto.AuthUserDetail;
+import pers.meteor.auth.api.dto.RefreshToken;
+import pers.meteor.auth.service.jwt.JwtService;
 import pers.meteor.common.exception.ServiceException;
 import pers.meteor.security.config.SecurityProperties;
-import pers.meteor.security.core.model.AccessToken;
-import pers.meteor.security.core.model.AuthUserDetail;
-import pers.meteor.security.core.model.RefreshToken;
-import pers.meteor.security.core.service.AbstractTokenService;
-import pers.meteor.security.core.service.JwtService;
 import pers.meteor.security.core.utils.SecurityUtils;
 
 import java.util.Objects;
@@ -17,17 +16,18 @@ import java.util.Objects;
 /**
  * @author meteor
  */
+@Service
 @Slf4j
 @RequiredArgsConstructor
 public class JwtTokenServiceImpl extends AbstractTokenService {
 
-    private final SecurityProperties.JwtProperties jwt;
+    private final SecurityProperties securityProperties;
     private final JwtService jwtService;
 
     @Override
     public AccessToken createAccessToken(AuthUserDetail userDetail) {
         AccessToken accessToken = jwtService.createAccessToken(userDetail);
-        tokenStorgeService.saveAccessToken(accessToken, jwt.getAccessTokenValiditySeconds());
+        tokenStorgeService.saveAccessToken(accessToken, securityProperties.getJwt().getAccessTokenValiditySeconds());
         return accessToken;
     }
 
@@ -45,7 +45,7 @@ public class JwtTokenServiceImpl extends AbstractTokenService {
         }
 
         // 生成新访问令牌
-        AuthUserDetail userDetail = SecurityUtils.getUserDetail();
+        AuthUserDetail userDetail = SecurityUtils.getAuthUser();
         accessToken.setScopes(refreshToken.getScopes());
         accessToken = jwtService.createAccessToken(userDetail);
         accessToken.setRefreshToken(refreshToken.getRefreshToken());

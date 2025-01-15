@@ -1,6 +1,6 @@
-package pers.meteor.auth.service;
+package pers.meteor.auth.service.user;
 
-import pers.meteor.security.core.model.AuthUserDetail;
+import pers.meteor.auth.api.dto.AuthUserDetail;
 
 /**
  * @author meteor

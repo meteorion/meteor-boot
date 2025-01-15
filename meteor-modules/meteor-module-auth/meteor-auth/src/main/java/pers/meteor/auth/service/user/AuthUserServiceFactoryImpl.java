@@ -1,8 +1,6 @@
-package pers.meteor.auth.service.impl;
+package pers.meteor.auth.service.user;
 
 import org.springframework.stereotype.Service;
-import pers.meteor.auth.service.AuthUserService;
-import pers.meteor.auth.service.AuthUserServiceFactory;
 import pers.meteor.common.exception.ServiceException;
 
 import java.util.concurrent.ConcurrentHashMap;

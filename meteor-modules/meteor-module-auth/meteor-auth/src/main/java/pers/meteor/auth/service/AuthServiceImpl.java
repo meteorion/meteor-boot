@@ -1,20 +1,19 @@
-package pers.meteor.auth.service.impl;
+package pers.meteor.auth.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import pers.meteor.auth.api.dto.AccessToken;
+import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.auth.convert.AuthConvert;
 import pers.meteor.auth.dto.form.*;
 import pers.meteor.auth.dto.vo.AuthLoginVO;
-import pers.meteor.auth.service.AuthLogService;
-import pers.meteor.auth.service.AuthService;
-import pers.meteor.auth.service.AuthUserService;
-import pers.meteor.auth.service.AuthUserServiceFactory;
+import pers.meteor.auth.service.log.AuthLogService;
+import pers.meteor.auth.service.token.TokenService;
+import pers.meteor.auth.service.user.AuthUserService;
+import pers.meteor.auth.service.user.AuthUserServiceFactory;
 import pers.meteor.common.enums.LoginLogTypeEnum;
 import pers.meteor.common.enums.LoginResultEnum;
 import pers.meteor.common.exception.ServiceException;
-import pers.meteor.security.core.model.AccessToken;
-import pers.meteor.security.core.model.AuthUserDetail;
-import pers.meteor.security.core.service.TokenService;
 
 import javax.annotation.Resource;
 

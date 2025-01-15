@@ -1,4 +1,4 @@
-package pers.meteor.auth.service;
+package pers.meteor.auth.service.user;
 
 /**
  * @author 钟宗兵

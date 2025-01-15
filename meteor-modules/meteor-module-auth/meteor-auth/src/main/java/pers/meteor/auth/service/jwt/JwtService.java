@@ -1,10 +1,9 @@
-package pers.meteor.security.core.service;
+package pers.meteor.auth.service.jwt;
 
 import io.jsonwebtoken.Claims;
-import pers.meteor.security.config.SecurityProperties;
-import pers.meteor.security.core.model.AccessToken;
-import pers.meteor.security.core.model.AuthUserDetail;
-import pers.meteor.security.core.model.RefreshToken;
+import pers.meteor.auth.api.dto.AccessToken;
+import pers.meteor.auth.api.dto.AuthUserDetail;
+import pers.meteor.auth.api.dto.RefreshToken;
 
 import java.util.Map;
 

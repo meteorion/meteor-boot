@@ -1,7 +1,7 @@
-package pers.meteor.security.core.service;
+package pers.meteor.auth.service.token;
 
-import pers.meteor.security.core.model.AccessToken;
-import pers.meteor.security.core.model.RefreshToken;
+import pers.meteor.auth.api.dto.AccessToken;
+import pers.meteor.auth.api.dto.RefreshToken;
 
 /**
  * token仓储服务

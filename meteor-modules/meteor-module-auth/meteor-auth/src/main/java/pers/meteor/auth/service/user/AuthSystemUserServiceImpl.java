@@ -1,11 +1,9 @@
-package pers.meteor.auth.service.impl;
+package pers.meteor.auth.service.user;
 
 import org.springframework.stereotype.Service;
+import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.auth.convert.AuthConvert;
-import pers.meteor.auth.service.AuthUserService;
-import pers.meteor.auth.service.AuthUserServiceFactory;
 import pers.meteor.common.enums.UserTypeEnum;
-import pers.meteor.security.core.model.AuthUserDetail;
 import pers.meteor.system.api.user.AdminUserApi;
 import pers.meteor.system.api.user.vo.AdminUserVO;
 

@@ -4,7 +4,7 @@
     <parent>
         <groupId>pers.meteor</groupId>
         <artifactId>meteor-module-auth</artifactId>
-        <version>1.0.0-snapshot</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -19,6 +19,8 @@
         <spring.boot.version>2.7.18</spring.boot.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <auth.api.version>${revision}</auth.api.version>
     </properties>
 
     <dependencies>
@@ -72,6 +74,13 @@
         <dependency>
             <groupId>pers.meteor</groupId>
             <artifactId>meteor-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-auth-api</artifactId>
+            <version>${auth.api.version}</version>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>

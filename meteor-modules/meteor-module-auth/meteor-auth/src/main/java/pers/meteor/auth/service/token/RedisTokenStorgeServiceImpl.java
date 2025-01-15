@@ -1,11 +1,10 @@
-package pers.meteor.security.core.service.impl;
+package pers.meteor.auth.service.token;
 
 import org.springframework.stereotype.Service;
+import pers.meteor.auth.api.dto.AccessToken;
+import pers.meteor.auth.api.dto.RefreshToken;
 import pers.meteor.common.constant.CacheConstants;
 import pers.meteor.common.redis.service.RedisService;
-import pers.meteor.security.core.model.AccessToken;
-import pers.meteor.security.core.model.RefreshToken;
-import pers.meteor.security.core.service.TokenStorgeService;
 import pers.meteor.common.utils.StringUtils;
 
 import javax.annotation.Resource;

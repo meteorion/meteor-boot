@@ -1,11 +1,10 @@
-package pers.meteor.auth.service.impl;
+package pers.meteor.auth.service.log;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import pers.meteor.auth.service.AuthLogService;
+import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.common.enums.LoginLogTypeEnum;
 import pers.meteor.common.enums.LoginResultEnum;
-import pers.meteor.security.core.model.AuthUserDetail;
 
 /**
  * @author meteor

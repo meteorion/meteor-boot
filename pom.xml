@@ -6,7 +6,7 @@
 
     <groupId>pers.meteor</groupId>
     <artifactId>meteor-cloud-v2</artifactId>
-    <version>1.0.0-snapshot</version>
+    <version>${revision}</version>
     <name>meteor-cloud-v2</name>
     <description>meteor微服务系统</description>
     <packaging>pom</packaging>
@@ -17,6 +17,16 @@
         <module>meteor-gateway</module>
         <module>meteor-modules</module>
     </modules>
+
+    <properties>
+        <revision>1.0.0-snapshot</revision>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
+    </properties>
 
     <dependencyManagement>
         <dependencies>

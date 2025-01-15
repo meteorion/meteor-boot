@@ -4,7 +4,7 @@
     <parent>
         <groupId>pers.meteor</groupId>
         <artifactId>meteor-modules</artifactId>
-        <version>1.0.0-snapshot</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

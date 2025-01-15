@@ -2,9 +2,9 @@ package pers.meteor.auth.convert;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import pers.meteor.auth.api.dto.AccessToken;
+import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.auth.dto.vo.AuthLoginVO;
-import pers.meteor.security.core.model.AccessToken;
-import pers.meteor.security.core.model.AuthUserDetail;
 import pers.meteor.system.api.user.vo.AdminUserVO;
 
 /**

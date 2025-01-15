@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 /**
  * 认证授权中心
  *
- * @author ruoyi
+ * @author meteor
  */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
 public class AuthApplication

@@ -6,7 +6,7 @@ import pers.meteor.system.api.domain.SysOperLog;
 /**
  * 操作日志 数据层
  *
- * @author ruoyi
+ * @author meteor
  */
 public interface SysOperLogMapper
 {

@@ -3,7 +3,7 @@ package pers.meteor.common.constant;
 /**
  * 任务调度通用常量
  *
- * @author ruoyi
+ * @author meteor
  */
 public class ScheduleConstants
 {

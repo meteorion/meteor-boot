@@ -10,7 +10,7 @@ import pers.meteor.system.service.ISysOperLogService;
 /**
  * 操作日志 服务层处理
  *
- * @author ruoyi
+ * @author meteor
  */
 @Service
 public class SysOperLogServiceImpl implements ISysOperLogService

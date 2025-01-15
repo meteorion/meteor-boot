@@ -11,7 +11,7 @@ import pers.meteor.common.utils.ServletUtils;
 /**
  * 黑名单过滤器
  *
- * @author ruoyi
+ * @author meteor
  */
 @Component
 public class BlackListUrlFilter extends AbstractGatewayFilterFactory<BlackListUrlFilter.Config>

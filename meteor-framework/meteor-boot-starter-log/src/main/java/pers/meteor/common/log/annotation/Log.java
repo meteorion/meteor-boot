@@ -11,7 +11,7 @@ import pers.meteor.common.log.enums.OperatorType;
 /**
  * 自定义操作日志记录注解
  *
- * @author ruoyi
+ * @author meteor
  *
  */
 @Target({ ElementType.PARAMETER, ElementType.METHOD })

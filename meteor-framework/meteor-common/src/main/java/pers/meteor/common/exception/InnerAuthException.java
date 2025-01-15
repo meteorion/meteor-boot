@@ -3,7 +3,7 @@ package pers.meteor.common.exception;
 /**
  * 内部认证异常
  *
- * @author ruoyi
+ * @author meteor
  */
 public class InnerAuthException extends RuntimeException
 {

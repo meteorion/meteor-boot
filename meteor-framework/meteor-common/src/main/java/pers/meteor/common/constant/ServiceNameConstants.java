@@ -3,7 +3,7 @@ package pers.meteor.common.constant;
 /**
  * 服务名称
  *
- * @author ruoyi
+ * @author meteor
  */
 public class ServiceNameConstants
 {

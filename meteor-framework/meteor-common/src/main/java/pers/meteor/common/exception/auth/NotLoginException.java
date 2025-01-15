@@ -3,7 +3,7 @@ package pers.meteor.common.exception.auth;
 /**
  * 未能通过的登录认证异常
  *
- * @author ruoyi
+ * @author meteor
  */
 public class NotLoginException extends RuntimeException
 {

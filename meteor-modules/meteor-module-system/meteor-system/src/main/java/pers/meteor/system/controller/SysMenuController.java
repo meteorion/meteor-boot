@@ -24,7 +24,7 @@ import pers.meteor.system.service.ISysMenuService;
 /**
  * 菜单信息
  *
- * @author ruoyi
+ * @author meteor
  */
 @RestController
 @RequestMapping("/menu")

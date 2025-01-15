@@ -25,7 +25,7 @@ import pers.meteor.system.service.ISysDeptService;
 /**
  * 部门信息
  *
- * @author ruoyi
+ * @author meteor
  */
 @RestController
 @RequestMapping("/dept")

@@ -7,7 +7,7 @@ import pers.meteor.common.constant.Constants;
 /**
  * VelocityEngine工厂
  *
- * @author ruoyi
+ * @author meteor
  */
 public class VelocityInitializer
 {

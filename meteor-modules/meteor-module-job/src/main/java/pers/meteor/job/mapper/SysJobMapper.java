@@ -6,7 +6,7 @@ import pers.meteor.job.domain.SysJob;
 /**
  * 调度任务信息 数据层
  *
- * @author ruoyi
+ * @author meteor
  */
 public interface SysJobMapper
 {

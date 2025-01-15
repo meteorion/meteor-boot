@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * 定时任务
  *
- * @author ruoyi
+ * @author meteor
  */
 @SpringBootApplication
 public class JobApplication

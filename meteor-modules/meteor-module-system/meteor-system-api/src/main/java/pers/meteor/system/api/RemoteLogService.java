@@ -14,7 +14,7 @@ import pers.meteor.system.api.factory.RemoteLogFallbackFactory;
 /**
  * 日志服务
  *
- * @author ruoyi
+ * @author meteor
  */
 @FeignClient(contextId = "remoteLogService", value = ServiceNameConstants.SYSTEM_SERVICE, fallbackFactory = RemoteLogFallbackFactory.class)
 public interface RemoteLogService

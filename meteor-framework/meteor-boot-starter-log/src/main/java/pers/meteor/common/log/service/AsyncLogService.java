@@ -10,7 +10,7 @@ import pers.meteor.system.api.domain.SysOperLog;
 /**
  * 异步调用日志服务
  *
- * @author ruoyi
+ * @author meteor
  */
 @Service
 public class AsyncLogService

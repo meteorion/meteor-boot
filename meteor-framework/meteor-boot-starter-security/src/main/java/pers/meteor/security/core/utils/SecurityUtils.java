@@ -20,7 +20,7 @@ import java.util.Collections;
 /**
  * 权限获取工具类
  *
- * @author ruoyi
+ * @author meteor
  */
 public class SecurityUtils {
 

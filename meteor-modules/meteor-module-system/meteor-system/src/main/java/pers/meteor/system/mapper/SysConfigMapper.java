@@ -6,7 +6,7 @@ import pers.meteor.system.domain.SysConfig;
 /**
  * 参数配置 数据层
  *
- * @author ruoyi
+ * @author meteor
  */
 public interface SysConfigMapper
 {

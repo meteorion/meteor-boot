@@ -3,7 +3,7 @@ package pers.meteor.common.utils.uuid;
 /**
  * ID生成器工具类
  *
- * @author ruoyi
+ * @author meteor
  */
 public class IdUtils
 {

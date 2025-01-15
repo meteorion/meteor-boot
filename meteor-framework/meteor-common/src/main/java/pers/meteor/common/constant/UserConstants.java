@@ -3,7 +3,7 @@ package pers.meteor.common.constant;
 /**
  * 用户常量信息
  *
- * @author ruoyi
+ * @author meteor
  */
 public class UserConstants
 {

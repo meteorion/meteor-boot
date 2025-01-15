@@ -12,7 +12,7 @@ import pers.meteor.system.api.domain.SysOperLog;
 /**
  * 日志服务降级处理
  *
- * @author ruoyi
+ * @author meteor
  */
 @Component
 public class RemoteLogFallbackFactory implements FallbackFactory<RemoteLogService>

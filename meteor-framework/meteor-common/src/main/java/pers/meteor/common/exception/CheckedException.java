@@ -3,7 +3,7 @@ package pers.meteor.common.exception;
 /**
  * 检查异常
  *
- * @author ruoyi
+ * @author meteor
  */
 public class CheckedException extends RuntimeException
 {

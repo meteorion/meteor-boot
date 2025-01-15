@@ -40,7 +40,7 @@ import pers.meteor.gen.util.VelocityUtils;
 /**
  * 业务 服务层实现
  *
- * @author ruoyi
+ * @author meteor
  */
 @Service
 public class GenTableServiceImpl implements IGenTableService

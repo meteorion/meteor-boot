@@ -7,7 +7,7 @@ import pers.meteor.system.api.domain.SysDictType;
 /**
  * 字典 业务层
  *
- * @author ruoyi
+ * @author meteor
  */
 public interface ISysDictTypeService
 {

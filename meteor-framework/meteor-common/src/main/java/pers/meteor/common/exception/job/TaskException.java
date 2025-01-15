@@ -3,7 +3,7 @@ package pers.meteor.common.exception.job;
 /**
  * 计划策略异常
  *
- * @author ruoyi
+ * @author meteor
  */
 public class TaskException extends Exception
 {

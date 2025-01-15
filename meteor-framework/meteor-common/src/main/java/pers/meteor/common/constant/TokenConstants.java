@@ -3,7 +3,7 @@ package pers.meteor.common.constant;
 /**
  * Token的Key常量
  *
- * @author ruoyi
+ * @author meteor
  */
 public class TokenConstants
 {

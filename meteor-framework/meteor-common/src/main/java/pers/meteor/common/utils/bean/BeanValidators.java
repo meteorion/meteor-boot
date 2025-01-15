@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 /**
  * bean对象属性验证
  *
- * @author ruoyi
+ * @author meteor
  */
 public class BeanValidators
 {

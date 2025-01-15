@@ -13,7 +13,7 @@ import pers.meteor.common.xss.Xss;
 /**
  * 用户对象 sys_user
  *
- * @author ruoyi
+ * @author meteor
  */
 public class SysUser extends BaseEntity
 {

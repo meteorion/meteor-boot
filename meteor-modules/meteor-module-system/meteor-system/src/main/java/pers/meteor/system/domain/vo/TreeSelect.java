@@ -10,7 +10,7 @@ import pers.meteor.system.domain.SysMenu;
 /**
  * Treeselect树结构实体类
  *
- * @author ruoyi
+ * @author meteor
  */
 public class TreeSelect implements Serializable
 {

@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 /**
  * 文件服务
  *
- * @author ruoyi
+ * @author meteor
  */
 @MapperScan("pers.meteor.file.mapper")
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })

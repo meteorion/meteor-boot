@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * 系统模块
  *
- * @author ruoyi
+ * @author meteor
  */
 @SpringBootApplication
 public class SystemApplication

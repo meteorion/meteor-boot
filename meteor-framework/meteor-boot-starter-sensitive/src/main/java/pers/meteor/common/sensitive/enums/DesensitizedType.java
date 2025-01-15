@@ -6,7 +6,7 @@ import pers.meteor.common.sensitive.utils.DesensitizedUtil;
 /**
  * 脱敏类型
  *
- * @author ruoyi
+ * @author meteor
  */
 public enum DesensitizedType
 {

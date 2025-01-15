@@ -41,7 +41,7 @@ import pers.meteor.system.service.ISysUserService;
 /**
  * 用户信息
  *
- * @author ruoyi
+ * @author meteor
  */
 @RestController
 @RequestMapping("/user")

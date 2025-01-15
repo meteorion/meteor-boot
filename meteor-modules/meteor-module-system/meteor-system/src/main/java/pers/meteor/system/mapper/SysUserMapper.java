@@ -7,7 +7,7 @@ import pers.meteor.system.api.domain.SysUser;
 /**
  * 用户表 数据层
  *
- * @author ruoyi
+ * @author meteor
  */
 public interface SysUserMapper
 {

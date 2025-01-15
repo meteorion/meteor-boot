@@ -16,7 +16,7 @@ import pers.meteor.system.api.model.LoginUser;
 /**
  * 数据脱敏序列化过滤
  *
- * @author ruoyi
+ * @author meteor
  */
 public class SensitiveJsonSerializer extends JsonSerializer<String> implements ContextualSerializer
 {

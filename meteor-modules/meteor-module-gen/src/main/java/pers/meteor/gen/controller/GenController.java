@@ -30,7 +30,7 @@ import pers.meteor.gen.service.IGenTableService;
 /**
  * 代码生成 操作处理
  *
- * @author ruoyi
+ * @author meteor
  */
 @RequestMapping("/gen")
 @RestController
@@ -191,7 +191,7 @@ public class GenController extends BaseController
     private void genCode(HttpServletResponse response, byte[] data) throws IOException
     {
         response.reset();
-        response.setHeader("Content-Disposition", "attachment; filename=\"ruoyi.zip\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"meteor.zip\"");
         response.addHeader("Content-Length", "" + data.length);
         response.setContentType("application/octet-stream; charset=UTF-8");
         IOUtils.write(data, response.getOutputStream());

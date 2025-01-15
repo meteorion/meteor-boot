@@ -5,7 +5,7 @@ import pers.meteor.common.utils.StringUtils;
 /**
  * 脱敏工具类
  *
- * @author ruoyi
+ * @author meteor
  */
 public class DesensitizedUtil
 {

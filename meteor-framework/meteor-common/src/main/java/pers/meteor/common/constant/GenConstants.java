@@ -3,7 +3,7 @@ package pers.meteor.common.constant;
 /**
  * 代码生成通用常量
  *
- * @author ruoyi
+ * @author meteor
  */
 public class GenConstants
 {

@@ -25,7 +25,7 @@ import pers.meteor.system.service.ISysLogininforService;
 /**
  * 系统访问记录
  *
- * @author ruoyi
+ * @author meteor
  */
 @RestController
 @RequestMapping("/logininfor")

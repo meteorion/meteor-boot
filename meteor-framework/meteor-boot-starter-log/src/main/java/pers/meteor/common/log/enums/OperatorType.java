@@ -3,7 +3,7 @@ package pers.meteor.common.log.enums;
 /**
  * 操作人类别
  *
- * @author ruoyi
+ * @author meteor
  */
 public enum OperatorType
 {

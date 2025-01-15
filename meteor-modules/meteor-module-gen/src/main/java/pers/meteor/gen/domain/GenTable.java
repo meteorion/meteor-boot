@@ -11,7 +11,7 @@ import pers.meteor.common.web.domain.BaseEntity;
 /**
  * 业务表 gen_table
  *
- * @author ruoyi
+ * @author meteor
  */
 public class GenTable extends BaseEntity
 {

@@ -3,7 +3,7 @@ package pers.meteor.common.exception;
 /**
  * 验证码错误异常类
  *
- * @author ruoyi
+ * @author meteor
  */
 public class CaptchaException extends RuntimeException
 {

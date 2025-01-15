@@ -3,7 +3,7 @@ package pers.meteor.common.log.enums;
 /**
  * 操作状态
  *
- * @author ruoyi
+ * @author meteor
  *
  */
 public enum BusinessStatus

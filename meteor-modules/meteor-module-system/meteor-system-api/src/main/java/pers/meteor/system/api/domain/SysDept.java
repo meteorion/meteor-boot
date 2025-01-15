@@ -13,7 +13,7 @@ import pers.meteor.common.web.domain.BaseEntity;
 /**
  * 部门表 sys_dept
  *
- * @author ruoyi
+ * @author meteor
  */
 public class SysDept extends BaseEntity
 {

@@ -3,7 +3,7 @@ package pers.meteor.common.constant;
 /**
  * 返回状态码
  *
- * @author ruoyi
+ * @author meteor
  */
 public class HttpStatus
 {

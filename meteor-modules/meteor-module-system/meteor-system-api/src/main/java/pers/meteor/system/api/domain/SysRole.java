@@ -12,7 +12,7 @@ import pers.meteor.common.web.domain.BaseEntity;
 /**
  * 角色表 sys_role
  *
- * @author ruoyi
+ * @author meteor
  */
 public class SysRole extends BaseEntity
 {

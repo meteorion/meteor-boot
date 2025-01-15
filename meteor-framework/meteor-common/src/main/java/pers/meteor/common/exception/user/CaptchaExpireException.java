@@ -3,7 +3,7 @@ package pers.meteor.common.exception.user;
 /**
  * 验证码失效异常类
  *
- * @author ruoyi
+ * @author meteor
  */
 public class CaptchaExpireException extends UserException
 {

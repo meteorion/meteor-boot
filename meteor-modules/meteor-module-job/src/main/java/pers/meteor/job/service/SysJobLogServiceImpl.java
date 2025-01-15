@@ -9,7 +9,7 @@ import pers.meteor.job.mapper.SysJobLogMapper;
 /**
  * 定时任务调度日志信息 服务层
  *
- * @author ruoyi
+ * @author meteor
  */
 @Service
 public class SysJobLogServiceImpl implements ISysJobLogService

@@ -9,7 +9,7 @@ import pers.meteor.system.domain.vo.TreeSelect;
 /**
  * 菜单 业务层
  * 
- * @author ruoyi
+ * @author meteor
  */
 public interface ISysMenuService
 {

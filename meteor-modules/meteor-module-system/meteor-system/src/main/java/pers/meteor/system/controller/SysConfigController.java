@@ -25,7 +25,7 @@ import pers.meteor.system.service.ISysConfigService;
 /**
  * 参数配置 信息操作处理
  *
- * @author ruoyi
+ * @author meteor
  */
 @RestController
 @RequestMapping("/config")

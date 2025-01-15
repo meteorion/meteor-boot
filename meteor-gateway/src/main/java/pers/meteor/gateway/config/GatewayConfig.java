@@ -9,7 +9,7 @@ import pers.meteor.gateway.handler.SentinelFallbackHandler;
 /**
  * 网关限流配置
  *
- * @author ruoyi
+ * @author meteor
  */
 @Configuration
 public class GatewayConfig

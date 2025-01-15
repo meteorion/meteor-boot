@@ -25,7 +25,7 @@ import pers.meteor.system.service.ISysUserOnlineService;
 /**
  * 在线用户监控
  *
- * @author ruoyi
+ * @author meteor
  */
 @RestController
 @RequestMapping("/online")

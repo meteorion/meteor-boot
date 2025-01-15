@@ -3,7 +3,7 @@ package pers.meteor.common.exception;
 /**
  * 全局异常
  *
- * @author ruoyi
+ * @author meteor
  */
 public class GlobalException extends RuntimeException
 {

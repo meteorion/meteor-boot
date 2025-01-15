@@ -7,7 +7,7 @@ import pers.meteor.system.api.domain.SysUser;
 /**
  * 用户信息
  *
- * @author ruoyi
+ * @author meteor
  */
 public class LoginUser implements Serializable
 {

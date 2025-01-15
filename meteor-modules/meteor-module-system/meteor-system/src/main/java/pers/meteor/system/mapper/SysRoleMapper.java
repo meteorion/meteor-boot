@@ -6,7 +6,7 @@ import pers.meteor.system.api.domain.SysRole;
 /**
  * 角色表 数据层
  *
- * @author ruoyi
+ * @author meteor
  */
 public interface SysRoleMapper
 {

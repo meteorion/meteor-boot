@@ -3,7 +3,7 @@ package pers.meteor.common.exception;
 /**
  * 权限异常
  *
- * @author ruoyi
+ * @author meteor
  */
 public class PreAuthorizeException extends RuntimeException
 {

@@ -3,7 +3,7 @@ package pers.meteor.common.exception.base;
 /**
  * 基础异常
  *
- * @author ruoyi
+ * @author meteor
  */
 public class BaseException extends RuntimeException
 {

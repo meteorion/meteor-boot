@@ -3,7 +3,7 @@ package pers.meteor.common.exception.file;
 /**
  * 文件名称超长限制异常类
  *
- * @author ruoyi
+ * @author meteor
  */
 public class FileNameLengthLimitExceededException extends FileException
 {

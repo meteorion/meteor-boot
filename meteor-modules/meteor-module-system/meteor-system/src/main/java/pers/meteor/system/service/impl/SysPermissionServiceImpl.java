@@ -15,7 +15,7 @@ import pers.meteor.system.service.ISysRoleService;
 /**
  * 用户权限处理
  *
- * @author ruoyi
+ * @author meteor
  */
 @Service
 public class SysPermissionServiceImpl implements ISysPermissionService

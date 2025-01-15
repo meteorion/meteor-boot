@@ -6,7 +6,7 @@ import pers.meteor.system.domain.SysNotice;
 /**
  * 通知公告表 数据层
  * 
- * @author ruoyi
+ * @author meteor
  */
 public interface SysNoticeMapper
 {

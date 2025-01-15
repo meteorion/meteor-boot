@@ -23,7 +23,7 @@ import pers.meteor.system.service.ISysNoticeService;
 /**
  * 公告 信息操作处理
  *
- * @author ruoyi
+ * @author meteor
  */
 @RestController
 @RequestMapping("/notice")

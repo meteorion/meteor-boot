@@ -3,7 +3,7 @@ package pers.meteor.common.log.enums;
 /**
  * 业务操作类型
  *
- * @author ruoyi
+ * @author meteor
  */
 public enum BusinessType
 {

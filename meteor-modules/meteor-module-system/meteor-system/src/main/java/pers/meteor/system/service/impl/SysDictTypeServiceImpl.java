@@ -20,7 +20,7 @@ import pers.meteor.system.service.ISysDictTypeService;
 /**
  * 字典 业务层处理
  *
- * @author ruoyi
+ * @author meteor
  */
 @Service
 public class SysDictTypeServiceImpl implements ISysDictTypeService

@@ -21,7 +21,7 @@ import pers.meteor.job.service.ISysJobLogService;
 /**
  * 调度日志操作处理
  *
- * @author ruoyi
+ * @author meteor
  */
 @RestController
 @RequestMapping("/job/log")

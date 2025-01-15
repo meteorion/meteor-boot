@@ -12,7 +12,7 @@ import pers.meteor.common.sensitive.enums.DesensitizedType;
 /**
  * 数据脱敏注解
  *
- * @author ruoyi
+ * @author meteor
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)

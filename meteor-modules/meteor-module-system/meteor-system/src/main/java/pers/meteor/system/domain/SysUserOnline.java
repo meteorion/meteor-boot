@@ -2,8 +2,8 @@ package pers.meteor.system.domain;
 
 /**
  * 当前在线会话
- * 
- * @author ruoyi
+ *
+ * @author meteor
  */
 public class SysUserOnline
 {

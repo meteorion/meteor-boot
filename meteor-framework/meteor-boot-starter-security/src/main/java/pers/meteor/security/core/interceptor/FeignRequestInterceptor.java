@@ -16,7 +16,7 @@ import pers.meteor.security.core.utils.SecurityUtils;
 /**
  * feign 请求拦截器
  *
- * @author ruoyi
+ * @author meteor
  */
 @Slf4j
 public class FeignRequestInterceptor implements RequestInterceptor {

@@ -6,7 +6,7 @@ import pers.meteor.common.utils.StringUtils;
 /**
  * 定时任务调度测试
  *
- * @author ruoyi
+ * @author meteor
  */
 @Component("ryTask")
 public class RyTask

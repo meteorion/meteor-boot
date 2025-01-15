@@ -10,7 +10,7 @@ import pers.meteor.common.xss.Xss;
 /**
  * 通知公告表 sys_notice
  *
- * @author ruoyi
+ * @author meteor
  */
 public class SysNotice extends BaseEntity
 {

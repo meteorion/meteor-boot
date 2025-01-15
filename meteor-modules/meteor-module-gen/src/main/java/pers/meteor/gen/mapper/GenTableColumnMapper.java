@@ -6,7 +6,7 @@ import pers.meteor.gen.domain.GenTableColumn;
 /**
  * 业务字段 数据层
  *
- * @author ruoyi
+ * @author meteor
  */
 public interface GenTableColumnMapper
 {

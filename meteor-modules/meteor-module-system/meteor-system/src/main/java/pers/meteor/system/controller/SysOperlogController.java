@@ -23,7 +23,7 @@ import pers.meteor.system.service.ISysOperLogService;
 /**
  * 操作日志记录
  *
- * @author ruoyi
+ * @author meteor
  */
 @RestController
 @RequestMapping("/operlog")

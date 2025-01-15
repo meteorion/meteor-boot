@@ -8,7 +8,7 @@ import pers.meteor.common.web.domain.BaseEntity;
 /**
  * 系统访问记录表 sys_logininfor
  *
- * @author ruoyi
+ * @author meteor
  */
 public class SysLogininfor extends BaseEntity
 {

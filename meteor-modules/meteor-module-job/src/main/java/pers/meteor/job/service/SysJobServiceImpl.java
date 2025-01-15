@@ -19,7 +19,7 @@ import pers.meteor.job.util.ScheduleUtils;
 /**
  * 定时任务调度信息 服务层
  *
- * @author ruoyi
+ * @author meteor
  */
 @Service
 public class SysJobServiceImpl implements ISysJobService

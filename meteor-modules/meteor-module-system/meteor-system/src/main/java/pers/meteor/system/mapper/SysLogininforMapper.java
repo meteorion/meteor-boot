@@ -6,7 +6,7 @@ import pers.meteor.system.api.domain.SysLogininfor;
 /**
  * 系统访问日志情况信息 数据层
  *
- * @author ruoyi
+ * @author meteor
  */
 public interface SysLogininforMapper
 {

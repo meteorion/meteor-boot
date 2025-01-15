@@ -16,7 +16,6 @@
         <module>meteor-module-file</module>
         <module>meteor-module-pay</module>
         <module>meteor-module-member</module>
-        <module>meteor-module-monitor</module>
     </modules>
 
     <artifactId>meteor-modules</artifactId>

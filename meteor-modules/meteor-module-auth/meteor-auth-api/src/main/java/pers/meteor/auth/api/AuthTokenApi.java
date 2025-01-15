@@ -5,14 +5,13 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 import pers.meteor.auth.api.dto.AccessToken;
 import pers.meteor.auth.api.dto.AuthUserDetail;
-import pers.meteor.common.constant.ApiConstants;
+import pers.meteor.auth.enums.ApiConstants;
 import pers.meteor.common.pojo.response.SingleResponse;
+
+import javax.validation.Valid;
 
 /**
  * @author 钟宗兵
@@ -26,7 +25,7 @@ public interface AuthTokenApi {
 
     @PostMapping(PREFIX + "/create")
     @Operation(summary = "创建访问令牌")
-    SingleResponse<AccessToken> createAccessToken(AuthUserDetail userDetail);
+    SingleResponse<AccessToken> createAccessToken(@Valid @RequestBody AuthUserDetail userDetail);
 
     @PutMapping(PREFIX + "/refresh")
     @Operation(summary = "刷新访问令牌")
@@ -34,15 +33,16 @@ public interface AuthTokenApi {
             @Parameter(name = "refreshToken", description = "刷新令牌", required = true, example = "haha"),
             @Parameter(name = "clientId", description = "客户端编号", required = true, example = "yudaoyuanma")
     })
-    SingleResponse<AccessToken> refreshAccessToken(String token, String clientId);
+    SingleResponse<AccessToken> refreshAccessToken(@RequestParam("refreshToken") String refreshToken,
+                                                   @RequestParam("clientId") String clientId);
 
     @GetMapping(PREFIX + "/check")
     @Operation(summary = "校验访问令牌")
     @Parameter(name = "accessToken", description = "访问令牌", required = true, example = "tudou")
-    SingleResponse<AccessToken> checkAccessToken(String accessToken);
+    SingleResponse<AccessToken> checkAccessToken(@RequestParam("accessToken") String accessToken);
 
     @DeleteMapping(PREFIX + "/remove")
     @Operation(summary = "移除访问令牌")
     @Parameter(name = "accessToken", description = "访问令牌", required = true, example = "tudou")
-    SingleResponse<AccessToken> removeAccessToken(String accessToken);
+    SingleResponse<AccessToken> removeAccessToken(@RequestParam("accessToken") String accessToken);
 }

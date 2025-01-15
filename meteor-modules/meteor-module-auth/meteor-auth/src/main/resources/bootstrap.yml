@@ -28,3 +28,15 @@ spring:
         # 共享配置
         shared-configs:
           - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+
+meteor:
+  info:
+    version: 1.0.0
+    base-package: cn.iocoder.yudao.module.trade
+  web:
+    admin-ui:
+      url: http://dashboard.yudao.iocoder.cn # Admin 管理后台 UI 的地址
+  xss:
+    enable: false
+    exclude-urls: # 如下 url，仅仅是为了演示，去掉配置也没关系
+      - ${management.endpoints.web.base-path}/** # 不处理 Actuator 的请求

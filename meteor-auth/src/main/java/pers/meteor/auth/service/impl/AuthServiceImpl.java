@@ -91,12 +91,12 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void sendSmsCode(Long userId, AuthSmsSendForm smsSendForm) {
+    public void sendSmsCode(Integer userId, AuthSmsSendForm smsSendForm) {
 
     }
 
     @Override
-    public void validateSmsCode(Long userId, AuthSmsValidateForm smsValidateForm) {
+    public void validateSmsCode(Integer userId, AuthSmsValidateForm smsValidateForm) {
 
     }
 

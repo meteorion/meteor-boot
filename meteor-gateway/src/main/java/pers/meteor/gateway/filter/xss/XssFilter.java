@@ -1,4 +1,4 @@
-package pers.meteor.gateway.filter;
+package pers.meteor.gateway.filter.xss;
 
 import java.nio.charset.StandardCharsets;
 import org.springframework.beans.factory.annotation.Autowired;

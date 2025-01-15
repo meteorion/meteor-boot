@@ -71,7 +71,7 @@ public class AuthController {
     @Operation(summary = "发送手机验证码")
     @PermitAll
     public SingleResponse<Boolean> sendSmsCode(@RequestBody @Valid AuthSmsSendForm smsSendForm) {
-        Long userId = SecurityUtils.getUserId();
+        Integer userId = SecurityUtils.getLoginUserId();
         authService.sendSmsCode(userId, smsSendForm);
         return SingleResponse.success(true);
     }
@@ -80,7 +80,7 @@ public class AuthController {
     @Operation(summary = "校验手机验证码")
     @PermitAll
     public SingleResponse<Boolean> validateSmsCode(@RequestBody @Valid AuthSmsValidateForm smsValidateForm) {
-        Long userId = SecurityUtils.getUserId();
+        Integer userId = SecurityUtils.getLoginUserId();
         authService.validateSmsCode(userId, smsValidateForm);
         return SingleResponse.success(true);
     }

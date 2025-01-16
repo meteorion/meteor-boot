@@ -11,7 +11,7 @@ logging:
 spring:
   application:
     # 应用名称
-    name: meteor-cloud-auth
+    name: auth-server
   profiles:
     # 环境配置
     active: local
@@ -34,15 +34,19 @@ spring:
       password: 123456
 
 meteor:
-  info:
-    version: 1.0.0
-    base-package: cn.iocoder.yudao.module.trade
   web:
     admin-ui:
       url: http://dashboard.yudao.iocoder.cn # Admin 管理后台 UI 的地址
-  xss:
-    enable: false
-    exclude-urls: # 如下 url，仅仅是为了演示，去掉配置也没关系
-      - ${management.endpoints.web.base-path}/** # 不处理 Actuator 的请求
   security:
     auth-user: default
+
+--- #################### 接口文档配置 ####################
+
+springdoc:
+  api-docs:
+    enabled: true # 1. 是否开启 Swagger 接文档的元数据
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true # 2.1 是否开启 Swagger 文档的官方 UI 界面
+    path: /swagger-ui
+  default-flat-param-object: true # 参见 https://doc.xiaominfo.com/docs/faq/v4/knife4j-parameterobject-flat-param 文档

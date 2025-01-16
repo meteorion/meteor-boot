@@ -10,7 +10,7 @@ logging:
 spring:
   application:
     # 应用名称
-    name: meteor-cloud-gateway
+    name: gateway-server
   profiles:
     # 环境配置
     active: local

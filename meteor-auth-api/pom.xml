@@ -8,7 +8,10 @@
     </parent>
 
     <artifactId>meteor-auth-api</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
+
+    <name>meteor-auth-api</name>
+    <url>http://maven.apache.org</url>
 
     <description>
         meteor-auth-api系统接口模块
@@ -26,5 +29,4 @@
             <artifactId>meteor-boot-starter-document</artifactId>
             <scope>provided</scope>
         </dependency>
-    </dependencies>
-</project>
+    </dependencies></project>

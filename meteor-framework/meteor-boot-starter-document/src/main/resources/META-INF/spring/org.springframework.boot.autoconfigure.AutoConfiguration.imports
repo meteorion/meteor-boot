@@ -1,3 +1,1 @@
-# config.pers.meteor.common.swagger.SwaggerAutoConfiguration
-# config.pers.meteor.common.swagger.SwaggerWebConfiguration
-# config.pers.meteor.common.swagger.SwaggerBeanPostProcessor
+pers.meteor.document.swagger.config.SwaggerAutoConfiguration

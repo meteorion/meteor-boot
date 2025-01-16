@@ -18,6 +18,7 @@
         <module>meteor-framework</module>
         <module>meteor-gateway</module>
         <module>meteor-modules</module>
+        <module>meteor-auth-api</module>
     </modules>
 
     <properties>

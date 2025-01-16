@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
 import pers.meteor.auth.api.dto.AccessToken;
+import pers.meteor.auth.api.dto.AccessTokenCheckResult;
 import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.auth.service.token.TokenService;
 import pers.meteor.common.pojo.response.SingleResponse;

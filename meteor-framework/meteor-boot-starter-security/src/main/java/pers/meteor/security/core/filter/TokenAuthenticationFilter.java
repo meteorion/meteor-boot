@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.filter.OncePerRequestFilter;
 import pers.meteor.auth.api.AuthTokenApi;
 import pers.meteor.auth.api.dto.AccessToken;
+import pers.meteor.auth.api.dto.AccessTokenCheckResult;
 import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.common.exception.ServiceException;
 import pers.meteor.common.pojo.response.SingleResponse;
@@ -80,11 +81,11 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     private AuthUserDetail buildLoginUserByToken(String token) {
         try {
-            AccessToken accessToken = authTokenApi.checkAccessToken(token).getCheckedData();
+            AccessTokenCheckResult accessToken = authTokenApi.checkAccessToken(token).getCheckedData();
             AuthUserDetail authUser = new AuthUserDetail();
             authUser.setId(accessToken.getUserId());
             authUser.setUserType(accessToken.getUserType());
-            authUser.setClientId(accessToken.getClientId());
+            authUser.setTenantId(accessToken.getTenantId());
             authUser.setUserInfo(accessToken.getUserInfo());
             authUser.setExpiresTime(accessToken.getExpiresTime());
             return authUser;

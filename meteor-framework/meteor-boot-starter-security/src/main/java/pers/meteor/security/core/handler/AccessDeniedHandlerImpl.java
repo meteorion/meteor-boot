@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static pers.meteor.common.exception.GlobalErrorCode.FORBIDDEN;
+import static pers.meteor.common.exception.enums.GlobalErrorCode.FORBIDDEN;
 
 @Slf4j
 public class AccessDeniedHandlerImpl implements AccessDeniedHandler {

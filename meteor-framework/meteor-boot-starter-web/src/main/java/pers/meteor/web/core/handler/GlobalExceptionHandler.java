@@ -5,7 +5,6 @@ import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.compress.utils.Sets;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindException;
@@ -20,6 +19,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import pers.meteor.common.exception.ServiceException;
 import pers.meteor.common.pojo.response.SingleResponse;
 import pers.meteor.common.utils.ServletUtils;
+import pers.meteor.common.utils.collection.SetUtils;
 import pers.meteor.web.core.util.WebUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +28,7 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 import java.util.Set;
 
-import static pers.meteor.common.exception.GlobalErrorCode.*;
+import static pers.meteor.common.exception.enums.GlobalErrorCode.*;
 
 /**
  * 全局异常处理器，将 Exception 翻译成 SingleResponse + 对应的异常编号
@@ -43,7 +43,7 @@ public class GlobalExceptionHandler {
     /**
      * 忽略的 ServiceException 错误提示，避免打印过多 logger
      */
-    public static final Set<String> IGNORE_ERROR_MESSAGES = Sets.newHashSet("无效的刷新令牌");
+    public static final Set<String> IGNORE_ERROR_MESSAGES = SetUtils.asSet("无效的刷新令牌");
 
     private final String applicationName;
 

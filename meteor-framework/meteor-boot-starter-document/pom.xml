@@ -16,13 +16,6 @@
     </description>
 
 	<dependencies>
-
-        <!-- SpringBoot Web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
         <!-- Swagger -->
         <dependency>
             <groupId>org.springdoc</groupId> <!-- 接口文档 UI：默认 -->

@@ -24,6 +24,13 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-auth-api</artifactId>
+            <version>${auth.api.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
         <!-- SpringCloud Alibaba Nacos -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -36,34 +43,10 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
-        <!-- SpringCloud Alibaba Sentinel -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
-
-        <!-- SpringBoot Web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- SpringBoot Actuator -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
         <!-- RuoYi Common Security-->
         <dependency>
             <groupId>pers.meteor</groupId>
             <artifactId>meteor-boot-starter-security</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>pers.meteor</groupId>
-            <artifactId>meteor-boot-starter-document</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -73,16 +56,13 @@
 
         <dependency>
             <groupId>pers.meteor</groupId>
-            <artifactId>meteor-common</artifactId>
+            <artifactId>meteor-boot-starter-monitor</artifactId>
         </dependency>
 
         <dependency>
             <groupId>pers.meteor</groupId>
-            <artifactId>meteor-auth-api</artifactId>
-            <version>${auth.api.version}</version>
-            <scope>compile</scope>
+            <artifactId>meteor-boot-starter-document</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>

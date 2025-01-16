@@ -3,7 +3,7 @@ server:
   port: 9200
 # 日志配置
 logging:
-  config: classpath:logback-nacos.xml
+  config: classpath:logback-spring.xml
   file:
     path: logs
 

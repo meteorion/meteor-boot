@@ -3,7 +3,7 @@ package pers.meteor.common.pojo.response;
 
 import lombok.Getter;
 import lombok.Setter;
-import pers.meteor.common.exception.GlobalErrorCode;
+import pers.meteor.common.exception.enums.GlobalErrorCode;
 
 import java.util.ArrayList;
 import java.util.Collection;

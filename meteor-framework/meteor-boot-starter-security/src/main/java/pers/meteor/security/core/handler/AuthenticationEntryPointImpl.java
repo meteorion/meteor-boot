@@ -9,7 +9,7 @@ import pers.meteor.common.utils.ServletUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static pers.meteor.common.exception.GlobalErrorCode.UNAUTHORIZED;
+import static pers.meteor.common.exception.enums.GlobalErrorCode.UNAUTHORIZED;
 
 @Slf4j
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {

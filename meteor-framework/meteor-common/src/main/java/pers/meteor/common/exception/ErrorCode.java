@@ -1,6 +1,7 @@
 package pers.meteor.common.exception;
 
 import lombok.Getter;
+import pers.meteor.common.exception.enums.GlobalErrorCode;
 
 /**
  * 错误码对象

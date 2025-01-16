@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pers.meteor.common.constant.ScheduleConstants;
 import pers.meteor.common.utils.ExceptionUtil;
-import pers.meteor.common.utils.SpringUtils;
+import pers.meteor.common.utils.spring.SpringUtils;
 import pers.meteor.common.utils.StringUtils;
 import pers.meteor.common.utils.bean.BeanUtils;
 import pers.meteor.job.domain.SysJob;

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import pers.meteor.common.constant.UserConstants;
 import pers.meteor.common.exception.ServiceException;
 import pers.meteor.common.utils.text.Convert;
-import pers.meteor.common.utils.SpringUtils;
+import pers.meteor.common.utils.spring.SpringUtils;
 import pers.meteor.common.utils.StringUtils;
 import pers.meteor.common.datascope.annotation.DataScope;
 import pers.meteor.security.core.utils.SecurityUtils;

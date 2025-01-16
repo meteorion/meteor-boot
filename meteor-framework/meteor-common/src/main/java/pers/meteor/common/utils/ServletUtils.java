@@ -27,7 +27,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import com.alibaba.fastjson2.JSON;
 import pers.meteor.common.constant.Constants;
-import pers.meteor.common.domain.R;
+import pers.meteor.common.exception.enums.GlobalErrorCode;
+import pers.meteor.common.pojo.response.SingleResponse;
 import pers.meteor.common.utils.text.Convert;
 import pers.meteor.common.utils.json.JsonUtils;
 import reactor.core.publisher.Mono;
@@ -291,7 +292,7 @@ public class ServletUtils
      */
     public static Mono<Void> webFluxResponseWriter(ServerHttpResponse response, Object value)
     {
-        return webFluxResponseWriter(response, HttpStatus.OK, value, R.FAIL);
+        return webFluxResponseWriter(response, HttpStatus.OK, value, GlobalErrorCode.INTERNAL_SERVER_ERROR.getCode());
     }
 
     /**
@@ -335,7 +336,7 @@ public class ServletUtils
     {
         response.setStatusCode(status);
         response.getHeaders().add(HttpHeaders.CONTENT_TYPE, contentType);
-        R<?> result = R.fail(code, value.toString());
+        SingleResponse<?> result = SingleResponse.error(code, value.toString());
         DataBuffer dataBuffer = response.bufferFactory().wrap(JSON.toJSONString(result).getBytes());
         return response.writeWith(Mono.just(dataBuffer));
     }

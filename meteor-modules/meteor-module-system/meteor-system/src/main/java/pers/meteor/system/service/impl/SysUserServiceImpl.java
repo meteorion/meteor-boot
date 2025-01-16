@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import pers.meteor.common.constant.UserConstants;
 import pers.meteor.common.exception.ServiceException;
-import pers.meteor.common.utils.SpringUtils;
+import pers.meteor.common.utils.spring.SpringUtils;
 import pers.meteor.common.utils.StringUtils;
 import pers.meteor.common.utils.bean.BeanValidators;
 import pers.meteor.common.datascope.annotation.DataScope;

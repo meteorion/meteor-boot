@@ -1,8 +1,7 @@
 package pers.meteor.web.core.crypto;
 
-import pers.meteor.common.web.domain.AjaxResult;
+import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.ServerHttpRequest;
@@ -11,6 +10,7 @@ import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+import pers.meteor.common.pojo.response.SingleResponse;
 import pers.meteor.web.core.annotation.SecurityApi;
 
 import javax.annotation.Resource;
@@ -45,24 +45,23 @@ public class SecurityResponseAdvice implements ResponseBodyAdvice<Object> {
     public Object beforeBodyWrite(Object body, @NonNull MethodParameter returnType, @NonNull MediaType selectedContentType,
                                   @NonNull Class selectedConverterType, @NonNull ServerHttpRequest request, @NonNull ServerHttpResponse response) {
 
-        AjaxResult apiResponse = AjaxResult.success(null);
+        SingleResponse<Object> apiResponse = SingleResponse.success(null);
         if (body != null) {
-            if (body instanceof AjaxResult) {
-                AjaxResult r = (AjaxResult) body;
-                apiResponse.putAll(r);
+            if (body instanceof SingleResponse) {
+                apiResponse = (SingleResponse<Object>) body;
             } else {
-                apiResponse.put(AjaxResult.DATA_TAG, String.valueOf(body));
+                apiResponse.setData(String.valueOf(body));
             }
         }
 
         HttpServletRequest servletRequest = ((ServletServerHttpRequest) request).getServletRequest();
         String agentId = (String) servletRequest.getAttribute("agentId");
 
-        Object data = apiResponse.get(AjaxResult.DATA_TAG);
-        if (StringUtils.isNotBlank(agentId) && data != null) {
+        Object data = apiResponse.getData();
+        if (StrUtil.isNotBlank(agentId) && data != null) {
             CryptoConfig agentConfig = cryptoService.getCryptoConfig(agentId);
             String encrypt = cryptoService.encrypt(String.valueOf(data), agentConfig.getEncryptKey());
-            apiResponse.put(AjaxResult.DATA_TAG, encrypt);
+            apiResponse.setData(encrypt);
         }
 
         return apiResponse;

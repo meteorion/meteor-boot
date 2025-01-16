@@ -14,7 +14,7 @@ import pers.meteor.common.constant.Constants;
 import pers.meteor.common.constant.ScheduleConstants;
 import pers.meteor.common.exception.job.TaskException;
 import pers.meteor.common.exception.job.TaskException.Code;
-import pers.meteor.common.utils.SpringUtils;
+import pers.meteor.common.utils.spring.SpringUtils;
 import pers.meteor.common.utils.StringUtils;
 import pers.meteor.job.domain.SysJob;
 

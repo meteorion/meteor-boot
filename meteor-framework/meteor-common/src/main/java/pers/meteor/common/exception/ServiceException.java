@@ -2,6 +2,7 @@ package pers.meteor.common.exception;
 
 import lombok.Getter;
 import lombok.Setter;
+import pers.meteor.common.exception.enums.GlobalErrorCode;
 
 import java.text.MessageFormat;
 

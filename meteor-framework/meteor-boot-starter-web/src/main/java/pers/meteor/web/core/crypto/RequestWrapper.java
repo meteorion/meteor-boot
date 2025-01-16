@@ -1,11 +1,11 @@
 package pers.meteor.web.core.crypto;
 
+import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson2.JSON;
 import lombok.Getter;
-import org.apache.commons.collections4.MapUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartRequest;
@@ -136,7 +136,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
     public String getParameter(String name) {
         String result =  super.getParameter(name);
         // 如果参数获取不到则尝试从参数Map中获取，并且只返回第一个
-        if(StringUtils.isBlank(result) && this.parameterMap.containsKey(name)){
+        if(StrUtil.isBlank(result) && this.parameterMap.containsKey(name)){
             result = this.parameterMap.get(name)[0];
         }
         return result;
@@ -198,9 +198,9 @@ public class RequestWrapper extends HttpServletRequestWrapper {
     public void setParameterMap(Map<String, Object> json2map) {
         if(json2map != null && !json2map.isEmpty()) {
             for (String key : json2map.keySet()){
-                String value = MapUtils.getString(json2map, key);
+                String value = MapUtil.getStr(json2map, key);
                 if(this.parameterMap.containsKey(key)){
-                    this.parameterMap.put(key, ArrayUtils.add(this.parameterMap.get(key), value));
+                    this.parameterMap.put(key, ArrayUtil.append(this.parameterMap.get(key), value));
                 }else{
                     this.parameterMap.put(key, new String[]{value});
                 }

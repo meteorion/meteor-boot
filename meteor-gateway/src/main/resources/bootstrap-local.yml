@@ -24,16 +24,17 @@ spring:
         - id: meteor-auth-api
           uri: lb://auth-server
           predicates:
-            - Path=/auth/**,/v3/api-docs/**
+            - Path=/auth-api/auth/**
           filters:
-            # 验证码处理
+            - RewritePath=/auth-server/(?<segment>.*), /$\{segment}
             - StripPrefix=1
         # 系统模块
         - id: meteor-system-api
           uri: lb://system-server
           predicates:
-            - Path=/system/**
+            - Path=/system-api/system/**
           filters:
+            - RewritePath=/system-server/(?<segment>.*), /$\{segment}
             - StripPrefix=1
         # 支付中心
         - id: meteor-cloud-module-pay

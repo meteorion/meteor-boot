@@ -96,7 +96,6 @@ public class MeteorSecurityAutoConfiguration {
 
             @Override
             public void customize(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry registry) {
-                // TODO 芋艿：这个每个项目都需要重复配置，得捉摸有没通用的方案
                 // Swagger 接口文档
                 registry.requestMatchers("/v3/api-docs/**").permitAll()
                         .requestMatchers("/webjars/**").permitAll()

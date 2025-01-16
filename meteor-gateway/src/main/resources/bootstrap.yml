@@ -50,4 +50,4 @@ knife4j:
     routes:
       - name: auth-server
         service-name: auth-server
-        url: /auth-api/auth/v3/api-docs
+        url: /auth/v3/api-docs

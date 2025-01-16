@@ -1,5 +1,6 @@
 package pers.meteor.common.pojo.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import pers.meteor.common.exception.ErrorCode;
@@ -30,11 +31,11 @@ public class Response extends Dto {
         return "Response [success=" + success + ", code=" + code + ", message=" + message + "]";
     }
 
-    public void checkError() {
+    public void checkError() throws ServiceException {
         if (success) {
             return;
         }
-        throw new ServiceException(message, code);
+        throw new ServiceException(code, message);
     }
 
     public static Response success() {

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author 钟宗兵
@@ -21,7 +22,7 @@ import javax.validation.constraints.NotBlank;
 public class AuthLoginForm {
 
  @Schema(description = "用户类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
- @NotBlank(message = "用户类型不能为空")
+ @NotNull(message = "用户类型不能为空")
  private Integer userType;
 
  @Schema(description = "客户端编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "10")

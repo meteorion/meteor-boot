@@ -358,7 +358,7 @@ public class ServletUtils
     }
 
     public static void writeJSON(HttpServletResponse response, Object object) {
-        String content = JsonUtils.toJsonString(object);
+        String content = JSON.toJSONString(object);
         ServletUtil.write(response, content, MediaType.APPLICATION_JSON_VALUE);
     }
 

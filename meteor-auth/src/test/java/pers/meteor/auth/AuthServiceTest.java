@@ -42,11 +42,11 @@ public class AuthServiceTest {
 
     public JwtService getJwtService() {
         JwtServiceImpl jwtService = new JwtServiceImpl();
-        SecurityProperties.JwtProperties jwtProperties = new SecurityProperties.JwtProperties();
-        jwtProperties.setSecret("abcdefghijklmnopqrstuvwxyz");
-        jwtProperties.setAccessTokenValiditySeconds(60 * 60 * 24);
-        jwtProperties.setRefreshTokenValiditySeconds(60 * 60 * 24 * 7);
-        jwtService.setJwt(jwtProperties);
+        SecurityProperties.TokenProperties tokenProperties = new SecurityProperties.TokenProperties();
+        tokenProperties.setSecret("abcdefghijklmnopqrstuvwxyz");
+        tokenProperties.setAccessTokenValiditySeconds(60 * 60 * 24);
+        tokenProperties.setRefreshTokenValiditySeconds(60 * 60 * 24 * 7);
+        jwtService.setJwt(tokenProperties);
         return jwtService;
     }
 }

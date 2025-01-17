@@ -92,7 +92,8 @@ public class AccessLogFilter implements GlobalFilter, Ordered {
         values.put("startTime", LocalDateTimeUtil.format(gatewayLog.getStartTime(), NORM_DATETIME_MS_FORMATTER));
         values.put("endTime", LocalDateTimeUtil.format(gatewayLog.getEndTime(), NORM_DATETIME_MS_FORMATTER));
         values.put("duration", gatewayLog.getDuration() != null ? gatewayLog.getDuration() + " ms" : null);
-        log.info("[writeAccessLog][网关日志：{}-{}]", gatewayLog.getRequestUrl(), gatewayLog.getResponseBody());
+        log.info("[网关日志：{}] - {}", gatewayLog.getRequestUrl(), gatewayLog.getResponseBody());
+
     }
 
     @Override

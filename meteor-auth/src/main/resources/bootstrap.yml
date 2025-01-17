@@ -39,3 +39,6 @@ meteor:
       url: http://dashboard.yudao.iocoder.cn # Admin 管理后台 UI 的地址
   security:
     auth-user: default
+    token:
+      enable-jwt: true
+      secret: 3f9b8e7c6d5a4f3b2e1c0d9a

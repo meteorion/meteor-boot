@@ -13,14 +13,14 @@ import java.time.LocalDateTime;
  * @since 1.0.0
  */
 @Schema(description = "用户 APP - 登录 Response VO")
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class AuthLoginVO {
 
     @Schema(description = "用户编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "1024")
-    private Long userId;
+    private Integer userId;
 
     @Schema(description = "访问令牌", requiredMode = Schema.RequiredMode.REQUIRED, example = "happy")
     private String accessToken;
@@ -35,5 +35,5 @@ public class AuthLoginVO {
      * 仅社交登录、社交绑定时会返回
      */
     @Schema(description = "社交用户 openid", example = "qq768")
-    private String openid;
+    private String openId;
 }

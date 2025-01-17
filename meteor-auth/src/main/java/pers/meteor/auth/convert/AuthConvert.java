@@ -15,9 +15,9 @@ import pers.meteor.system.api.user.vo.AdminUserVO;
 public interface AuthConvert {
     AuthConvert INSTANCE = Mappers.getMapper(AuthConvert.class);
 
-    AuthLoginVO convert(AccessToken accessToken, String openId);
-
     AuthUserDetail convert(AdminUserVO adminUser);
 
     AccessTokenCheckResult convert(AccessToken accessToken);
+
+    AuthLoginVO convert(AccessToken accessToken, String openId);
 }

@@ -34,10 +34,6 @@ public class AuthUserDetail {
      */
     private List<String> roles;
     /**
-     * 密码
-     */
-    private String password;
-    /**
      * openId
      */
     private String openId;

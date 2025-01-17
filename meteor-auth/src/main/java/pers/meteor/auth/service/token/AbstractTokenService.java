@@ -1,17 +1,16 @@
 package pers.meteor.auth.service.token;
 
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import pers.meteor.auth.api.dto.AccessToken;
 
 /**
  * @author meteor
  */
-@Setter
 @Slf4j
+@RequiredArgsConstructor
 public abstract class AbstractTokenService implements TokenService {
-
-    protected TokenStorgeService tokenStorgeService;
+    protected final TokenStorgeService tokenStorgeService;
 
     @Override
     public AccessToken getAccessToken(String accessToken) {

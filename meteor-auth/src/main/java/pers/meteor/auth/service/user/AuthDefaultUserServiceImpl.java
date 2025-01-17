@@ -38,7 +38,6 @@ public class AuthDefaultUserServiceImpl implements AuthUserService {
                 .mobile("15070196704")
                 .userName(username)
                 .roles(Lists.newArrayList("admin"))
-                .password(password)
                 .accountLocked(false)
                 .userType(UserTypeEnum.ADMIN.getValue())
                 .clientId("1")

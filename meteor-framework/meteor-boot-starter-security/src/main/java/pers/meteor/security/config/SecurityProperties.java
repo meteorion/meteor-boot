@@ -54,14 +54,14 @@ public class SecurityProperties {
      */
     private Integer passwordEncoderLength = 4;
 
-    private JwtProperties jwt;
+    private TokenProperties token;
 
     @Data
-    public static class JwtProperties {
+    public static class TokenProperties {
         /**
          * 是否启用 JWT
          */
-        private boolean enable = true;
+        private boolean enableJwt = true;
         /**
          * 密钥
          */
@@ -69,10 +69,10 @@ public class SecurityProperties {
         /**
          * 访问令牌的有效期
          */
-        private Integer accessTokenValiditySeconds;
+        private Integer accessTokenValiditySeconds = 60 * 60 * 24;
         /**
          * 刷新令牌的有效期
          */
-        private Integer refreshTokenValiditySeconds;
+        private Integer refreshTokenValiditySeconds = 60 * 60 * 24 * 2;
     }
 }

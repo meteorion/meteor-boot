@@ -20,16 +20,21 @@ import java.util.Objects;
  */
 @Service
 @Slf4j
-@RequiredArgsConstructor
 public class JwtTokenServiceImpl extends AbstractTokenService {
 
     private final SecurityProperties securityProperties;
     private final JwtService jwtService;
 
+    public JwtTokenServiceImpl(SecurityProperties securityProperties, JwtService jwtService, TokenStorgeService tokenStorgeService) {
+        super(tokenStorgeService);
+        this.securityProperties = securityProperties;
+        this.jwtService = jwtService;
+    }
+
     @Override
     public AccessToken createAccessToken(AuthUserDetail userDetail) {
         AccessToken accessToken = jwtService.createAccessToken(userDetail);
-        tokenStorgeService.saveAccessToken(accessToken, securityProperties.getJwt().getAccessTokenValiditySeconds());
+        tokenStorgeService.saveAccessToken(accessToken, securityProperties.getToken().getAccessTokenValiditySeconds());
         return accessToken;
     }
 

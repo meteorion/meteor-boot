@@ -52,7 +52,7 @@
         <hutool.version>5.8.22</hutool.version>
         <poi.version>4.1.2</poi.version>
         <transmittable-thread-local.version>2.14.4</transmittable-thread-local.version>
-        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <mapstruct.version>1.6.2</mapstruct.version>
         <easy-rules.version>4.1.0</easy-rules.version>
         <transmittable-thread-local.version>2.14.3</transmittable-thread-local.version>
         <guava.version>33.0.0-jre</guava.version>

@@ -4,15 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>pers.meteor</groupId>
-        <artifactId>meteor-module-system</artifactId>
+        <artifactId>meteor-module-shared</artifactId>
         <version>1.0.0-snapshot</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>meteor-system</artifactId>
+    <artifactId>meteor-shared</artifactId>
 
     <description>
-        meteor-cloud-module-system系统模块
+        meteor-module-shared 共享模块
     </description>
 
     <properties>
@@ -24,7 +24,7 @@
 
     <dependencies>
 
-    	<!-- SpringCloud Alibaba Nacos -->
+        <!-- SpringCloud Alibaba Nacos -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
@@ -36,32 +36,15 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
-    	<!-- SpringCloud Alibaba Sentinel -->
+        <!-- RuoYi Common Security-->
         <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
-
-    	<!-- SpringBoot Actuator -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <!-- Mysql Connector -->
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-boot-starter-security</artifactId>
         </dependency>
 
         <dependency>
             <groupId>pers.meteor</groupId>
-            <artifactId>meteor-boot-starter-mybatis</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>pers.meteor</groupId>
-            <artifactId>meteor-boot-starter-datascope</artifactId>
+            <artifactId>meteor-boot-starter-test</artifactId>
         </dependency>
 
         <dependency>
@@ -69,7 +52,6 @@
             <artifactId>meteor-boot-starter-monitor</artifactId>
         </dependency>
 
-        <!-- RuoYi Common Swagger -->
         <dependency>
             <groupId>pers.meteor</groupId>
             <artifactId>meteor-boot-starter-document</artifactId>
@@ -85,7 +67,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring.boot.version}</version>
                 <configuration>
-                    <mainClass>pers.meteor.system.SharedApplication</mainClass>
+                    <mainClass>pers.meteor.shared.SharedApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

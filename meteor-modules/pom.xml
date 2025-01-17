@@ -10,10 +10,8 @@
     <version>${revision}</version>
 
     <modules>
+        <module>meteor-module-shared</module>
         <module>meteor-module-system</module>
-        <module>meteor-module-gen</module>
-        <module>meteor-module-job</module>
-        <module>meteor-module-file</module>
         <module>meteor-module-pay</module>
         <module>meteor-module-member</module>
     </modules>

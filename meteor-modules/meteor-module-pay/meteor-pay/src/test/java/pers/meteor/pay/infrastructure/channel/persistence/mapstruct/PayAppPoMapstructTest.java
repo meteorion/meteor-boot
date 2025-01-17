@@ -3,7 +3,7 @@ package pers.meteor.pay.infrastructure.channel.persistence.mapstruct;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pers.meteor.common.enums.SwitchStatusEnum;
-import pers.meteor.pay.infrastructure.channel.persistence.po.PayAppPo;
+import pers.meteor.pay.infrastructure.channel.persistence.po.PayAppEntity;
 
 /**
  * @author meteor
@@ -16,7 +16,7 @@ public class PayAppPoMapstructTest {
         payChannel.setAppId(1L);
         payChannel.setName("test channel");
         payChannel.setStatus(SwitchStatusEnum.OPEN);
-        PayAppPo payChannelPo = PayAppMapstruct.INSTANCE.toPayAppPo(payChannel);
+        PayAppEntity payChannelPo = PayAppMapstruct.INSTANCE.toPayAppPo(payChannel);
         Assertions.assertNotNull(payChannelPo);
     }
 }

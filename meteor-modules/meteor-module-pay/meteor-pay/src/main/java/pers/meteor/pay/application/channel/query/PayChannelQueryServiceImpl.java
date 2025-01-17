@@ -10,8 +10,8 @@ import pers.meteor.pay.application.channel.asselmber.PayAppAssembler;
 import pers.meteor.pay.infrastructure.channel.persistence.mapper.PayAppMapper;
 import pers.meteor.pay.infrastructure.channel.persistence.mapper.PayChannelMapper;
 import pers.meteor.pay.infrastructure.channel.persistence.mapper.PayClientMapper;
-import pers.meteor.pay.infrastructure.channel.persistence.po.PayAppPo;
-import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelPo;
+import pers.meteor.pay.infrastructure.channel.persistence.po.PayAppEntity;
+import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelEntity;
 import pers.meteor.pay.infrastructure.channel.persistence.po.PayClientPo;
 import pers.meteor.pay.interfaces.channel.web.vo.PayAppRespVO;
 import pers.meteor.pay.interfaces.channel.web.vo.PayAppSimpleRespVO;
@@ -34,18 +34,18 @@ public class PayChannelQueryServiceImpl implements PayChannelQueryService {
 
     @Override
     public List<PayAppSimpleRespVO> listPayApp() {
-        List<PayAppPo> payChannelPos = payChannelMapper.selectList(Wrappers.emptyWrapper());
+        List<PayAppEntity> payChannelPos = payChannelMapper.selectList(Wrappers.emptyWrapper());
         return payChannelPos.stream().map(PayAppAssembler.INSTANCE::toPayAppSimpleResp).collect(Collectors.toList());
     }
 
     @Override
     public PayAppRespVO getPayApp(Long appId) {
-        PayAppPo payAppPo = payChannelMapper.selectById(appId);
+        PayAppEntity payAppPo = payChannelMapper.selectById(appId);
         if (payAppPo != null) {
             PayAppRespVO payAppResp = PayAppAssembler.INSTANCE.toPayAppResp(payAppPo);
-            List<PayChannelPo> payChannelPos = payChannelConfigMapper.selectPayChannelList(appId);
+            List<PayChannelEntity> payChannelPos = payChannelConfigMapper.selectPayChannelList(appId);
             ArrayList<PayChannelRespVO> payChannelResps = new ArrayList<>();
-            for (PayChannelPo payChannelPo : payChannelPos) {
+            for (PayChannelEntity payChannelPo : payChannelPos) {
                 PayChannelRespVO payChannelResp = PayAppAssembler.INSTANCE.toPayChannelResp(payChannelPo);
                 PayClientPo payClientPo = payClientConfigMapper.selectByChannelId(payChannelPo.getChannelId());
                 PayClientRespVO payClientResp = PayAppAssembler.INSTANCE.toPayClientResp(payClientPo);
@@ -61,7 +61,7 @@ public class PayChannelQueryServiceImpl implements PayChannelQueryService {
 
     @Override
     public PayAppSimpleRespVO validPayApp(Long appId) {
-        PayAppPo payAppPo = payChannelMapper.selectById(appId);
+        PayAppEntity payAppPo = payChannelMapper.selectById(appId);
         if (payAppPo == null) {
             throw new ServiceException("支付运用不存在");
         }

@@ -13,8 +13,8 @@ import pers.meteor.pay.infrastructure.channel.persistence.mapper.PayAppMapper;
 import pers.meteor.pay.infrastructure.channel.persistence.mapper.PayChannelMapper;
 import pers.meteor.pay.infrastructure.channel.persistence.mapper.PayClientMapper;
 import pers.meteor.pay.infrastructure.channel.persistence.mapstruct.PayAppMapstruct;
-import pers.meteor.pay.infrastructure.channel.persistence.po.PayAppPo;
-import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelPo;
+import pers.meteor.pay.infrastructure.channel.persistence.po.PayAppEntity;
+import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelEntity;
 import pers.meteor.pay.infrastructure.channel.persistence.po.PayClientPo;
 
 import java.util.Collection;
@@ -33,7 +33,7 @@ public class PayAppRepositoryImpl implements PayAppRepository {
 
     @Override
     public Long save(PayApp payApp) {
-        PayAppPo payAppPo = PayAppMapstruct.INSTANCE.toPayAppPo(payApp);
+        PayAppEntity payAppPo = PayAppMapstruct.INSTANCE.toPayAppPo(payApp);
         Long appId = payAppPo.getAppId();
         if (appId == null) {
             payAppMapper.insert(payAppPo);
@@ -52,7 +52,7 @@ public class PayAppRepositoryImpl implements PayAppRepository {
 
     @Override
     public void updatePayAppStatus(Long appId, SwitchStatusEnum switchStatus) {
-        PayAppPo payAppPo = new PayAppPo();
+        PayAppEntity payAppPo = new PayAppEntity();
         payAppPo.setAppId(appId);
         payAppPo.setStatus(switchStatus.getCode());
         payAppMapper.updateById(payAppPo);
@@ -61,8 +61,8 @@ public class PayAppRepositoryImpl implements PayAppRepository {
     @Override
     public Long savePayChannel(PayChannel payChannel) {
         Long appId = payChannel.getAppId();
-        PayChannelPo payChannelPo = PayAppMapstruct.INSTANCE.toPayAppPo(payChannel);
-        PayChannelPo payChannelDbPo = payChannelMapper.selectOne(appId, payChannelPo.getChannelType());
+        PayChannelEntity payChannelPo = PayAppMapstruct.INSTANCE.toPayAppPo(payChannel);
+        PayChannelEntity payChannelDbPo = payChannelMapper.selectOne(appId, payChannelPo.getChannelType());
         if (payChannelDbPo != null) {
             payChannelPo.setChannelId(payChannelDbPo.getChannelId());
             payChannelMapper.updateById(payChannelPo);
@@ -78,8 +78,8 @@ public class PayAppRepositoryImpl implements PayAppRepository {
     @Override
     public void savePayChannels(Collection<PayChannel> payChannels) {
         for (PayChannel payChannel : payChannels) {
-            PayChannelPo newPayChannelPo = PayAppMapstruct.INSTANCE.toPayAppPo(payChannel);
-            PayChannelPo payChannelPo = payChannelMapper.selectOne(payChannel.getAppId(), newPayChannelPo.getChannelType());
+            PayChannelEntity newPayChannelPo = PayAppMapstruct.INSTANCE.toPayAppPo(payChannel);
+            PayChannelEntity payChannelPo = payChannelMapper.selectOne(payChannel.getAppId(), newPayChannelPo.getChannelType());
             if (payChannelPo != null) {
                 newPayChannelPo.setChannelId(payChannelPo.getChannelId());
                 payChannelMapper.updateById(newPayChannelPo);
@@ -98,7 +98,7 @@ public class PayAppRepositoryImpl implements PayAppRepository {
         if (channelRate == null) {
             return;
         }
-        PayChannelPo channelRatePo = PayAppMapstruct.INSTANCE.toPayAppPo(channelId, channelRate);
+        PayChannelEntity channelRatePo = PayAppMapstruct.INSTANCE.toPayAppPo(channelId, channelRate);
         if (channelRatePo.getChannelId() != null) {
             payChannelMapper.updateById(channelRatePo);
         } else {
@@ -123,19 +123,19 @@ public class PayAppRepositoryImpl implements PayAppRepository {
 
     @Override
     public PayApp selectById(Long appId) {
-        PayAppPo payAppPo = payAppMapper.selectById(appId);
+        PayAppEntity payAppPo = payAppMapper.selectById(appId);
         return fill(payAppPo);
     }
 
     @Override
     public PayApp selectByName(String name) {
-        PayAppPo payChannelPo = payAppMapper.selectOne(PayAppPo::getName, name);
+        PayAppEntity payChannelPo = payAppMapper.selectOne(PayAppEntity::getName, name);
         return fill(payChannelPo);
     }
 
     @Override
     public List<PayApp> selectByCode(String code) {
-        List<PayAppPo> payAppPos = payAppMapper.selectList(PayAppPo::getCode, code);
+        List<PayAppEntity> payAppPos = payAppMapper.selectList(PayAppEntity::getCode, code);
         return payAppPos.stream().map(this::fill).collect(Collectors.toList());
     }
 
@@ -147,7 +147,7 @@ public class PayAppRepositoryImpl implements PayAppRepository {
 
     @Override
     public PayChannel selectPayChannel(Long channelId) {
-        PayChannelPo payChannelPo = payChannelMapper.selectById(channelId);
+        PayChannelEntity payChannelPo = payChannelMapper.selectById(channelId);
         if (payChannelPo == null) {
             return null;
         }
@@ -158,7 +158,7 @@ public class PayAppRepositoryImpl implements PayAppRepository {
 
     @Override
     public PayChannel selectPayChannel(Long channelId, PayChannelEnum channelType) {
-        PayChannelPo payChannelPo = payChannelMapper.selectOne(channelId, channelType.getCode());
+        PayChannelEntity payChannelPo = payChannelMapper.selectOne(channelId, channelType.getCode());
         if (payChannelPo == null) {
             return null;
         }
@@ -169,7 +169,7 @@ public class PayAppRepositoryImpl implements PayAppRepository {
     @Override
     public void deleteApp(Long appId) {
         payAppMapper.deleteById(appId);
-        List<PayChannelPo> payChannelPos = payChannelMapper.selectPayChannelList(appId);
+        List<PayChannelEntity> payChannelPos = payChannelMapper.selectPayChannelList(appId);
         payChannelPos.forEach(payChannel -> this.deletePayChannel(payChannel.getChannelId()));
     }
 
@@ -185,13 +185,13 @@ public class PayAppRepositoryImpl implements PayAppRepository {
      * @param payChannelPo /
      * @return /
      */
-    private PayApp fill(PayAppPo payChannelPo) {
+    private PayApp fill(PayAppEntity payChannelPo) {
         if (payChannelPo == null) {
             return null;
         }
         Long payChannelId = payChannelPo.getAppId();
         // 同时查询通道配置
-        List<PayChannelPo> payChannelPos = payChannelMapper.selectPayChannelList(payChannelId);
+        List<PayChannelEntity> payChannelPos = payChannelMapper.selectPayChannelList(payChannelId);
         // 查询通道配置
         List<PayClientPo> payClientPos = payClientMapper.selectPayClientList(payChannelId);
 

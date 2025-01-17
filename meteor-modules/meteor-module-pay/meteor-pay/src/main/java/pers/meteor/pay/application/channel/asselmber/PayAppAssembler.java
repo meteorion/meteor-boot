@@ -8,8 +8,8 @@ import pers.meteor.pay.domain.channel.module.PayChannel;
 import pers.meteor.pay.domain.channel.module.PayClient;
 import pers.meteor.pay.domain.channel.module.valueobject.Quota;
 import pers.meteor.pay.domain.channel.module.valueobject.Rate;
-import pers.meteor.pay.infrastructure.channel.persistence.po.PayAppPo;
-import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelPo;
+import pers.meteor.pay.infrastructure.channel.persistence.po.PayAppEntity;
+import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelEntity;
 import pers.meteor.pay.infrastructure.channel.persistence.po.PayClientPo;
 import pers.meteor.pay.interfaces.channel.web.cmd.ChannelRateUpdateCmd;
 import pers.meteor.pay.interfaces.channel.web.cmd.PayAppCreateCmd;
@@ -30,12 +30,12 @@ public interface PayAppAssembler extends BaseAssembler {
     PayAppAssembler INSTANCE = Mappers.getMapper(PayAppAssembler.class);
 
     @Mapping(target = "configs", ignore = true)
-    PayAppRespVO toPayAppResp(PayAppPo payAppPo);
+    PayAppRespVO toPayAppResp(PayAppEntity payAppPo);
 
-    PayAppSimpleRespVO toPayAppSimpleResp(PayAppPo payAppPo);
+    PayAppSimpleRespVO toPayAppSimpleResp(PayAppEntity payAppPo);
 
     @Mapping(target = "payClient", ignore = true)
-    PayChannelRespVO toPayChannelResp(PayChannelPo payChannelPo);
+    PayChannelRespVO toPayChannelResp(PayChannelEntity payChannelPo);
 
     PayClientRespVO toPayClientResp(PayClientPo payClientPo);
 

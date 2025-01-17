@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import pers.meteor.mybatis.core.BasePo;
+import pers.meteor.mybatis.core.BaseEntity;
 
 /**
  * @author meteor
@@ -13,7 +13,7 @@ import pers.meteor.mybatis.core.BasePo;
 @TableName("pay_app")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class PayAppPo extends BasePo {
+public class PayAppEntity extends BaseEntity {
     /**
      * 支付通道id
      */

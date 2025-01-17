@@ -9,8 +9,8 @@ import pers.meteor.pay.domain.channel.module.PayChannel;
 import pers.meteor.pay.domain.channel.module.PayClient;
 import pers.meteor.pay.domain.channel.module.enums.PayChannelEnum;
 import pers.meteor.pay.domain.channel.module.valueobject.Rate;
-import pers.meteor.pay.infrastructure.channel.persistence.po.PayAppPo;
-import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelPo;
+import pers.meteor.pay.infrastructure.channel.persistence.po.PayAppEntity;
+import pers.meteor.pay.infrastructure.channel.persistence.po.PayChannelEntity;
 import pers.meteor.pay.infrastructure.channel.persistence.po.PayClientPo;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public interface PayAppMapstruct {
     PayAppMapstruct INSTANCE = Mappers.getMapper(PayAppMapstruct.class);
 
-    default PayApp toPayApp(PayAppPo payAppPo, List<PayChannelPo> payChannelPos, List<PayClientPo> payClientPos) {
+    default PayApp toPayApp(PayAppEntity payAppPo, List<PayChannelEntity> payChannelPos, List<PayClientPo> payClientPos) {
         if (payAppPo == null) {
             return null;
         }
@@ -37,7 +37,7 @@ public interface PayAppMapstruct {
 
             Map<PayChannelEnum, PayClient> payClientMap = Optional.ofNullable(payClientPos).orElse(new ArrayList<>()).stream().collect(Collectors.toMap(po -> PayChannelEnum.getByCode(po.getChannelType()), this::toPayClient));
 
-            for (PayChannelPo payChannelPo : payChannelPos) {
+            for (PayChannelEntity payChannelPo : payChannelPos) {
                 PayChannel payChannel = toPayChannel(payChannelPo);
                 PayChannelEnum channelType = payChannel.getChannelType();
                 if (channelType != null) {
@@ -55,7 +55,7 @@ public interface PayAppMapstruct {
     @Mapping(target = "channelConfigs", ignore = true)
     @Mapping(target = "channelQuota", ignore = true)
     @Mapping(target = "channelRates", ignore = true)
-    PayApp toPayApp(PayAppPo payApp);
+    PayApp toPayApp(PayAppEntity payApp);
 
     @Mapping(target = "status", source = "status.code")
     @Mapping(target = "dailyLimit", source = "quota.dailyLimit")
@@ -64,7 +64,7 @@ public interface PayAppMapstruct {
     @Mapping(target = "updateTime", ignore = true)
     @Mapping(target = "creator", ignore = true)
     @Mapping(target = "updater", ignore = true)
-    PayAppPo toPayAppPo(PayApp payApp);
+    PayAppEntity toPayAppPo(PayApp payApp);
 
     @Mapping(target = "status", expression = "java(SwitchStatusEnum.ofCode(payChannelPo.getStatus()))")
     @Mapping(target = "channelType", expression = "java(PayChannelEnum.getByCode(payChannelPo.getChannelType()))")
@@ -82,9 +82,9 @@ public interface PayAppMapstruct {
     @Mapping(target = "timeRange.startTime", source = "startTime")
     @Mapping(target = "timeRange.endTime", source = "endTime")
     @Mapping(target = "payClientConfig", ignore = true)
-    PayChannel toPayChannel(PayChannelPo payChannelPo);
+    PayChannel toPayChannel(PayChannelEntity payChannelPo);
 
-    default PayChannel toPayChannel(PayChannelPo payChannelPo, PayClientPo payClientPo) {
+    default PayChannel toPayChannel(PayChannelEntity payChannelPo, PayClientPo payClientPo) {
         PayChannel payChannel = toPayChannel(payChannelPo);
         if (payChannel == null) {
             return null;
@@ -112,10 +112,10 @@ public interface PayAppMapstruct {
     @Mapping(target = "updateTime", ignore = true)
     @Mapping(target = "creator", ignore = true)
     @Mapping(target = "updater", ignore = true)
-    PayChannelPo toPayAppPo(PayChannel payChannel);
+    PayChannelEntity toPayAppPo(PayChannel payChannel);
 
-    default PayChannelPo toPayAppPo(Long channelId, Rate channelRate) {
-        PayChannelPo payChannelPo = new PayChannelPo();
+    default PayChannelEntity toPayAppPo(Long channelId, Rate channelRate) {
+        PayChannelEntity payChannelPo = new PayChannelEntity();
         payChannelPo.setChannelId(channelId);
         payChannelPo.setCostRate(channelRate.getCostRate());
         payChannelPo.setMaxRate(channelRate.getMaxRate());

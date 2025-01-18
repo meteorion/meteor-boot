@@ -4,11 +4,11 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import pers.meteor.system.mode.notice.bo.NoticeBO;
-import pers.meteor.system.mode.notice.entity.Notice;
-import pers.meteor.system.mode.notice.form.NoticeForm;
-import pers.meteor.system.mode.notice.vo.NoticeDetailVO;
-import pers.meteor.system.mode.notice.vo.NoticePageVO;
+import pers.meteor.system.model.notice.bo.NoticeBO;
+import pers.meteor.system.model.notice.entity.Notice;
+import pers.meteor.system.model.notice.form.NoticeForm;
+import pers.meteor.system.model.notice.vo.NoticeDetailVO;
+import pers.meteor.system.model.notice.vo.NoticePageVO;
 
 /**
  * 通知公告对象转换器

@@ -20,17 +20,17 @@ import pers.meteor.system.convert.user.UserConverter;
 import pers.meteor.system.enums.RedisConstants;
 import pers.meteor.system.enums.SystemConstants;
 import pers.meteor.system.mapper.user.UserMapper;
-import pers.meteor.system.mode.permission.entity.UserRole;
-import pers.meteor.system.mode.user.bo.UserBO;
-import pers.meteor.system.mode.user.dto.UserAuthInfo;
-import pers.meteor.system.mode.user.dto.UserExportDTO;
-import pers.meteor.system.mode.user.entity.User;
-import pers.meteor.system.mode.user.enums.ContactType;
-import pers.meteor.system.mode.user.form.*;
-import pers.meteor.system.mode.user.query.UserPageQuery;
-import pers.meteor.system.mode.user.vo.UserInfoVO;
-import pers.meteor.system.mode.user.vo.UserPageVO;
-import pers.meteor.system.mode.user.vo.UserProfileVO;
+import pers.meteor.system.model.permission.entity.UserRole;
+import pers.meteor.system.model.user.bo.UserBO;
+import pers.meteor.system.model.user.dto.UserAuthInfo;
+import pers.meteor.system.model.user.dto.UserExportDTO;
+import pers.meteor.system.model.user.entity.User;
+import pers.meteor.system.model.user.enums.ContactType;
+import pers.meteor.system.model.user.form.*;
+import pers.meteor.system.model.user.query.UserPageQuery;
+import pers.meteor.system.model.user.vo.UserInfoVO;
+import pers.meteor.system.model.user.vo.UserPageVO;
+import pers.meteor.system.model.user.vo.UserProfileVO;
 import pers.meteor.system.service.permission.PermissionService;
 import pers.meteor.system.service.permission.RoleService;
 import pers.meteor.system.service.permission.UserRoleService;
@@ -79,7 +79,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         int pageSize = queryParams.getPageSize();
         Page<UserBO> page = new Page<>(pageNum, pageSize);
         // 查询数据
-        Page<UserBO> userPage = this.baseMapper.getUserPage(page, queryParams);
+        Page<UserBO> userPage = this.baseMapper.selectUserPage(page, queryParams);
 
         // 实体转换
         return userConverter.toPageVo(userPage);
@@ -93,7 +93,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public UserForm getUserFormData(Long userId) {
-        return this.baseMapper.getUserFormData(userId);
+        return this.baseMapper.selectUserFormData(userId);
     }
 
     /**
@@ -184,7 +184,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public UserAuthInfo getUserAuthInfo(String username) {
-        UserAuthInfo userAuthInfo = this.baseMapper.getUserAuthInfo(username);
+        UserAuthInfo userAuthInfo = this.baseMapper.selectUserAuthInfo(username);
         if (userAuthInfo != null) {
             Set<String> roles = userAuthInfo.getRoles();
             // 获取最大范围的数据权限
@@ -203,7 +203,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public UserAuthInfo getUserAuthInfoByOpenId(String openid) {
-        UserAuthInfo userAuthInfo = this.baseMapper.getUserAuthInfoByOpenId(openid);
+        UserAuthInfo userAuthInfo = this.baseMapper.selectUserAuthInfoByOpenId(openid);
         if (userAuthInfo != null) {
             Set<String> roles = userAuthInfo.getRoles();
             // 获取最大范围的数据权限
@@ -231,7 +231,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             user.setUsername(openId);      // TODO 后续替换为手机号
             user.setOpenid(openId);
             user.setGender(0); // 保密
-            user.setUpdateBy(SecurityUtils.getLoginUserId());
             user.setPassword(SystemConstants.DEFAULT_PASSWORD);
             this.save(user);
             // 为了默认系统管理员角色，这里按需调整，实际情况绑定已存在的系统用户，另一种情况是给默认游客角色，然后由系统管理员设置用户的角色
@@ -250,7 +249,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public List<UserExportDTO> listExportUsers(UserPageQuery queryParams) {
-        return this.baseMapper.listExportUsers(queryParams);
+        return this.baseMapper.selectExportUsers(queryParams);
     }
 
     /**
@@ -296,7 +295,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public UserProfileVO getUserProfile(Long userId) {
-        UserBO entity = this.baseMapper.getUserProfile(userId);
+        UserBO entity = this.baseMapper.selectUserProfile(userId);
         return userConverter.toProfileVO(entity);
     }
 

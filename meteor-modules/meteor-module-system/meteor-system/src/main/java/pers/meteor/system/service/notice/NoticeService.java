@@ -2,12 +2,12 @@ package pers.meteor.system.service.notice;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import pers.meteor.system.mode.notice.entity.Notice;
-import pers.meteor.system.mode.notice.form.NoticeForm;
-import pers.meteor.system.mode.notice.query.NoticePageQuery;
-import pers.meteor.system.mode.notice.vo.NoticeDetailVO;
-import pers.meteor.system.mode.notice.vo.NoticePageVO;
-import pers.meteor.system.mode.notice.vo.UserNoticePageVO;
+import pers.meteor.system.model.notice.entity.Notice;
+import pers.meteor.system.model.notice.form.NoticeForm;
+import pers.meteor.system.model.notice.query.NoticePageQuery;
+import pers.meteor.system.model.notice.vo.NoticeDetailVO;
+import pers.meteor.system.model.notice.vo.NoticePageVO;
+import pers.meteor.system.model.notice.vo.UserNoticePageVO;
 
 /**
  * 通知公告服务类

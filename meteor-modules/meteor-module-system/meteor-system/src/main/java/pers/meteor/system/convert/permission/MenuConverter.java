@@ -2,9 +2,9 @@ package pers.meteor.system.convert.permission;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import pers.meteor.system.mode.permission.entity.Menu;
-import pers.meteor.system.mode.permission.form.MenuForm;
-import pers.meteor.system.mode.permission.vo.MenuVO;
+import pers.meteor.system.model.permission.entity.Menu;
+import pers.meteor.system.model.permission.form.MenuForm;
+import pers.meteor.system.model.permission.vo.MenuVO;
 
 /**
  * 菜单对象转换器

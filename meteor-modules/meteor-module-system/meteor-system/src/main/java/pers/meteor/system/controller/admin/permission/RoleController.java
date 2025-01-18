@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import pers.meteor.common.pojo.Option;
 import pers.meteor.common.pojo.response.PageResponse;
 import pers.meteor.common.pojo.response.SingleResponse;
-import pers.meteor.system.mode.permission.form.RoleForm;
-import pers.meteor.system.mode.permission.query.RolePageQuery;
-import pers.meteor.system.mode.permission.vo.RolePageVO;
+import pers.meteor.system.model.permission.form.RoleForm;
+import pers.meteor.system.model.permission.query.RolePageQuery;
+import pers.meteor.system.model.permission.vo.RolePageVO;
 import pers.meteor.system.service.permission.RoleService;
 
 import javax.validation.Valid;
@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Tag(name = "03.角色接口")
 @RestController
-@RequestMapping("/api/v1/roles")
+@RequestMapping("/roles")
 @RequiredArgsConstructor
 public class RoleController {
 
@@ -51,7 +51,7 @@ public class RoleController {
 
     @Operation(summary = "新增角色")
     @PostMapping
-    @PreAuthorize("@ss.hasPerm('sys:role:add')")
+    @PreAuthorize("@ss.hasPermission('sys:role:add')")
     public SingleResponse<?> addRole(@Valid @RequestBody RoleForm roleForm) {
         boolean result = roleService.saveRole(roleForm);
         return SingleResponse.success(result);
@@ -68,7 +68,7 @@ public class RoleController {
 
     @Operation(summary = "修改角色")
     @PutMapping(value = "/{id}")
-    @PreAuthorize("@ss.hasPerm('sys:role:edit')")
+    @PreAuthorize("@ss.hasPermission('sys:role:edit')")
     public SingleResponse<?> updateRole(@Valid @RequestBody RoleForm roleForm) {
         boolean result = roleService.saveRole(roleForm);
         return SingleResponse.success(result);
@@ -76,7 +76,7 @@ public class RoleController {
 
     @Operation(summary = "删除角色")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("@ss.hasPerm('sys:role:delete')")
+    @PreAuthorize("@ss.hasPermission('sys:role:delete')")
     public SingleResponse<?> deleteRoles(
             @Parameter(description = "删除角色，多个以英文逗号(,)拼接") @PathVariable String ids
     ) {

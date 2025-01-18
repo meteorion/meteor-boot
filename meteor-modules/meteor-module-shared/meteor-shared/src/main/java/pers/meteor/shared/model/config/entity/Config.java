@@ -44,16 +44,6 @@ public class Config extends BaseEntity {
     private String remark;
 
     /**
-     * 创建人ID
-     */
-    private Integer createBy;
-
-    /**
-     * 更新人ID
-     */
-    private Integer updateBy;
-
-    /**
      * 逻辑删除标识(0-未删除 1-已删除)
      */
     private Integer isDeleted;

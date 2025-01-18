@@ -2,10 +2,10 @@ package pers.meteor.system.service.dept;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import pers.meteor.common.pojo.Option;
-import pers.meteor.system.mode.dept.entity.Dept;
-import pers.meteor.system.mode.dept.form.DeptForm;
-import pers.meteor.system.mode.dept.query.DeptQuery;
-import pers.meteor.system.mode.dept.vo.DeptVO;
+import pers.meteor.system.model.dept.entity.Dept;
+import pers.meteor.system.model.dept.form.DeptForm;
+import pers.meteor.system.model.dept.query.DeptQuery;
+import pers.meteor.system.model.dept.vo.DeptVO;
 
 import java.util.List;
 

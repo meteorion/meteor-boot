@@ -4,10 +4,10 @@ package pers.meteor.system.service.permission;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import pers.meteor.common.pojo.Option;
-import pers.meteor.system.mode.permission.entity.Role;
-import pers.meteor.system.mode.permission.form.RoleForm;
-import pers.meteor.system.mode.permission.query.RolePageQuery;
-import pers.meteor.system.mode.permission.vo.RolePageVO;
+import pers.meteor.system.model.permission.entity.Role;
+import pers.meteor.system.model.permission.form.RoleForm;
+import pers.meteor.system.model.permission.query.RolePageQuery;
+import pers.meteor.system.model.permission.vo.RolePageVO;
 
 import java.util.List;
 import java.util.Set;

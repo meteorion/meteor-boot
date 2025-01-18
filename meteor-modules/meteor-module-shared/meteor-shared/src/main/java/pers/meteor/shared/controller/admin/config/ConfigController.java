@@ -28,14 +28,14 @@ import javax.validation.Valid;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "10.系统配置")
-@RequestMapping("/api/v1/config")
+@RequestMapping("/config")
 public class ConfigController {
 
     private final ConfigService configService;
 
     @Operation(summary = "系统配置分页列表")
     @GetMapping("/page")
-    @PreAuthorize("@ss.hasPerm('sys:config:query')")
+    @PreAuthorize("@ss.hasPermission('sys:config:query')")
     public PageResponse<ConfigVO> page(@ParameterObject ConfigPageQuery configPageQuery) {
         IPage<ConfigVO> result = configService.page(configPageQuery);
         return PageResponse.success(result.getRecords(), result.getTotal(), result.getSize(), result.getCurrent());
@@ -43,7 +43,7 @@ public class ConfigController {
 
     @Operation(summary = "新增系统配置")
     @PostMapping
-    @PreAuthorize("@ss.hasPerm('sys:config:add')")
+    @PreAuthorize("@ss.hasPermission('sys:config:add')")
     public SingleResponse<?> save(@RequestBody @Valid ConfigForm configForm) {
         return SingleResponse.success(configService.save(configForm));
     }
@@ -59,21 +59,21 @@ public class ConfigController {
 
     @Operation(summary = "刷新系统配置缓存")
     @PutMapping("/refresh")
-    @PreAuthorize("@ss.hasPerm('sys:config:refresh')")
+    @PreAuthorize("@ss.hasPermission('sys:config:refresh')")
     public SingleResponse<Boolean> refreshCache() {
         return SingleResponse.success(configService.refreshCache());
     }
 
     @Operation(summary = "修改系统配置")
     @PutMapping(value = "/{id}")
-    @PreAuthorize("@ss.hasPerm('sys:config:update')")
+    @PreAuthorize("@ss.hasPermission('sys:config:update')")
     public SingleResponse<?> update(@Valid @PathVariable Long id, @RequestBody ConfigForm configForm) {
         return SingleResponse.success(configService.edit(id, configForm));
     }
 
     @Operation(summary = "删除系统配置")
     @DeleteMapping("/{id}")
-    @PreAuthorize("@ss.hasPerm('sys:config:delete')")
+    @PreAuthorize("@ss.hasPermission('sys:config:delete')")
     public SingleResponse<?> delete(@PathVariable Long id) {
         return SingleResponse.success(configService.delete(id));
     }

@@ -1,5 +1,6 @@
 package pers.meteor.auth.service.user;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pers.meteor.common.exception.ServiceException;
 
@@ -12,6 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 1.0.0
  */
 @Service
+@Slf4j
 public class AuthUserServiceFactoryImpl implements AuthUserServiceFactory {
 
     private final ConcurrentHashMap<Integer, AuthUserService> authUserServiceMap = new ConcurrentHashMap<>();
@@ -28,6 +30,7 @@ public class AuthUserServiceFactoryImpl implements AuthUserServiceFactory {
     public AuthUserService getUserService(Integer userType) {
         AuthUserService authUserService = authUserServiceMap.get(userType);
         if (authUserService == null) {
+            log.error("鉴权服务未注册");
             throw new ServiceException("鉴权服务未注册");
         }
         return authUserService;

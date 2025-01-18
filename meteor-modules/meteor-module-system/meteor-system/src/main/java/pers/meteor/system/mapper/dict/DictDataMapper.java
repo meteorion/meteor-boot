@@ -3,9 +3,9 @@ package pers.meteor.system.mapper.dict;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
-import pers.meteor.system.mode.dict.entity.DictData;
-import pers.meteor.system.mode.dict.query.DictDataPageQuery;
-import pers.meteor.system.mode.dict.vo.DictDataPageVO;
+import pers.meteor.system.model.dict.entity.DictData;
+import pers.meteor.system.model.dict.query.DictDataPageQuery;
+import pers.meteor.system.model.dict.vo.DictDataPageVO;
 
 /**
  * 字典数据映射层

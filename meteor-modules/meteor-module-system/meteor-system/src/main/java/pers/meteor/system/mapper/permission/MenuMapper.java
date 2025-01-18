@@ -2,7 +2,7 @@ package pers.meteor.system.mapper.permission;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import pers.meteor.system.mode.permission.entity.Menu;
+import pers.meteor.system.model.permission.entity.Menu;
 
 import java.util.List;
 import java.util.Set;

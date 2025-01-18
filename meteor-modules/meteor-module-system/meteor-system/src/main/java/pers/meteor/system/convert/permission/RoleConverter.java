@@ -5,9 +5,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import pers.meteor.common.pojo.Option;
-import pers.meteor.system.mode.permission.entity.Role;
-import pers.meteor.system.mode.permission.form.RoleForm;
-import pers.meteor.system.mode.permission.vo.RolePageVO;
+import pers.meteor.system.model.permission.entity.Role;
+import pers.meteor.system.model.permission.form.RoleForm;
+import pers.meteor.system.model.permission.vo.RolePageVO;
 
 import java.util.List;
 

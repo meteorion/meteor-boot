@@ -11,11 +11,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pers.meteor.common.pojo.response.PageResponse;
 import pers.meteor.common.pojo.response.SingleResponse;
-import pers.meteor.system.mode.notice.form.NoticeForm;
-import pers.meteor.system.mode.notice.query.NoticePageQuery;
-import pers.meteor.system.mode.notice.vo.NoticeDetailVO;
-import pers.meteor.system.mode.notice.vo.NoticePageVO;
-import pers.meteor.system.mode.notice.vo.UserNoticePageVO;
+import pers.meteor.system.model.notice.form.NoticeForm;
+import pers.meteor.system.model.notice.query.NoticePageQuery;
+import pers.meteor.system.model.notice.vo.NoticeDetailVO;
+import pers.meteor.system.model.notice.vo.NoticePageVO;
+import pers.meteor.system.model.notice.vo.UserNoticePageVO;
 import pers.meteor.system.service.notice.NoticeService;
 import pers.meteor.system.service.notice.UserNoticeService;
 
@@ -30,7 +30,7 @@ import javax.validation.Valid;
  */
 @Tag(name = "12.通知公告接口")
 @RestController
-@RequestMapping("/api/v1/notices")
+@RequestMapping("/notices")
 @RequiredArgsConstructor
 public class NoticeController {
 
@@ -40,7 +40,7 @@ public class NoticeController {
 
     @Operation(summary = "通知公告分页列表")
     @GetMapping("/page")
-    @PreAuthorize("@ss.hasPerm('sys:notice:query')")
+    @PreAuthorize("@ss.hasPermission('sys:notice:query')")
     public PageResponse<NoticePageVO> getNoticePage(NoticePageQuery queryParams) {
         IPage<NoticePageVO> result = noticeService.getNoticePage(queryParams);
         return PageResponse.success(result.getRecords(), result.getTotal(), result.getSize(), result.getCurrent());
@@ -48,7 +48,7 @@ public class NoticeController {
 
     @Operation(summary = "新增通知公告")
     @PostMapping
-    @PreAuthorize("@ss.hasPerm('sys:notice:add')")
+    @PreAuthorize("@ss.hasPermission('sys:notice:add')")
     public SingleResponse<?> saveNotice(@RequestBody @Valid NoticeForm formData) {
         boolean result = noticeService.saveNotice(formData);
         return SingleResponse.success(result);
@@ -56,7 +56,7 @@ public class NoticeController {
 
     @Operation(summary = "获取通知公告表单数据")
     @GetMapping("/{id}/form")
-    @PreAuthorize("@ss.hasPerm('sys:notice:edit')")
+    @PreAuthorize("@ss.hasPermission('sys:notice:edit')")
     @Parameters({
             @Parameter(name = "id", description = "通知公告ID")
     })
@@ -77,7 +77,7 @@ public class NoticeController {
 
     @Operation(summary = "修改通知公告")
     @PutMapping(value = "/{id}")
-    @PreAuthorize("@ss.hasPerm('sys:notice:edit')")
+    @PreAuthorize("@ss.hasPermission('sys:notice:edit')")
     @Parameters({
             @Parameter(name = "id", description = "通知公告ID")
     })
@@ -88,7 +88,7 @@ public class NoticeController {
 
     @Operation(summary = "发布通知公告")
     @PutMapping("/{id}/publish")
-    @PreAuthorize("@ss.hasPerm('sys:notice:publish')")
+    @PreAuthorize("@ss.hasPermission('sys:notice:publish')")
     public SingleResponse<Boolean> publishNotice(@Parameter(description = "通知公告ID") @PathVariable Long id) {
         boolean result = noticeService.publishNotice(id);
         return SingleResponse.success(result);
@@ -96,7 +96,7 @@ public class NoticeController {
 
     @Operation(summary = "撤回通知公告")
     @PutMapping("/{id}/revoke")
-    @PreAuthorize("@ss.hasPerm('sys:notice:revoke')")
+    @PreAuthorize("@ss.hasPermission('sys:notice:revoke')")
     public SingleResponse<Boolean> revokeNotice(@Parameter(description = "通知公告ID") @PathVariable Long id) {
         boolean result = noticeService.revokeNotice(id);
         return SingleResponse.success(result);
@@ -104,7 +104,7 @@ public class NoticeController {
 
     @Operation(summary = "删除通知公告")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("@ss.hasPerm('sys:notice:delete')")
+    @PreAuthorize("@ss.hasPermission('sys:notice:delete')")
     public SingleResponse<Boolean> deleteNotices(@Parameter(description = "通知公告ID，多个以英文逗号(,)分割") @PathVariable String ids) {
         boolean result = noticeService.deleteNotices(ids);
         return SingleResponse.success(result);

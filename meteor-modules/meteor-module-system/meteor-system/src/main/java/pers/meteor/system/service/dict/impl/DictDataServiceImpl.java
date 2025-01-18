@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import pers.meteor.common.pojo.Option;
 import pers.meteor.system.convert.dict.DictDataConverter;
 import pers.meteor.system.mapper.dict.DictDataMapper;
-import pers.meteor.system.mode.dict.entity.DictData;
-import pers.meteor.system.mode.dict.form.DictDataForm;
-import pers.meteor.system.mode.dict.query.DictDataPageQuery;
-import pers.meteor.system.mode.dict.vo.DictDataPageVO;
+import pers.meteor.system.model.dict.entity.DictData;
+import pers.meteor.system.model.dict.form.DictDataForm;
+import pers.meteor.system.model.dict.query.DictDataPageQuery;
+import pers.meteor.system.model.dict.vo.DictDataPageVO;
 import pers.meteor.system.service.dict.DictDataService;
 
 import java.util.Arrays;

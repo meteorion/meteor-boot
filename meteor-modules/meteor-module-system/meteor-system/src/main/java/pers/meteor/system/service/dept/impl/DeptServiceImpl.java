@@ -14,10 +14,10 @@ import pers.meteor.security.core.utils.SecurityUtils;
 import pers.meteor.system.convert.dept.DeptConverter;
 import pers.meteor.system.enums.SystemConstants;
 import pers.meteor.system.mapper.dept.DeptMapper;
-import pers.meteor.system.mode.dept.entity.Dept;
-import pers.meteor.system.mode.dept.form.DeptForm;
-import pers.meteor.system.mode.dept.query.DeptQuery;
-import pers.meteor.system.mode.dept.vo.DeptVO;
+import pers.meteor.system.model.dept.entity.Dept;
+import pers.meteor.system.model.dept.form.DeptForm;
+import pers.meteor.system.model.dept.query.DeptQuery;
+import pers.meteor.system.model.dept.vo.DeptVO;
 import pers.meteor.system.service.dept.DeptService;
 
 import java.util.Collections;
@@ -241,7 +241,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements De
                         .or()
                         .apply("CONCAT (',',tree_path,',') LIKE CONCAT('%,',{0},',%')", deptId)
                         .set(Dept::getIsDeleted, 1)
-                        .set(Dept::getUpdateBy, SecurityUtils.getLoginUserId())
+                        .set(Dept::getUpdater, SecurityUtils.getLoginUserId())
                 );
             }
         }

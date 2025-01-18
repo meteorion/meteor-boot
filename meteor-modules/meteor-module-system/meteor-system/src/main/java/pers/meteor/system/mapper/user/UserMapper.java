@@ -3,12 +3,12 @@ package pers.meteor.system.mapper.user;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
-import pers.meteor.system.mode.user.bo.UserBO;
-import pers.meteor.system.mode.user.dto.UserAuthInfo;
-import pers.meteor.system.mode.user.dto.UserExportDTO;
-import pers.meteor.system.mode.user.entity.User;
-import pers.meteor.system.mode.user.form.UserForm;
-import pers.meteor.system.mode.user.query.UserPageQuery;
+import pers.meteor.system.model.user.bo.UserBO;
+import pers.meteor.system.model.user.dto.UserAuthInfo;
+import pers.meteor.system.model.user.dto.UserExportDTO;
+import pers.meteor.system.model.user.entity.User;
+import pers.meteor.system.model.user.form.UserForm;
+import pers.meteor.system.model.user.query.UserPageQuery;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public interface UserMapper extends BaseMapper<User> {
      * @param queryParams 查询参数
      * @return
      */
-    Page<UserBO> getUserPage(Page<UserBO> page, UserPageQuery queryParams);
+    Page<UserBO> selectUserPage(Page<UserBO> page, UserPageQuery queryParams);
 
     /**
      * 获取用户表单详情
@@ -36,7 +36,7 @@ public interface UserMapper extends BaseMapper<User> {
      * @param userId 用户ID
      * @return
      */
-    UserForm getUserFormData(Long userId);
+    UserForm selectUserFormData(Long userId);
 
     /**
      * 根据用户名获取认证信息
@@ -44,7 +44,7 @@ public interface UserMapper extends BaseMapper<User> {
      * @param username
      * @return
      */
-    UserAuthInfo getUserAuthInfo(String username);
+    UserAuthInfo selectUserAuthInfo(String username);
 
     /**
      * 根据微信openid获取用户认证信息
@@ -52,7 +52,7 @@ public interface UserMapper extends BaseMapper<User> {
      * @param openid 微信openid
      * @return
      */
-    UserAuthInfo getUserAuthInfoByOpenId(String openid);
+    UserAuthInfo selectUserAuthInfoByOpenId(String openid);
 
     /**
      * 获取导出用户列表
@@ -60,7 +60,7 @@ public interface UserMapper extends BaseMapper<User> {
      * @param queryParams
      * @return
      */
-    List<UserExportDTO> listExportUsers(UserPageQuery queryParams);
+    List<UserExportDTO> selectExportUsers(UserPageQuery queryParams);
 
     /**
      * 获取用户个人中心信息
@@ -68,7 +68,5 @@ public interface UserMapper extends BaseMapper<User> {
      * @param userId 用户ID
      * @return
      */
-    UserBO getUserProfile(Long userId);
-
-
+    UserBO selectUserProfile(Long userId);
 }

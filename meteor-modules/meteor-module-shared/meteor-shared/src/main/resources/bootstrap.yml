@@ -1,6 +1,6 @@
 # Tomcat
 server:
-  port: 9201
+  port: 9202
 # 日志配置
 logging:
   config: classpath:logback-spring.xml

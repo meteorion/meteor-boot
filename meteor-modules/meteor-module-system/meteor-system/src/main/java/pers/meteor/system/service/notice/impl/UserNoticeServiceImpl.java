@@ -8,10 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pers.meteor.security.core.utils.SecurityUtils;
 import pers.meteor.system.mapper.notice.UserNoticeMapper;
-import pers.meteor.system.mode.notice.entity.UserNotice;
-import pers.meteor.system.mode.notice.query.NoticePageQuery;
-import pers.meteor.system.mode.notice.vo.NoticePageVO;
-import pers.meteor.system.mode.notice.vo.UserNoticePageVO;
+import pers.meteor.system.model.notice.entity.UserNotice;
+import pers.meteor.system.model.notice.query.NoticePageQuery;
+import pers.meteor.system.model.notice.vo.NoticePageVO;
+import pers.meteor.system.model.notice.vo.UserNoticePageVO;
 import pers.meteor.system.service.notice.UserNoticeService;
 
 /**

@@ -3,6 +3,7 @@ package pers.meteor.shared.mapper.codegen;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
+import pers.meteor.mybatis.core.BaseEntity;
 import pers.meteor.shared.model.codegen.query.TablePageQuery;
 import pers.meteor.shared.model.codegen.vo.TablePageVO;
 import pers.meteor.shared.model.codegen.bo.ColumnMetaData;
@@ -18,7 +19,7 @@ import java.util.List;
  * @since 2.9.0
  */
 @Mapper
-public interface DatabaseMapper extends BaseMapper {
+public interface DatabaseMapper extends BaseMapper<BaseEntity> {
 
     /**
      * 获取表分页列表

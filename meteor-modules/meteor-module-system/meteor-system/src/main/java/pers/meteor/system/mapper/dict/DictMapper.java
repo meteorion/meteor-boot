@@ -3,10 +3,10 @@ package pers.meteor.system.mapper.dict;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
-import pers.meteor.system.mode.dict.entity.Dict;
-import pers.meteor.system.mode.dict.query.DictPageQuery;
-import pers.meteor.system.mode.dict.vo.DictPageVO;
-import pers.meteor.system.mode.dict.vo.DictVO;
+import pers.meteor.system.model.dict.entity.Dict;
+import pers.meteor.system.model.dict.query.DictPageQuery;
+import pers.meteor.system.model.dict.vo.DictPageVO;
+import pers.meteor.system.model.dict.vo.DictVO;
 
 import java.util.List;
 

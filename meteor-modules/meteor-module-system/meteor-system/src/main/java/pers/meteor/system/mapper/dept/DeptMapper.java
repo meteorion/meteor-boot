@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import pers.meteor.system.mode.dept.entity.Dept;
+import pers.meteor.system.model.dept.entity.Dept;
 
 import java.util.List;
 

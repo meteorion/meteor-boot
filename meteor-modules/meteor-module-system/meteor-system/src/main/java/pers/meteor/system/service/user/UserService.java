@@ -4,15 +4,15 @@ package pers.meteor.system.service.user;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import pers.meteor.common.pojo.Option;
-import pers.meteor.system.mode.user.dto.UserAuthInfo;
-import pers.meteor.system.mode.user.dto.UserExportDTO;
-import pers.meteor.system.mode.user.entity.User;
-import pers.meteor.system.mode.user.enums.ContactType;
-import pers.meteor.system.mode.user.form.*;
-import pers.meteor.system.mode.user.query.UserPageQuery;
-import pers.meteor.system.mode.user.vo.UserInfoVO;
-import pers.meteor.system.mode.user.vo.UserPageVO;
-import pers.meteor.system.mode.user.vo.UserProfileVO;
+import pers.meteor.system.model.user.dto.UserAuthInfo;
+import pers.meteor.system.model.user.dto.UserExportDTO;
+import pers.meteor.system.model.user.entity.User;
+import pers.meteor.system.model.user.enums.ContactType;
+import pers.meteor.system.model.user.form.*;
+import pers.meteor.system.model.user.query.UserPageQuery;
+import pers.meteor.system.model.user.vo.UserInfoVO;
+import pers.meteor.system.model.user.vo.UserPageVO;
+import pers.meteor.system.model.user.vo.UserProfileVO;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import java.util.List;
  * @author haoxr
  * @since 2022/1/14
  */
-public interface UserService extends IService<User> {
+public interface UserService {
 
     /**
      * 用户分页列表
@@ -31,7 +31,6 @@ public interface UserService extends IService<User> {
      */
     IPage<UserPageVO> getUserPage(UserPageQuery queryParams);
 
-
     /**
      * 获取用户表单数据
      *
@@ -39,7 +38,6 @@ public interface UserService extends IService<User> {
      * @return
      */
     UserForm getUserFormData(Long userId);
-
 
     /**
      * 新增用户
@@ -58,7 +56,6 @@ public interface UserService extends IService<User> {
      */
     boolean updateUser(Long userId, UserForm userForm);
 
-
     /**
      * 删除用户
      *
@@ -66,7 +63,6 @@ public interface UserService extends IService<User> {
      * @return
      */
     boolean deleteUsers(String idsStr);
-
 
     /**
      * 根据用户名获取认证信息
@@ -77,7 +73,6 @@ public interface UserService extends IService<User> {
 
     UserAuthInfo getUserAuthInfo(String username);
 
-
     /**
      * 获取导出用户列表
      *
@@ -85,7 +80,6 @@ public interface UserService extends IService<User> {
      * @return
      */
     List<UserExportDTO> listExportUsers(UserPageQuery queryParams);
-
 
     /**
      * 获取登录用户信息
@@ -159,12 +153,6 @@ public interface UserService extends IService<User> {
      */
     List<Option<String>> listUserOptions();
 
-    /**
-     * 根据 openid 获取用户认证信息
-     *
-     * @param username 用户名
-     * @return {@link UserAuthInfo}
-     */
 
     UserAuthInfo getUserAuthInfoByOpenId(String username);
 

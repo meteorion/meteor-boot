@@ -125,7 +125,7 @@ public class ConfigServiceImpl extends ServiceImpl<ConfigMapper, Config> impleme
             return super.update(new LambdaUpdateWrapper<Config>()
                     .eq(Config::getId,id)
                     .set(Config::getIsDeleted, 1)
-                    .set(Config::getUpdateBy, SecurityUtils.getLoginUserId())
+                    .set(Config::getUpdater, SecurityUtils.getLoginUserId())
             );
         }
         return false;

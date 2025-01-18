@@ -19,5 +19,5 @@ public interface AuthConvert {
 
     AccessTokenCheckResult convert(AccessToken accessToken);
 
-    AuthLoginVO convert(AccessToken accessToken, String openId);
+    AuthLoginVO convertAuthLogin(AccessToken accessToken, String openId);
 }

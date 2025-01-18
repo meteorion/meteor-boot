@@ -21,7 +21,7 @@ import pers.meteor.shared.service.file.FileService;
  */
 @Tag(name = "08.文件接口")
 @RestController
-@RequestMapping("/api/v1/files")
+@RequestMapping("/files")
 @RequiredArgsConstructor
 public class FileController {
 

@@ -30,7 +30,7 @@ import java.util.List;
  */
 @Tag(name = "11.代码生成")
 @RestController
-@RequestMapping("/api/v1/codegen")
+@RequestMapping("/codegen")
 @RequiredArgsConstructor
 @Slf4j
 public class CodegenController {

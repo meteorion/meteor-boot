@@ -4,10 +4,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import pers.meteor.system.mode.notice.bo.NoticeBO;
-import pers.meteor.system.mode.notice.entity.Notice;
-import pers.meteor.system.mode.notice.query.NoticePageQuery;
-import pers.meteor.system.mode.notice.vo.NoticePageVO;
+import pers.meteor.system.model.notice.bo.NoticeBO;
+import pers.meteor.system.model.notice.entity.Notice;
+import pers.meteor.system.model.notice.query.NoticePageQuery;
+import pers.meteor.system.model.notice.vo.NoticePageVO;
 
 /**
  * 通知公告Mapper接口

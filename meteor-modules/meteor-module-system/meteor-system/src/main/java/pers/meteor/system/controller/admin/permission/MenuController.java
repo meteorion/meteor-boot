@@ -9,10 +9,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pers.meteor.common.pojo.Option;
 import pers.meteor.common.pojo.response.SingleResponse;
-import pers.meteor.system.mode.permission.form.MenuForm;
-import pers.meteor.system.mode.permission.query.MenuQuery;
-import pers.meteor.system.mode.permission.vo.MenuVO;
-import pers.meteor.system.mode.permission.vo.RouteVO;
+import pers.meteor.system.model.permission.form.MenuForm;
+import pers.meteor.system.model.permission.query.MenuQuery;
+import pers.meteor.system.model.permission.vo.MenuVO;
+import pers.meteor.system.model.permission.vo.RouteVO;
 import pers.meteor.system.service.permission.MenuService;
 
 import java.util.List;
@@ -25,7 +25,7 @@ import java.util.List;
  */
 @Tag(name = "04.菜单接口")
 @RestController
-@RequestMapping("/api/v1/menus")
+@RequestMapping("/menus")
 @RequiredArgsConstructor
 @Slf4j
 public class MenuController {
@@ -67,7 +67,7 @@ public class MenuController {
 
     @Operation(summary = "新增菜单")
     @PostMapping
-    @PreAuthorize("@ss.hasPerm('sys:menu:add')")
+    @PreAuthorize("@ss.hasPermission('sys:menu:add')")
     public SingleResponse<?> addMenu(@RequestBody MenuForm menuForm) {
         boolean result = menuService.saveMenu(menuForm);
         return SingleResponse.success(result);
@@ -75,7 +75,7 @@ public class MenuController {
 
     @Operation(summary = "修改菜单")
     @PutMapping(value = "/{id}")
-    @PreAuthorize("@ss.hasPerm('sys:menu:edit')")
+    @PreAuthorize("@ss.hasPermission('sys:menu:edit')")
     public SingleResponse<?> updateMenu(
             @RequestBody MenuForm menuForm
     ) {
@@ -85,7 +85,7 @@ public class MenuController {
 
     @Operation(summary = "删除菜单")
     @DeleteMapping("/{id}")
-    @PreAuthorize("@ss.hasPerm('sys:menu:delete')")
+    @PreAuthorize("@ss.hasPermission('sys:menu:delete')")
     public SingleResponse<?> deleteMenu(
             @Parameter(description = "菜单ID，多个以英文(,)分割") @PathVariable("id") Long id
     ) {

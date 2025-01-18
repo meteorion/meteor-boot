@@ -2,9 +2,9 @@ package pers.meteor.system.convert.dict;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.mapstruct.Mapper;
-import pers.meteor.system.mode.dict.entity.Dict;
-import pers.meteor.system.mode.dict.form.DictForm;
-import pers.meteor.system.mode.dict.vo.DictPageVO;
+import pers.meteor.system.model.dict.entity.Dict;
+import pers.meteor.system.model.dict.form.DictForm;
+import pers.meteor.system.model.dict.vo.DictPageVO;
 
 /**
  * 字典 对象转换器

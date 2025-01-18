@@ -3,10 +3,10 @@ package pers.meteor.system.service.dict;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import pers.meteor.common.pojo.Option;
-import pers.meteor.system.mode.dict.entity.DictData;
-import pers.meteor.system.mode.dict.form.DictDataForm;
-import pers.meteor.system.mode.dict.query.DictDataPageQuery;
-import pers.meteor.system.mode.dict.vo.DictDataPageVO;
+import pers.meteor.system.model.dict.entity.DictData;
+import pers.meteor.system.model.dict.form.DictDataForm;
+import pers.meteor.system.model.dict.query.DictDataPageQuery;
+import pers.meteor.system.model.dict.vo.DictDataPageVO;
 
 import java.util.List;
 

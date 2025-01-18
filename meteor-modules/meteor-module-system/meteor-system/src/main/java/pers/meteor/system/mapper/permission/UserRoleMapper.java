@@ -2,7 +2,7 @@ package pers.meteor.system.mapper.permission;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import pers.meteor.system.mode.permission.entity.UserRole;
+import pers.meteor.system.model.permission.entity.UserRole;
 
 /**
  * 用户角色访问层

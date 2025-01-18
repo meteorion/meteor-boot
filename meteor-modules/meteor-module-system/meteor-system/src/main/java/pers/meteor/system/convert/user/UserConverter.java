@@ -5,14 +5,14 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import pers.meteor.system.mode.user.bo.UserBO;
-import pers.meteor.system.mode.user.dto.UserImportDTO;
-import pers.meteor.system.mode.user.entity.User;
-import pers.meteor.system.mode.user.form.UserForm;
-import pers.meteor.system.mode.user.form.UserProfileForm;
-import pers.meteor.system.mode.user.vo.UserInfoVO;
-import pers.meteor.system.mode.user.vo.UserPageVO;
-import pers.meteor.system.mode.user.vo.UserProfileVO;
+import pers.meteor.system.model.user.bo.UserBO;
+import pers.meteor.system.model.user.dto.UserImportDTO;
+import pers.meteor.system.model.user.entity.User;
+import pers.meteor.system.model.user.form.UserForm;
+import pers.meteor.system.model.user.form.UserProfileForm;
+import pers.meteor.system.model.user.vo.UserInfoVO;
+import pers.meteor.system.model.user.vo.UserPageVO;
+import pers.meteor.system.model.user.vo.UserProfileVO;
 
 /**
  * 用户对象转换器

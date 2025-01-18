@@ -11,12 +11,12 @@ import pers.meteor.common.exception.ServiceException;
 import pers.meteor.system.convert.dict.DictConverter;
 import pers.meteor.system.convert.dict.DictDataConverter;
 import pers.meteor.system.mapper.dict.DictMapper;
-import pers.meteor.system.mode.dict.entity.Dict;
-import pers.meteor.system.mode.dict.entity.DictData;
-import pers.meteor.system.mode.dict.form.DictForm;
-import pers.meteor.system.mode.dict.query.DictPageQuery;
-import pers.meteor.system.mode.dict.vo.DictPageVO;
-import pers.meteor.system.mode.dict.vo.DictVO;
+import pers.meteor.system.model.dict.entity.Dict;
+import pers.meteor.system.model.dict.entity.DictData;
+import pers.meteor.system.model.dict.form.DictForm;
+import pers.meteor.system.model.dict.query.DictPageQuery;
+import pers.meteor.system.model.dict.vo.DictPageVO;
+import pers.meteor.system.model.dict.vo.DictVO;
 import pers.meteor.system.service.dict.DictDataService;
 import pers.meteor.system.service.dict.DictService;
 

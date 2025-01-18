@@ -2,17 +2,17 @@ package pers.meteor.system.service.permission;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import pers.meteor.common.pojo.Option;
-import pers.meteor.system.mode.permission.entity.Menu;
-import pers.meteor.system.mode.permission.form.MenuForm;
-import pers.meteor.system.mode.permission.query.MenuQuery;
-import pers.meteor.system.mode.permission.vo.MenuVO;
-import pers.meteor.system.mode.permission.vo.RouteVO;
+import pers.meteor.system.model.permission.entity.Menu;
+import pers.meteor.system.model.permission.form.MenuForm;
+import pers.meteor.system.model.permission.query.MenuQuery;
+import pers.meteor.system.model.permission.vo.MenuVO;
+import pers.meteor.system.model.permission.vo.RouteVO;
 
 import java.util.List;
 
 /**
  * 菜单业务接口
- * 
+ *
  * @author haoxr
  * @since 2020/11/06
  */
@@ -44,7 +44,7 @@ public interface MenuService extends IService<Menu> {
 
     /**
      * 修改菜单显示状态
-     * 
+     *
      * @param menuId 菜单ID
      * @param visible 是否显示(1-显示 0-隐藏)
      */

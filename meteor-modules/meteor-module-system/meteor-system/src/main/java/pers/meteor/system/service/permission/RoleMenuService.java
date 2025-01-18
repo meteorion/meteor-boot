@@ -2,7 +2,7 @@ package pers.meteor.system.service.permission;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import pers.meteor.system.mode.permission.entity.RoleMenu;
+import pers.meteor.system.model.permission.entity.RoleMenu;
 
 import java.util.List;
 import java.util.Set;

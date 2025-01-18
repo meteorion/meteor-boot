@@ -8,9 +8,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pers.meteor.common.pojo.Option;
 import pers.meteor.common.pojo.response.SingleResponse;
-import pers.meteor.system.mode.dept.form.DeptForm;
-import pers.meteor.system.mode.dept.query.DeptQuery;
-import pers.meteor.system.mode.dept.vo.DeptVO;
+import pers.meteor.system.model.dept.form.DeptForm;
+import pers.meteor.system.model.dept.query.DeptQuery;
+import pers.meteor.system.model.dept.vo.DeptVO;
 import pers.meteor.system.service.dept.DeptService;
 
 import javax.validation.Valid;
@@ -24,7 +24,7 @@ import java.util.List;
  */
 @Tag(name = "05.部门接口")
 @RestController
-@RequestMapping("/api/v1/dept")
+@RequestMapping("/dept")
 @RequiredArgsConstructor
 public class DeptController {
 
@@ -48,7 +48,7 @@ public class DeptController {
 
     @Operation(summary = "新增部门")
     @PostMapping
-    @PreAuthorize("@ss.hasPerm('sys:dept:add')")
+    @PreAuthorize("@ss.hasPermission('sys:dept:add')")
     public SingleResponse<?> saveDept(
             @Valid @RequestBody DeptForm formData
     ) {
@@ -67,7 +67,7 @@ public class DeptController {
 
     @Operation(summary = "修改部门")
     @PutMapping(value = "/{deptId}")
-    @PreAuthorize("@ss.hasPerm('sys:dept:edit')")
+    @PreAuthorize("@ss.hasPermission('sys:dept:edit')")
     public SingleResponse<Long> updateDept(
             @PathVariable Long deptId,
             @Valid @RequestBody DeptForm formData
@@ -78,7 +78,7 @@ public class DeptController {
 
     @Operation(summary = "删除部门")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("@ss.hasPerm('sys:dept:delete')")
+    @PreAuthorize("@ss.hasPermission('sys:dept:delete')")
     public SingleResponse<Boolean> deleteDepartments(
             @Parameter(description ="部门ID，多个以英文逗号(,)分割") @PathVariable("ids") String ids
     ) {

@@ -15,14 +15,14 @@ import pers.meteor.common.pojo.Option;
 import pers.meteor.common.pojo.response.PageResponse;
 import pers.meteor.common.pojo.response.SingleResponse;
 import pers.meteor.security.core.utils.SecurityUtils;
-import pers.meteor.system.mode.user.dto.UserExportDTO;
-import pers.meteor.system.mode.user.entity.User;
-import pers.meteor.system.mode.user.enums.ContactType;
-import pers.meteor.system.mode.user.form.*;
-import pers.meteor.system.mode.user.query.UserPageQuery;
-import pers.meteor.system.mode.user.vo.UserInfoVO;
-import pers.meteor.system.mode.user.vo.UserPageVO;
-import pers.meteor.system.mode.user.vo.UserProfileVO;
+import pers.meteor.system.model.user.dto.UserExportDTO;
+import pers.meteor.system.model.user.entity.User;
+import pers.meteor.system.model.user.enums.ContactType;
+import pers.meteor.system.model.user.form.*;
+import pers.meteor.system.model.user.query.UserPageQuery;
+import pers.meteor.system.model.user.vo.UserInfoVO;
+import pers.meteor.system.model.user.vo.UserPageVO;
+import pers.meteor.system.model.user.vo.UserProfileVO;
 import pers.meteor.system.service.user.UserService;
 
 import javax.servlet.http.HttpServletResponse;
@@ -42,7 +42,7 @@ import java.util.List;
  */
 @Tag(name = "02.用户接口")
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -57,7 +57,7 @@ public class UserController {
 
     @Operation(summary = "新增用户")
     @PostMapping
-    @PreAuthorize("@ss.hasPerm('sys:user:add')")
+    @PreAuthorize("@ss.hasPermission('sys:user:add')")
     public SingleResponse<Boolean> saveUser(@RequestBody @Valid UserForm userForm) {
         boolean result = userService.saveUser(userForm);
         return SingleResponse.success(result);
@@ -75,7 +75,7 @@ public class UserController {
 
     @Operation(summary = "修改用户")
     @PutMapping(value = "/{userId}")
-    @PreAuthorize("@ss.hasPerm('sys:user:edit')")
+    @PreAuthorize("@ss.hasPermission('sys:user:edit')")
     @Parameters({
             @Parameter(name = "userId", description = "用户ID")
     })
@@ -86,7 +86,7 @@ public class UserController {
 
     @Operation(summary = "删除用户")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("@ss.hasPerm('sys:user:delete')")
+    @PreAuthorize("@ss.hasPermission('sys:user:delete')")
     @Parameters({
             @Parameter(name = "ids", description = "用户ID，多个以英文逗号(,)分割")
     })
@@ -169,7 +169,7 @@ public class UserController {
 
     @Operation(summary = "重置用户密码")
     @PutMapping(value = "/{userId}/password/reset")
-    @PreAuthorize("@ss.hasPerm('sys:user:password:reset')")
+    @PreAuthorize("@ss.hasPermission('sys:user:password:reset')")
     @Parameters({
             @Parameter(name = "userId", description = "用户ID"),
             @Parameter(name = "password", description = "密码")

@@ -13,7 +13,7 @@ import java.util.Set;
 @Data
 public class AdminUserVO {
     @Schema(description = "用户 ID", requiredMode = Schema.RequiredMode.REQUIRED, example = "1024")
-    private Integer id;
+    private Long id;
 
     @Schema(description = "用户昵称", requiredMode = Schema.RequiredMode.REQUIRED, example = "小王")
     private String nickname;

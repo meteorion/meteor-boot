@@ -9,10 +9,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pers.meteor.common.pojo.response.PageResponse;
 import pers.meteor.common.pojo.response.SingleResponse;
-import pers.meteor.system.mode.dict.form.DictForm;
-import pers.meteor.system.mode.dict.query.DictPageQuery;
-import pers.meteor.system.mode.dict.vo.DictPageVO;
-import pers.meteor.system.mode.dict.vo.DictVO;
+import pers.meteor.system.model.dict.form.DictForm;
+import pers.meteor.system.model.dict.query.DictPageQuery;
+import pers.meteor.system.model.dict.vo.DictPageVO;
+import pers.meteor.system.model.dict.vo.DictVO;
 import pers.meteor.system.service.dict.DictService;
 
 import javax.validation.Valid;
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  */
 @Tag(name = "06.字典接口")
 @RestController
-@RequestMapping("/api/v1/dict")
+@RequestMapping("/dict")
 @RequiredArgsConstructor
 public class DictController {
 
@@ -61,7 +61,7 @@ public class DictController {
 
     @Operation(summary = "新增字典")
     @PostMapping
-    @PreAuthorize("@ss.hasPerm('sys:dict:add')")
+    @PreAuthorize("@ss.hasPermission('sys:dict:add')")
     public SingleResponse<Boolean> saveDict(@Valid @RequestBody DictForm formData) {
         boolean result = dictService.saveDict(formData);
         return SingleResponse.success(result);
@@ -69,7 +69,7 @@ public class DictController {
 
     @Operation(summary = "修改字典")
     @PutMapping("/{id}")
-    @PreAuthorize("@ss.hasPerm('sys:dict:edit')")
+    @PreAuthorize("@ss.hasPermission('sys:dict:edit')")
     public SingleResponse<Boolean> updateDict(
             @PathVariable Long id,
             @RequestBody DictForm DictForm
@@ -80,7 +80,7 @@ public class DictController {
 
     @Operation(summary = "删除字典")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("@ss.hasPerm('sys:dict:delete')")
+    @PreAuthorize("@ss.hasPermission('sys:dict:delete')")
     public SingleResponse<?> deleteDictionaries(
             @Parameter(description = "字典ID，多个以英文逗号(,)拼接") @PathVariable String ids
     ) {

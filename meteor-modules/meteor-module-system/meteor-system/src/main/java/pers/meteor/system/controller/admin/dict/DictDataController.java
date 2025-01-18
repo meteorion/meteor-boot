@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import pers.meteor.common.pojo.Option;
 import pers.meteor.common.pojo.response.PageResponse;
 import pers.meteor.common.pojo.response.SingleResponse;
-import pers.meteor.system.mode.dict.form.DictDataForm;
-import pers.meteor.system.mode.dict.query.DictDataPageQuery;
-import pers.meteor.system.mode.dict.vo.DictDataPageVO;
+import pers.meteor.system.model.dict.form.DictDataForm;
+import pers.meteor.system.model.dict.query.DictDataPageQuery;
+import pers.meteor.system.model.dict.vo.DictDataPageVO;
 import pers.meteor.system.service.dict.DictDataService;
 
 import javax.validation.Valid;
@@ -26,7 +26,7 @@ import java.util.List;
  */
 @Tag(name = "07.字典数据接口")
 @RestController
-@RequestMapping("/api/v1/dict-data")
+@RequestMapping("/dict-data")
 @RequiredArgsConstructor
 public class DictDataController {
 
@@ -52,7 +52,7 @@ public class DictDataController {
 
     @Operation(summary = "新增字典数据")
     @PostMapping
-    @PreAuthorize("@ss.hasPerm('sys:dict-data:add')")
+    @PreAuthorize("@ss.hasPermission('sys:dict-data:add')")
     public SingleResponse<Boolean> saveDictData(@Valid @RequestBody DictDataForm formData) {
         boolean result = dictDataService.saveDictData(formData);
         return SingleResponse.success(result);
@@ -60,7 +60,7 @@ public class DictDataController {
 
     @Operation(summary = "修改字典数据")
     @PutMapping("/{id}")
-    @PreAuthorize("@ss.hasPerm('sys:dict-data:edit')")
+    @PreAuthorize("@ss.hasPermission('sys:dict-data:edit')")
     public SingleResponse<Boolean> updateDictData(
             @PathVariable Long id,
             @RequestBody DictDataForm formData
@@ -71,7 +71,7 @@ public class DictDataController {
 
     @Operation(summary = "删除字典数据")
     @DeleteMapping("/{ids}")
-    @PreAuthorize("@ss.hasPerm('sys:dict-data:delete')")
+    @PreAuthorize("@ss.hasPermission('sys:dict-data:delete')")
     public SingleResponse<Void> deleteDictionaries(
             @Parameter(description = "字典ID，多个以英文逗号(,)拼接") @PathVariable String ids
     ) {

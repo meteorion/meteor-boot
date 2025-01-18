@@ -1,11 +1,11 @@
 package pers.meteor.system.convert.dict;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import jdk.nashorn.internal.runtime.options.Option;
 import org.mapstruct.Mapper;
-import pers.meteor.system.mode.dict.entity.DictData;
-import pers.meteor.system.mode.dict.form.DictDataForm;
-import pers.meteor.system.mode.dict.vo.DictPageVO;
+import pers.meteor.common.pojo.Option;
+import pers.meteor.system.model.dict.entity.DictData;
+import pers.meteor.system.model.dict.form.DictDataForm;
+import pers.meteor.system.model.dict.vo.DictPageVO;
 
 import java.util.List;
 

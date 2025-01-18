@@ -26,5 +26,5 @@ public interface AuthLogService {
      * @param userId          用户ID
      * @param loginLogType 登出类型
      */
-    void saveLogoutLog(Integer userId, LoginLogTypeEnum loginLogType);
+    void saveLogoutLog(Long userId, LoginLogTypeEnum loginLogType);
 }

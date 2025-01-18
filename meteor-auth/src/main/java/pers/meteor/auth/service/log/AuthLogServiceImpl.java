@@ -19,7 +19,7 @@ public class AuthLogServiceImpl implements AuthLogService {
     }
 
     @Override
-    public void saveLogoutLog(Integer userId, LoginLogTypeEnum loginLogType) {
+    public void saveLogoutLog(Long userId, LoginLogTypeEnum loginLogType) {
         log.info("登出类型：{}", loginLogType);
     }
 }

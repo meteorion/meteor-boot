@@ -64,7 +64,7 @@ public interface AuthService {
      * @param userId 用户编号
      * @param smsSendForm 发送信息
      */
-    void sendSmsCode(Integer userId, AuthSmsSendForm smsSendForm);
+    void sendSmsCode(Long userId, AuthSmsSendForm smsSendForm);
 
     /**
      * 校验短信验证码是否正确
@@ -72,7 +72,7 @@ public interface AuthService {
      * @param userId 用户编号
      * @param smsValidateForm 校验信息
      */
-    void validateSmsCode(Integer userId, AuthSmsValidateForm smsValidateForm);
+    void validateSmsCode(Long userId, AuthSmsValidateForm smsValidateForm);
 
     /**
      * 刷新访问令牌

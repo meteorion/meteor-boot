@@ -3,9 +3,12 @@ package pers.meteor.shared.model.codegen.enums;
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.youlai.boot.common.base.IBaseEnum;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import pers.meteor.common.pojo.BaseEnum;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * 查询类型枚举
@@ -15,7 +18,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public enum QueryTypeEnum implements IBaseEnum<Integer> {
+public enum QueryTypeEnum implements BaseEnum {
 
     /** 等于 */
     EQ(1, "="),
@@ -70,4 +73,8 @@ public enum QueryTypeEnum implements IBaseEnum<Integer> {
         throw new IllegalArgumentException("No enum constant with value " + value);
     }
 
+    @Override
+    public List<Object> codes() {
+        return Collections.emptyList();
+    }
 }

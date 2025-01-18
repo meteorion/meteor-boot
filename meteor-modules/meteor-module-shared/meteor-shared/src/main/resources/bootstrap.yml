@@ -3,7 +3,7 @@ server:
   port: 9201
 # 日志配置
 logging:
-  config: classpath:logback-nacos.xml
+  config: classpath:logback-spring.xml
   file:
     path: logs
   level:
@@ -30,7 +30,40 @@ spring:
         shared-configs:
           - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
 
-# mybatis配置
-mybatis:
-  # 配置mapper的扫描，找到所有的mapper.xml映射文件
-  mapperLocations: classpath:mapper/**/*.xml
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+
+meteor:
+  web:
+    admin-ui:
+      url: http://dashboard.yudao.iocoder.cn # Admin 管理后台 UI 的地址
+
+oss:
+  # OSS 类型 (目前支持aliyun、minio)
+  type: minio
+  # MinIO 对象存储服务
+  minio:
+    # 服务Endpoint
+    endpoint: http://localhost:9000
+    # 访问凭据
+    access-key: minioadmin
+    # 凭据密钥
+    secret-key: minioadmin
+    # 存储桶名称
+    bucket-name: public
+    # (可选)自定义域名，如果配置了域名，生成的文件URL是域名格式，未配置则URL则是IP格式 (eg: https://oss.youlai.tech)
+    custom-domain:
+  # 阿里云OSS对象存储服务
+  aliyun:
+    # 服务Endpoint
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+    # 访问凭据
+    access-key-id: your-access-key-id
+    # 凭据密钥
+    access-key-secret: your-access-key-secret
+    # 存储桶名称
+    bucket-name: default
+  # 本地存储
+  local:
+    # 文件存储路径 请注意下，mac用户请使用 /Users/your-username/your-path/，否则会有权限问题，windows用户请使用 D:/your-path/
+    storage-path: /Users/theo/home/

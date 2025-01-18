@@ -102,7 +102,7 @@ public class JwtServiceImpl implements JwtService {
             return AccessToken.builder()
                     .accessToken(token)
                     .refreshToken(claims.get(SecurityConstants.DETAILS_REFREST_TOKEN, String.class))
-                    .userId(claims.get(SecurityConstants.DETAILS_USER_ID, Integer.class))
+                    .userId(claims.get(SecurityConstants.DETAILS_USER_ID, Long.class))
                     .userType(claims.get(SecurityConstants.DETAILS_USER_TYPE, Integer.class))
                     .clientId(claims.get(SecurityConstants.DETAILS_CLIENT_ID, String.class))
                     .expiresTime(convertToLocalDateTime(claims.getExpiration()))
@@ -118,7 +118,7 @@ public class JwtServiceImpl implements JwtService {
             Claims claims = parseToken(token);
             return RefreshToken.builder()
                     .refreshToken(token)
-                    .userId(claims.get(SecurityConstants.DETAILS_USER_ID, Integer.class))
+                    .userId(claims.get(SecurityConstants.DETAILS_USER_ID, Long.class))
                     .userType(claims.get(SecurityConstants.DETAILS_USER_TYPE, Integer.class))
                     .clientId(claims.get(SecurityConstants.DETAILS_CLIENT_ID, String.class))
                     .expiresTime(convertToLocalDateTime(claims.getExpiration()))

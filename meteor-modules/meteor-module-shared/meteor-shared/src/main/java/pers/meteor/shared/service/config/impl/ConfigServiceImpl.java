@@ -38,7 +38,7 @@ public class ConfigServiceImpl extends ServiceImpl<ConfigMapper, Config> impleme
 
     private final ConfigConverter configConverter;
 
-    private final RedisTemplate<String, Object> redisTemplate;
+    private final RedisTemplate<Object, Object> redisTemplate;
 
 
     /**
@@ -81,7 +81,6 @@ public class ConfigServiceImpl extends ServiceImpl<ConfigMapper, Config> impleme
                 super.count(new LambdaQueryWrapper<Config>().eq(Config::getConfigKey, configForm.getConfigKey())) == 0,
                 "配置键已存在");
         Config config = configConverter.toEntity(configForm);
-        config.setCreateBy(SecurityUtils.getLoginUserId());
         config.setIsDeleted(0);
         return this.save(config);
     }
@@ -111,7 +110,6 @@ public class ConfigServiceImpl extends ServiceImpl<ConfigMapper, Config> impleme
                 super.count(new LambdaQueryWrapper<Config>().eq(Config::getConfigKey, configForm.getConfigKey()).ne(Config::getId, id)) == 0,
                 "配置键已存在");
         Config config = configConverter.toEntity(configForm);
-        config.setUpdateBy(SecurityUtils.getLoginUserId());
         return this.updateById(config);
     }
 

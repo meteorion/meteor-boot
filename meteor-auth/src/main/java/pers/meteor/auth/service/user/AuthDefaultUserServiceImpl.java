@@ -36,7 +36,7 @@ public class AuthDefaultUserServiceImpl implements AuthUserService {
     @Override
     public AuthUserDetail getUserByAccount(String account) {
         return AuthUserDetail.builder()
-                .id(1)
+                .id(1L)
                 .mobile("15070196704")
                 .userName(username)
                 .roles(SetUtils.asSet("admin"))

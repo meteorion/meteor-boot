@@ -114,7 +114,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             return null;
         }
         // 构建模拟用户
-        Integer userId = Integer.valueOf(token.substring(securityProperties.getMockSecret().length()));
+        Long userId = Long.valueOf(token.substring(securityProperties.getMockSecret().length()));
         AuthUserDetail authUser = new AuthUserDetail();
         authUser.setId(userId);
         authUser.setUserType(userType);

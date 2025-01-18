@@ -25,7 +25,7 @@ public class RefreshToken implements Serializable {
     /**
      * 用户编号
      */
-    private Integer userId;
+    private Long userId;
     /**
      * 用户类型
      * 枚举 {@link UserTypeEnum}

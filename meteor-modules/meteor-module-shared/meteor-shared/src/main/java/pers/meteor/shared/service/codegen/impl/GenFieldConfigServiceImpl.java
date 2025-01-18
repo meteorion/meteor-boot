@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pers.meteor.shared.mapper.codegen.GenFieldConfigMapper;
-import pers.meteor.shared.model.entity.codegen.GenFieldConfig;
+import pers.meteor.shared.model.codegen.entity.GenFieldConfig;
 import pers.meteor.shared.service.codegen.GenFieldConfigService;
 
 /**

@@ -1,0 +1,22 @@
+package pers.meteor.system.mapper.permission;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
+import pers.meteor.system.mode.permission.entity.UserRole;
+
+/**
+ * 用户角色访问层
+ *
+ * @author haoxr
+ * @since 2022/1/15
+ */
+@Mapper
+public interface UserRoleMapper extends BaseMapper<UserRole> {
+
+    /**
+     * 获取角色绑定的用户数
+     *
+     * @param roleId 角色ID
+     */
+    int countUsersForRole(Long roleId);
+}

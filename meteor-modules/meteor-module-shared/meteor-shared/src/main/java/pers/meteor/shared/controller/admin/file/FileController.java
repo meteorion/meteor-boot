@@ -10,7 +10,7 @@ import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pers.meteor.common.pojo.response.SingleResponse;
-import pers.meteor.shared.model.bo.file.FileInfo;
+import pers.meteor.shared.model.file.bo.FileInfo;
 import pers.meteor.shared.service.file.FileService;
 
 /**

@@ -2,9 +2,9 @@ package pers.meteor.shared.convert.codegen;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import pers.meteor.shared.controller.admin.codegen.form.GenConfigForm;
-import pers.meteor.shared.model.entity.codegen.GenConfig;
-import pers.meteor.shared.model.entity.codegen.GenFieldConfig;
+import pers.meteor.shared.model.codegen.form.GenConfigForm;
+import pers.meteor.shared.model.codegen.entity.GenConfig;
+import pers.meteor.shared.model.codegen.entity.GenFieldConfig;
 
 import java.util.List;
 

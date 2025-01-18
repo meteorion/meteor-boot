@@ -2,7 +2,7 @@ package pers.meteor.shared.mapper.codegen;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import pers.meteor.shared.model.entity.codegen.GenConfig;
+import pers.meteor.shared.model.codegen.entity.GenConfig;
 
 /**
  * 代码生成基础配置访问层

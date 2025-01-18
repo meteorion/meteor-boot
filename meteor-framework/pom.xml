@@ -14,14 +14,10 @@
         <module>meteor-common</module>
         <module>meteor-boot-starter-monitor</module>
         <module>meteor-boot-starter-redis</module>
-        <module>meteor-boot-starter-seata</module>
         <module>meteor-boot-starter-document</module>
         <module>meteor-boot-starter-web</module>
         <module>meteor-boot-starter-security</module>
-        <module>meteor-boot-starter-sensitive</module>
-        <module>meteor-boot-starter-datascope</module>
-        <module>meteor-boot-starter-datasource</module>
-        <module>meteor-boot-starter-file</module>
+        <module>meteor-boot-starter-permission</module>
         <module>meteor-boot-starter-rule</module>
         <module>meteor-boot-starter-mybatis</module>
         <module>meteor-boot-starter-test</module>
@@ -75,37 +71,16 @@
                 <version>${component.version}</version>
             </dependency>
 
-            <!-- 数据脱敏 -->
-            <dependency>
-                <groupId>pers.meteor</groupId>
-                <artifactId>meteor-boot-starter-sensitive</artifactId>
-                <version>${component.version}</version>
-            </dependency>
-
             <!-- 权限范围 -->
             <dependency>
                 <groupId>pers.meteor</groupId>
-                <artifactId>meteor-boot-starter-datascope</artifactId>
-                <version>${component.version}</version>
-            </dependency>
-
-            <!-- 多数据源 -->
-            <dependency>
-                <groupId>pers.meteor</groupId>
-                <artifactId>meteor-boot-starter-datasource</artifactId>
+                <artifactId>meteor-boot-starter-permission</artifactId>
                 <version>${component.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>pers.meteor</groupId>
                 <artifactId>meteor-boot-starter-mybatis</artifactId>
-                <version>${component.version}</version>
-            </dependency>
-
-            <!-- 分布式事务 -->
-            <dependency>
-                <groupId>pers.meteor</groupId>
-                <artifactId>meteor-boot-starter-seata</artifactId>
                 <version>${component.version}</version>
             </dependency>
 
@@ -120,12 +95,6 @@
             <dependency>
                 <groupId>pers.meteor</groupId>
                 <artifactId>meteor-boot-starter-redis</artifactId>
-                <version>${component.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>pers.meteor</groupId>
-                <artifactId>meteor-boot-starter-file</artifactId>
                 <version>${component.version}</version>
             </dependency>
 

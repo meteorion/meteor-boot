@@ -1,11 +1,13 @@
 package pers.meteor.auth.service.user;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.common.enums.UserTypeEnum;
+import pers.meteor.common.utils.collection.SetUtils;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -37,7 +39,7 @@ public class AuthDefaultUserServiceImpl implements AuthUserService {
                 .id(1)
                 .mobile("15070196704")
                 .userName(username)
-                .roles(Lists.newArrayList("admin"))
+                .roles(SetUtils.asSet("admin"))
                 .accountLocked(false)
                 .userType(UserTypeEnum.ADMIN.getValue())
                 .clientId("1")

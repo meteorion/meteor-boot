@@ -1,0 +1,23 @@
+package pers.meteor.system.convert.dept;
+
+import org.mapstruct.Mapper;
+import pers.meteor.system.mode.dept.entity.Dept;
+import pers.meteor.system.mode.dept.form.DeptForm;
+import pers.meteor.system.mode.dept.vo.DeptVO;
+
+/**
+ * 部门对象转换器
+ *
+ * @author haoxr
+ * @since 2022/7/29
+ */
+@Mapper(componentModel = "spring")
+public interface DeptConverter {
+
+    DeptForm toForm(Dept entity);
+    
+    DeptVO toVo(Dept entity);
+
+    Dept toEntity(DeptForm deptForm);
+
+}

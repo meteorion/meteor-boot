@@ -19,7 +19,7 @@ import java.util.Map;
 public class AccessTokenCheckResult implements Serializable {
 
     @Schema(description = "用户编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "10")
-    private Integer userId;
+    private Long userId;
 
     @Schema(description = "用户类型，参见 UserTypeEnum 枚举", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
     private Integer userType;

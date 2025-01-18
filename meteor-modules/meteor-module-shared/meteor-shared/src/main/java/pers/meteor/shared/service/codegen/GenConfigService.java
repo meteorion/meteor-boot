@@ -1,8 +1,8 @@
 package pers.meteor.shared.service.codegen;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import pers.meteor.shared.controller.admin.codegen.form.GenConfigForm;
-import pers.meteor.shared.model.entity.codegen.GenConfig;
+import pers.meteor.shared.model.codegen.form.GenConfigForm;
+import pers.meteor.shared.model.codegen.entity.GenConfig;
 
 /**
  * 代码生成配置接口

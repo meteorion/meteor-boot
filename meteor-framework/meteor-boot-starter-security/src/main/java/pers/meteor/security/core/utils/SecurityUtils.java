@@ -13,9 +13,11 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.common.constant.SecurityConstants;
 import pers.meteor.common.utils.ServletUtils;
+import pers.meteor.system.enums.SystemConstants;
 import pers.meteor.web.core.util.WebUtils;
 
 import java.util.Collections;
+import java.util.Set;
 
 /**
  * 权限获取工具类
@@ -93,13 +95,27 @@ public class SecurityUtils {
         return authentication.getPrincipal() instanceof AuthUserDetail ? (AuthUserDetail) authentication.getPrincipal() : null;
     }
 
+    public static Set<String> getRoles() {
+        return getAuthUser() == null ? Collections.emptySet() : getAuthUser().getRoles();
+    }
+
+    /**
+     * 是否超级管理员
+     * <p>
+     * 超级管理员忽视任何权限判断
+     */
+    public static boolean isRoot() {
+        Set<String> roles = getRoles();
+        return roles.contains(SystemConstants.ROOT_ROLE_CODE);
+    }
+
     /**
      * 获得当前用户的编号，从上下文中
      *
      * @return 用户编号
      */
     @Nullable
-    public static Integer getLoginUserId() {
+    public static Long getLoginUserId() {
         AuthUserDetail loginUser = getAuthUser();
         return loginUser != null ? loginUser.getId() : null;
     }

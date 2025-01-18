@@ -61,7 +61,7 @@
 
         <dependency>
             <groupId>pers.meteor</groupId>
-            <artifactId>meteor-boot-starter-datascope</artifactId>
+            <artifactId>meteor-boot-starter-permission</artifactId>
         </dependency>
 
         <dependency>

@@ -50,7 +50,7 @@ public class WebUtils {
         return NumberUtil.isNumber(tenantId) ? Long.valueOf(tenantId) : null;
     }
 
-    public static void setLoginUserId(ServletRequest request, Integer userId) {
+    public static void setLoginUserId(ServletRequest request, Long userId) {
         request.setAttribute(REQUEST_ATTRIBUTE_LOGIN_USER_ID, userId);
     }
 

@@ -3,10 +3,10 @@ package pers.meteor.shared.mapper.codegen;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
-import pers.meteor.shared.controller.admin.codegen.query.TablePageQuery;
-import pers.meteor.shared.controller.admin.codegen.vo.TablePageVO;
-import pers.meteor.shared.model.bo.codegen.ColumnMetaData;
-import pers.meteor.shared.model.bo.codegen.TableMetaData;
+import pers.meteor.shared.model.codegen.query.TablePageQuery;
+import pers.meteor.shared.model.codegen.vo.TablePageVO;
+import pers.meteor.shared.model.codegen.bo.ColumnMetaData;
+import pers.meteor.shared.model.codegen.bo.TableMetaData;
 
 import java.util.List;
 

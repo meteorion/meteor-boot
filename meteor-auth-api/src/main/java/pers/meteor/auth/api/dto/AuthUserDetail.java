@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author meteor
@@ -20,7 +21,7 @@ public class AuthUserDetail {
     /**
      * 用户id
      */
-    private Integer id;
+    private Long id;
     /**
      * 手机号
      */
@@ -32,7 +33,7 @@ public class AuthUserDetail {
     /**
      * 角色
      */
-    private List<String> roles;
+    private Set<String> roles;
     /**
      * openId
      */

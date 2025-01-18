@@ -1,7 +1,7 @@
 package pers.meteor.shared.service.file;
 
 import org.springframework.web.multipart.MultipartFile;
-import pers.meteor.shared.model.bo.file.FileInfo;
+import pers.meteor.shared.model.file.bo.FileInfo;
 
 /**
  * 对象存储服务接口层

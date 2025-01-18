@@ -1,9 +1,9 @@
 package pers.meteor.shared.service.codegen;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import pers.meteor.shared.controller.admin.codegen.query.TablePageQuery;
-import pers.meteor.shared.controller.admin.codegen.vo.CodegenPreviewVO;
-import pers.meteor.shared.controller.admin.codegen.vo.TablePageVO;
+import pers.meteor.shared.model.codegen.query.TablePageQuery;
+import pers.meteor.shared.model.codegen.vo.CodegenPreviewVO;
+import pers.meteor.shared.model.codegen.vo.TablePageVO;
 
 import java.util.List;
 

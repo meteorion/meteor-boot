@@ -3,6 +3,7 @@ package pers.meteor.system.mapper.user;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
+import pers.meteor.mybatis.core.query.BaseMapperX;
 import pers.meteor.system.model.user.bo.UserBO;
 import pers.meteor.system.model.user.dto.UserAuthInfo;
 import pers.meteor.system.model.user.dto.UserExportDTO;
@@ -19,15 +20,20 @@ import java.util.List;
  * @since 2022/1/14
  */
 @Mapper
-public interface UserMapper extends BaseMapper<User> {
+public interface UserMapper extends BaseMapperX<User> {
 
-    /**
-     * 获取用户分页列表
-     *
-     * @param page
-     * @param queryParams 查询参数
-     * @return
-     */
+    default User selectByUsername(String username) {
+        return selectOne(User::getUsername, username);
+    }
+
+    default User selectByMobile(String mobile) {
+        return selectOne(User::getMobile, mobile);
+    }
+
+    default User selectByEmail(String email) {
+        return selectOne(User::getEmail, email);
+    }
+
     Page<UserBO> selectUserPage(Page<UserBO> page, UserPageQuery queryParams);
 
     /**

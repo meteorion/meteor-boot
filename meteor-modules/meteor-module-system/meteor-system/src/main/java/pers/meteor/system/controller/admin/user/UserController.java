@@ -1,6 +1,5 @@
 package pers.meteor.system.controller.admin.user;
 
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -16,7 +15,6 @@ import pers.meteor.common.pojo.response.PageResponse;
 import pers.meteor.common.pojo.response.SingleResponse;
 import pers.meteor.security.core.utils.SecurityUtils;
 import pers.meteor.system.model.user.dto.UserExportDTO;
-import pers.meteor.system.model.user.entity.User;
 import pers.meteor.system.model.user.enums.ContactType;
 import pers.meteor.system.model.user.form.*;
 import pers.meteor.system.model.user.query.UserPageQuery;
@@ -58,9 +56,8 @@ public class UserController {
     @Operation(summary = "新增用户")
     @PostMapping
     @PreAuthorize("@ss.hasPermission('sys:user:add')")
-    public SingleResponse<Boolean> saveUser(@RequestBody @Valid UserForm userForm) {
-        boolean result = userService.saveUser(userForm);
-        return SingleResponse.success(result);
+    public SingleResponse<Long> saveUser(@RequestBody @Valid UserForm userForm) {
+        return SingleResponse.success(userService.saveUser(userForm));
     }
 
     @Operation(summary = "用户表单数据")
@@ -79,9 +76,9 @@ public class UserController {
     @Parameters({
             @Parameter(name = "userId", description = "用户ID")
     })
-    public SingleResponse<Boolean> updateUser(@PathVariable Long userId, @RequestBody @Valid UserForm userForm) {
-        boolean result = userService.updateUser(userId, userForm);
-        return SingleResponse.success(result);
+    public SingleResponse<Void> updateUser(@PathVariable Long userId, @RequestBody @Valid UserForm userForm) {
+        userService.updateUser(userId, userForm);
+        return SingleResponse.success();
     }
 
     @Operation(summary = "删除用户")
@@ -90,23 +87,16 @@ public class UserController {
     @Parameters({
             @Parameter(name = "ids", description = "用户ID，多个以英文逗号(,)分割")
     })
-    public SingleResponse<Boolean> deleteUsers(@PathVariable String ids) {
-        boolean result = userService.deleteUsers(ids);
-        return SingleResponse.success(result);
+    public SingleResponse<Void> deleteUsers(@PathVariable String ids) {
+        userService.deleteUsers(ids);
+        return SingleResponse.success();
     }
 
     @Operation(summary = "修改用户状态")
-    @PatchMapping(value = "/{userId}/status")
-    @Parameters({
-            @Parameter(name = "userId", description = "用户ID"),
-            @Parameter(name = "status", description = "用户状态(1:启用;0:禁用)")
-    })
-    public SingleResponse<Boolean> updateUserStatus(@PathVariable Long userId, @RequestParam Integer status) {
-        boolean result = userService.update(new LambdaUpdateWrapper<User>()
-                .eq(User::getId, userId)
-                .set(User::getStatus, status)
-        );
-        return SingleResponse.success(result);
+    @PatchMapping(value = "/update-status")
+    public SingleResponse<Void> updateUserStatus(@RequestBody UserUpdateStatusForm form) {
+        userService.updateUserStatus(form.getId(), form.getStatus());
+        return SingleResponse.success();
     }
 
     @Operation(summary = "获取当前登录用户信息")
@@ -162,9 +152,9 @@ public class UserController {
 
     @Operation(summary = "个人中心修改用户信息")
     @PutMapping("/profile")
-    public SingleResponse<?> updateUserProfile(@RequestBody UserProfileForm formData) {
-        boolean result = userService.updateUserProfile(formData);
-        return SingleResponse.success(result);
+    public SingleResponse<Void> updateUserProfile(@RequestBody UserProfileForm formData) {
+        userService.updateUserProfile(SecurityUtils.getLoginUserId(), formData);
+        return SingleResponse.success();
     }
 
     @Operation(summary = "重置用户密码")
@@ -175,16 +165,16 @@ public class UserController {
             @Parameter(name = "password", description = "密码")
     })
     public SingleResponse<?> resetPassword(@PathVariable Long userId, @RequestParam String password) {
-        boolean result = userService.resetPassword(userId, password);
-        return SingleResponse.success(result);
+        userService.resetPassword(userId, password);
+        return SingleResponse.success();
     }
 
     @Operation(summary = "修改密码")
     @PutMapping(value = "/password")
     public SingleResponse<?> changePassword(@RequestBody PasswordChangeForm data) {
         Long currUserId = SecurityUtils.getLoginUserId();
-        boolean result = userService.changePassword(currUserId, data);
-        return SingleResponse.success(result);
+        userService.changePassword(currUserId, data);
+        return SingleResponse.success();
     }
 
     @Operation(summary = "发送短信/邮箱验证码")
@@ -201,15 +191,15 @@ public class UserController {
     @Operation(summary = "个人中心绑定用户手机号")
     @PutMapping(value = "/mobile")
     public SingleResponse<?> bindMobile(@RequestBody @Validated MobileBindingForm data) {
-        boolean result = userService.bindMobile(data);
-        return SingleResponse.success(result);
+        userService.updateUserMobile(SecurityUtils.getLoginUserId(), data.getMobile());
+        return SingleResponse.success();
     }
 
     @Operation(summary = "个人中心绑定用户邮箱")
     @PutMapping(value = "/email")
     public SingleResponse<?> bindEmail(@RequestBody @Validated EmailBindingForm data) {
-        boolean result = userService.bindEmail(data);
-        return SingleResponse.success(result);
+        userService.updateUserEmail(SecurityUtils.getLoginUserId(), data.getEmail());
+        return SingleResponse.success();
     }
 
     @Operation(summary = "用户下拉选项")

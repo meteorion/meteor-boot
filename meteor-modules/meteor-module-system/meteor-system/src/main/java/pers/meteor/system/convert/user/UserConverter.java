@@ -5,6 +5,7 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
+import org.mapstruct.factory.Mappers;
 import pers.meteor.system.model.user.bo.UserBO;
 import pers.meteor.system.model.user.dto.UserImportDTO;
 import pers.meteor.system.model.user.entity.User;
@@ -20,8 +21,9 @@ import pers.meteor.system.model.user.vo.UserProfileVO;
  * @author haoxr
  * @since 2022/6/8
  */
-@Mapper(componentModel = "spring")
+@Mapper
 public interface UserConverter {
+    UserConverter INSTANCE = Mappers.getMapper(UserConverter.class);
 
     UserPageVO toPageVo(UserBO bo);
 

@@ -2,8 +2,6 @@ package pers.meteor.system.service.user.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pers.meteor.common.enums.UserStatusEnum;
 import pers.meteor.common.pojo.Option;
+import pers.meteor.common.pojo.response.PageResponse;
 import pers.meteor.common.utils.StringUtils;
 import pers.meteor.security.core.utils.SecurityUtils;
 import pers.meteor.system.convert.user.UserConverter;
@@ -19,21 +18,17 @@ import pers.meteor.system.enums.SystemConstants;
 import pers.meteor.system.mapper.user.UserMapper;
 import pers.meteor.system.model.user.bo.UserBO;
 import pers.meteor.system.model.user.dto.UserExportDTO;
-import pers.meteor.system.model.user.entity.User;
+import pers.meteor.system.model.user.entity.AdminUser;
 import pers.meteor.system.model.user.enums.ContactType;
 import pers.meteor.system.model.user.form.*;
 import pers.meteor.system.model.user.query.UserPageQuery;
 import pers.meteor.system.model.user.vo.UserInfoVO;
-import pers.meteor.system.model.user.vo.UserPageVO;
 import pers.meteor.system.model.user.vo.UserProfileVO;
 import pers.meteor.system.service.permission.PermissionService;
 import pers.meteor.system.service.permission.UserRoleService;
 import pers.meteor.system.service.user.UserService;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -48,7 +43,7 @@ import static pers.meteor.system.enums.SystemErrorConstants.*;
  */
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, AdminUser> implements UserService {
     private final UserConverter userConverter = UserConverter.INSTANCE;
 
     private final PasswordEncoder passwordEncoder;
@@ -63,7 +58,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         validateUserCreate(userForm.getUsername(), userForm.getMobile());
 
         // 保存用户信息
-        User user = userConverter.toEntity(userForm);
+        AdminUser user = userConverter.toEntity(userForm);
         user.setStatus(UserStatusEnum.ENABLE.getStatus());
         String password = StringUtils.isBlank(userForm.getPassword()) ? SystemConstants.DEFAULT_PASSWORD : userForm.getPassword();
         user.setPassword(encodePassword(password));
@@ -81,7 +76,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Transactional
     public void updateUser(Long userId, UserForm userForm) {
         // 校验参数
-        User user = validateUserUpdate(userId, userForm.getUsername(), userForm.getMobile());
+        AdminUser user = validateUserUpdate(userId, userForm.getUsername(), userForm.getMobile());
 
         // 保存用户信息
         userMapper.updateById(userConverter.toEntity(userForm));
@@ -98,14 +93,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         validateUserUpdate(userId, formData.getUsername(), formData.getMobile());
 
         // 保存用户信息
-        User user = userConverter.toEntity(formData);
+        AdminUser user = userConverter.toEntity(formData);
         user.setId(userId);
         userMapper.updateById(user);
     }
 
     @Override
     public void updateUserStatus(Long userId, Integer status) {
-        User user = validateUserIdExist(userId);
+        AdminUser user = validateUserIdExist(userId);
         user.setStatus(status);
         userMapper.updateById(user);
     }
@@ -113,7 +108,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public void changePassword(Long userId, PasswordChangeForm form) {
         // 校验用户
-        User user = validateUserIdExist(userId);
+        AdminUser user = validateUserIdExist(userId);
 
         // 校验原密码
         if (!isPasswordMatch(form.getOldPassword(), user.getPassword())) {
@@ -124,7 +119,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw exception(USER_PASSWORD_SAME);
         }
 
-        User updateObj = new User();
+        AdminUser updateObj = new AdminUser();
         updateObj.setId(userId);
         updateObj.setPassword(encodePassword(form.getNewPassword()));
         userMapper.updateById(updateObj);
@@ -135,7 +130,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 校验用户
         validateUserIdExist(userId);
 
-        User updateObj = new User();
+        AdminUser updateObj = new AdminUser();
         updateObj.setId(userId);
         updateObj.setPassword(encodePassword(password));
         userMapper.updateById(updateObj);
@@ -146,7 +141,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 校验用户
         validateUserIdExist(userId);
 
-        User updateObj = new User();
+        AdminUser updateObj = new AdminUser();
         updateObj.setId(userId);
         updateObj.setMobile(mobile);
         userMapper.updateById(updateObj);
@@ -157,7 +152,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 校验用户
         validateUserIdExist(userId);
 
-        User updateObj = new User();
+        AdminUser updateObj = new AdminUser();
         updateObj.setId(userId);
         updateObj.setEmail(email);
         userMapper.updateById(updateObj);
@@ -169,17 +164,44 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public IPage<UserPageVO> getUserPage(UserPageQuery queryParams) {
+    public AdminUser getUser(Long userId) {
+        return userMapper.selectById(userId);
+    }
 
-        // 参数构建
-        int pageNum = queryParams.getPageIndex();
-        int pageSize = queryParams.getPageSize();
-        Page<UserBO> page = new Page<>(pageNum, pageSize);
-        // 查询数据
-        Page<UserBO> userPage = this.baseMapper.selectUserPage(page, queryParams);
+    @Override
+    public AdminUser getUserByMobile(String mobile) {
+        return userMapper.selectByMobile(mobile);
+    }
 
+    @Override
+    public AdminUser getUserByUsername(String username) {
+        return userMapper.selectByUsername(username);
+    }
+
+    @Override
+    public PageResponse<AdminUser> getUserPage(UserPageQuery queryParams) {
+        Set<Long> userIds = null;
+        if (CollectionUtil.isNotEmpty(queryParams.getRoleIds())) {
+            userIds = permissionService.getUserIdByRoleId(queryParams.getRoleIds());
+        }
         // 实体转换
-        return userConverter.toPageVo(userPage);
+        return userMapper.selectUserPage(queryParams, getDeptCondition(queryParams.getDeptId()), userIds);
+    }
+
+    @Override
+    public List<AdminUser> getUserByDeptIds(List<Long> deptIds) {
+        if (CollectionUtil.isEmpty(deptIds)) {
+            return Collections.emptyList();
+        }
+        return userMapper.selectBatchIds(deptIds);
+    }
+
+    @Override
+    public List<AdminUser> getUsers(List<Long> userIds) {
+        if (CollectionUtil.isEmpty(userIds)) {
+            return Collections.emptyList();
+        }
+        return userMapper.selectBatchIds(userIds);
     }
 
     @Override
@@ -198,13 +220,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String username = SecurityUtils.getLoginUserNickName();
 
         // 获取登录用户基础信息
-        User user = this.getOne(new LambdaQueryWrapper<User>()
-                .eq(User::getUsername, username)
+        AdminUser user = this.getOne(new LambdaQueryWrapper<AdminUser>()
+                .eq(AdminUser::getUsername, username)
                 .select(
-                        User::getId,
-                        User::getUsername,
-                        User::getNickname,
-                        User::getAvatar
+                        AdminUser::getId,
+                        AdminUser::getUsername,
+                        AdminUser::getNickname,
+                        AdminUser::getAvatar
                 )
         );
         // entity->VO
@@ -257,11 +279,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public List<Option<String>> listUserOptions() {
-        List<User> list = this.list();
+        List<AdminUser> list = this.list();
         if (CollectionUtil.isNotEmpty(list)) {
             return list.stream().map(user -> new Option<>(user.getId().toString(), user.getNickname())).collect(Collectors.toList());
         }
         return Collections.emptyList();
+    }
+
+    /**
+     * 获得部门条件：查询指定部门的子部门编号们，包括自身
+     *
+     * @param deptId 部门编号
+     * @return 部门编号集合
+     */
+    private Set<Long> getDeptCondition(Long deptId) {
+        if (deptId == null) {
+            return Collections.emptySet();
+        }
+        return new HashSet<>();
     }
 
     private void validateUserCreate(String username, String mobile) {
@@ -271,8 +306,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         validateUsernameUnique(null, username);
     }
 
-    private User validateUserUpdate(Long userId, String username, String mobile) {
-        User user = validateUserIdExist(userId);
+    private AdminUser validateUserUpdate(Long userId, String username, String mobile) {
+        AdminUser user = validateUserIdExist(userId);
         // 校验手机号
         validateMobileUnique(userId, mobile);
         // 校验用户名
@@ -281,11 +316,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return user;
     }
 
-    private User validateUserIdExist(Long userId) {
+    private AdminUser validateUserIdExist(Long userId) {
         if (userId == null) {
             return null;
         }
-        User user = this.getById(userId);
+        AdminUser user = this.getById(userId);
         if (user == null) {
             throw exception(USER_NOT_EXISTS);
         }
@@ -296,7 +331,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (StringUtils.isBlank(username)) {
             return;
         }
-        User user = userMapper.selectByUsername(username);
+        AdminUser user = userMapper.selectByUsername(username);
         if (user == null) {
             return;
         }
@@ -309,7 +344,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (StringUtils.isBlank(mobile)) {
             return;
         }
-        User user = userMapper.selectByMobile(mobile);
+        AdminUser user = userMapper.selectByMobile(mobile);
         if (user == null) {
             return;
         }
@@ -318,10 +353,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
     }
 
+    @Override
+    public boolean validatePassword(Long userId, String rawPassword) {
+        AdminUser adminUser = validateUserIdExist(userId);
+        return passwordEncoder.matches(rawPassword, adminUser.getPassword());
+    }
+
     private String encodePassword(String password) {
         return passwordEncoder.encode(password);
     }
 
+    /**
+     * 校验密码是否匹配
+     *
+     * @param rawPassword       未加密的密码
+     * @param encodedPassword   加密后的密码
+     * @return 是否匹配
+     */
     private boolean isPasswordMatch(String rawPassword, String encodedPassword) {
         return passwordEncoder.matches(rawPassword, encodedPassword);
     }

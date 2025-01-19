@@ -32,7 +32,7 @@ public class UserPageQuery extends PageQuery {
     private List<Long> roleIds;
 
     @Schema(description = "创建时间范围")
-    private List<String> createTime;
+    private String[] createTime;
 
     @Schema(description = "排序的字段")
     private String field;

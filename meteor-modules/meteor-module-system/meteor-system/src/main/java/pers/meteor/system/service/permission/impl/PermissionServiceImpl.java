@@ -85,4 +85,8 @@ public class PermissionServiceImpl implements PermissionService {
         return perms;
     }
 
+    @Override
+    public Set<Long> getUserIdByRoleId(Collection<Long> roleIds) {
+        return Collections.emptySet();
+    }
 }

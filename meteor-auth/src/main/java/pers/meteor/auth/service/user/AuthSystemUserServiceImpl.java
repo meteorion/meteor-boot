@@ -1,6 +1,5 @@
 package pers.meteor.auth.service.user;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.auth.convert.AuthConvert;
@@ -14,7 +13,6 @@ import javax.annotation.Resource;
 /**
  * @author meteor
  */
-@ConditionalOnProperty(prefix = "meteor.security", name = "auth-user", havingValue = "system")
 @Service
 public class AuthSystemUserServiceImpl implements AuthUserService {
 
@@ -31,11 +29,14 @@ public class AuthSystemUserServiceImpl implements AuthUserService {
     @Override
     public AuthUserDetail getUserByAccount(String account) {
         AdminUserVO adminUser = adminUserApi.getUserByMobile(account).getCheckedData();
+        if (adminUser == null) {
+            adminUser = adminUserApi.getUserByUsername(account).getCheckedData();
+        }
         return AuthConvert.INSTANCE.convert(adminUser);
     }
 
     @Override
     public boolean isPasswordMatch(AuthUserDetail authUser, String loginPassword) {
-        return adminUserApi.isPasswordMatch(authUser.getMobile(), loginPassword).getCheckedData();
+        return adminUserApi.isPasswordMatch(authUser.getId(), loginPassword).getCheckedData();
     }
 }

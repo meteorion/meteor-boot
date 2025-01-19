@@ -13,10 +13,7 @@ import java.time.LocalDateTime;
  * @since 1.0.0
  */
 @Schema(description = "用户 APP - 登录 Response VO")
-@Builder
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class AuthLoginVO {
 
     @Schema(description = "用户编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "1024")

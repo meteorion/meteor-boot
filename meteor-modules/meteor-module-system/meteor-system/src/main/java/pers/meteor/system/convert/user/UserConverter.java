@@ -8,7 +8,7 @@ import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 import pers.meteor.system.model.user.bo.UserBO;
 import pers.meteor.system.model.user.dto.UserImportDTO;
-import pers.meteor.system.model.user.entity.User;
+import pers.meteor.system.model.user.entity.AdminUser;
 import pers.meteor.system.model.user.form.UserForm;
 import pers.meteor.system.model.user.form.UserProfileForm;
 import pers.meteor.system.model.user.vo.UserInfoVO;
@@ -29,20 +29,20 @@ public interface UserConverter {
 
     Page<UserPageVO> toPageVo(Page<UserBO> bo);
 
-    UserForm toForm(User entity);
+    UserForm toForm(AdminUser entity);
 
     @InheritInverseConfiguration(name = "toForm")
-    User toEntity(UserForm entity);
+    AdminUser toEntity(UserForm entity);
 
     @Mappings({
             @Mapping(target = "userId", source = "id")
     })
-    UserInfoVO toUserInfoVo(User entity);
+    UserInfoVO toUserInfoVo(AdminUser entity);
 
-    User toEntity(UserImportDTO vo);
+    AdminUser toEntity(UserImportDTO vo);
 
 
     UserProfileVO toProfileVO(UserBO bo);
 
-    User toEntity(UserProfileForm formData);
+    AdminUser toEntity(UserProfileForm formData);
 }

@@ -38,3 +38,6 @@ meteor:
   web:
     admin-ui:
       url: http://dashboard.yudao.iocoder.cn # Admin 管理后台 UI 的地址
+  security:
+    permit-all-urls:
+      - /rpc-api/system/**

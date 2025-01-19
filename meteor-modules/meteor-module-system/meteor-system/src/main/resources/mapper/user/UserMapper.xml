@@ -5,7 +5,7 @@
 <mapper namespace="pers.meteor.system.mapper.user.UserMapper">
 
     <!-- 用户分页列表 -->
-    <select id="selectUserPage" resultType="pers.meteor.system.model.user.bo.UserBO">
+    <select id="selectUserPage2" resultType="pers.meteor.system.model.user.bo.UserBO">
         SELECT
             u.id,
             u.username,

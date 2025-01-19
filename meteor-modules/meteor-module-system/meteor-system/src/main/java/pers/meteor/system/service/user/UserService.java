@@ -2,12 +2,13 @@ package pers.meteor.system.service.user;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import pers.meteor.common.pojo.Option;
+import pers.meteor.common.pojo.response.PageResponse;
 import pers.meteor.system.model.user.dto.UserExportDTO;
+import pers.meteor.system.model.user.entity.AdminUser;
 import pers.meteor.system.model.user.enums.ContactType;
 import pers.meteor.system.model.user.form.*;
 import pers.meteor.system.model.user.query.UserPageQuery;
 import pers.meteor.system.model.user.vo.UserInfoVO;
-import pers.meteor.system.model.user.vo.UserPageVO;
 import pers.meteor.system.model.user.vo.UserProfileVO;
 
 import java.util.List;
@@ -92,11 +93,51 @@ public interface UserService {
     void deleteUsers(String idsStr);
 
     /**
+     * 根据用户ID获取用户信息
+     *
+     * @param userId 用户ID
+     * @return 用户信息
+     */
+    AdminUser getUser(Long userId);
+
+    /**
+     * 根据用户名获取用户信息
+     *
+     * @param username 用户名
+     * @return 用户信息
+     */
+    AdminUser getUserByUsername(String username);
+
+    /**
+     * 根据手机号获取用户信息
+     *
+     * @param mobile 手机号
+     * @return 用户信息
+     */
+    AdminUser getUserByMobile(String mobile);
+
+    /**
      * 用户分页列表 /
      *
      * @return /
      */
-    IPage<UserPageVO> getUserPage(UserPageQuery queryParams);
+    PageResponse<AdminUser> getUserPage(UserPageQuery queryParams);
+
+    /**
+     * 获取部门下所有用户
+     *
+     * @param deptIds 部门ID集合
+     * @return 用户列表
+     */
+    List<AdminUser> getUserByDeptIds(List<Long> deptIds);
+
+    /**
+     * 根据用户ID集合获取用户列表
+     *
+     * @param userIds 用户ID集合
+     * @return 用户列表
+     */
+    List<AdminUser> getUsers(List<Long> userIds);
 
     /**
      * 获取用户表单数据
@@ -143,4 +184,13 @@ public interface UserService {
      * @return 用户选项列表
      */
     List<Option<String>> listUserOptions();
+
+    /**
+     * 校验密码是否匹配
+     *
+     * @param userId       用户id
+     * @param rawPassword   未加密的密码
+     * @return 是否匹配
+     */
+    boolean validatePassword(Long userId, String rawPassword);
 }

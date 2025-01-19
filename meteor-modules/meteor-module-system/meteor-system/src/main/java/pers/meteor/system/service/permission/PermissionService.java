@@ -1,5 +1,6 @@
 package pers.meteor.system.service.permission;
 
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -22,4 +23,12 @@ public interface PermissionService {
      * @return 角色权限列表
      */
     Set<String> getRolePermsFormCache(Set<String> roleCodes);
+
+    /**
+     * 从数据库中获取角色权限列表
+     *
+     * @param roleIds 角色编码集合
+     * @return 角色权限列表
+     */
+    Set<Long> getUserIdByRoleId(Collection<Long> roleIds);
 }

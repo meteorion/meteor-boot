@@ -1,6 +1,5 @@
 package pers.meteor.system.controller.admin.user;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -13,8 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 import pers.meteor.common.pojo.Option;
 import pers.meteor.common.pojo.response.PageResponse;
 import pers.meteor.common.pojo.response.SingleResponse;
+import pers.meteor.common.utils.bean.BeanUtils;
 import pers.meteor.security.core.utils.SecurityUtils;
 import pers.meteor.system.model.user.dto.UserExportDTO;
+import pers.meteor.system.model.user.entity.AdminUser;
 import pers.meteor.system.model.user.enums.ContactType;
 import pers.meteor.system.model.user.form.*;
 import pers.meteor.system.model.user.query.UserPageQuery;
@@ -49,8 +50,8 @@ public class UserController {
     @Operation(summary = "用户分页列表")
     @GetMapping("/page")
     public PageResponse<UserPageVO> getUserPage(@Valid UserPageQuery queryParams) {
-        IPage<UserPageVO> result = userService.getUserPage(queryParams);
-        return PageResponse.success(result.getRecords(), result.getTotal(), result.getSize(), result.getCurrent());
+        PageResponse<AdminUser> userPage = userService.getUserPage(queryParams);
+        return BeanUtils.toBean(userPage, UserPageVO.class);
     }
 
     @Operation(summary = "新增用户")

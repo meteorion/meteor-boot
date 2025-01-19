@@ -7,9 +7,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pers.meteor.common.constant.ApiConstants;
 import pers.meteor.common.pojo.response.SingleResponse;
 import pers.meteor.system.api.permission.dto.DeptDataPermissionDTO;
+import pers.meteor.system.enums.ApiConstants;
 
 import java.util.Collection;
 import java.util.Set;

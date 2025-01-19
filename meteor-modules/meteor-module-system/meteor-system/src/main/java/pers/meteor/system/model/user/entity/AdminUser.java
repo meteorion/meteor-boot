@@ -3,17 +3,16 @@ package pers.meteor.system.model.user.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import pers.meteor.mybatis.core.BaseEntity;
 
 /**
  * 用户实体
  */
+@EqualsAndHashCode(callSuper = true)
 @TableName("sys_user")
-@Getter
-@Setter
-public class User extends BaseEntity {
+@Data
+public class AdminUser extends BaseEntity {
 
     /**
      * 主键ID

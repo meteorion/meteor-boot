@@ -15,20 +15,25 @@ import pers.meteor.system.api.user.vo.AdminUserVO;
  * @author 钟宗兵
  * @since 1.0.0
  */
-@FeignClient(name = ApiConstants.NAME) // TODO 芋艿：fallbackFactory =
+@FeignClient(name = ApiConstants.NAME, contextId = "adminUserApi")
 @Tag(name = "RPC 服务 - 参数配置")
 public interface AdminUserApi {
 
     String PREFIX = ApiConstants.PREFIX + "/user";
 
-    @GetMapping(PREFIX + "/get")
+    @GetMapping(PREFIX + "/getByMobile")
     @Operation(summary = "通过用户手机号查询用户")
     @Parameter(name = "mobile", description = "手机号", example = "1", required = true)
     SingleResponse<AdminUserVO> getUserByMobile(@RequestParam("mobile") String mobile);
 
+    @GetMapping(PREFIX + "/getByUsername")
+    @Operation(summary = "通过用户手机号查询用户")
+    @Parameter(name = "mobile", description = "手机号", example = "1", required = true)
+    SingleResponse<AdminUserVO> getUserByUsername(@RequestParam("username") String username);
+
     @PostMapping(PREFIX + "/isPasswordMatch")
     @Operation(summary = "判断密码是否正确")
-    @Parameter(name = "mobile", description = "手机号", example = "1", required = true)
+    @Parameter(name = "userId", description = "用户id", example = "1", required = true)
     @Parameter(name = "password", description = "密码", example = "123344", required = true)
-    SingleResponse<Boolean> isPasswordMatch(@RequestParam("mobile") String mobile, @RequestParam("password") String password);
+    SingleResponse<Boolean> isPasswordMatch(@RequestParam("userId") Long userId, @RequestParam("password") String password);
 }

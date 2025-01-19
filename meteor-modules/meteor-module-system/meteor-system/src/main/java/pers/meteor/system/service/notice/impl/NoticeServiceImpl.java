@@ -24,15 +24,13 @@ import pers.meteor.system.model.notice.query.NoticePageQuery;
 import pers.meteor.system.model.notice.vo.NoticeDetailVO;
 import pers.meteor.system.model.notice.vo.NoticePageVO;
 import pers.meteor.system.model.notice.vo.UserNoticePageVO;
-import pers.meteor.system.model.user.entity.User;
+import pers.meteor.system.model.user.entity.AdminUser;
 import pers.meteor.system.service.notice.NoticeService;
 import pers.meteor.system.service.notice.UserNoticeService;
 import pers.meteor.system.service.user.UserService;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -179,20 +177,15 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
             );
 
             // 添加新的用户通知数据
-            List<String> targetUserIdList = null;
+            List<Long> targetUserIdList = null;
             if (NoticeTargetEnum.SPECIFIED.getValue().equals(targetType)) {
-                targetUserIdList = Arrays.asList(targetUserIds.split(","));
+                targetUserIdList = Arrays.stream(targetUserIds.split(",")).map(Long::parseLong).collect(Collectors.toList());
             }
 
-            List<User> targetUserList = userService.list(
-                    new LambdaQueryWrapper<User>()
-                            // 如果是指定用户，则筛选出指定用户
-                            .in(
-                                    NoticeTargetEnum.SPECIFIED.getValue().equals(targetType),
-                                    User::getId,
-                                    targetUserIdList
-                            )
-            );
+            List<AdminUser> targetUserList = new ArrayList<>();
+            if (NoticeTargetEnum.SPECIFIED.getValue().equals(targetType)) {
+                targetUserList = userService.getUsers(targetUserIdList);
+            }
 
             List<UserNotice> userNoticeList = targetUserList.stream().map(user -> {
                 UserNotice userNotice = new UserNotice();
@@ -206,7 +199,7 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
                 userNoticeService.saveBatch(userNoticeList);
             }
 
-            Set<String> receivers = targetUserList.stream().map(User::getUsername).collect(Collectors.toSet());
+            Set<String> receivers = targetUserList.stream().map(AdminUser::getUsername).collect(Collectors.toSet());
 
 //            Set<String> allOnlineUsers = onlineUserService.getAllOnlineUsers();
 //

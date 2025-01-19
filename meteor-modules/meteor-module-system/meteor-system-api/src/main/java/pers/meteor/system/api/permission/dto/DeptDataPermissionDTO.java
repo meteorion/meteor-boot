@@ -24,5 +24,4 @@ public class DeptDataPermissionDTO {
         this.self = false;
         this.deptIds = new HashSet<>();
     }
-
 }

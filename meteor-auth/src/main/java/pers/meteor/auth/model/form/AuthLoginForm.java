@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+import pers.meteor.common.enums.UserTypeEnum;
+import pers.meteor.common.validation.InEnum;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -23,6 +25,7 @@ public class AuthLoginForm {
 
  @Schema(description = "用户类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
  @NotNull(message = "用户类型不能为空")
+ @InEnum(value = UserTypeEnum.class)
  private Integer userType;
 
  @Schema(description = "客户端编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "10")

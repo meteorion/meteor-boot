@@ -1,10 +1,7 @@
-package pers.meteor.auth.dto.vo;
+package pers.meteor.auth.model.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 

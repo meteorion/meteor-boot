@@ -1,7 +1,7 @@
 package pers.meteor.auth.service;
 
-import pers.meteor.auth.dto.form.*;
-import pers.meteor.auth.dto.vo.AuthLoginVO;
+import pers.meteor.auth.model.form.*;
+import pers.meteor.auth.model.vo.AuthLoginVO;
 
 import javax.validation.Valid;
 

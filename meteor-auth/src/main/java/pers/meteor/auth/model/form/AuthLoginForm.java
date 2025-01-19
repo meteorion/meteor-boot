@@ -1,4 +1,4 @@
-package pers.meteor.auth.dto.form;
+package pers.meteor.auth.model.form;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -6,9 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
-import pers.meteor.common.validation.Mobile;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author 钟宗兵
@@ -19,17 +19,24 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AuthSmsLoginForm {
+public class AuthLoginForm {
 
- @Schema(description = "手机号", requiredMode = Schema.RequiredMode.REQUIRED, example = "15601691300")
- @NotEmpty(message = "手机号不能为空")
- @Mobile
- private String mobile;
+ @Schema(description = "用户类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
+ @NotNull(message = "用户类型不能为空")
+ private Integer userType;
 
- @Schema(description = "手机验证码", requiredMode = Schema.RequiredMode.REQUIRED, example = "1024")
- @NotEmpty(message = "手机验证码不能为空")
- @Length(min = 4, max = 6, message = "手机验证码长度为 4-6 位")
- private String code;
+ @Schema(description = "客户端编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "10")
+ @NotBlank(message = "客户端编号不能为空")
+ private String clientId;
+
+ @Schema(description = "账户名称", requiredMode = Schema.RequiredMode.REQUIRED, example = "15601691300")
+ @NotBlank(message = "账户名称不能为空")
+ private String account;
+
+ @Schema(description = "密码", requiredMode = Schema.RequiredMode.REQUIRED, example = "buzhidao")
+ @NotBlank(message = "密码不能为空")
+ @Length(min = 4, max = 16, message = "密码长度为 4-16 位")
+ private String password;
 
  // ========== 绑定社交登录时，需要传递如下参数 ==========
 

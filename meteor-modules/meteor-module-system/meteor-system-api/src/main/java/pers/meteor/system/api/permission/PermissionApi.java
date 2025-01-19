@@ -17,7 +17,7 @@ import java.util.Set;
 /**
  * @author meteor
  */
-@FeignClient(name = ApiConstants.NAME)
+@FeignClient(name = ApiConstants.NAME, contextId = "permissionApi")
 @Tag(name = "RPC 服务 - 权限")
 public interface PermissionApi {
     String PREFIX = ApiConstants.PREFIX + "/permission";

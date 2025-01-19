@@ -11,7 +11,7 @@ import pers.meteor.common.pojo.response.SingleResponse;
 
 import java.util.Collection;
 
-@FeignClient(name = ApiConstants.NAME)
+@FeignClient(name = ApiConstants.NAME, contextId = "roleApi")
 @Tag(name = "RPC 服务 - 角色")
 public interface RoleApi {
 

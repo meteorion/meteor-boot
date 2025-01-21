@@ -1,4 +1,4 @@
-package pers.meteor.auth.model.form;
+package pers.meteor.auth.model.captcha.form;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -17,7 +17,7 @@ import javax.validation.constraints.Pattern;
 @Schema(description = "用户 APP - 校验手机验证码 Request VO")
 @Data
 @Accessors(chain = true)
-public class AuthSmsValidateForm {
+public class CaptchaSmsValidateForm {
     @Schema(description = "手机号", example = "15601691234")
     @Mobile
     private String mobile;

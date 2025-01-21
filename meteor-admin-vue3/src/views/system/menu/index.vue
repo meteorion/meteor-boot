@@ -34,6 +34,7 @@
         :data="menuTableData"
         highlight-current-row
         row-key="id"
+        :expand-row-keys="['1']"
         :tree-props="{
           children: 'children',
           hasChildren: 'hasChildren',
@@ -368,13 +369,13 @@ const initialMenuFormData = ref<MenuForm>({
 const formData = ref({ ...initialMenuFormData.value });
 // 表单验证规则
 const rules = reactive({
-  parentId: [{ required: true, message: "请选择父级菜单", trigger: "blur" }],
+  parentId: [{ required: true, message: "请选择顶级菜单", trigger: "blur" }],
   name: [{ required: true, message: "请输入菜单名称", trigger: "blur" }],
   type: [{ required: true, message: "请选择菜单类型", trigger: "blur" }],
   routeName: [{ required: true, message: "请输入路由名称", trigger: "blur" }],
   routePath: [{ required: true, message: "请输入路由路径", trigger: "blur" }],
   component: [{ required: true, message: "请输入组件路径", trigger: "blur" }],
-  visible: [{ required: true, message: "请选择显示状态", trigger: "change" }],
+  visible: [{ required: true, message: "请输入路由路径", trigger: "blur" }],
 });
 
 // 选择表格的行菜单ID
@@ -424,7 +425,7 @@ function handleOpenDialog(parentId?: string, menuId?: string) {
         });
       } else {
         dialog.title = "新增菜单";
-        formData.value.parentId = parentId?.toString();
+        formData.value.parentId = parentId;
       }
     });
 }
@@ -454,11 +455,6 @@ function handleSubmit() {
     if (isValid) {
       const menuId = formData.value.id;
       if (menuId) {
-        //修改时父级菜单不能为当前菜单
-        if (formData.value.parentId == menuId) {
-          ElMessage.error("父级菜单不能为当前菜单");
-          return;
-        }
         MenuAPI.update(menuId, formData.value).then(() => {
           ElMessage.success("修改成功");
           handleCloseDialog();
@@ -507,16 +503,7 @@ function handleDelete(menuId: number) {
 function resetRorm() {
   menuFormRef.value.resetFields();
   menuFormRef.value.clearValidate();
-  formData.value = {
-    id: undefined,
-    parentId: "0",
-    visible: 1,
-    sort: 1,
-    type: MenuTypeEnum.MENU, // 默认菜单
-    alwaysShow: 0,
-    keepAlive: 1,
-    params: [],
-  };
+  formData.value = { ...initialMenuFormData.value };
 }
 
 // 关闭弹窗

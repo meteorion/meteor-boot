@@ -1,7 +1,10 @@
 package pers.meteor.auth.service;
 
-import pers.meteor.auth.model.form.*;
-import pers.meteor.auth.model.vo.AuthLoginVO;
+import pers.meteor.auth.model.auth.form.AuthLoginForm;
+import pers.meteor.auth.model.auth.form.AuthSmsLoginForm;
+import pers.meteor.auth.model.auth.form.AuthSocialLoginForm;
+import pers.meteor.auth.model.auth.form.AuthWechatMiniAppLoginForm;
+import pers.meteor.auth.model.auth.vo.AuthLoginVO;
 
 import javax.validation.Valid;
 
@@ -57,22 +60,6 @@ public interface AuthService {
      * @return 认证 URL
      */
     String getSocialAuthorizeUrl(Integer type, String redirectUri);
-
-    /**
-     * 给用户发送短信验证码
-     *
-     * @param userId 用户编号
-     * @param smsSendForm 发送信息
-     */
-    void sendSmsCode(Long userId, AuthSmsSendForm smsSendForm);
-
-    /**
-     * 校验短信验证码是否正确
-     *
-     * @param userId 用户编号
-     * @param smsValidateForm 校验信息
-     */
-    void validateSmsCode(Long userId, AuthSmsValidateForm smsValidateForm);
 
     /**
      * 刷新访问令牌

@@ -5,8 +5,11 @@ import org.springframework.stereotype.Service;
 import pers.meteor.auth.api.dto.AccessToken;
 import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.auth.convert.AuthConvert;
-import pers.meteor.auth.model.form.*;
-import pers.meteor.auth.model.vo.AuthLoginVO;
+import pers.meteor.auth.model.auth.form.AuthLoginForm;
+import pers.meteor.auth.model.auth.form.AuthSmsLoginForm;
+import pers.meteor.auth.model.auth.form.AuthSocialLoginForm;
+import pers.meteor.auth.model.auth.form.AuthWechatMiniAppLoginForm;
+import pers.meteor.auth.model.auth.vo.AuthLoginVO;
 import pers.meteor.auth.service.log.AuthLogService;
 import pers.meteor.auth.service.token.TokenService;
 import pers.meteor.auth.service.user.AuthUserService;
@@ -87,16 +90,6 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String getSocialAuthorizeUrl(Integer type, String redirectUri) {
         return "";
-    }
-
-    @Override
-    public void sendSmsCode(Long userId, AuthSmsSendForm smsSendForm) {
-
-    }
-
-    @Override
-    public void validateSmsCode(Long userId, AuthSmsValidateForm smsValidateForm) {
-
     }
 
     @Override

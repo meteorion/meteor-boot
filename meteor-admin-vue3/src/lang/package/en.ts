@@ -56,6 +56,7 @@ export default {
     navigation: "Navigation",
     themeColor: "Theme Color",
     tagsView: "Tags View",
+    fixedHeader: "Fixed Header",
     sidebarLogo: "Sidebar Logo",
     watermark: "Watermark",
   },

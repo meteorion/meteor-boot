@@ -22,11 +22,13 @@
       </div>
 
       <div :class="{ hasTagsView: showTagsView }" class="main-container">
-        <TagsView v-if="showTagsView" />
+        <div :class="{ 'fixed-header': fixedHeader }">
+          <TagsView v-if="showTagsView" />
+        </div>
         <AppMain />
         <Settings v-if="defaultSettings.showSettings" />
         <!-- 返回顶部 -->
-        <el-backtop target=".app-main">
+        <el-backtop target=".main-container">
           <svg-icon icon-class="backtop" size="24px" />
         </el-backtop>
       </div>
@@ -34,12 +36,14 @@
 
     <!-- 左侧和顶部布局 -->
     <div v-else :class="{ hasTagsView: showTagsView }" class="main-container">
-      <NavBar v-if="layout === LayoutEnum.LEFT" />
-      <TagsView v-if="showTagsView" />
+      <div :class="{ 'fixed-header': fixedHeader }">
+        <NavBar v-if="layout === LayoutEnum.LEFT" />
+        <TagsView v-if="showTagsView" />
+      </div>
       <AppMain />
       <Settings v-if="defaultSettings.showSettings" />
       <!-- 返回顶部 -->
-      <el-backtop target=".app-main">
+      <el-backtop target=".main-container">
         <svg-icon icon-class="backtop" size="24px" />
       </el-backtop>
     </div>

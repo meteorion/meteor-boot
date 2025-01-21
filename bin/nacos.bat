@@ -1,6 +1,9 @@
 @echo off
+set NACOS_HOME=E:\Utils\nacos\nacos-server-2.3.0
 
-cd E:\Utils\nacos\nacos-server-2.0.4\bin
-call startup.cmd -m standalone
+REM 启动Nacos
+echo 启动Nacos...
+%NACOS_HOME%\bin\startup.cmd -m standalone
 
+echo Nacos已启动
 pause

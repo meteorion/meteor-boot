@@ -11,6 +11,8 @@ export const useSettingsStore = defineStore("setting", () => {
   const tagsView = useStorage<boolean>("tagsView", defaultSettings.tagsView);
   // 侧边栏 Logo
   const sidebarLogo = useStorage<boolean>("sidebarLogo", defaultSettings.sidebarLogo);
+  // 固定头部
+  const fixedHeader = useStorage<boolean>("fixedHeader", defaultSettings.fixedHeader);
   // 布局
   const layout = useStorage<string>("layout", defaultSettings.layout);
   // 水印
@@ -23,7 +25,7 @@ export const useSettingsStore = defineStore("setting", () => {
   const themeColor = useStorage<string>("themeColor", defaultSettings.themeColor);
   const theme = useStorage<string>("theme", defaultSettings.theme);
 
-  //  监听主题变化
+  // 监听主题变化
   watch(
     [theme, themeColor],
     ([newTheme, newThemeColor]) => {
@@ -33,9 +35,9 @@ export const useSettingsStore = defineStore("setting", () => {
     },
     { immediate: true }
   );
-
-  // 设置映射
+  // 设置更改函数
   const settingsMap: Record<string, Ref<SettingsValue>> = {
+    fixedHeader,
     tagsView,
     sidebarLogo,
     layout,
@@ -62,6 +64,7 @@ export const useSettingsStore = defineStore("setting", () => {
   return {
     settingsVisible,
     tagsView,
+    fixedHeader,
     sidebarLogo,
     layout,
     themeColor,

@@ -2,13 +2,16 @@
   <el-config-provider :locale="locale" :size="size">
     <!-- 开启水印 -->
     <el-watermark
+      v-if="watermarkEnabled"
       :font="{ color: fontColor }"
-      :content="watermarkEnabled ? defaultSettings.watermarkContent : ''"
+      :content="defaultSettings.watermarkContent"
       :z-index="9999"
       class="wh-full"
     >
       <router-view />
     </el-watermark>
+    <!-- 关闭水印 -->
+    <router-view v-else />
   </el-config-provider>
 </template>
 

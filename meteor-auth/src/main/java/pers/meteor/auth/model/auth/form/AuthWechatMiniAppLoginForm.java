@@ -1,4 +1,4 @@
-package pers.meteor.auth.model.form;
+package pers.meteor.auth.model.auth.form;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

@@ -15,123 +15,132 @@
     </div>
 
     <!-- 登录页内容 -->
-    <div class="login-form">
-      <el-form ref="loginFormRef" :model="loginData" :rules="loginRules">
-        <div class="form-title">
-          <h2>{{ defaultSettings.title }}</h2>
-          <el-dropdown style="position: absolute; right: 0">
-            <div class="cursor-pointer">
-              <el-icon>
-                <arrow-down />
-              </el-icon>
-            </div>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item>
-                  <el-tag>{{ defaultSettings.version }}</el-tag>
-                </el-dropdown-item>
-                <el-dropdown-item @click="setLoginCredentials('root', '123456')">
-                  超级管理员：root/123456
-                </el-dropdown-item>
-                <el-dropdown-item @click="setLoginCredentials('admin', '123456')">
-                  系统管理员：admin/123456
-                </el-dropdown-item>
-                <el-dropdown-item @click="setLoginCredentials('test', '123456')">
-                  测试小游客：test/123456
-                </el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
-        </div>
+    <div class="login-content">
+      <div class="login-img">
+        <el-image :src="loginImage" style="width: 210px" />
+      </div>
+      <div class="login-form">
+        <el-form ref="loginFormRef" :model="loginData" :rules="loginRules">
+          <div class="form-title">
+            <h2>{{ defaultSettings.title }}</h2>
+            <el-dropdown style="position: absolute; right: 0">
+              <div class="cursor-pointer">
+                <el-icon>
+                  <arrow-down />
+                </el-icon>
+              </div>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item>
+                    版本号：
+                    <el-tag type="success">
+                      {{ defaultSettings.version }}
+                    </el-tag>
+                  </el-dropdown-item>
 
-        <!-- 用户名 -->
-        <el-form-item prop="username">
-          <div class="input-wrapper">
-            <el-icon class="mx-2">
-              <User />
-            </el-icon>
-            <el-input
-              ref="username"
-              v-model="loginData.username"
-              :placeholder="$t('login.username')"
-              name="username"
-              size="large"
-              class="h-[48px]"
-            />
+                  <el-dropdown-item @click="setLoginCredentials('root', '123456')">
+                    超级管理员：root/123456
+                  </el-dropdown-item>
+                  <el-dropdown-item @click="setLoginCredentials('admin', '123456')">
+                    系统管理员：admin/123456
+                  </el-dropdown-item>
+                  <el-dropdown-item @click="setLoginCredentials('test', '123456')">
+                    测试小游客：test/123456
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
           </div>
-        </el-form-item>
 
-        <!-- 密码 -->
-        <el-tooltip :visible="isCapslock" :content="$t('login.capsLock')" placement="right">
-          <el-form-item prop="password">
+          <!-- 用户名 -->
+          <el-form-item prop="username">
             <div class="input-wrapper">
               <el-icon class="mx-2">
-                <Lock />
+                <User />
               </el-icon>
               <el-input
-                v-model="loginData.password"
-                :placeholder="$t('login.password')"
-                type="password"
-                name="password"
+                ref="username"
+                v-model="loginData.username"
+                :placeholder="$t('login.username')"
+                name="username"
                 size="large"
-                class="h-[48px] pr-2"
-                show-password
-                @keyup="checkCapslock"
-                @keyup.enter="handleLoginSubmit"
+                class="h-[48px]"
               />
             </div>
           </el-form-item>
-        </el-tooltip>
 
-        <!-- 验证码 -->
-        <el-form-item prop="captchaCode">
-          <div class="input-wrapper">
-            <svg-icon icon-class="captcha" class="mx-2" />
-            <el-input
-              v-model="loginData.captchaCode"
-              auto-complete="off"
-              size="large"
-              class="flex-1"
-              :placeholder="$t('login.captchaCode')"
-              @keyup.enter="handleLoginSubmit"
-            />
+          <!-- 密码 -->
+          <el-tooltip :visible="isCapslock" :content="$t('login.capsLock')" placement="right">
+            <el-form-item prop="password">
+              <div class="input-wrapper">
+                <el-icon class="mx-2">
+                  <Lock />
+                </el-icon>
+                <el-input
+                  v-model="loginData.password"
+                  :placeholder="$t('login.password')"
+                  type="password"
+                  name="password"
+                  size="large"
+                  class="h-[48px] pr-2"
+                  show-password
+                  @keyup="checkCapslock"
+                  @keyup.enter="handleLoginSubmit"
+                />
+              </div>
+            </el-form-item>
+          </el-tooltip>
 
-            <el-image :src="captchaBase64" class="captcha-img" @click="getCaptcha" />
+          <!-- 验证码 -->
+          <el-form-item prop="captchaCode">
+            <div class="input-wrapper">
+              <svg-icon icon-class="captcha" class="mx-2" />
+              <el-input
+                v-model="loginData.captchaCode"
+                auto-complete="off"
+                size="large"
+                class="flex-1"
+                :placeholder="$t('login.captchaCode')"
+                @keyup.enter="handleLoginSubmit"
+              />
+
+              <el-image :src="captchaBase64" class="captcha-img" @click="getCaptcha" />
+            </div>
+          </el-form-item>
+
+          <div class="flex-x-between w-full py-1">
+            <el-checkbox>
+              {{ $t("login.rememberMe") }}
+            </el-checkbox>
+
+            <el-link type="primary" href="/forget-password">
+              {{ $t("login.forgetPassword") }}
+            </el-link>
           </div>
-        </el-form-item>
 
-        <div class="flex-x-between w-full py-1">
-          <el-checkbox>
-            {{ $t("login.rememberMe") }}
-          </el-checkbox>
+          <!-- 登录按钮 -->
+          <el-button
+            :loading="loading"
+            type="primary"
+            size="large"
+            class="w-full"
+            @click.prevent="handleLoginSubmit"
+          >
+            {{ $t("login.login") }}
+          </el-button>
 
-          <el-link type="primary" href="/forget-password">
-            {{ $t("login.forgetPassword") }}
-          </el-link>
-        </div>
-
-        <!-- 登录按钮 -->
-        <el-button
-          :loading="loading"
-          type="primary"
-          size="large"
-          class="w-full"
-          @click.prevent="handleLoginSubmit"
-        >
-          {{ $t("login.login") }}
-        </el-button>
-
-        <!-- 第三方登录 -->
-        <el-divider>
-          <el-text size="small">{{ $t("login.otherLoginMethods") }}</el-text>
-        </el-divider>
-        <div class="third-party-login">
-          <svg-icon icon-class="wechat" class="icon" />
-          <svg-icon icon-class="qq" class="icon" />
-          <svg-icon icon-class="github" class="icon" />
-          <svg-icon icon-class="gitee" class="icon" />
-        </div>
-      </el-form>
+          <!-- 第三方登录 -->
+          <el-divider>
+            <el-text size="small">{{ $t("login.otherLoginMethods") }}</el-text>
+          </el-divider>
+          <div class="third-party-login">
+            <svg-icon icon-class="wechat" class="icon" />
+            <svg-icon icon-class="qq" class="icon" />
+            <svg-icon icon-class="github" class="icon" />
+            <svg-icon icon-class="gitee" class="icon" />
+          </div>
+        </el-form>
+      </div>
     </div>
 
     <!-- 登录页底部 -->
@@ -148,7 +157,6 @@
 
 <script setup lang="ts">
 import { LocationQuery, useRoute } from "vue-router";
-import { useI18n } from "vue-i18n";
 
 import AuthAPI, { type LoginData } from "@/api/auth";
 import router from "@/router";
@@ -172,6 +180,9 @@ const isDark = ref(settingsStore.theme === ThemeEnum.DARK); // 是否暗黑模�
 const loading = ref(false); // 按钮 loading 状态
 const isCapslock = ref(false); // 是否大写锁定
 const captchaBase64 = ref(); // 验证码图片Base64字符串
+
+const logo = ref(new URL("../../assets/logo.png", import.meta.url).href);
+const loginImage = ref(new URL("../../assets/images/login-image.svg", import.meta.url).href);
 
 const loginData = ref<LoginData>({
   username: "admin",
@@ -214,6 +225,7 @@ const loginRules = computed(() => {
 // 获取验证码
 function getCaptcha() {
   AuthAPI.getCaptcha().then((data) => {
+    console.log("captchaKey", data);
     loginData.value.captchaKey = data.captchaKey;
     captchaBase64.value = data.captchaBase64;
   });
@@ -300,7 +312,7 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  background: url("@/assets/images/login-bg.jpg") no-repeat center right;
+  background: url("@/assets/images/login-background-light.jpg") no-repeat center right;
 
   .login-header {
     position: absolute;
@@ -323,56 +335,83 @@ onMounted(() => {
     }
   }
 
-  .login-form {
+  .login-content {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 460px;
-    padding: 40px;
+    width: 960px;
     overflow: hidden;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: var(--el-box-shadow-light);
 
-    @media (width <= 460px) {
-      width: 100%;
-      padding: 0 20px;
+    @media (width <= 768px) {
+      flex-direction: column;
+      max-width: 100%;
+      height: 100vh;
+      padding: 0 30px;
+      border-radius: 0;
+      box-shadow: none;
     }
 
-    .form-title {
-      position: relative;
+    .login-img {
       display: flex;
+      flex: 3;
       align-items: center;
       justify-content: center;
-      padding: 0 0 20px;
-      text-align: center;
+      background: linear-gradient(60deg, #165dff, #6aa1ff);
+
+      @media (width <= 768px) {
+        display: none;
+      }
     }
 
-    .input-wrapper {
+    .login-form {
       display: flex;
-      align-items: center;
-      width: 100%;
-    }
-
-    .captcha-img {
-      height: 48px;
-      cursor: pointer;
-      border-top-right-radius: 6px;
-      border-bottom-right-radius: 6px;
-    }
-
-    .third-party-login {
-      display: flex;
+      flex: 2;
+      flex-direction: column;
       justify-content: center;
-      width: 100%;
-      color: var(--el-text-color-secondary);
+      min-width: 400px;
+      padding: 30px;
 
-      *:not(:first-child) {
-        margin-left: 20px;
+      @media (width <= 768px) {
+        width: 100%;
+        padding: 0 20px;
       }
 
-      .icon {
+      .form-title {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 0 20px;
+        text-align: center;
+      }
+
+      .input-wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+
+      .captcha-img {
+        height: 48px;
         cursor: pointer;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+      }
+
+      .third-party-login {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        color: var(--el-text-color-secondary);
+
+        *:not(:first-child) {
+          margin-left: 20px;
+        }
+
+        .icon {
+          cursor: pointer;
+        }
       }
     }
   }
@@ -411,9 +450,9 @@ onMounted(() => {
 
 html.dark {
   .login {
-    background: url("@/assets/images/login-bg-dark.jpg") no-repeat center right;
+    background: url("@/assets/images/login-background-dark.jpg") no-repeat center right;
 
-    .login-form {
+    .login-content {
       background: transparent;
       box-shadow: var(--el-box-shadow);
     }

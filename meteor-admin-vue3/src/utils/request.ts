@@ -36,26 +36,26 @@ service.interceptors.response.use(
       return response;
     }
 
-    const { code, data, msg } = response.data;
+    const { code, data, message } = response.data;
     if (code === ResultEnum.SUCCESS) {
       return data;
     }
 
-    ElMessage.error(msg || "系统出错");
-    return Promise.reject(new Error(msg || "Error"));
+    ElMessage.error(message || "系统出错");
+    return Promise.reject(new Error(message || "Error"));
   },
   async (error: any) => {
     // 非 2xx 状态码处理 401、403、500 等
     const { config, response } = error;
     if (response) {
-      const { code, msg } = response.data;
+      const { code, message } = response.data;
       if (code === ResultEnum.ACCESS_TOKEN_INVALID) {
         // Token 过期，刷新 Token
         return handleTokenRefresh(config);
       } else if (code === ResultEnum.REFRESH_TOKEN_INVALID) {
-        return Promise.reject(new Error(msg || "Error"));
+        return Promise.reject(new Error(message || "Error"));
       } else {
-        ElMessage.error(msg || "系统出错");
+        ElMessage.error(message || "系统出错");
       }
     }
     return Promise.reject(error.message);

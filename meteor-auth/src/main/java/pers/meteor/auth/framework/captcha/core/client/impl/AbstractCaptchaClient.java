@@ -1,5 +1,8 @@
 package pers.meteor.auth.framework.captcha.core.client.impl;
 
+import cn.hutool.captcha.generator.CodeGenerator;
+import cn.hutool.captcha.generator.MathGenerator;
+import cn.hutool.captcha.generator.RandomGenerator;
 import cn.hutool.core.util.IdUtil;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +13,7 @@ import pers.meteor.auth.model.captcha.form.CaptchaRequestForm;
 import pers.meteor.auth.model.captcha.vo.CaptchaResponse;
 import pers.meteor.common.redis.service.RedisService;
 
+import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -49,6 +53,25 @@ public abstract class AbstractCaptchaClient implements CaptchaClient {
 
     protected void saveCaptcha(String captchaKey, CaptchaModel captchaModel) {
         redisService.setCacheObject( CAPTCHA_CODE_PREFIX + captchaKey, captchaModel.getCode(), captchaProperties.getExpireSeconds(), TimeUnit.SECONDS);
+    }
+
+    protected CodeGenerator getCodeGenerator() {
+        String codeType = captchaProperties.getCode().getType();
+        int codeLength = captchaProperties.getCode().getLength();
+        if ("math".equalsIgnoreCase(codeType)) {
+            return new MathGenerator(codeLength);
+        } else if ("random".equalsIgnoreCase(codeType)) {
+            return new RandomGenerator(codeLength);
+        } else {
+            throw new IllegalArgumentException("Invalid captcha codegen type: " + codeType);
+        }
+    }
+
+    protected Font getCaptchaFont() {
+        String fontName = captchaProperties.getFont().getName();
+        int fontSize = captchaProperties.getFont().getSize();
+        int fontWight = captchaProperties.getFont().getWeight();
+        return new Font(fontName, fontWight, fontSize);
     }
 
     @Data

@@ -2,7 +2,6 @@ package pers.meteor.auth.framework.captcha.core.client.impl;
 
 import cn.hutool.captcha.AbstractCaptcha;
 import cn.hutool.captcha.CaptchaUtil;
-import cn.hutool.captcha.generator.CodeGenerator;
 import pers.meteor.auth.framework.captcha.config.CaptchaProperties;
 import pers.meteor.auth.framework.captcha.core.enums.CaptchaTypeEnum;
 import pers.meteor.auth.model.captcha.form.CaptchaRequestForm;
@@ -16,13 +15,13 @@ import java.awt.*;
 public class CircleCaptchaClient extends AbstractCaptchaClient {
     private final AbstractCaptcha captcha;
 
-    public CircleCaptchaClient(CaptchaProperties captchaProperties, RedisService redisService, CodeGenerator codeGenerator, Font captchaFont) {
+    public CircleCaptchaClient(CaptchaProperties captchaProperties, RedisService redisService) {
         super(CaptchaTypeEnum.CIRCLE.name(), captchaProperties, redisService);
         captcha = CaptchaUtil.createCircleCaptcha(captchaProperties.getWidth(), captchaProperties.getHeight(),
                 captchaProperties.getCode().getLength(), captchaProperties.getInterfereCount());
         captcha.setTextAlpha(captchaProperties.getTextAlpha());
-        captcha.setGenerator(codeGenerator);
-        captcha.setFont(captchaFont);
+        captcha.setGenerator(getCodeGenerator());
+        captcha.setFont(getCaptchaFont());
     }
 
     @Override

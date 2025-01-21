@@ -1,6 +1,5 @@
 package pers.meteor.auth.framework.captcha.core.client.impl;
 
-import cn.hutool.captcha.generator.CodeGenerator;
 import lombok.extern.slf4j.Slf4j;
 import pers.meteor.auth.framework.captcha.config.CaptchaProperties;
 import pers.meteor.auth.framework.captcha.core.client.CaptchaClient;
@@ -8,7 +7,6 @@ import pers.meteor.auth.framework.captcha.core.client.CaptchaClientFactory;
 import pers.meteor.auth.framework.captcha.core.enums.CaptchaTypeEnum;
 import pers.meteor.common.redis.service.RedisService;
 
-import java.awt.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -26,14 +24,12 @@ public class CaptchaClientFactoryImpl implements CaptchaClientFactory {
      * 构造函数
      * @param properties 属性配置
      * @param redisService 缓存服务
-     * @param codeGenerator 生成器
-     * @param font 字体
      */
-    public CaptchaClientFactoryImpl(CaptchaProperties properties, RedisService redisService, CodeGenerator codeGenerator, Font font) {
-        captchaClients.put(CaptchaTypeEnum.CIRCLE.name(), new CircleCaptchaClient(properties, redisService, codeGenerator, font));
-        captchaClients.put(CaptchaTypeEnum.LINE.name(), new LineCaptchaClient(properties, redisService, codeGenerator, font));
-        captchaClients.put(CaptchaTypeEnum.SHEAR.name(), new ShearCaptchaClient(properties, redisService, codeGenerator, font));
-        captchaClients.put(CaptchaTypeEnum.GIF.name(), new GifCaptchaClient(properties, redisService, codeGenerator, font));
+    public CaptchaClientFactoryImpl(CaptchaProperties properties, RedisService redisService) {
+        captchaClients.put(CaptchaTypeEnum.CIRCLE.name(), new CircleCaptchaClient(properties, redisService));
+        captchaClients.put(CaptchaTypeEnum.LINE.name(), new LineCaptchaClient(properties, redisService));
+        captchaClients.put(CaptchaTypeEnum.SHEAR.name(), new ShearCaptchaClient(properties, redisService));
+        captchaClients.put(CaptchaTypeEnum.GIF.name(), new GifCaptchaClient(properties, redisService));
     }
 
     @Override

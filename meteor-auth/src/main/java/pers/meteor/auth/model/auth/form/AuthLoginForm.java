@@ -10,6 +10,7 @@ import pers.meteor.common.enums.UserTypeEnum;
 import pers.meteor.common.validation.InEnum;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -41,6 +42,16 @@ public class AuthLoginForm {
  @Length(min = 4, max = 16, message = "密码长度为 4-16 位")
  private String password;
 
+ @Schema(description = "验证码 key，验证码开启时，需要传递", requiredMode = Schema.RequiredMode.REQUIRED,
+         example = "PfcH6mgr8tpXuMWFjvW6YVaqrswIuwmWI5dsVZSg7sGpWtDCUbHuDEXl3cFB1+VvCC/rAkSwK8Fad52FSuncVg==")
+ @NotEmpty(message = "验证码 key 不能为空", groups = CodeEnableGroup.class)
+ private String captchaKey;
+
+ @Schema(description = "验证码，验证码开启时，需要传递", requiredMode = Schema.RequiredMode.REQUIRED,
+         example = "PfcH6mgr8tpXuMWFjvW6YVaqrswIuwmWI5dsVZSg7sGpWtDCUbHuDEXl3cFB1+VvCC/rAkSwK8Fad52FSuncVg==")
+ @NotEmpty(message = "验证码不能为空", groups = CodeEnableGroup.class)
+ private String captchaCode;
+
  // ========== 绑定社交登录时，需要传递如下参数 ==========
 
  @Schema(description = "社交平台的类型，参见 SocialTypeEnum 枚举值", requiredMode = Schema.RequiredMode.REQUIRED, example = "10")
@@ -51,4 +62,9 @@ public class AuthLoginForm {
 
  @Schema(description = "state", requiredMode = Schema.RequiredMode.REQUIRED, example = "9b2ffbc1-7425-4155-9894-9d5c08541d62")
  private String socialState;
+
+ /**
+  * 开启验证码的 Group
+  */
+ public interface CodeEnableGroup {}
 }

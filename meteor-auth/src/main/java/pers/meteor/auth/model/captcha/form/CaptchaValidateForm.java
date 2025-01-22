@@ -15,5 +15,10 @@ public class CaptchaValidateForm {
     /**
      * 验证码ID
      */
-    private String captchaId;
+    private String captchaKey;
+
+    /**
+     * 验证码
+     */
+    private String captchaCode;
 }

@@ -5,18 +5,11 @@ const AUTH_BASE_URL = "/auth";
 const AuthAPI = {
   /** 登录接口*/
   login(data: LoginData) {
-    const formData = new FormData();
-    formData.append("username", data.username);
-    formData.append("password", data.password);
-    formData.append("captchaKey", data.captchaKey);
-    formData.append("captchaCode", data.captchaCode);
+    data.clientId = import.meta.env.VITE_APP_CLIENT_ID;
     return request<any, LoginResult>({
       url: `${AUTH_BASE_URL}/login`,
       method: "post",
-      data: formData,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+      data: data,
     });
   },
 
@@ -53,8 +46,12 @@ export default AuthAPI;
 
 /** 登录请求参数 */
 export interface LoginData {
+  /** 客户端ID */
+  clientId?: string;
+  /** 用户类型 */
+  userType: number;
   /** 用户名 */
-  username: string;
+  account: string;
   /** 密码 */
   password: string;
   /** 验证码缓存key */

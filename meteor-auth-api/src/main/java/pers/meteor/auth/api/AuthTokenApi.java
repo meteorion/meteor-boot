@@ -22,7 +22,7 @@ import javax.validation.Valid;
 @Tag(name = "RPC 服务 - 令牌")
 public interface AuthTokenApi {
 
-    String PREFIX = ApiConstants.PREFIX + "/auth/token";
+    String PREFIX = ApiConstants.PREFIX + "/token";
 
     String URL_CHECK = "http://" + ApiConstants.NAME + PREFIX + "/check";
 

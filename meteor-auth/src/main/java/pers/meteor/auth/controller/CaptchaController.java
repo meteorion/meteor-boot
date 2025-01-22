@@ -11,6 +11,7 @@ import pers.meteor.auth.model.captcha.form.CaptchaSmsValidateForm;
 import pers.meteor.auth.model.captcha.form.CaptchaValidateForm;
 import pers.meteor.auth.model.captcha.vo.CaptchaResponse;
 import pers.meteor.auth.service.CaptchaService;
+import pers.meteor.common.pojo.response.Response;
 import pers.meteor.common.pojo.response.SingleResponse;
 import pers.meteor.security.core.utils.SecurityUtils;
 
@@ -37,8 +38,9 @@ public class CaptchaController {
 
     @Operation(summary = "校验验证码")
     @PostMapping("/check-captcha")
-    public SingleResponse<CaptchaResponse> checkCaptcha(@RequestBody @Valid CaptchaValidateForm validateForm) {
-        return SingleResponse.success(captchaService.validateCaptcha(validateForm));
+    public Response checkCaptcha(@RequestBody @Valid CaptchaValidateForm validateForm) {
+        boolean validateCaptcha = captchaService.validateCaptcha(validateForm);
+        return validateCaptcha ? Response.success() : Response.error("验证码错误");
     }
 
     @PostMapping("/send-sms-code")

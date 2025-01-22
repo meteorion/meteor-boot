@@ -44,6 +44,7 @@ meteor:
       secret: 3f9b8e7c6d5a4f3b2e1c0d9a
     permit-all-urls:
       - /auth/**
+      - /rpc-api/auth/**
 
 # 验证码配置
 captcha:

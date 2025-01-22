@@ -13,12 +13,12 @@ public interface AuthLogService {
 
     /**
      * 保存登录记录
-     *
-     * @param userDetail      用户信息
-     * @param loginLogType    登录类型
+     * @param userId          用户ID
+     * @param account         登录账号
+     * @param loginLogType 登录类型
      * @param loginResult     登录结果
      */
-    void saveLoginRecord(AuthUserDetail userDetail, LoginLogTypeEnum loginLogType, LoginResultEnum loginResult);
+    void saveLoginRecord(Long userId, String account, LoginLogTypeEnum loginLogType, LoginResultEnum loginResult);
 
     /**
      * 保存登出记录

@@ -14,7 +14,7 @@ import pers.meteor.common.enums.LoginResultEnum;
 public class AuthLogServiceImpl implements AuthLogService {
 
     @Override
-    public void saveLoginRecord(AuthUserDetail userDetail, LoginLogTypeEnum loginLogType, LoginResultEnum loginResult) {
+    public void saveLoginRecord(Long userId, String account, LoginLogTypeEnum loginLogType, LoginResultEnum loginResult) {
         log.info("登录结果：{}", loginResult);
     }
 

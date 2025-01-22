@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import pers.meteor.auth.framework.captcha.config.CaptchaProperties;
 import pers.meteor.auth.framework.captcha.core.client.CaptchaClient;
 import pers.meteor.auth.model.captcha.form.CaptchaRequestForm;
+import pers.meteor.auth.model.captcha.form.CaptchaValidateForm;
 import pers.meteor.auth.model.captcha.vo.CaptchaResponse;
 import pers.meteor.common.redis.service.RedisService;
 
@@ -45,6 +46,11 @@ public abstract class AbstractCaptchaClient implements CaptchaClient {
                 .build();
     }
 
+    @Override
+    public boolean verification(CaptchaValidateForm validateForm) {
+        return getCodeGenerator().verify(getCaptchaCode(validateForm.getCaptchaKey()), validateForm.getCaptchaCode());
+    }
+
     protected abstract CaptchaModel createCaptcha(CaptchaRequestForm requestForm);
 
     protected String getCaptchaKey(CaptchaRequestForm requestForm) {
@@ -53,6 +59,10 @@ public abstract class AbstractCaptchaClient implements CaptchaClient {
 
     protected void saveCaptcha(String captchaKey, CaptchaModel captchaModel) {
         redisService.setCacheObject( CAPTCHA_CODE_PREFIX + captchaKey, captchaModel.getCode(), captchaProperties.getExpireSeconds(), TimeUnit.SECONDS);
+    }
+
+    protected String getCaptchaCode(String captchaKey) {
+        return redisService.getCacheObject(CAPTCHA_CODE_PREFIX + captchaKey);
     }
 
     protected CodeGenerator getCodeGenerator() {

@@ -53,16 +53,16 @@
           </div>
 
           <!-- 用户名 -->
-          <el-form-item prop="username">
+          <el-form-item prop="account">
             <div class="input-wrapper">
               <el-icon class="mx-2">
                 <User />
               </el-icon>
               <el-input
-                ref="username"
-                v-model="loginData.username"
-                :placeholder="$t('login.username')"
-                name="username"
+                ref="account"
+                v-model="loginData.account"
+                :placeholder="$t('login.account')"
+                name="account"
                 size="large"
                 class="h-[48px]"
               />
@@ -185,7 +185,8 @@ const logo = ref(new URL("../../assets/logo.png", import.meta.url).href);
 const loginImage = ref(new URL("../../assets/images/login-image.svg", import.meta.url).href);
 
 const loginData = ref<LoginData>({
-  username: "admin",
+  userType: 2,
+  account: "admin",
   password: "123456",
   captchaKey: "",
   captchaCode: "",
@@ -193,7 +194,7 @@ const loginData = ref<LoginData>({
 
 const loginRules = computed(() => {
   return {
-    username: [
+    account: [
       {
         required: true,
         trigger: "blur",
@@ -225,7 +226,6 @@ const loginRules = computed(() => {
 // 获取验证码
 function getCaptcha() {
   AuthAPI.getCaptcha().then((data) => {
-    console.log("captchaKey", data);
     loginData.value.captchaKey = data.captchaKey;
     captchaBase64.value = data.captchaBase64;
   });
@@ -294,8 +294,8 @@ function checkCapslock(event: KeyboardEvent) {
 }
 
 // 设置登录凭证
-const setLoginCredentials = (username: string, password: string) => {
-  loginData.value.username = username;
+const setLoginCredentials = (account: string, password: string) => {
+  loginData.value.account = account;
   loginData.value.password = password;
 };
 

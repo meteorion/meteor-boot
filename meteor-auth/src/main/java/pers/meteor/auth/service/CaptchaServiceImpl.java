@@ -21,14 +21,20 @@ public class CaptchaServiceImpl implements CaptchaService {
     private final CaptchaClientFactory captchaClientFactory;
 
     @Override
+    public boolean enabledCaptcha() {
+        return captchaProperties.isEnabled();
+    }
+
+    @Override
     public CaptchaResponse getCaptcha(CaptchaRequestForm requestForm) {
         CaptchaClient captchaClient = captchaClientFactory.getCaptchaClient(captchaProperties.getType());
         return captchaClient.generate(requestForm);
     }
 
     @Override
-    public CaptchaResponse validateCaptcha(CaptchaValidateForm validateForm) {
-        return null;
+    public boolean validateCaptcha(CaptchaValidateForm validateForm) {
+        CaptchaClient captchaClient = captchaClientFactory.getCaptchaClient(captchaProperties.getType());
+        return captchaClient.verification(validateForm);
     }
 
     @Override

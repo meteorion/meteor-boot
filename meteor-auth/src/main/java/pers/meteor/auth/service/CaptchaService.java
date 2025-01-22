@@ -12,6 +12,13 @@ import pers.meteor.auth.model.captcha.vo.CaptchaResponse;
 public interface CaptchaService {
 
     /**
+     * 是否开启验证码
+     *
+     * @return /
+     */
+    boolean enabledCaptcha();
+
+    /**
      * 获取验证码
      * @param requestForm /
      * @return /
@@ -21,9 +28,8 @@ public interface CaptchaService {
     /**
      * 校验验证码
      * @param validateForm /
-     * @return /
      */
-    CaptchaResponse validateCaptcha(CaptchaValidateForm validateForm);
+    boolean validateCaptcha(CaptchaValidateForm validateForm);
 
     /**
      * 给用户发送短信验证码

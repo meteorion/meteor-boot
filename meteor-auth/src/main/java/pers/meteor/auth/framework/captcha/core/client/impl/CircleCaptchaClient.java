@@ -7,8 +7,6 @@ import pers.meteor.auth.framework.captcha.core.enums.CaptchaTypeEnum;
 import pers.meteor.auth.model.captcha.form.CaptchaRequestForm;
 import pers.meteor.common.redis.service.RedisService;
 
-import java.awt.*;
-
 /**
  * @author meteor
  */
@@ -26,6 +24,7 @@ public class CircleCaptchaClient extends AbstractCaptchaClient {
 
     @Override
     protected CaptchaModel createCaptcha(CaptchaRequestForm requestForm) {
+        captcha.createCode();
         return CaptchaModel.builder()
                 .code(captcha.getCode())
                 .codeImageBase64(captcha.getImageBase64Data())

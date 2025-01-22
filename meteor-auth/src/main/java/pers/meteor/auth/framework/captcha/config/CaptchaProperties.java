@@ -21,6 +21,11 @@ public class CaptchaProperties {
     private String type;
 
     /**
+     * 是否启用验证码
+     */
+    private boolean enabled = true;
+
+    /**
      * 验证码图片宽度
      */
     private int width;

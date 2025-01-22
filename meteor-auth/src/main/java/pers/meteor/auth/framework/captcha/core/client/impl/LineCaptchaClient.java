@@ -26,6 +26,7 @@ public class LineCaptchaClient extends AbstractCaptchaClient {
 
     @Override
     protected CaptchaModel createCaptcha(CaptchaRequestForm requestForm) {
+        captcha.createCode();
         return CaptchaModel.builder()
                 .code(captcha.getCode())
                 .codeImageBase64(captcha.getImageBase64Data())

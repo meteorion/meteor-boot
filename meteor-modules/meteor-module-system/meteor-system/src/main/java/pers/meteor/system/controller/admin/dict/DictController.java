@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  */
 @Tag(name = "06.字典接口")
 @RestController
-@RequestMapping("/dict")
+@RequestMapping("/system/dict")
 @RequiredArgsConstructor
 public class DictController {
 

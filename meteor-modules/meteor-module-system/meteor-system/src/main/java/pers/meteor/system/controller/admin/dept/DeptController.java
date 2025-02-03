@@ -24,7 +24,7 @@ import java.util.List;
  */
 @Tag(name = "05.部门接口")
 @RestController
-@RequestMapping("/dept")
+@RequestMapping("/system/dept")
 @RequiredArgsConstructor
 public class DeptController {
 

@@ -30,7 +30,7 @@ import javax.validation.Valid;
  */
 @Tag(name = "12.通知公告接口")
 @RestController
-@RequestMapping("/notices")
+@RequestMapping("/system/notices")
 @RequiredArgsConstructor
 public class NoticeController {
 

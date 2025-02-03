@@ -33,7 +33,7 @@ public class SecurityConstants
     /**
      * 授权信息字段
      */
-    public static final String AUTHORIZATION_HEADER = "authorization";
+    public static final String AUTHORIZATION_HEADER = "Authorization";
 
     /**
      * 请求来源

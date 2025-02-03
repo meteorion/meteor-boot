@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Tag(name = "03.角色接口")
 @RestController
-@RequestMapping("/roles")
+@RequestMapping("/system/roles")
 @RequiredArgsConstructor
 public class RoleController {
 

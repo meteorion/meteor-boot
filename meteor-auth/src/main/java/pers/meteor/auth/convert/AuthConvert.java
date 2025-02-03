@@ -20,5 +20,18 @@ public interface AuthConvert {
 
     AccessTokenCheckResult convert(AccessToken accessToken);
 
-    AuthLoginVO convertAuthLogin(AccessToken accessToken, String openId);
+    default AuthLoginVO convert(AccessToken accessToken, String openId) {
+        if ( accessToken == null) {
+            return null;
+        }
+
+        AuthLoginVO authLoginVO = new AuthLoginVO();
+        authLoginVO.setUserId(accessToken.getUserId());
+        authLoginVO.setAccessToken(accessToken.getAccessToken());
+        authLoginVO.setRefreshToken(accessToken.getRefreshToken());
+        authLoginVO.setExpiresTime(accessToken.getExpiresTime());
+        authLoginVO.setOpenId(openId);
+
+        return authLoginVO;
+    }
 }

@@ -25,7 +25,7 @@ import java.util.List;
  */
 @Tag(name = "04.菜单接口")
 @RestController
-@RequestMapping("/menus")
+@RequestMapping("/system/menus")
 @RequiredArgsConstructor
 @Slf4j
 public class MenuController {

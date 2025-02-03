@@ -26,7 +26,7 @@ import java.util.List;
  */
 @Tag(name = "07.字典数据接口")
 @RestController
-@RequestMapping("/dict-data")
+@RequestMapping("/system/dict-data")
 @RequiredArgsConstructor
 public class DictDataController {
 

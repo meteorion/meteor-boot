@@ -2,7 +2,7 @@ package pers.meteor.pay.cmd;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import pers.meteor.common.core.pojo.command.Command;
+import pers.meteor.common.pojo.command.Command;
 
 /**
  * @author meteor

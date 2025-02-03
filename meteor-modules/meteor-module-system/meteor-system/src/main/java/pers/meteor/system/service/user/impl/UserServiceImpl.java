@@ -217,20 +217,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, AdminUser> implemen
     @Override
     public UserInfoVO getCurrentUserInfo() {
 
-        String username = SecurityUtils.getLoginUserNickName();
-
         // 获取登录用户基础信息
-        AdminUser user = this.getOne(new LambdaQueryWrapper<AdminUser>()
-                .eq(AdminUser::getUsername, username)
-                .select(
-                        AdminUser::getId,
-                        AdminUser::getUsername,
-                        AdminUser::getNickname,
-                        AdminUser::getAvatar
-                )
-        );
+        AdminUser adminUser = userMapper.selectById(SecurityUtils.getLoginUserId());
+
+        if (adminUser == null) {
+            throw exception(USER_NOT_EXISTS);
+        }
         // entity->VO
-        UserInfoVO userInfoVO = userConverter.toUserInfoVo(user);
+        UserInfoVO userInfoVO = userConverter.toUserInfoVo(adminUser);
 
         // 用户角色集合
         Set<String> roles = SecurityUtils.getRoles();

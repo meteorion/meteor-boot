@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class AuthLoginVO {
 
     @Schema(description = "用户编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "1024")
-    private Integer userId;
+    private Long userId;
 
     @Schema(description = "访问令牌", requiredMode = Schema.RequiredMode.REQUIRED, example = "happy")
     private String accessToken;

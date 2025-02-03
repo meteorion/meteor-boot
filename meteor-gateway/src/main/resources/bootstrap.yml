@@ -52,17 +52,17 @@ spring:
           filters:
             - RewritePath=/auth/v3/api-docs, /v3/api-docs
         # 基础设施服务
-        - id: meteor-shared-api
+        - id: shared-admin-api
           uri: lb://shared-server
           predicates:
-            - Path=/shared/**
+            - Path=/admin-api/shared/**
           filters:
             - RewritePath=/shared/v3/api-docs, /v3/api-docs
         # 系统模块
-        - id: meteor-system-api
+        - id: system-admin-api
           uri: lb://system-server
           predicates:
-            - Path=/system/**
+            - Path=/admin-api/system/**
           filters:
             - RewritePath=/system/v3/api-docs, /v3/api-docs
         # 支付中心
@@ -81,7 +81,7 @@ knife4j:
         url: /auth/v3/api-docs
       - name: shared-server
         service-name: shared-server
-        url: /shared/v3/api-docs
+        url: /admin-api/shared/v3/api-docs
       - name: system-server
         service-name: system-server
-        url: /system/v3/api-docs
+        url: /admin-api/system/v3/api-docs

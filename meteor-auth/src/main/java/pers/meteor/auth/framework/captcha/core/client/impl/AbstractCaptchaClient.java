@@ -48,7 +48,11 @@ public abstract class AbstractCaptchaClient implements CaptchaClient {
 
     @Override
     public boolean verification(CaptchaValidateForm validateForm) {
-        return getCodeGenerator().verify(getCaptchaCode(validateForm.getCaptchaKey()), validateForm.getCaptchaCode());
+        String captchaCode = getCaptchaCode(validateForm.getCaptchaKey());
+        if (captchaCode == null) {
+            return false;
+        }
+        return getCodeGenerator().verify(captchaCode, validateForm.getCaptchaCode());
     }
 
     protected abstract CaptchaModel createCaptcha(CaptchaRequestForm requestForm);

@@ -31,7 +31,7 @@
         <result column="dict_code" property="dictCode"/>
         <collection property="dictDataList"
                     column="{dictCode=dict_code}"
-                    select="com.youlai.boot.system.mapper.DictDataMapper.getDictDataList">
+                    select="pers.meteor.system.mapper.dict.DictDataMapper.getDictDataList">
         </collection>
     </resultMap>
 

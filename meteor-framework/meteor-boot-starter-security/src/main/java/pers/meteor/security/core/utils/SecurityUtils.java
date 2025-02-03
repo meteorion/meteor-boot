@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.util.StringUtils;
 import pers.meteor.auth.api.dto.AuthUserDetail;
 import pers.meteor.common.constant.SecurityConstants;
 import pers.meteor.common.utils.ServletUtils;
@@ -60,7 +61,7 @@ public class SecurityUtils {
         if (StrUtil.isEmpty(token)) {
             token = request.getParameter(parameterName);
         }
-        if (!org.springframework.util.StringUtils.hasText(token)) {
+        if (!StringUtils.hasText(token)) {
             return null;
         }
         // 2. 去除 Token 中带的 Bearer

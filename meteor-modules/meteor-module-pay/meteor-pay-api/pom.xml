@@ -22,5 +22,9 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+        <dependency>
+            <groupId>pers.meteor</groupId>
+            <artifactId>meteor-common</artifactId>
+        </dependency>
     </dependencies>
 </project>

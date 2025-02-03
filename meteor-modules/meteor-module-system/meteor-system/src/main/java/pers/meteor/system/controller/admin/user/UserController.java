@@ -41,7 +41,7 @@ import java.util.List;
  */
 @Tag(name = "02.用户接口")
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/system/users")
 @RequiredArgsConstructor
 public class UserController {
 

@@ -79,7 +79,7 @@ public class AuthServiceImpl implements AuthService {
         // 创建令牌
         AccessToken accessToken = tokenService.createAccessToken(authUser);
 
-        return AuthConvert.INSTANCE.convertAuthLogin(accessToken, authUser.getOpenId());
+        return AuthConvert.INSTANCE.convert(accessToken, authUser.getOpenId());
     }
 
     @Override

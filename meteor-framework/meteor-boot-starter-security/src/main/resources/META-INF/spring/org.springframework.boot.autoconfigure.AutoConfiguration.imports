@@ -1,3 +1,0 @@
-pers.meteor.security.config.MeteorSecurityAutoConfiguration
-pers.meteor.security.config.MeteorSecurityFeignAutoConfiguration
-pers.meteor.security.config.MeteorWebSecurityConfigurerAdapter

@@ -1,3 +1,0 @@
-pers.meteor.mq.rabbitmq.config.RabbitMQAutoConfiguration
-pers.meteor.mq.redis.config.RedisMQConsumerAutoConfiguration
-pers.meteor.mq.redis.config.RedisMQProducerAutoConfiguration

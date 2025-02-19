@@ -1,6 +1,5 @@
 pers.meteor.common.config.TaskExecutorConfiguration
 pers.meteor.common.config.JacksonConfiguration
 pers.meteor.common.config.RedisTemplateConfiguration
-pers.meteor.common.config.RestTemplateConfiguration
 pers.meteor.common.util.SpringContextHolder
 pers.meteor.common.config.WebMvcConfiguration

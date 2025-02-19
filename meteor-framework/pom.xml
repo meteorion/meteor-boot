@@ -18,6 +18,7 @@
     <modules>
         <module>meteor-common-dependencies</module>
         <module>meteor-common</module>
+        <module>meteor-boot-starter-security</module>
     </modules>
 
     <dependencyManagement>

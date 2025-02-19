@@ -2,57 +2,107 @@ package pers.meteor.common.constant;
 
 public interface SecurityConstants {
 	/**
-	 * 用户ID字段
+	 * 角色前缀
+	 */
+	String ROLE = "ROLE_";
+
+	/**
+	 * 前缀
+	 */
+	String PROJECT_PREFIX = "pig";
+
+	/**
+	 * 项目的license
+	 */
+	String PROJECT_LICENSE = "https://pig4cloud.com";
+
+	/**
+	 * 内部
+	 */
+	String FROM_IN = "Y";
+
+	/**
+	 * 标志
+	 */
+	String FROM = "from";
+
+	/**
+	 * 默认登录URL
+	 */
+	String OAUTH_TOKEN_URL = "/oauth2/token";
+
+	/**
+	 * grant_type
+	 */
+	String REFRESH_TOKEN = "refresh_token";
+
+	/**
+	 * password 模式
+	 */
+	String PASSWORD = "password";
+
+	/**
+	 * 手机号登录
+	 */
+	String MOBILE = "mobile";
+
+	/**
+	 * {bcrypt} 加密的特征码
+	 */
+	String BCRYPT = "{bcrypt}";
+
+	/**
+	 * {noop} 加密的特征码
+	 */
+	String NOOP = "{noop}";
+
+	/**
+	 * 用户名
+	 */
+	String USERNAME = "username";
+
+	/**
+	 * 用户信息
+	 */
+	String DETAILS_USER = "user_info";
+
+	/**
+	 * 用户ID
 	 */
 	String DETAILS_USER_ID = "user_id";
 
-	String DETAILS_USER_TYPE = "user_type";
-
-	String DETAILS_CLIENT_ID = "client_id";
-
-	String DETAILS_ROLE = "role";
-
-	String DETAILS_PERMISSIONS = "permissions";
-
-	String DETAILS_MOBILE = "mobile";
 	/**
-	 * 用户名字段
+	 * 协议字段
 	 */
-	String DETAILS_USERNAME = "username";
-
-	String DETAILS_USER_DEPT_ID = "dept_id";
-
-	String DETAILS_REFREST_TOKEN = "refresh_token";
+	String DETAILS_LICENSE = "license";
 
 	/**
-	 * 授权信息字段
+	 * 验证码有效期,默认 60秒
 	 */
-	String AUTHORIZATION_HEADER = "Authorization";
+	long CODE_TIME = 60;
 
 	/**
-	 * 请求来源
+	 * 验证码长度
 	 */
-	String FROM_SOURCE = "from-source";
+	String CODE_SIZE = "6";
 
 	/**
-	 * 内部请求
+	 * 客户端模式
 	 */
-	String INNER = "inner";
+	String CLIENT_CREDENTIALS = "client_credentials";
 
 	/**
-	 * 用户标识
+	 * 客户端ID
 	 */
-	String USER_KEY = "user_key";
+	String CLIENT_ID = "clientId";
 
 	/**
-	 * 登录用户
+	 * 短信登录 参数名称
 	 */
-	String LOGIN_USER = "login_user";
+	String SMS_PARAMETER_NAME = "mobile";
 
 	/**
-	 * 角色权限
+	 * 授权码模式confirm
 	 */
-	String ROLE_PERMISSION = "role_permission";
-
-	String HEADER_TENANT_ID = "tenant-id";
+	String CUSTOM_CONSENT_PAGE_URI = "/oauth2/confirm_access";
 }

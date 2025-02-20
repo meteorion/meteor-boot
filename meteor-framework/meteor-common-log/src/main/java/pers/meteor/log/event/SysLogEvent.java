@@ -1,7 +1,7 @@
 package pers.meteor.log.event;
 
 import org.springframework.context.ApplicationEvent;
-import pers.meteor.auth.api.log.vo.SysLog;
+import pers.meteor.system.api.log.vo.SysLog;
 
 /**
  * @author lengleng 系统日志事件

@@ -1,4 +1,4 @@
-package pers.meteor.auth;
+package pers.meteor.system;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,11 +8,11 @@ import pres.meteor.feign.annotation.EnableMeteorFeignClients;
 @EnableMeteorFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
-public class MeteorAuthApplication {
+public class MeteorSystemApplication {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(MeteorAuthApplication.class, args);
+        SpringApplication.run(MeteorSystemApplication.class, args);
     }
 
 }

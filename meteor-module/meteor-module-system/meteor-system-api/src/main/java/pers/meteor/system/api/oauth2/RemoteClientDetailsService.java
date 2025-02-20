@@ -1,9 +1,9 @@
-package pers.meteor.auth.api.oauth2;
+package pers.meteor.system.api.oauth2;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import pers.meteor.auth.api.oauth2.dto.OauthClientDetailsDTO;
+import pers.meteor.system.api.oauth2.dto.OauthClientDetailsDTO;
 import pers.meteor.common.constant.ServiceNameConstants;
 import pers.meteor.common.entity.R;
 
@@ -11,7 +11,7 @@ import pers.meteor.common.entity.R;
  * @author lengleng
  * @date 2020/12/05
  */
-@FeignClient(contextId = "remoteClientDetailsService", value = ServiceNameConstants.UPMS_SERVICE)
+@FeignClient(contextId = "remoteClientDetailsService", value = ServiceNameConstants.SYSTEM_SERVICE)
 public interface RemoteClientDetailsService {
 
 	/**

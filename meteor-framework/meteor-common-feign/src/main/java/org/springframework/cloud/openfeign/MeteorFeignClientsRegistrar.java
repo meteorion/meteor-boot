@@ -30,14 +30,13 @@ import java.util.Map;
  * <p>
  * feign 自动配置功能 from mica
  */
+@Getter
 public class MeteorFeignClientsRegistrar implements ImportBeanDefinitionRegistrar, BeanClassLoaderAware, EnvironmentAware {
 
 	private final static String BASE_URL = "http://127.0.0.1:${server.port}${server.servlet.context-path}";
 
-	@Getter
 	private ClassLoader beanClassLoader;
 
-	@Getter
 	private Environment environment;
 
 	@Override

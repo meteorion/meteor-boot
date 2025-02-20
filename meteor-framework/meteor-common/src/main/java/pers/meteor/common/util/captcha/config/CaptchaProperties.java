@@ -1,8 +1,11 @@
 package pers.meteor.common.util.captcha.config;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
+import pers.meteor.common.util.captcha.core.enums.CaptchaTypeEnum;
 
 /**
  * 验证码 属性配置
@@ -17,7 +20,7 @@ public class CaptchaProperties {
     /**
      * 验证码类型  circle-圆圈干扰验证码|gif-Gif验证码|line-干扰线验证码|shear-扭曲干扰验证码
      */
-    private String type;
+    private String type = CaptchaTypeEnum.CIRCLE.name();
 
     /**
      * 是否启用验证码
@@ -27,41 +30,43 @@ public class CaptchaProperties {
     /**
      * 验证码图片宽度
      */
-    private int width;
+    private int width = 120;
     /**
      * 验证码图片高度
      */
-    private int height;
+    private int height = 40;
 
     /**
      * 干扰线数量
      */
-    private int interfereCount;
+    private int interfereCount = 2;
 
     /**
      * 文本透明度
      */
-    private Float textAlpha;
+    private Float textAlpha = 0.8F;
 
     /**
      * 验证码过期时间，单位：秒
      */
-    private Long expireSeconds;
+    private Long expireSeconds = 120L;
 
     /**
      * 验证码字符配置
      */
-    private CodeProperties code;
+    private CodeProperties code = new CodeProperties("math", 1);
 
     /**
      * 验证码字体
      */
-    private FontProperties font;
+    private FontProperties font = new FontProperties("SansSerif", 1, 24);
 
     /**
      * 验证码字符配置
      */
     @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class CodeProperties {
         /**
          * 验证码字符类型 math-算术|random-随机字符串
@@ -77,6 +82,8 @@ public class CaptchaProperties {
      * 验证码字体配置
      */
     @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class FontProperties {
         /**
          * 字体名称

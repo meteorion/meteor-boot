@@ -8,7 +8,7 @@ import org.springframework.security.authentication.event.LogoutSuccessEvent;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.stereotype.Component;
-import pers.meteor.auth.api.log.vo.SysLog;
+import pers.meteor.system.api.log.vo.SysLog;
 import pers.meteor.common.constant.CommonConstants;
 import pers.meteor.common.util.SpringContextHolder;
 import pers.meteor.common.util.WebUtils;

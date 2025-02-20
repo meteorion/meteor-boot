@@ -8,7 +8,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import pers.meteor.auth.api.user.vo.AdminUserVO;
+import pers.meteor.system.api.user.vo.AdminUserVO;
 import pers.meteor.common.constant.CommonConstants;
 import pers.meteor.common.constant.SecurityConstants;
 import pers.meteor.common.entity.R;

@@ -14,11 +14,11 @@ import org.springframework.security.oauth2.server.authorization.client.Registere
 import org.springframework.security.oauth2.server.authorization.settings.ClientSettings;
 import org.springframework.security.oauth2.server.authorization.settings.OAuth2TokenFormat;
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
-import pers.meteor.auth.api.oauth2.RemoteClientDetailsService;
-import pers.meteor.auth.api.oauth2.dto.OauthClientDetailsDTO;
 import pers.meteor.common.constant.CacheConstants;
 import pers.meteor.common.constant.SecurityConstants;
 import pers.meteor.common.util.RetOps;
+import pers.meteor.system.api.oauth2.RemoteClientDetailsService;
+import pers.meteor.system.api.oauth2.dto.OauthClientDetailsDTO;
 
 import java.time.Duration;
 import java.util.Arrays;

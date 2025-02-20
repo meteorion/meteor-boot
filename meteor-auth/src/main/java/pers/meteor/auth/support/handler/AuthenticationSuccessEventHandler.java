@@ -15,7 +15,7 @@ import org.springframework.security.oauth2.core.OAuth2RefreshToken;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AccessTokenResponse;
 import org.springframework.security.oauth2.server.authorization.authentication.OAuth2AccessTokenAuthenticationToken;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import pers.meteor.auth.api.log.vo.SysLog;
+import pers.meteor.system.api.log.vo.SysLog;
 import pers.meteor.common.constant.CommonConstants;
 import pers.meteor.common.constant.SecurityConstants;
 import pers.meteor.common.util.SpringContextHolder;

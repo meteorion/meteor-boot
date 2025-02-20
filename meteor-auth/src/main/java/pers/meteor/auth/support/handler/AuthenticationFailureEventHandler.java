@@ -13,7 +13,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import pers.meteor.auth.api.log.vo.SysLog;
+import pers.meteor.system.api.log.vo.SysLog;
 import pers.meteor.common.constant.CommonConstants;
 import pers.meteor.common.entity.R;
 import pers.meteor.common.util.SpringContextHolder;

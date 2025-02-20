@@ -30,9 +30,9 @@ import org.springframework.security.web.authentication.preauth.PreAuthenticatedA
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import pers.meteor.auth.api.oauth2.RemoteClientDetailsService;
-import pers.meteor.auth.api.oauth2.dto.OAuthToken;
-import pers.meteor.auth.api.oauth2.dto.OauthClientDetailsDTO;
+import pers.meteor.system.api.oauth2.RemoteClientDetailsService;
+import pers.meteor.system.api.oauth2.dto.OAuthToken;
+import pers.meteor.system.api.oauth2.dto.OauthClientDetailsDTO;
 import pers.meteor.auth.support.handler.AuthenticationFailureEventHandler;
 import pers.meteor.common.constant.CacheConstants;
 import pers.meteor.common.constant.CommonConstants;

@@ -1,4 +1,4 @@
-package pers.meteor.auth.api.oauth2.dto;
+package pers.meteor.system.api.oauth2.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

@@ -15,5 +15,6 @@
 
     <modules>
         <module>meteor-system-api</module>
+        <module>meteor-system-server</module>
     </modules>
 </project>

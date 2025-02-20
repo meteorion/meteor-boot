@@ -2,7 +2,7 @@ package pers.meteor.log.event;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import pers.meteor.auth.api.log.vo.SysLog;
+import pers.meteor.system.api.log.vo.SysLog;
 
 /**
  * spring event log

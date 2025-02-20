@@ -1,6 +1,6 @@
 package pers.meteor.log;
 
-import pers.meteor.auth.api.log.RemoteLogService;
+import pers.meteor.system.api.log.RemoteLogService;
 import pers.meteor.log.aspect.SysLogAspect;
 import pers.meteor.log.config.MeteorLogProperties;
 import pers.meteor.log.event.SysLogListener;

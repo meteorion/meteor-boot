@@ -1,3 +1,3 @@
-pers.meteor.auth.api.oauth2.RemoteClientDetailsService
-pers.meteor.auth.api.log.RemoteLogService
-pers.meteor.auth.api.user.RemoteUserService
+pers.meteor.system.api.oauth2.RemoteClientDetailsService
+pers.meteor.system.api.log.RemoteLogService
+pers.meteor.system.api.user.RemoteUserService

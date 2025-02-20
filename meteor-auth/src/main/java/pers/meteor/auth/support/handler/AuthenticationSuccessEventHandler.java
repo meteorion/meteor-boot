@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @Slf4j
-public class PigAuthenticationSuccessEventHandler implements AuthenticationSuccessHandler {
+public class AuthenticationSuccessEventHandler implements AuthenticationSuccessHandler {
 
 	private final HttpMessageConverter<OAuth2AccessTokenResponse> accessTokenHttpResponseConverter = new CustomOAuth2AccessTokenResponseHttpMessageConverter();
 

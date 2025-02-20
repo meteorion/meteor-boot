@@ -33,7 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pers.meteor.auth.api.oauth2.RemoteClientDetailsService;
 import pers.meteor.auth.api.oauth2.dto.OAuthToken;
 import pers.meteor.auth.api.oauth2.dto.OauthClientDetailsDTO;
-import pers.meteor.auth.support.handler.PigAuthenticationFailureEventHandler;
+import pers.meteor.auth.support.handler.AuthenticationFailureEventHandler;
 import pers.meteor.common.constant.CacheConstants;
 import pers.meteor.common.constant.CommonConstants;
 import pers.meteor.common.entity.PageR;
@@ -63,7 +63,7 @@ public class TokenEndpoint {
 
 	private final HttpMessageConverter<OAuth2AccessTokenResponse> accessTokenHttpResponseConverter = new OAuth2AccessTokenResponseHttpMessageConverter();
 
-	private final AuthenticationFailureHandler authenticationFailureHandler = new PigAuthenticationFailureEventHandler();
+	private final AuthenticationFailureHandler authenticationFailureHandler = new AuthenticationFailureEventHandler();
 
 	private final OAuth2AuthorizationService authorizationService;
 

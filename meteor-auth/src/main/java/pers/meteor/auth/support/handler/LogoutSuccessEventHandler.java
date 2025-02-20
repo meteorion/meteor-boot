@@ -20,7 +20,7 @@ import pers.meteor.log.util.SysLogUtils;
  */
 @Slf4j
 @Component
-public class PigLogoutSuccessEventHandler implements ApplicationListener<LogoutSuccessEvent> {
+public class LogoutSuccessEventHandler implements ApplicationListener<LogoutSuccessEvent> {
 
 	@Override
 	public void onApplicationEvent(LogoutSuccessEvent event) {

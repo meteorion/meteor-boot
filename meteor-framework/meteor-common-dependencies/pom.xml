@@ -51,7 +51,22 @@
 			</dependency>
 			<dependency>
 				<groupId>pers.meteor</groupId>
-				<artifactId>meteor-boot-starter-security</artifactId>
+				<artifactId>meteor-common-security</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>pers.meteor</groupId>
+				<artifactId>meteor-common-feign</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>pers.meteor</groupId>
+				<artifactId>meteor-common-log</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>pers.meteor</groupId>
+				<artifactId>meteor-common-mybatis</artifactId>
 				<version>${revision}</version>
 			</dependency>
 			<dependency>

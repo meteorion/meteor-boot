@@ -40,45 +40,48 @@ public class R<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private int code;
+	protected boolean success;
 
-	private String msg;
+	protected int code;
 
-	private T data;
+	protected String msg;
+
+	protected T data;
 
 	public static <T> R<T> ok() {
-		return restResult(null, GlobalErrorCode.SUCCESS.getCode(), null);
+		return restResult(null, GlobalErrorCode.SUCCESS.getCode(), null, true);
 	}
 
 	public static <T> R<T> ok(T data) {
-		return restResult(data, GlobalErrorCode.SUCCESS.getCode(), null);
+		return restResult(data, GlobalErrorCode.SUCCESS.getCode(), null, true);
 	}
 
 	public static <T> R<T> ok(T data, String msg) {
-		return restResult(data, GlobalErrorCode.SUCCESS.getCode(), msg);
+		return restResult(data, GlobalErrorCode.SUCCESS.getCode(), msg, true);
 	}
 
 	public static <T> R<T> failed() {
-		return restResult(null, GlobalErrorCode.INTERNAL_SERVER_ERROR.getCode(), null);
+		return restResult(null, GlobalErrorCode.INTERNAL_SERVER_ERROR.getCode(), null, false);
 	}
 
 	public static <T> R<T> failed(String msg) {
-		return restResult(null, GlobalErrorCode.INTERNAL_SERVER_ERROR.getCode(), msg);
+		return restResult(null, GlobalErrorCode.INTERNAL_SERVER_ERROR.getCode(), msg, false);
 	}
 
 	public static <T> R<T> failed(T data) {
-		return restResult(data, GlobalErrorCode.INTERNAL_SERVER_ERROR.getCode(), null);
+		return restResult(data, GlobalErrorCode.INTERNAL_SERVER_ERROR.getCode(), null, false);
 	}
 
 	public static <T> R<T> failed(T data, String msg) {
-		return restResult(data, GlobalErrorCode.INTERNAL_SERVER_ERROR.getCode(), msg);
+		return restResult(data, GlobalErrorCode.INTERNAL_SERVER_ERROR.getCode(), msg, false);
 	}
 
-	public static <T> R<T> restResult(T data, int code, String msg) {
+	public static <T> R<T> restResult(T data, int code, String msg, boolean success) {
 		R<T> apiResult = new R<>();
 		apiResult.setCode(code);
 		apiResult.setData(data);
 		apiResult.setMsg(msg);
+		apiResult.setSuccess(success);
 		return apiResult;
 	}
 

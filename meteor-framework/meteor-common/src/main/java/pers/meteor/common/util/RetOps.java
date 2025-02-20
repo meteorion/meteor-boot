@@ -201,7 +201,7 @@ public class RetOps<T> {
 	 * @return 返回新实例，以便于继续进行链式操作
 	 */
 	public <U> RetOps<U> map(Function<? super T, ? extends U> mapper) {
-		R<U> result = R.restResult(mapper.apply(original.getData()), original.getCode(), original.getMsg());
+		R<U> result = R.restResult(mapper.apply(original.getData()), original.getCode(), original.getMsg(), true);
 		return of(result);
 	}
 
@@ -217,7 +217,7 @@ public class RetOps<T> {
 	 * @see RetOps#DATA_AVAILABLE
 	 */
 	public <U> RetOps<U> mapIf(Predicate<? super R<T>> predicate, Function<? super T, ? extends U> mapper) {
-		R<U> result = R.restResult(mapper.apply(original.getData()), original.getCode(), original.getMsg());
+		R<U> result = R.restResult(mapper.apply(original.getData()), original.getCode(), original.getMsg(), true);
 		return of(result);
 	}
 

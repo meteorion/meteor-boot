@@ -1,0 +1,3 @@
+pres.meteor.feign.MeteorFeignAutoConfiguration
+pres.meteor.feign.sentinel.SentinelAutoConfiguration
+pres.meteor.feign.sentinel.handle.GlobalBizExceptionHandler

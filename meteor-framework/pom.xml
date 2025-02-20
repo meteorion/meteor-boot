@@ -18,7 +18,10 @@
     <modules>
         <module>meteor-common-dependencies</module>
         <module>meteor-common</module>
-        <module>meteor-boot-starter-security</module>
+        <module>meteor-common-security</module>
+        <module>meteor-common-feign</module>
+        <module>meteor-common-mybatis</module>
+        <module>meteor-common-log</module>
     </modules>
 
     <dependencyManagement>

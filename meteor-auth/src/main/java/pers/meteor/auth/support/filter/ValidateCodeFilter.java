@@ -12,6 +12,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import pers.meteor.auth.config.AuthSecurityConfigProperties;
 import pers.meteor.common.constant.CacheConstants;
 import pers.meteor.common.constant.SecurityConstants;
 import pers.meteor.common.exception.ValidateCodeException;

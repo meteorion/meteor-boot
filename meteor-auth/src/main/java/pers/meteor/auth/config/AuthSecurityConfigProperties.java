@@ -1,4 +1,4 @@
-package pers.meteor.auth.support.filter;
+package pers.meteor.auth.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

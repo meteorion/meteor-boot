@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import pers.meteor.auth.config.AuthSecurityConfigProperties;
 import pers.meteor.common.constant.SecurityConstants;
 import pers.meteor.common.servlet.RepeatBodyRequestWrapper;
 

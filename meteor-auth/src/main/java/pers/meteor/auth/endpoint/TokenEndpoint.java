@@ -59,7 +59,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
-public class PigTokenEndpoint {
+public class TokenEndpoint {
 
 	private final HttpMessageConverter<OAuth2AccessTokenResponse> accessTokenHttpResponseConverter = new OAuth2AccessTokenResponseHttpMessageConverter();
 

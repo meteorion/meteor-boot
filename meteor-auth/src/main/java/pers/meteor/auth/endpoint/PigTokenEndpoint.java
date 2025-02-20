@@ -196,7 +196,7 @@ public class PigTokenEndpoint {
 		int size = MapUtil.getInt(params, CommonConstants.SIZE);
 		Set<String> keys = redisTemplate.keys(key);
 		List<String> pages = keys.stream().skip((long) (current - 1) * size).limit(size).collect(Collectors.toList());
-		PageR<OAuthToken> result = PageR.success(current, size);
+		PageR<OAuthToken> result = PageR.success(size, current);
 
 		List<OAuthToken> tokenVoList = redisTemplate.opsForValue().multiGet(pages).stream().map(obj -> {
 			OAuth2Authorization authorization = (OAuth2Authorization) obj;

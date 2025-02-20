@@ -20,25 +20,25 @@ public class PageR<T> extends R<Collection<T>> {
 
     private static final long serialVersionUID = 1L;
 
-    private int totalCount = 0;
+    private long totalCount = 0;
 
-    private int pageSize = 1;
+    private long pageSize = 1;
 
-    private int pageIndex = 1;
+    private long pageIndex = 1;
 
-    public int getPageSize() {
+    public long getPageSize() {
         return Math.max(pageSize, 1);
     }
 
-    public void setPageSize(int pageSize) {
+    public void setPageSize(long pageSize) {
         this.pageSize = Math.max(pageSize, 1);
     }
 
-    public int getPageIndex() {
+    public long getPageIndex() {
         return Math.max(pageIndex, 1);
     }
 
-    public void setPageIndex(int pageIndex) {
+    public void setPageIndex(long pageIndex) {
         this.pageIndex = Math.max(pageIndex, 1);
     }
 
@@ -52,7 +52,7 @@ public class PageR<T> extends R<Collection<T>> {
         return new ArrayList<>(data);
     }
 
-    public int getTotalPages() {
+    public long getTotalPages() {
         return this.totalCount % this.pageSize == 0 ? this.totalCount
                 / this.pageSize : (this.totalCount / this.pageSize) + 1;
     }
@@ -81,7 +81,7 @@ public class PageR<T> extends R<Collection<T>> {
         return response;
     }
 
-    public static <T> PageR<T> success(int pageSize, int pageIndex) {
+    public static <T> PageR<T> success(long pageSize, long pageIndex) {
         PageR<T> response = new PageR<>();
         response.setSuccess(true);
         response.setCode(GlobalErrorCode.SUCCESS.getCode());
@@ -92,7 +92,7 @@ public class PageR<T> extends R<Collection<T>> {
         return response;
     }
 
-    public static <T> PageR<T> success(Collection<T> data, int totalCount, int pageSize, int pageIndex) {
+    public static <T> PageR<T> success(Collection<T> data, long totalCount, long pageSize, long pageIndex) {
         PageR<T> response = new PageR<>();
         response.setSuccess(true);
         response.setCode(GlobalErrorCode.SUCCESS.getCode());

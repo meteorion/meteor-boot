@@ -27,7 +27,7 @@ public class RemoteUserServiceImpl implements RemoteUserService {
         AdminUserVO adminUser = new AdminUserVO();
         adminUser.setUserId(1L);
         adminUser.setUsername("admin");
-        adminUser.setPassword("123456");
+        adminUser.setPassword("$2a$10$c/Ae0pRjJtMZg3BnvVpO.eIK6WYWVbKTzqgdy3afR7w.vd.xi3Mgy");
         adminUser.setLockFlag(CommonConstants.STATUS_NORMAL);
         return R.ok(adminUser);
     }

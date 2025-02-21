@@ -33,6 +33,6 @@ public @interface EnableMeteorFeignClients {
 	 * @return the array of 'basePackages'.
 	 */
 	@AliasFor(annotation = EnableFeignClients.class, attribute = "basePackages")
-	String[] basePackages() default { "com.pig4cloud.pig" };
+	String[] basePackages() default { "pers.meteor" };
 
 }

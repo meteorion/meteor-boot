@@ -22,7 +22,6 @@ public interface RemoteLogService {
      * @param sysLog 日志实体
      * @return succes、false
      */
-    @NoToken
     @PostMapping(PREFIX + "/save")
     R<Boolean> saveLog(@RequestBody SysLog sysLog);
 }

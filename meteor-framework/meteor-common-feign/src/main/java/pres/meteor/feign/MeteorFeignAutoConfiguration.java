@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Scope;
  * @date 2020-02-12
  */
 @Configuration(proxyBeanMethods = false)
-//@Import(MeteorFeignClientsRegistrar.class)
+@Import(MeteorFeignClientsRegistrar.class)
 @AutoConfigureBefore(SentinelFeignAutoConfiguration.class)
 public class MeteorFeignAutoConfiguration {
 

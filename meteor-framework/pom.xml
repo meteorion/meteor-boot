@@ -22,6 +22,8 @@
         <module>meteor-common-feign</module>
         <module>meteor-common-mybatis</module>
         <module>meteor-common-log</module>
+        <module>meteor-common-datasource</module>
+        <module>meteor-common-seata</module>
     </modules>
 
     <dependencyManagement>

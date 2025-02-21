@@ -22,6 +22,8 @@ import java.util.regex.Pattern;
  * <p>
  * 资源服务器对外直接暴露URL,如果设置contex-path 要特殊处理
  */
+@Setter
+@Getter
 @Slf4j
 @ConfigurationProperties(prefix = "security.oauth2.ignore")
 public class PermitAllUrlProperties implements InitializingBean {
@@ -30,8 +32,6 @@ public class PermitAllUrlProperties implements InitializingBean {
 
 	private static final String[] DEFAULT_IGNORE_URLS = new String[] { "/actuator/**", "/error", "/v3/api-docs" };
 
-	@Getter
-	@Setter
 	private List<String> urls = new ArrayList<>();
 
 	@Override

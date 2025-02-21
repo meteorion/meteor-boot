@@ -1,8 +1,8 @@
 package pers.meteor.security.core.annotation;
 
 import org.springframework.context.annotation.Import;
-import pers.meteor.security.config.ResourceServerAutoConfiguration;
-import pers.meteor.security.config.ResourceServerConfiguration;
+import pers.meteor.security.config.MeteorResourceServerAutoConfiguration;
+import pers.meteor.security.config.MeteorResourceServerConfiguration;
 
 import java.lang.annotation.*;
 
@@ -15,7 +15,7 @@ import java.lang.annotation.*;
 @Inherited
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-@Import({ ResourceServerAutoConfiguration .class, ResourceServerConfiguration.class})
+@Import({ MeteorResourceServerAutoConfiguration.class, MeteorResourceServerConfiguration.class})
 public @interface EnableResourceServer {
 
 }

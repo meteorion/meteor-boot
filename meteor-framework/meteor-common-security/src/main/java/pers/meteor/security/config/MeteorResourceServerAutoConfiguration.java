@@ -2,6 +2,7 @@ package pers.meteor.security.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +21,7 @@ import pers.meteor.security.core.service.PermissionService;
  */
 @RequiredArgsConstructor
 @EnableConfigurationProperties(PermitAllUrlProperties.class)
-public class ResourceServerAutoConfiguration {
+public class MeteorResourceServerAutoConfiguration {
 
 	/**
 	 * 鉴权具体的实现逻辑
@@ -49,7 +50,7 @@ public class ResourceServerAutoConfiguration {
 	 */
 	@Bean
 	public ResourceAuthExceptionEntryPoint resourceAuthExceptionEntryPoint(ObjectMapper objectMapper,
-																		   MessageSource securityMessageSource) {
+																		   @Qualifier("securityMessageSource") MessageSource securityMessageSource) {
 		return new ResourceAuthExceptionEntryPoint(objectMapper, securityMessageSource);
 	}
 

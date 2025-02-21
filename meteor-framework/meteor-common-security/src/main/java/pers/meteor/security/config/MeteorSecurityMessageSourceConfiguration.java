@@ -17,7 +17,7 @@ import static org.springframework.boot.autoconfigure.condition.ConditionalOnWebA
  * 注入自定义错误处理,覆盖 org/springframework/security/messages 内置异常
  */
 @ConditionalOnWebApplication(type = SERVLET)
-public class SecurityMessageSourceConfiguration implements WebMvcConfigurer {
+public class MeteorSecurityMessageSourceConfiguration implements WebMvcConfigurer {
 
 	@Bean
 	public MessageSource securityMessageSource() {

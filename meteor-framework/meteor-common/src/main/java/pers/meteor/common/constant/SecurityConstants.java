@@ -1,64 +1,108 @@
 package pers.meteor.common.constant;
 
-/**
- * 权限相关通用常量
- *
- * @author meteor
- */
-public class SecurityConstants
-{
-    /**
-     * 用户ID字段
-     */
-    public static final String DETAILS_USER_ID = "user_id";
+public interface SecurityConstants {
+	/**
+	 * 角色前缀
+	 */
+	String ROLE = "ROLE_";
 
-    public static final String DETAILS_USER_TYPE = "user_type";
+	/**
+	 * 前缀
+	 */
+	String PROJECT_PREFIX = "pig";
 
-    public static final String DETAILS_CLIENT_ID = "client_id";
+	/**
+	 * 项目的license
+	 */
+	String PROJECT_LICENSE = "https://pig4cloud.com";
 
-    public static final String DETAILS_ROLE = "role";
+	/**
+	 * 内部
+	 */
+	String FROM_IN = "Y";
 
-    public static final String DETAILS_PERMISSIONS = "permissions";
+	/**
+	 * 标志
+	 */
+	String FROM = "from";
 
-    public static final String DETAILS_MOBILE = "mobile";
-    /**
-     * 用户名字段
-     */
-    public static final String DETAILS_USERNAME = "username";
+	/**
+	 * 默认登录URL
+	 */
+	String OAUTH_TOKEN_URL = "/oauth2/token";
 
-    public static final String DETAILS_USER_DEPT_ID = "dept_id";
+	/**
+	 * grant_type
+	 */
+	String REFRESH_TOKEN = "refresh_token";
 
-    public static final String DETAILS_REFREST_TOKEN = "refresh_token";
+	/**
+	 * password 模式
+	 */
+	String PASSWORD = "password";
 
-    /**
-     * 授权信息字段
-     */
-    public static final String AUTHORIZATION_HEADER = "Authorization";
+	/**
+	 * 手机号登录
+	 */
+	String MOBILE = "mobile";
 
-    /**
-     * 请求来源
-     */
-    public static final String FROM_SOURCE = "from-source";
+	/**
+	 * {bcrypt} 加密的特征码
+	 */
+	String BCRYPT = "{bcrypt}";
 
-    /**
-     * 内部请求
-     */
-    public static final String INNER = "inner";
+	/**
+	 * {noop} 加密的特征码
+	 */
+	String NOOP = "{noop}";
 
-    /**
-     * 用户标识
-     */
-    public static final String USER_KEY = "user_key";
+	/**
+	 * 用户名
+	 */
+	String USERNAME = "username";
 
-    /**
-     * 登录用户
-     */
-    public static final String LOGIN_USER = "login_user";
+	/**
+	 * 用户信息
+	 */
+	String DETAILS_USER = "user_info";
 
-    /**
-     * 角色权限
-     */
-    public static final String ROLE_PERMISSION = "role_permission";
+	/**
+	 * 用户ID
+	 */
+	String DETAILS_USER_ID = "user_id";
 
-    public static final String HEADER_TENANT_ID = "tenant-id";
+	/**
+	 * 协议字段
+	 */
+	String DETAILS_LICENSE = "license";
+
+	/**
+	 * 验证码有效期,默认 60秒
+	 */
+	long CODE_TIME = 60;
+
+	/**
+	 * 验证码长度
+	 */
+	String CODE_SIZE = "6";
+
+	/**
+	 * 客户端模式
+	 */
+	String CLIENT_CREDENTIALS = "client_credentials";
+
+	/**
+	 * 客户端ID
+	 */
+	String CLIENT_ID = "clientId";
+
+	/**
+	 * 短信登录 参数名称
+	 */
+	String SMS_PARAMETER_NAME = "mobile";
+
+	/**
+	 * 授权码模式confirm
+	 */
+	String CUSTOM_CONSENT_PAGE_URI = "/oauth2/confirm_access";
 }

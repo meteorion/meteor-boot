@@ -1,10 +1,10 @@
 package pers.meteor.common.validation;
 
 import cn.hutool.core.collection.CollUtil;
-import pers.meteor.common.pojo.IntArrayValuable;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
+import pers.meteor.common.entity.IntArrayValuable;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;

@@ -1,9 +1,9 @@
 package pers.meteor.common.validation;
 
-import pers.meteor.common.pojo.IntArrayValuable;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
+import pers.meteor.common.entity.IntArrayValuable;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Target({

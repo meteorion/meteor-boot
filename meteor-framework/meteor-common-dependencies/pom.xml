@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>pers.meteor</groupId>
+	<artifactId>meteor-common-dependencies</artifactId>
+	<version>${revision}</version>
+	<packaging>pom</packaging>
+
+	<name>meteor-common-dependencies</name>
+	<description>meteor-common-dependencies</description>
+
+	<properties>
+		<!-- 项目版本号 -->
+		<revision>1.0.0-snapshot</revision>
+		<spring-boot.version>3.4.2</spring-boot.version>
+		<spring-boot.version>3.4.2</spring-boot.version>
+		<spring-cloud.version>2024.0.0</spring-cloud.version>
+		<spring-cloud-alibaba.version>2023.0.3.2</spring-cloud-alibaba.version>
+		<spring-boot-admin.version>3.4.1</spring-boot-admin.version>
+		<spring.authorization.version>1.4.1</spring.authorization.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<git.commit.plugin>9.0.1</git.commit.plugin>
+		<fastjson.version>1.2.83_noneautotype</fastjson.version>
+		<springdoc.version>2.8.4</springdoc.version>
+		<swagger.core.version>2.2.28</swagger.core.version>
+		<mybatis-plus.version>3.5.10.1</mybatis-plus.version>
+		<mysql.version>9.2.0</mysql.version>
+		<dynamic-ds.version>4.3.1</dynamic-ds.version>
+		<seata.version>1.7.0</seata.version>
+		<asm.version>7.1</asm.version>
+		<sms.version>3.0.0</sms.version>
+		<jaxb.version>2.3.5</jaxb.version>
+		<jasypt.version>3.0.5</jasypt.version>
+		<hutool.version>5.8.35</hutool.version>
+		<sentinel.version>1.8.4</sentinel.version>
+		<common.io.version>2.18.0</common.io.version>
+		<spring.checkstyle.plugin>0.0.43</spring.checkstyle.plugin>
+		<flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
+	</properties>
+
+	<!-- 定义全局jar版本,模块使用需要再次引入但不用写版本号-->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>pers.meteor</groupId>
+				<artifactId>meteor-common</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>pers.meteor</groupId>
+				<artifactId>meteor-common-security</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>pers.meteor</groupId>
+				<artifactId>meteor-common-feign</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>pers.meteor</groupId>
+				<artifactId>meteor-common-log</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>pers.meteor</groupId>
+				<artifactId>meteor-common-mybatis</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>pers.meteor</groupId>
+				<artifactId>meteor-common-datasource</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>pers.meteor</groupId>
+				<artifactId>meteor-common-seata</artifactId>
+				<version>${revision}</version>
+			</dependency>
+			<dependency>
+				<groupId>pers.meteor</groupId>
+				<artifactId>meteor-system-api</artifactId>
+				<version>${revision}</version>
+			</dependency>
+
+			<!-- spring boot 依赖 -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- spring cloud 依赖 -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- spring cloud alibaba 依赖 -->
+			<dependency>
+				<groupId>com.alibaba.cloud</groupId>
+				<artifactId>spring-cloud-alibaba-dependencies</artifactId>
+				<version>${spring-cloud-alibaba.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!--监控客户端-->
+			<dependency>
+				<groupId>de.codecentric</groupId>
+				<artifactId>spring-boot-admin-starter-client</artifactId>
+				<version>${spring-boot-admin.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.mysql</groupId>
+				<artifactId>mysql-connector-j</artifactId>
+				<version>${mysql.version}</version>
+			</dependency>
+			<!--springdoc -->
+			<dependency>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+				<version>${springdoc.version}</version>
+			</dependency>
+	<!--			<dependency>-->
+	<!--				<groupId>org.springdoc</groupId>-->
+	<!--				<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>-->
+	<!--				<version>${springdoc.version}</version>-->
+	<!--			</dependency>-->
+			<dependency>
+				<groupId>org.springdoc</groupId>
+				<artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+				<version>${springdoc.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.swagger.core.v3</groupId>
+				<artifactId>swagger-annotations-jakarta</artifactId>
+				<version>${swagger.core.version}</version>
+			</dependency>
+			<!--fastjson 版本-->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+			<!-- commons.io 覆盖easyexcel-->
+			<dependency>
+				<artifactId>commons-io</artifactId>
+				<groupId>commons-io</groupId>
+				<version>${common.io.version}</version>
+			</dependency>
+			<!-- 多数据源依赖 -->
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>dynamic-datasource-spring-boot3-starter</artifactId>
+				<version>${dynamic-ds.version}</version>
+			</dependency>
+			<!--  阿里云短信下发 -->
+			<dependency>
+				<groupId>io.springboot.sms</groupId>
+				<artifactId>aliyun-sms-spring-boot-starter</artifactId>
+				<version>${sms.version}</version>
+			</dependency>
+			<!--orm 相关-->
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-bom</artifactId>
+				<version>${mybatis-plus.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!--hutool bom 工具类-->
+			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-bom</artifactId>
+				<version>${hutool.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!--web 模块-->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${spring-boot.version}</version>
+				<exclusions>
+					<!--排除tomcat依赖-->
+					<exclusion>
+						<artifactId>spring-boot-starter-tomcat</artifactId>
+						<groupId>org.springframework.boot</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!--配置文件加解密-->
+			<dependency>
+				<groupId>com.github.ulisesbocchio</groupId>
+				<artifactId>jasypt-spring-boot-starter</artifactId>
+				<version>${jasypt.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

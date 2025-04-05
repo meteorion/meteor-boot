@@ -2,18 +2,15 @@ package pers.meteor.common.exception;
 
 import lombok.Getter;
 import lombok.Setter;
-import pers.meteor.common.exception.enums.GlobalErrorCode;
 
 import java.text.MessageFormat;
 
 /**
- * 业务异常
- *
  * @author meteor
  */
 @Setter
 @Getter
-public final class ServiceException extends RuntimeException {
+public class ServiceException {
     private static final long serialVersionUID = 1L;
 
     /**

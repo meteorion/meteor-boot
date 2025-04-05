@@ -1,0 +1,6 @@
+pers.meteor.security.core.service.AdminUserDetailsServiceImpl
+pers.meteor.security.core.service.RedisOAuth2AuthorizationService
+pers.meteor.security.core.service.RedisOAuth2AuthorizationConsentService
+pers.meteor.security.core.aspect.SecurityInnerAspect
+pers.meteor.security.config.MeteorSecurityMessageSourceConfiguration
+pers.meteor.security.core.service.RemoteRegisteredClientRepository

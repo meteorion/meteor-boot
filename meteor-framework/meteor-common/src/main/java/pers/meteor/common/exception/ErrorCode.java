@@ -1,16 +1,12 @@
 package pers.meteor.common.exception;
 
 import lombok.Getter;
-import pers.meteor.common.exception.enums.GlobalErrorCode;
 
 /**
- * 错误码对象
- * 全局错误码，占用 [0, 999], 参见 {@link GlobalErrorCode}
- * 业务异常错误码，占用 [1 000 000 000, +∞)
+ * @author meteor
  */
 @Getter
 public class ErrorCode {
-
     /**
      * 错误码
      */
@@ -24,5 +20,4 @@ public class ErrorCode {
         this.code = code;
         this.msg = message;
     }
-
 }

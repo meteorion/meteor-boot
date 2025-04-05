@@ -1,1 +1,6 @@
-pers.meteor.common.utils.spring.SpringUtils
+pers.meteor.common.config.TaskExecutorConfiguration
+pers.meteor.common.config.JacksonConfiguration
+pers.meteor.common.config.RedisTemplateConfiguration
+pers.meteor.common.util.SpringContextHolder
+pers.meteor.common.config.WebMvcConfiguration
+pers.meteor.common.config.CaptchaConfiguration

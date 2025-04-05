@@ -1,0 +1,34 @@
+package pers.meteor.system.api.user;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+import pers.meteor.common.constant.CommonConstants;
+import pers.meteor.security.core.annotation.Inner;
+import pers.meteor.system.api.user.vo.AdminUserVO;
+import pers.meteor.common.constant.ServiceNameConstants;
+import pers.meteor.common.entity.R;
+
+/**
+ * @author meteor
+ */
+@Inner
+@RestController
+@Slf4j
+@RequiredArgsConstructor
+public class RemoteUserServiceImpl implements RemoteUserService {
+
+
+    @Inner
+    @Override
+    public R<AdminUserVO> getUserByUsername(String username) {
+        AdminUserVO adminUser = new AdminUserVO();
+        adminUser.setUserId(1L);
+        adminUser.setUsername("admin");
+        adminUser.setPassword("$2a$10$c/Ae0pRjJtMZg3BnvVpO.eIK6WYWVbKTzqgdy3afR7w.vd.xi3Mgy");
+        adminUser.setLockFlag(CommonConstants.STATUS_NORMAL);
+        return R.ok(adminUser);
+    }
+}

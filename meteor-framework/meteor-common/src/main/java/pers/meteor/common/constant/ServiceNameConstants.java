@@ -1,24 +1,19 @@
 package pers.meteor.common.constant;
 
 /**
- * 服务名称
- *
- * @author meteor
+ * @author lengleng
+ * @date 2018年06月22日16:41:01 服务名称
  */
-public class ServiceNameConstants
-{
-    /**
-     * 认证服务的serviceid
-     */
-    public static final String AUTH_SERVICE = "meteor-cloud-module-auth";
+public interface ServiceNameConstants {
 
-    /**
-     * 系统模块的serviceid
-     */
-    public static final String SYSTEM_SERVICE = "meteor-cloud-module-system";
+	/**
+	 * 认证服务的SERVICEID
+	 */
+	String AUTH_SERVICE = "meteor-auth";
 
-    /**
-     * 文件服务的serviceid
-     */
-    public static final String FILE_SERVICE = "meteor-cloud-module-file";
+	/**
+	 * system模块
+	 */
+	String SYSTEM_SERVICE = "meteor-system-server";
+
 }

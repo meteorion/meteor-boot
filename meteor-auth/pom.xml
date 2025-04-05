@@ -1,108 +1,90 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>pers.meteor</groupId>
-        <artifactId>meteor-cloud-v2</artifactId>
-        <version>1.0.0-snapshot</version>
+        <artifactId>meteor-boot</artifactId>
+        <version>${revision}</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
     <artifactId>meteor-auth</artifactId>
+    <packaging>jar</packaging>
 
-    <description>
-        meteor-auth认证授权中心
-    </description>
-
-    <properties>
-        <java.version>1.8</java.version>
-        <spring.boot.version>2.7.18</spring.boot.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <auth.api.version>${revision}</auth.api.version>
-    </properties>
+    <description>meteor-auth</description>
 
     <dependencies>
-        <dependency>
-            <groupId>pers.meteor</groupId>
-            <artifactId>meteor-auth-api</artifactId>
-            <version>${auth.api.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- SpringCloud Alibaba Nacos -->
+        <!--注册中心客户端-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-
-        <!-- SpringCloud Alibaba Nacos Config -->
+        <!--配置中心客户端-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
-
-        <!-- RuoYi Common Security-->
+        <!--feign 依赖-->
         <dependency>
             <groupId>pers.meteor</groupId>
-            <artifactId>meteor-boot-starter-security</artifactId>
+            <artifactId>meteor-common-feign</artifactId>
         </dependency>
-
+        <!-- 安全模块 -->
         <dependency>
             <groupId>pers.meteor</groupId>
-            <artifactId>meteor-boot-starter-test</artifactId>
+            <artifactId>meteor-common-security</artifactId>
         </dependency>
-
         <dependency>
-            <groupId>pers.meteor</groupId>
-            <artifactId>meteor-boot-starter-monitor</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-
+        <!-- 日志模块 -->
         <dependency>
             <groupId>pers.meteor</groupId>
-            <artifactId>meteor-boot-starter-document</artifactId>
+            <artifactId>meteor-common-log</artifactId>
+        </dependency>
+        <!--freemarker 授权码模式渲染-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+        <!--undertow容器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+        <!-- 加解密依赖 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-crypto</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-http</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-captcha</artifactId>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.boot.version}</version>
-                <configuration>
-                    <mainClass>pers.meteor.auth.AuthApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <target>17</target>
+                    <source>17</source>
+                    <encoding>UTF-8</encoding>
+                    <parameters>true</parameters>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>

@@ -1,9 +1,9 @@
 package pers.meteor.common.validation;
 
-import pers.meteor.common.pojo.IntArrayValuable;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
+import pers.meteor.common.entity.IntArrayValuable;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
